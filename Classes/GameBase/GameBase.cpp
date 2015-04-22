@@ -24,7 +24,8 @@ bool GameBase::init()
 	{
 		return false;
 	}
-
+	int test_a = 0;
+	test_a = 1;
 	return true;
 	/*
 	Size visibleSize = Director::getInstance()->getVisibleSize();
