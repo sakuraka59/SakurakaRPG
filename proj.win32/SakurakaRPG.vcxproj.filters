@@ -16,6 +16,9 @@
     <Filter Include="src\GameMain">
       <UniqueIdentifier>{7f7dd015-112f-4ca8-966f-07cadfe48b78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\GameUi">
+      <UniqueIdentifier>{2ca2233a-5c5e-4f10-b042-9539c34fa703}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -30,6 +33,9 @@
     <ClCompile Include="..\Classes\GameMain\GameMain.cpp">
       <Filter>src\GameMain</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\UiBase.cpp">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -43,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\GameMain.h">
       <Filter>src\GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\UiBase.h">
+      <Filter>src\GameMain\GameUi</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

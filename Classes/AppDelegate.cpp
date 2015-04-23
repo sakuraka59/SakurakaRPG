@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-//#include "GameBase\GameBase.h"
+#include "GameMain\GameMain.h"
 
 USING_NS_CC;
 
@@ -44,7 +44,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 	// 表示解像度変更
 	glview->setFrameSize(1280, 720);
-
 	// プログラム内解像度変更
 	glview->setDesignResolutionSize(1280, 720, ResolutionPolicy::NO_BORDER);
 
@@ -56,9 +55,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // create a scene. it's an autorelease object
 //    auto scene = HelloWorld::createScene();
 //	auto scene = GameBase::createScene();
-
+	auto scene = GameMain::createScene();
     // run
-//    director->runWithScene(scene);
+    director->runWithScene(scene);
 
     return true;
 }
