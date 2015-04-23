@@ -1,5 +1,5 @@
 #include "GameMain.h"
-#include "GameUi\UiBase.h"
+#include "GameUi\PlayUi.h"
 #define COCOS2D_DEBUG 1
 USING_NS_CC;
 
@@ -26,8 +26,12 @@ bool GameMain::init()
 		return false;
 	}
 
-	this->_test_ui_obj = new UiBase();
-	this->addChild(this->_test_ui_obj);
+	this->_play_ui_obj = new PlayUi();
+	this->addChild(this->_play_ui_obj);
+
+
+//	this->_test_ui_obj = new UiBase();
+//	this->addChild(this->_test_ui_obj);
 	
 //	UiBase * test_obj = new UiBase();
 //	this->addChild(test_obj);
@@ -87,8 +91,8 @@ bool GameMain::init()
 	// */
 }
 void GameMain::update(float delta) {
-	CCLOG("hogehoge");
-	this->_test_ui_obj->Update();
+
+	this->_play_ui_obj->Update();
 }
 
 void GameMain::menuCloseCallback(Ref* pSender)

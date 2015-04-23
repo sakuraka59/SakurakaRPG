@@ -36,6 +36,9 @@
     <ClCompile Include="..\Classes\GameMain\GameUi\UiBase.cpp">
       <Filter>src\GameMain\GameUi</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\PlayUi.cpp">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -51,6 +54,9 @@
       <Filter>src\GameMain</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\GameUi\UiBase.h">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\PlayUi.h">
       <Filter>src\GameMain\GameUi</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,12 +5,13 @@
 
 class UiBase : public cocos2d::Node
 {
+	/*
 private: int _test_x = 0;
 private: cocos2d::Label* _test_label;
 
-
+	*/
 public: UiBase();
-public: void Update();
+public: virtual void Update();
 
 };
 

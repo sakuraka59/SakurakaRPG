@@ -2,7 +2,7 @@
 #define __GAMEMAIN_H__5
 
 #include "cocos2d.h"
-#include "GameUi\UiBase.h"
+#include "GameUi\PlayUi.h"
 
 class GameMain : public cocos2d::Layer
 {
@@ -25,7 +25,8 @@ public:
 	//*/
 
 private:
-	UiBase * _test_ui_obj;
+//	UiBase * _test_ui_obj;
+	PlayUi* _play_ui_obj;
 };
 
 #endif // __GAMEMAIN_H__
