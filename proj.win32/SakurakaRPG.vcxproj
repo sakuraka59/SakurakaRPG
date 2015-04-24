@@ -140,18 +140,18 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\GameBase\GameBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameMain.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\PlayUi.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\UiBase.cpp" />
+    <ClCompile Include="..\Classes\ResourceManage.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
-    <ClInclude Include="..\Classes\GameBase\GameBase.h" />
     <ClInclude Include="..\Classes\GameMain\GameMain.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\PlayUi.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\UiBase.h" />
+    <ClInclude Include="..\Classes\ResourceManage.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>

@@ -10,9 +10,6 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\GameBase">
-      <UniqueIdentifier>{60a17e9a-6d89-474e-adda-2125ce397272}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\GameMain">
       <UniqueIdentifier>{7f7dd015-112f-4ca8-966f-07cadfe48b78}</UniqueIdentifier>
     </Filter>
@@ -27,9 +24,6 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameBase\GameBase.cpp">
-      <Filter>src\GameBase</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GameMain\GameMain.cpp">
       <Filter>src\GameMain</Filter>
     </ClCompile>
@@ -39,6 +33,9 @@
     <ClCompile Include="..\Classes\GameMain\GameUi\PlayUi.cpp">
       <Filter>src\GameMain\GameUi</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\ResourceManage.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -46,9 +43,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameBase\GameBase.h">
-      <Filter>src\GameBase</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\GameMain.h">
       <Filter>src\GameMain</Filter>
@@ -58,6 +52,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\GameUi\PlayUi.h">
       <Filter>src\GameMain\GameUi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ResourceManage.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
