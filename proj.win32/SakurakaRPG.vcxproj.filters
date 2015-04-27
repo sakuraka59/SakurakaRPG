@@ -19,6 +19,12 @@
     <Filter Include="src\GameMain\chara">
       <UniqueIdentifier>{43bd8228-7240-466c-8552-7d0785fbcef1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\item">
+      <UniqueIdentifier>{be828548-aef6-4b13-9cd7-3ae4ce9d490d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\item\equip_item">
+      <UniqueIdentifier>{fe61c6e6-b01c-4888-89d1-8dbf4e202c07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,6 +51,12 @@
     <ClCompile Include="..\Classes\RenderObject.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\item\equip_item\EquipItem.cpp">
+      <Filter>src\GameMain\item\equip_item</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\item\ItemBase.cpp">
+      <Filter>src\GameMain\item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -70,6 +82,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\RenderObject.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\mainStateType.h">
+      <Filter>src\GameMain\chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\equipType.h">
+      <Filter>src\GameMain\chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\equip_item\EquipItem.h">
+      <Filter>src\GameMain\item\equip_item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\ItemBase.h">
+      <Filter>src\GameMain\item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

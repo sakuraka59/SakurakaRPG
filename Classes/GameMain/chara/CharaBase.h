@@ -1,36 +1,35 @@
 #ifndef __CHARA_BASE__
 #define __CHARA_BASE__
 
-#include "../../RenderObject.h";
+#include "../../RenderObject.h"
+#include <unordered_map>		// ハッシュテーブル
+#include "mainStateType.h"
 
-// enum
-// mainStateType, charaGroupList, charaSexualState, charaSexualType
-// equipType,
-
-// class
-// SeedBase, StateList, 
-// HaveUseItemList, HaveEquipItemList,
-// SkillList, SkillAttack, SkillBase
-// GameCamera, ShadowObjectList,
 
 class CharaBase : public RenderObject
 {
 
-	// 補正なしステータス
+// 補正なしステータス
+public: std::unordered_map<mainStateType, int> _base_state;
 //	protected Dictionary<mainStateType, int> _base_state = new Dictionary<mainStateType, int>();
-	// 補正のみのステータス
+
+// 補正のみのステータス
+public: std::unordered_map<mainStateType, int> _correction_state;
 //	protected Dictionary<mainStateType, int> _correction_state = new Dictionary<mainStateType, int>();
-	// 現在ステータス
+
+// 現在ステータス
+public: std::unordered_map<mainStateType, int> _now_state;
 //	protected Dictionary<mainStateType, int> _now_state = new Dictionary<mainStateType, int>();
 
-	// 最大ステータス（HPやSPなど限定
+// 最大ステータス（HPやSPなど限定
+public: std::unordered_map<mainStateType, int> _max_state;
 //	protected Dictionary<mainStateType, int> _max_state = new Dictionary<mainStateType, int>();
 
 
-	// 現在装備しているアイテム
+// 現在装備しているアイテム
 //	protected Dictionary<equipType, EquipItem> _equip_list = new Dictionary<equipType, EquipItem>();
 
-	// 自身が所属しているグループ
+// 自身が所属しているグループ
 //	protected List<charaGroupList> _my_group_list = new List<charaGroupList>();
 
 	//	Correction	補正
