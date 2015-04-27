@@ -5,6 +5,15 @@
 #include <unordered_map>		// ハッシュテーブル
 #include "mainStateType.h"
 
+// enum
+// mainStateType, charaGroupList, charaSexualState, charaSexualType
+// equipType,
+
+// class
+// SeedBase, StateList, 
+// HaveUseItemList, HaveEquipItemList,
+// SkillList, SkillAttack, SkillBase
+// GameCamera, ShadowObjectList,
 
 class CharaBase : public RenderObject
 {
