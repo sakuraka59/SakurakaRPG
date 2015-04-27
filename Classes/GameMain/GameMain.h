@@ -1,5 +1,5 @@
 #ifndef __GAMEMAIN_H__
-#define __GAMEMAIN_H__5
+#define __GAMEMAIN_H__
 
 #include "cocos2d.h"
 #include "GameUi\PlayUi.h"

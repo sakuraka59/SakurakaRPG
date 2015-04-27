@@ -16,6 +16,9 @@
     <Filter Include="src\GameMain\GameUi">
       <UniqueIdentifier>{2ca2233a-5c5e-4f10-b042-9539c34fa703}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\chara">
+      <UniqueIdentifier>{43bd8228-7240-466c-8552-7d0785fbcef1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,6 +39,12 @@
     <ClCompile Include="..\Classes\ResourceManage.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\CharaBase.cpp">
+      <Filter>src\GameMain\chara</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RenderObject.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -54,6 +63,12 @@
       <Filter>src\GameMain\GameUi</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\ResourceManage.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\CharaBase.h">
+      <Filter>src\GameMain\chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RenderObject.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

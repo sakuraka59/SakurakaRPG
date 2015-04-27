@@ -1,3 +1,4 @@
+/*
 #ifndef __RESOURCE_MANAGE_H__
 #define __RESOURCE_MANAGE_H__
 
@@ -18,3 +19,4 @@ public: cocos2d::Sprite* getSprite(std::string file_name);
 //const int MAX_X = 800;
 
 #endif //__RESOURCE_MANAGE_H__
+*/

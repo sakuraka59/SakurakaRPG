@@ -1,3 +1,6 @@
+// cocos2d-x側で管理してくれるので、管理クラスは必要ない
+
+/*
 #include <unordered_map>       // ハッシュテーブル
 
 #include "cocos2d.h"
