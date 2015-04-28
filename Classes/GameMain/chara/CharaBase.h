@@ -1,10 +1,23 @@
-#ifndef __CHARA_BASE__
-#define __CHARA_BASE__
+#pragma once
 
 #include "../../RenderObject.h"
 #include <unordered_map>		// ハッシュテーブル
 #include "mainStateType.h"
+#include "equipType.h"
+#include "abnormal_state/StateBase.h"
+#include "../item/equip_item/EquipItem.h"
 
+
+class SeedBase;
+class StateList;
+
+class EquipItem;
+class HaveUseItemList;
+class HaveEquipItemList;
+
+class GameCamera;
+class ShadowObjectList;
+//*/
 // enum
 // mainStateType, charaGroupList, charaSexualState, charaSexualType
 // equipType,
@@ -36,7 +49,7 @@ public: std::unordered_map<mainStateType, int> _max_state;
 
 
 // 現在装備しているアイテム
-//	protected Dictionary<equipType, EquipItem> _equip_list = new Dictionary<equipType, EquipItem>();
+protected: std::unordered_map<equipType, EquipItem> _equip_list;
 
 // 自身が所属しているグループ
 //	protected List<charaGroupList> _my_group_list = new List<charaGroupList>();
@@ -111,10 +124,10 @@ protected: int _AUTO_HEAL_EXCITATION = 1;
 protected: int _draw_correct_x = 0;
 protected: int _draw_correct_y = 0;
 
-//protected GameCamera _play_camera;
+//protected: GameCamera _play_camera;
 
 // 各種オブジェクトのリスト
-//protected List<CharaBase> _all_chara_list;
+protected: std::list<CharaBase> _all_chara_list;
 //protected SkillList _skill_list;
 //protected List<MagicBase> _magic_list;
 //protected ShadowObjectList _shadow_list;
@@ -136,5 +149,3 @@ private: int _skill_chain_num;
 
 
 };
-
-#endif // __CHARA_BASE__

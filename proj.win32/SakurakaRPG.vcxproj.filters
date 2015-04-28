@@ -25,6 +25,12 @@
     <Filter Include="src\GameMain\item\equip_item">
       <UniqueIdentifier>{fe61c6e6-b01c-4888-89d1-8dbf4e202c07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\chara\abnormal_state">
+      <UniqueIdentifier>{7b457853-fcfd-4c6d-a353-80b585fe280d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\chara\chara_seed">
+      <UniqueIdentifier>{b756a341-496c-41bf-ae69-145f4df6cd8c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -56,6 +62,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\item\ItemBase.cpp">
       <Filter>src\GameMain\item</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\chara_seed\SeedBase.cpp">
+      <Filter>src\GameMain\chara\chara_seed</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\StateBase.cpp">
+      <Filter>src\GameMain\chara\abnormal_state</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +106,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\item\ItemBase.h">
       <Filter>src\GameMain\item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\abnormalStateType.h">
+      <Filter>src\GameMain\chara\abnormal_state</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\chara_seed\SeedBase.h">
+      <Filter>src\GameMain\chara\chara_seed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\charaGroupList.h">
+      <Filter>src\GameMain\chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\StateBase.h">
+      <Filter>src\GameMain\chara\abnormal_state</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,5 +1,4 @@
-#ifndef __EQUIP_TYPE__
-#define __EQUIP_TYPE__
+#pragma once
 
 enum equipType{
 	no_type = -1,
@@ -11,4 +10,3 @@ enum equipType{
 	bottom,		// ボトム ズボンやスカート
 	shoes,		// 靴
 };
-#endif // __EQUIP_TYPE__

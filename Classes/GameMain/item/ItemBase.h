@@ -1,9 +1,10 @@
-#ifndef __ITEM_BASE__
-#define __ITEM_BASE__
+#pragma once
 
-#include "../chara/CharaBase.h"
-//#include "../chara/mainStateType.h"
+//#include "../chara/CharaBase.h"
+#include "../chara/mainStateType.h"
 #include <unordered_map>       // ハッシュテーブル
+
+class CharaBase;
 
 class ItemBase
 {
@@ -20,4 +21,3 @@ public: virtual bool useItem();
 public: std::string getItemName();
 };
 // */
-#endif

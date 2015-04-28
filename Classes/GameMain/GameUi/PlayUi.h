@@ -3,6 +3,9 @@
 
 #include "UiBase.h"
 #include "cocos2d.h"
+#include "../chara/CharaBase.h"
+
+class SeedBase;
 
 class PlayUi : public UiBase
 {
