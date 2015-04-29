@@ -1,5 +1,6 @@
-#ifndef __STATE_BASE__
-#define __STATE_BASE__
+#pragma once
+#include <unordered_map>		// ハッシュテーブル
+
 
 class CharaBase;
 class EquipItem;
@@ -42,7 +43,25 @@ protected: CharaBase* _chara_obj;
 protected: int _state_resist = 0;				// seed to default resist
 protected: int _state_resist_correction = 0;		//
 // equip item address to set
-protected: std::list<EquipItem> _equip_list;
+protected: std::list<EquipItem*> _equip_list;
 
+//-------------------------------------------------------------------
+public: StateBase(CharaBase* chara_obj);
+public: bool Update();
+protected: virtual void stateUpdate();
+protected: void stateEffectCheck();
+protected: virtual void EveryFrameEffect();
+protected: virtual void stateEffect();
+protected: virtual void endStateEffect();
+public: void setState(int state_level);
+public: void endState();
+public: void setEquipItem(EquipItem* equip_item);
+public: void removeEquipItem(EquipItem* equip_item);
+public: bool getEndFlag();
+public: std::string getStateName();
+public: int getRepairFrame();
+public: int getNowFrame();
+// resist ---------------------------------------------------
+public: int getStateResist();
+public: void setSeedStateResist(int seed_rate);
 };
-#endif // __STATE_BASE__

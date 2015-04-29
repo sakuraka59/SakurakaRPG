@@ -1,4 +1,4 @@
-#include "itemBase.h";
+#include "ItemBase.h";
 //#include "../chara/CharaBase.h"
 
 ItemBase::ItemBase(CharaBase* chara_obj){

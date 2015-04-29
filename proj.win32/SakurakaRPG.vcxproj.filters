@@ -69,6 +69,9 @@
     <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\StateBase.cpp">
       <Filter>src\GameMain\chara\abnormal_state</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\StateList.cpp">
+      <Filter>src\GameMain\chara\abnormal_state</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -117,6 +120,9 @@
       <Filter>src\GameMain\chara</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\StateBase.h">
+      <Filter>src\GameMain\chara\abnormal_state</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\StateList.h">
       <Filter>src\GameMain\chara\abnormal_state</Filter>
     </ClInclude>
   </ItemGroup>

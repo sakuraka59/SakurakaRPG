@@ -4,10 +4,10 @@
 #include <unordered_map>		// ハッシュテーブル
 #include "mainStateType.h"
 #include "equipType.h"
-#include "abnormal_state/StateBase.h"
-#include "../item/equip_item/EquipItem.h"
+///#include "abnormal_state/StateBase.h"
+//#include "../item/equip_item/EquipItem.h"
 
-
+//*
 class SeedBase;
 class StateList;
 
@@ -49,7 +49,7 @@ public: std::unordered_map<mainStateType, int> _max_state;
 
 
 // 現在装備しているアイテム
-protected: std::unordered_map<equipType, EquipItem> _equip_list;
+protected: std::unordered_map<equipType, EquipItem*> _equip_list;
 
 // 自身が所属しているグループ
 //	protected List<charaGroupList> _my_group_list = new List<charaGroupList>();
