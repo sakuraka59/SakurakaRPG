@@ -31,6 +31,12 @@
     <Filter Include="src\GameMain\chara\chara_seed">
       <UniqueIdentifier>{b756a341-496c-41bf-ae69-145f4df6cd8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\chara\abnormal_state\default">
+      <UniqueIdentifier>{5cef606c-5ff7-40d4-96d8-473ffb0b917c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\chara\abnormal_state\sexual">
+      <UniqueIdentifier>{05e0e520-fe98-482e-b095-5e35122dc785}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -70,6 +76,12 @@
       <Filter>src\GameMain\chara\abnormal_state</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\StateList.cpp">
+      <Filter>src\GameMain\chara\abnormal_state</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\default\Poison.cpp">
+      <Filter>src\GameMain\chara\abnormal_state\default</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\StateAuto.cpp">
       <Filter>src\GameMain\chara\abnormal_state</Filter>
     </ClCompile>
   </ItemGroup>
@@ -123,6 +135,12 @@
       <Filter>src\GameMain\chara\abnormal_state</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\StateList.h">
+      <Filter>src\GameMain\chara\abnormal_state</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\default\Poison.h">
+      <Filter>src\GameMain\chara\abnormal_state\default</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\StateAuto.h">
       <Filter>src\GameMain\chara\abnormal_state</Filter>
     </ClInclude>
   </ItemGroup>

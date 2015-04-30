@@ -1,3 +1,4 @@
+#pragma once
 enum abnormalStateType {
 	none = 0,
 	poison,

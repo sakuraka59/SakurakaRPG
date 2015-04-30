@@ -140,6 +140,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\default\Poison.cpp" />
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\StateAuto.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\StateBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\StateList.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\CharaBase.cpp" />
@@ -156,6 +158,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
     <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\abnormalStateType.h" />
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\default\Poison.h" />
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\StateAuto.h" />
     <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\StateBase.h" />
     <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\StateList.h" />
     <ClInclude Include="..\Classes\GameMain\chara\CharaBase.h" />
