@@ -1,6 +1,6 @@
 #pragma once
-enum abnormalStateType {
-	none = 0,
+enum class abnormalStateType {
+	no_type = 0,
 	poison,
 
 	/*
@@ -14,4 +14,6 @@ enum abnormalStateType {
 	//	sensitive,			//	•qŠ´iâ’¸Œã‚È‚Ç
 	absent_mindedness,	//	•úS
 	*/
+
+	abnormal_state_end,
 };

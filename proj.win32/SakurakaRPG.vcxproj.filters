@@ -37,6 +37,21 @@
     <Filter Include="src\GameMain\chara\abnormal_state\sexual">
       <UniqueIdentifier>{05e0e520-fe98-482e-b095-5e35122dc785}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\item\equip_item\weapon">
+      <UniqueIdentifier>{d9d797e1-2dcf-4713-84d1-b633943613c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\item\use_item">
+      <UniqueIdentifier>{2edc028f-9278-4e71-a821-0769cd159157}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\shadow">
+      <UniqueIdentifier>{9235a8d3-f027-4df7-adc4-ec48d8bdf79f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\hit">
+      <UniqueIdentifier>{13dc439b-3d01-4298-8925-c6787457ebfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\skill">
+      <UniqueIdentifier>{748b55bf-e97b-417b-99fe-355187e10a1d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -83,6 +98,39 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\StateAuto.cpp">
       <Filter>src\GameMain\chara\abnormal_state</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\item\use_item\UseItem.cpp">
+      <Filter>src\GameMain\item\use_item</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\item\HaveItemList.cpp">
+      <Filter>src\GameMain\item</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\item\use_item\HaveUseItemList.cpp">
+      <Filter>src\GameMain\item\use_item</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\item\equip_item\HaveEquipItemList.cpp">
+      <Filter>src\GameMain\item\equip_item</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameCamera.cpp">
+      <Filter>src\GameMain</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\shadow\ShadowObjectBase.cpp">
+      <Filter>src\GameMain\shadow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\hit\HitCircle.cpp">
+      <Filter>src\GameMain\hit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\SkillBase.cpp">
+      <Filter>src\GameMain\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\SkillMove.cpp">
+      <Filter>src\GameMain\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\SkillAttackData.cpp">
+      <Filter>src\GameMain\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\SkillAttackGroup.cpp">
+      <Filter>src\GameMain\skill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +190,51 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\StateAuto.h">
       <Filter>src\GameMain\chara\abnormal_state</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\charaCommentType.h">
+      <Filter>src\GameMain\chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\charaSexualType.h">
+      <Filter>src\GameMain\chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\weaponType.h">
+      <Filter>src\GameMain\item\equip_item\weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\use_item\useItemId.h">
+      <Filter>src\GameMain\item\use_item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\use_item\UseItem.h">
+      <Filter>src\GameMain\item\use_item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\HaveItemList.h">
+      <Filter>src\GameMain\item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\use_item\HaveUseItemList.h">
+      <Filter>src\GameMain\item\use_item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\equip_item\HaveEquipItemList.h">
+      <Filter>src\GameMain\item\equip_item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameCamera.h">
+      <Filter>src\GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\shadow\ShadowObjectBase.h">
+      <Filter>src\GameMain\shadow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\hit\HitCircle.h">
+      <Filter>src\GameMain\hit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\SkillBase.h">
+      <Filter>src\GameMain\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\SkillMove.h">
+      <Filter>src\GameMain\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\SkillAttackData.h">
+      <Filter>src\GameMain\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\SkillAttackGroup.h">
+      <Filter>src\GameMain\skill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

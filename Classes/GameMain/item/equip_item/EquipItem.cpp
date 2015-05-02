@@ -2,8 +2,12 @@
 
 using namespace std;
 EquipItem::EquipItem(CharaBase* chara_obj) : ItemBase (chara_obj) {
-	for (int state_type = static_cast<int>(mainStateType::hp); state_type < static_cast<int>(mainStateType::main_state_end); state_type++) {
+	for (int state_type = static_cast<int>(mainStateType::no_type) + 1; state_type < static_cast<int>(mainStateType::main_state_end); state_type++) {
 		this->_default_state[static_cast<mainStateType>(state_type)] = 0;
+	}
+
+	for (int state_type = static_cast<int>(abnormalStateType::no_type) + 1; state_type < static_cast<int>(abnormalStateType::abnormal_state_end); state_type++) {
+		this->_state_default_list[static_cast<abnormalStateType>(state_type)] = 0;
 	}
 	this->setStateInit();
 	/*

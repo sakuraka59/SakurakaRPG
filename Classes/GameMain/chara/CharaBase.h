@@ -6,33 +6,30 @@
 #include "equipType.h"
 #include "charaGroupList.h"
 #include "abnormal_state\abnormalStateType.h"
+
+#include "charaCommentType.h"
+#include "charaSexualType.h"
+#include "../item/equip_item/weapon/weaponType.h"
 ///#include "abnormal_state/StateBase.h"
 //#include "../item/equip_item/EquipItem.h"
 
 //*
 
-enum charaCommentType{
-not_type = 0,
-};
+class SeedBase;				// ok
+class StateList;			// ok
 
-enum charaSexualType{};
-enum weaponType{};
+class EquipItem;			// ok
+class HaveUseItemList;		// ok
+class HaveEquipItemList;	// ok 
 
-class SeedBase;
-class StateList;
+class GameCamera;			// ok
+class ShadowObjectList;		// Œã‚ÅŽÀ‘•
 
-class EquipItem;
-class HaveUseItemList;
-class HaveEquipItemList;
-
-class GameCamera;
-class ShadowObjectList;
-
-class HitCircle;
-class SkillBase;
+class HitCircle;			// ok
+class SkillBase;			
 class MagicBase;
 // PSM‚©‚ç‚ÌˆÚAæ‚Ç‚¤‚·‚éH
-class Vector2;
+//	class Vector2; -> cocos2d::Vec2
 
 //*/
 // enum
@@ -296,7 +293,7 @@ public: virtual void damageAction();
 public: void checkRemoveSkill();
 public: void removeSkill();
 // sexual damage ----------------------------------
-public: void normalDamageSexual(int damage, double direct_rate, bool action_flag = false, charaCommentType comment_type = charaCommentType::not_type);
+public: void normalDamageSexual(int damage, double direct_rate, bool action_flag = false, charaCommentType comment_type = charaCommentType::no_type);
 public: void honeyOnlyDamage(int damage, bool action_flag = false);
 public: void setExtasy();
 public: void resetRevivalFrame();

@@ -1,7 +1,7 @@
 #ifndef __CHARA_GROUP_LIST__
 #define __CHARA_GROUP_LIST__
 
-enum charaGroupList
+enum class charaGroupList
 {
 	no_data = 0,
 	game_master,	// 誰からもアクティブでターゲットされない

@@ -1,6 +1,6 @@
 #pragma once
 
-enum equipType{
+enum class equipType{
 	no_type = -1,
 	weapon,		// ƒƒCƒ“•Ší
 	sub_weapon,	// ƒTƒu•Ší

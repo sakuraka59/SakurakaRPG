@@ -5,7 +5,8 @@
 enum class mainStateType
 {
 	// drow num to 1/100
-	hp = 0,		//	base and correction to max. now to now_state
+	no_type = -1,
+	hp,		//	base and correction to max. now to now_state
 	sp,		//	base and correction to max. now to now_state
 
 	// セクシャルに関するステータス

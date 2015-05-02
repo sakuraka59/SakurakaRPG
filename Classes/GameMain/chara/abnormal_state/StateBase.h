@@ -47,7 +47,7 @@ protected: std::list<EquipItem*> _equip_list;
 
 //-------------------------------------------------------------------
 public: StateBase(CharaBase* chara_obj);
-public: bool Update();
+public: virtual bool Update();
 protected: virtual void stateUpdate();
 protected: void stateEffectCheck();
 protected: virtual void EveryFrameEffect();
