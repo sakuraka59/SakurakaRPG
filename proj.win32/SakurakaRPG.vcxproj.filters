@@ -52,6 +52,9 @@
     <Filter Include="src\GameMain\skill">
       <UniqueIdentifier>{748b55bf-e97b-417b-99fe-355187e10a1d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\magic">
+      <UniqueIdentifier>{c7d60872-d9e6-4b8e-a678-7b47a6b342fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

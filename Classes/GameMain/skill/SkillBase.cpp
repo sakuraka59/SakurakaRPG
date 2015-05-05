@@ -103,7 +103,7 @@ void SkillBase::moveCheck() {
 	}
 
 	//@TODO 
-	this->_use_chara_obj->updateSkillMove(skill_move_obj->getAddAngle(), skill_move_obj->getOneFrameSpeed(), jump_power);
+//	this->_use_chara_obj->updateSkillMove(skill_move_obj->getAddAngle(), skill_move_obj->getOneFrameSpeed(), jump_power);
 }
 // this object to delete 
 void SkillBase::setDeleteFlag() {

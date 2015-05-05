@@ -26,8 +26,8 @@ class GameCamera;			// ok
 class ShadowObjectList;		// Œã‚ÅŽÀ‘•
 
 class HitCircle;			// ok
-class SkillBase;			
-class MagicBase;
+class SkillBase;			// ok			
+class MagicBase;			// 
 // PSM‚©‚ç‚ÌˆÚAæ‚Ç‚¤‚·‚éH
 //	class Vector2; -> cocos2d::Vec2
 
