@@ -1,5 +1,4 @@
-#ifndef __CHARA_GROUP_LIST__
-#define __CHARA_GROUP_LIST__
+#pragma once
 
 enum class charaGroupList
 {
@@ -13,7 +12,5 @@ enum class charaGroupList
 
 	monster,		// –‚•¨‚·‚×‚Ä
 
-
+	enum_end,
 };
-
-#endif //__CHARA_GROUP_LIST__

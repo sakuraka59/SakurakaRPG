@@ -36,7 +36,7 @@ enum class mainStateType
 	ice,
 	thunder,
 
-	main_state_end,
+	enum_end,
 
 };
 

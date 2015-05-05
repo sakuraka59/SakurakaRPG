@@ -3,7 +3,7 @@ enum class abnormalStateType {
 	no_type = 0,
 	poison,
 
-	/*
+	
 	//-------------------------------
 	sexual,
 
@@ -13,7 +13,7 @@ enum class abnormalStateType {
 	extasy,				//	ê‚í∏
 	//	sensitive,			//	ïqä¥Åiê‚í∏å„Ç»Ç«
 	absent_mindedness,	//	ï˙êS
-	*/
+	//*/
 
-	abnormal_state_end,
+	enum_end,
 };

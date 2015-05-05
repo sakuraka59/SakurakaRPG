@@ -135,6 +135,15 @@
     <ClCompile Include="..\Classes\GameMain\skill\SkillAttackGroup.cpp">
       <Filter>src\GameMain\skill</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\magic\MagicBase.cpp">
+      <Filter>src\GameMain\magic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\WeaponBase.cpp">
+      <Filter>src\GameMain\item\equip_item\weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\shadow\ShadowObjectList.cpp">
+      <Filter>src\GameMain\shadow</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -238,6 +247,21 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\skill\SkillAttackGroup.h">
       <Filter>src\GameMain\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\magic\MagicBase.h">
+      <Filter>src\GameMain\magic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GAME_SETTING.h">
+      <Filter>src\GameMain</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\charaSexualState.h">
+      <Filter>src\GameMain\chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\WeaponBase.h">
+      <Filter>src\GameMain\item\equip_item\weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\shadow\ShadowObjectList.h">
+      <Filter>src\GameMain\shadow</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

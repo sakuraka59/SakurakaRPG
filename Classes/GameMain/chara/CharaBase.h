@@ -5,11 +5,17 @@
 #include "mainStateType.h"
 #include "equipType.h"
 #include "charaGroupList.h"
-#include "abnormal_state\abnormalStateType.h"
+#include "abnormal_state/abnormalStateType.h"
+
+#include "charaSexualType.h"
+//charaSexualState
 
 #include "charaCommentType.h"
 #include "charaSexualType.h"
+#include "charaSexualState.h"
+
 #include "../item/equip_item/weapon/weaponType.h"
+
 ///#include "abnormal_state/StateBase.h"
 //#include "../item/equip_item/EquipItem.h"
 
@@ -27,6 +33,7 @@ class ShadowObjectList;		// 後で実装
 
 class HitCircle;			// ok
 class SkillBase;			// ok			
+class SkillAttack;			//
 class MagicBase;			// 
 // PSMからの移植先どうする？
 //	class Vector2; -> cocos2d::Vec2
@@ -42,7 +49,7 @@ class MagicBase;			//
 // SkillList, SkillAttack, SkillBase
 // GameCamera, ShadowObjectList,
 
-class CharaBase : public RenderObject
+class CharaBase : RenderObject
 {
 
 // 補正なしステータス
@@ -65,7 +72,7 @@ public: std::unordered_map<mainStateType, int> _max_state;
 protected: std::unordered_map<equipType, EquipItem*> _equip_list;
 
 // 自身が所属しているグループ
-//	protected List<charaGroupList> _my_group_list = new List<charaGroupList>();
+protected: std::list<charaGroupList> _my_group_list;
 
 //	Correction	補正
 protected: double _hit_height = 0;
@@ -75,7 +82,7 @@ protected: double _run_speed_base = 0;		// 基本移動速度
 protected: double _run_speed = 0;			// 補正込み移動速度
 protected: double _walk_speed = 0;			// 歩き速度（一定）
 
-//protected: SeedBase _chara_seed;
+protected: SeedBase* _chara_seed;
 
 // 移動に関する要素
 protected: double _move_angle = 0.0;			// 移動方向
@@ -117,11 +124,11 @@ protected: double _push_speed = 0;		// 吹き飛ばし速度
 protected: int _weapon_state = 0;		// 武器の構え等の状態。主に片手直剣+鞘での抜刀剣で使用する
 
 // 状態異常ステータスリスト
-//protected StateList _state_list;
+protected: StateList* _state_list;
 
 // 性的に関する状態。コメントでのみ使用すること
-//protected charaSexualState _sexual_state = charaSexualState.normal;
-//protected charaSexualType _sexual_type = charaSexualType.no_type;
+protected: charaSexualState _sexual_state = charaSexualState::normal;
+protected: charaSexualType _sexual_type = charaSexualType::no_type;
 
 // 1回目の火照り→発情にて使うﾌﾗｸﾞ
 protected: bool now_hot_to_oestrus_flag = false;
@@ -136,28 +143,30 @@ protected: int _AUTO_HEAL_EXCITATION = 1;
 protected: int _draw_correct_x = 0;
 protected: int _draw_correct_y = 0;
 
-//protected: GameCamera _play_camera;
+protected: GameCamera* _play_camera;
 
 // 各種オブジェクトのリスト
-protected: std::list<CharaBase> _all_chara_list;
-//protected SkillList _skill_list;
-//protected List<MagicBase> _magic_list;
-//protected ShadowObjectList _shadow_list;
+protected: std::list<CharaBase*> _all_chara_list;
+//protected: SkillList* _skill_list;
+protected: std::list<MagicBase*> _magic_list;
+protected: ShadowObjectList* _shadow_list;
 
 // 所持アイテム
-//protected HaveUseItemList _use_item_list;
-//protected HaveEquipItemList _equip_item_list;
+protected: HaveUseItemList* _use_item_list;
+protected: HaveEquipItemList* _equip_item_list;
 
 // 敵に使おうとしているスキル
 // TODO NPCのAIのみで使用している。下記の使用中スキルで代替できるようにしたい
-//protected SkillAttack _set_attack_skill = null;
+protected: SkillAttack* _set_attack_skill = NULL;
 // 現在使用中のスキル
-//protected SkillBase _set_now_skill = null;
+protected: SkillBase* _set_now_skill = NULL;
 
 // スキル使用中によるターゲット追尾
-//protected CharaBase _skill_target_obj = null;
+protected: CharaBase* _skill_target_obj = NULL;
 private: int _skill_chain_num;
 
+// 当たり判定
+protected: HitCircle* _hit_circle_obj;
 //-------------------------------------------------------------------
 public: CharaBase();
 protected: void SetCharaHitData();
@@ -255,7 +264,7 @@ public: int getMapBlockY();
 
 // group data -----------------------------------------------
 protected: virtual void setGroupList();
-public: std::list<charaGroupList>* getMyGroupList();
+public: std::list<charaGroupList> getMyGroupList();
 
 //-----------------------------------------------------------
 // equip item
@@ -337,7 +346,7 @@ public: void setDamagePush(double push_speed, double push_angle, int push_frame)
 private: void updateDamagePush();
 
 // battle target --------------------------------------------
-public: void setTargetChara(CharaBase set_target_chara_obj);
+public: void setTargetChara(CharaBase* set_target_chara_obj);
 
 //-----------------------------------------------------------
 //	ターゲットの方向を取得する

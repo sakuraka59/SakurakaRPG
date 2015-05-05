@@ -9,4 +9,6 @@ enum class equipType{
 	tops,		// インナー シャツとか
 	bottom,		// ボトム ズボンやスカート
 	shoes,		// 靴
+
+	enum_end,
 };

@@ -13,4 +13,6 @@ enum class charaCommentType {
 	pleasure,		//	Š´‚¶‚Ä‚¢‚éÛ‚ÌŠî–{ƒRƒƒ“ƒg
 
 	extasy,			//	â’¸
+
+	enum_end,
 };

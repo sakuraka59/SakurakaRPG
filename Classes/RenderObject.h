@@ -1,5 +1,4 @@
-#ifndef __RENDER_OBJECT__
-#define __RENDER_OBJECT__
+#pragma once
 
 #include "cocos2d.h"
 
@@ -18,5 +17,3 @@ public: virtual cocos2d::Vec2* getDrawPosition();
 public: virtual float getDrawPositionX();
 public: virtual float getDrawPositionY();
 };
-
-#endif //__RENDER_OBJECT__

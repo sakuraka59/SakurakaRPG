@@ -16,4 +16,5 @@ enum class weaponType {
 
 
 	all_weapon,	// •Šíí”»’è—p
+	enum_end,
 };
