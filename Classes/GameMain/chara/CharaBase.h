@@ -49,7 +49,7 @@ class MagicBase;			//
 // SkillList, SkillAttack, SkillBase
 // GameCamera, ShadowObjectList,
 
-class CharaBase : RenderObject
+class CharaBase : public RenderObject
 {
 
 // 補正なしステータス

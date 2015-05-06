@@ -1,5 +1,7 @@
 #include "GameMain.h"
 #include "GameUi\PlayUi.h"
+#include "GameUi\PlayerCommentUI.h"
+
 #define COCOS2D_DEBUG 1
 USING_NS_CC;
 
@@ -26,8 +28,12 @@ bool GameMain::init()
 		return false;
 	}
 
-	this->_play_ui_obj = new PlayUi();
+	this->_play_comment_ui_obj = new PlayerCommentUI();
+	this->addChild(this->_play_comment_ui_obj);
+
+	this->_play_ui_obj = new PlayUi(this->_play_comment_ui_obj);
 	this->addChild(this->_play_ui_obj);
+
 
 
 //	this->_test_ui_obj = new UiBase();

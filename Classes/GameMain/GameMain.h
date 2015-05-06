@@ -1,8 +1,10 @@
-#ifndef __GAMEMAIN_H__
-#define __GAMEMAIN_H__
+#pragma once
 
 #include "cocos2d.h"
-#include "GameUi\PlayUi.h"
+
+
+class PlayUi;
+class PlayerCommentUI;
 
 class GameMain : public cocos2d::Layer
 {
@@ -27,6 +29,5 @@ public:
 private:
 //	UiBase * _test_ui_obj;
 	PlayUi* _play_ui_obj;
+	PlayerCommentUI* _play_comment_ui_obj;
 };
-
-#endif // __GAMEMAIN_H__

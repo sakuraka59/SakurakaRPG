@@ -55,6 +55,12 @@
     <Filter Include="src\GameMain\magic">
       <UniqueIdentifier>{c7d60872-d9e6-4b8e-a678-7b47a6b342fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\chara\chara_seed\human">
+      <UniqueIdentifier>{e505ece0-5a80-4a0d-99b0-d087cc0b86c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\chara\chara_seed\human\human_part">
+      <UniqueIdentifier>{20c87de0-fecd-4f74-961e-949ee13755ce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -143,6 +149,27 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\shadow\ShadowObjectList.cpp">
       <Filter>src\GameMain\shadow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\CharaPlayer.cpp">
+      <Filter>src\GameMain\chara</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\chara_seed\human\SeedHuman.cpp">
+      <Filter>src\GameMain\chara\chara_seed\human</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\chara_seed\PartSetBase.cpp">
+      <Filter>src\GameMain\chara\chara_seed</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\chara_seed\human\human_part\HumanTest.cpp">
+      <Filter>src\GameMain\chara\chara_seed\human\human_part</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\chara_seed\PartBase.cpp">
+      <Filter>src\GameMain\chara\chara_seed</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\PlayerCommentUI.cpp">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\SkillList.cpp">
+      <Filter>src\GameMain\skill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +289,27 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\shadow\ShadowObjectList.h">
       <Filter>src\GameMain\shadow</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\CharaPlayer.h">
+      <Filter>src\GameMain\chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\chara_seed\human\SeedHuman.h">
+      <Filter>src\GameMain\chara\chara_seed\human</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\chara_seed\PartSetBase.h">
+      <Filter>src\GameMain\chara\chara_seed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\chara_seed\human\human_part\HumanTest.h">
+      <Filter>src\GameMain\chara\chara_seed\human\human_part</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\chara_seed\PartBase.h">
+      <Filter>src\GameMain\chara\chara_seed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\PlayerCommentUI.h">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\SkillList.h">
+      <Filter>src\GameMain\skill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

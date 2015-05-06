@@ -5,7 +5,7 @@
 class GameCamera;
 class ShadowObjectBase;
 
-class ShadowObjectList : RenderObject{
+class ShadowObjectList : public RenderObject{
 //private Dictionary<int, RenderObject> _render_obj_list = new Dictionary<int, RenderObject>();
 //protected List<ShadowObjectBase> _shadow_obj_list = new List<ShadowObjectBase>();
 protected: std::unordered_map<RenderObject*, ShadowObjectBase*> _shadow_obj_list;

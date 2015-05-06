@@ -5,7 +5,7 @@
 
 class CharaBase;
 
-class WeaponBase : EquipItem
+class WeaponBase : public EquipItem
 {
 protected: bool two_hand_flag = false;
 protected: bool sub_only_flag = true; // (two_hand_flag = true) to false only

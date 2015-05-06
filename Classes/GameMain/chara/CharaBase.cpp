@@ -469,7 +469,6 @@ void CharaBase::setState() {
 	this->_hit_height = this->_chara_seed->getHeight();
 	this->_hit_width_half = this->_chara_seed->getWidthHalf();
 
-
 	for (int state_type = static_cast<int>(mainStateType::no_type) + 1; state_type < static_cast<int>(mainStateType::enum_end); state_type++) {
 		//this->_equip_list[static_cast<equipType>(equip_type)] = 0;
 		this->_now_state[static_cast<mainStateType>(state_type)] = 0;
@@ -477,14 +476,7 @@ void CharaBase::setState() {
 		this->_correction_state[static_cast<mainStateType>(state_type)] = 0;
 		this->_max_state[static_cast<mainStateType>(state_type)] = 0;
 	}
-	/*
-	foreach(mainStateType state_type in Enum.GetValues(typeof(mainStateType))) {
-		this->_now_state[state_type] = 0;
-		this->_base_state[state_type] = 0;
-		this->_correction_state[state_type] = 0;
-		this->_max_state[state_type] = 0;
-	}
-	*/
+
 	this->setStateInit(mainStateType::hp, this->_chara_seed->getBaseHp());
 
 	this->setStateInit(mainStateType::sp, this->_chara_seed->getBaseSp());
@@ -734,8 +726,8 @@ bool CharaBase::setSkill(SkillBase* skill_obj) {
 	this->_set_now_skill = skill_obj;
 
 	// @TODO
-	bool skill_set_flag = this->_skill_list->setSkillData(skill_obj, this->checkGroundFlag());
-//	bool skill_set_flag = false;
+//	bool skill_set_flag = this->_skill_list->setSkillData(skill_obj, this->checkGroundFlag());
+	bool skill_set_flag = false;
 	// ƒXƒLƒ‹‚ª”­“®‚Å‚«‚éê‡
 	if (skill_set_flag == true) {
 
@@ -1015,6 +1007,7 @@ void CharaBase::autoHealSexual() {
 		this->_sexual_repair_frame--;
 		return;
 	}
+	
 
 	if (this->_now_state[mainStateType::honey] > 0) {
 		this->_now_state[mainStateType::honey] -= this->_AUTO_HEAL_HONEY;
