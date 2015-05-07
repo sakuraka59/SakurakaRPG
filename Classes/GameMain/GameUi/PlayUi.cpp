@@ -10,7 +10,7 @@
 
 using namespace cocos2d;
 
-PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj) {
+PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* KEYBORD_EVENT) {
 	// test ---------------------------------------------------------
 	this->_test_sprite = Sprite::create("HelloWorld.png");
 //	this->_test_sprite->setPosition(new Vec2(500,0));

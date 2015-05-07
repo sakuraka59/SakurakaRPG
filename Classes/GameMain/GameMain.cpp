@@ -15,6 +15,8 @@ Scene* GameMain::createScene() {
 	// add layer as a child to scene
 	scene->addChild(layer);
 	
+	
+
 	// return the scene
 	return scene;
 }
@@ -27,11 +29,43 @@ bool GameMain::init()
 	{
 		return false;
 	}
+	/*
+	auto dispatcher = Director::getInstance()->getEventDispatcher();
+	this->_KEYBORD_EVENT = EventListenerKeyboard::create();
+	dispatcher->addEventListenerWithSceneGraphPriority(this->_KEYBORD_EVENT, this);
+	// */
+
+	//---------------------------------------------------------------
+
+	/*
+	auto dispatcher = Director::getInstance()->getEventDispatcher();
+	this->_KEYBORD_EVENT = EventListenerKeyboard::create();
+	
+	this->_KEYBORD_EVENT->onKeyPressed = [&](EventKeyboard::KeyCode keyCode, Event* event) {
+		if (keyCode == EventKeyboard::KeyCode::KEY_UP_ARROW) {
+			auto str = String::createWithFormat("pless up key");
+			this->_test_label->setString(str->getCString());
+		};
+	};
+	this->_KEYBORD_EVENT->onKeyReleased = [&](EventKeyboard::KeyCode keyCode, Event* event) {
+		// •ú‚³‚ê‚½‚Æ‚«‚Ìˆ—
+		auto str = String::createWithFormat("Push any key");
+		this->_test_label->setString(str->getCString());
+	};
+	
+	dispatcher->addEventListenerWithSceneGraphPriority(this->_KEYBORD_EVENT, this);
+	
+	this->_test_label = LabelTTF::create("Push any key.", "Arial", 40);
+	this->_test_label->setPosition(Point(320.0f, 240.0f));
+	this->_test_label->setTag(1);
+	this->addChild(this->_test_label);
+	// */
+	//---------------------------------------------------------------
 
 	this->_play_comment_ui_obj = new PlayerCommentUI();
 	this->addChild(this->_play_comment_ui_obj);
 
-	this->_play_ui_obj = new PlayUi(this->_play_comment_ui_obj);
+	this->_play_ui_obj = new PlayUi(this->_play_comment_ui_obj, this->_KEYBORD_EVENT);
 	this->addChild(this->_play_ui_obj);
 
 
@@ -41,7 +75,8 @@ bool GameMain::init()
 	
 //	UiBase * test_obj = new UiBase();
 //	this->addChild(test_obj);
-	
+
+
 	this->scheduleUpdate();
 
 	return true;

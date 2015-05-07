@@ -15,7 +15,8 @@ class SkillList;
 
 class PlayUi : public UiBase
 {
-public: PlayUi(PlayerCommentUI* comment_ui_obj);
+private: cocos2d::EventListenerKeyboard* _KEYBORD_EVENT;
+public: PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* KEYBORD_EVENT);
 public: void Update();
 
 private: cocos2d::Sprite* _test_sprite;

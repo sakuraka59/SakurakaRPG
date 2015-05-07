@@ -30,4 +30,8 @@ private:
 //	UiBase * _test_ui_obj;
 	PlayUi* _play_ui_obj;
 	PlayerCommentUI* _play_comment_ui_obj;
+
+	cocos2d::EventListenerKeyboard* _KEYBORD_EVENT;
+	// キー入力テスト
+	cocos2d::LabelTTF* _test_label;
 };
