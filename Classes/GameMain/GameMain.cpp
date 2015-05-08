@@ -2,6 +2,8 @@
 #include "GameUi\PlayUi.h"
 #include "GameUi\PlayerCommentUI.h"
 
+#include "..\Input\InputController.h"
+
 #define COCOS2D_DEBUG 1
 USING_NS_CC;
 
@@ -134,6 +136,10 @@ bool GameMain::init()
 void GameMain::update(float delta) {
 
 	this->_play_ui_obj->Update();
+
+	InputController::testUpdate();
+//	InputController::test_button = new InputControllerButton(0x43);
+	bool hoge = InputController::test_button->isPush();
 }
 
 void GameMain::menuCloseCallback(Ref* pSender)

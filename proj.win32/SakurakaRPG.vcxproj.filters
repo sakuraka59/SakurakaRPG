@@ -61,6 +61,9 @@
     <Filter Include="src\GameMain\chara\chara_seed\human\human_part">
       <UniqueIdentifier>{20c87de0-fecd-4f74-961e-949ee13755ce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Input">
+      <UniqueIdentifier>{aef0d4f8-5883-4249-868d-7d2f697aa837}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -170,6 +173,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\skill\SkillList.cpp">
       <Filter>src\GameMain\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Input\InputController.cpp">
+      <Filter>src\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Input\InputControllerButtoncpp.cpp">
+      <Filter>src\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -310,6 +319,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\skill\SkillList.h">
       <Filter>src\GameMain\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Input\InputController.h">
+      <Filter>src\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Input\InputControllerButton.h">
+      <Filter>src\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

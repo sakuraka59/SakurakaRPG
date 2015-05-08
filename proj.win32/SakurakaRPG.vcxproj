@@ -172,6 +172,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\skill\SkillBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\SkillList.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\SkillMove.cpp" />
+    <ClCompile Include="..\Classes\Input\InputController.cpp" />
+    <ClCompile Include="..\Classes\Input\InputControllerButtoncpp.cpp" />
     <ClCompile Include="..\Classes\RenderObject.cpp" />
     <ClCompile Include="..\Classes\ResourceManage.cpp" />
     <ClCompile Include="main.cpp" />
@@ -220,6 +222,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\skill\SkillBase.h" />
     <ClInclude Include="..\Classes\GameMain\skill\SkillList.h" />
     <ClInclude Include="..\Classes\GameMain\skill\SkillMove.h" />
+    <ClInclude Include="..\Classes\Input\InputController.h" />
+    <ClInclude Include="..\Classes\Input\InputControllerButton.h" />
     <ClInclude Include="..\Classes\RenderObject.h" />
     <ClInclude Include="..\Classes\ResourceManage.h" />
     <ClInclude Include="main.h" />
