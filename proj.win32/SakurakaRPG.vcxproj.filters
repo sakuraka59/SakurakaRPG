@@ -177,7 +177,7 @@
     <ClCompile Include="..\Classes\Input\InputController.cpp">
       <Filter>src\Input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Input\InputControllerButtoncpp.cpp">
+    <ClCompile Include="..\Classes\Input\InputControllerButton.cpp">
       <Filter>src\Input</Filter>
     </ClCompile>
   </ItemGroup>

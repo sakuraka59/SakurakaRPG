@@ -2,31 +2,31 @@
 #include "InputControllerButton.h"
 
 InputControllerButton::InputControllerButton(int key) {
-
+	this->_key_code = key;
 }
 void InputControllerButton::updateInit() {
-	this->push_flag = false;
+	//int hoge = 0;
+	this->_push_flag = false;
+//	this->_key_frame++;
 
 }
-void InputControllerButton::Update() {
 
-
-}
 void InputControllerButton::updateEnd() {
-	if (this->push_flag == true) {
-		this->key_frame++;
-	} else {
-		this->key_frame = 0;
+	if (this->_push_flag == true) {
+		this->_key_frame++;
+	} else if (this->_key_frame > 0){
+		this->_key_frame = 0;
 	}
 }
 bool InputControllerButton::isPush() {
-	if (GetAsyncKeyState(0x42)){
-		OutputDebugString((LPCWSTR)("1"));
+	if (GetAsyncKeyState(this->_key_code)){
+		
+		this->setPushFlag();
 		return true;
 	}
 	return false;
 }
 
 void InputControllerButton::setPushFlag() {
-	this->push_flag = true;
+	this->_push_flag = true;
 }

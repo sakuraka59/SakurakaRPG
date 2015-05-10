@@ -134,12 +134,17 @@ bool GameMain::init()
 	// */
 }
 void GameMain::update(float delta) {
-
+	// update start
+	//InputController::updateInit();
+	InputController::Up->updateInit();
+	
 	this->_play_ui_obj->Update();
 
-	InputController::testUpdate();
+	
 //	InputController::test_button = new InputControllerButton(0x43);
-	bool hoge = InputController::test_button->isPush();
+//	bool hoge = InputController::Circle->isPush();
+
+//	InputController::updateEnd();
 }
 
 void GameMain::menuCloseCallback(Ref* pSender)

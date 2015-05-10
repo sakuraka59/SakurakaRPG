@@ -1,12 +1,12 @@
 #pragma once
 
 class InputControllerButton {
-private: int key_frame = 0;
-private: int key_code = 0x00;
-private: bool push_flag = false;
+protected: int _key_frame = 0;
+protected: int _key_code = 0x00;
+protected: bool _push_flag = false;
 public: InputControllerButton(int key);
 public: void updateInit();
-public: void Update();
+
 public: void updateEnd();
 
 public: bool isPush();	// âüÇµÇΩèuä‘
