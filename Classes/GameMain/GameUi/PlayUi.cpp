@@ -7,6 +7,7 @@
 #include "../chara/CharaPlayer.h"
 #include "../shadow/ShadowObjectList.h"
 #include "../skill/SkillList.h"
+#include "../map/MapObjectList.h"
 
 using namespace cocos2d;
 
@@ -39,6 +40,14 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 	this->_order_object_list->addChild(this->_player_obj, (int)(this->_player_obj->getDrawY() * (-1)));
 
 	this->addChild(this->_order_object_list);
+
+
+	// テスト
+	
+	this->_map_obj_line_list[0] = new MapObjectList(0, this->_play_camera, this->_player_obj);
+	
+	this->_map_obj_line_list[0]->setObject(0);
+	
 }
 void PlayUi::Update(){
 	// キャラクターのアップデート処理

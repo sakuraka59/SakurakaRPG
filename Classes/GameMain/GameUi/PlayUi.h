@@ -3,6 +3,7 @@
 #include "UiBase.h"
 #include "cocos2d.h"
 #include "../chara/CharaBase.h"
+#include <unordered_map>
 
 class SeedBase;
 class GameCamera;
@@ -12,6 +13,8 @@ class PlayerCommentUI;
 class CharaBase;
 class MagicBase;
 class SkillList;
+
+class MapObjectList;
 
 class PlayUi : public UiBase
 {
@@ -30,5 +33,7 @@ private: std::list<MagicBase*> _magic_list;
 public: ShadowObjectList* _shadow_list;
 
 public: SkillList* _skill_list;
+
+private: std::unordered_map<int, MapObjectList*> _map_obj_line_list;
 
 };

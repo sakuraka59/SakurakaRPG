@@ -157,6 +157,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\GameUi\PlayUi.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\UiBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\hit\HitCircle.cpp" />
+    <ClCompile Include="..\Classes\GameMain\hit\HitSquare.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\equip_item\EquipItem.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\equip_item\HaveEquipItemList.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\WeaponBase.cpp" />
@@ -165,6 +166,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\item\use_item\HaveUseItemList.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\use_item\UseItem.cpp" />
     <ClCompile Include="..\Classes\GameMain\magic\MagicBase.cpp" />
+    <ClCompile Include="..\Classes\GameMain\map\MapObjectBase.cpp" />
+    <ClCompile Include="..\Classes\GameMain\map\MapObjectList.cpp" />
     <ClCompile Include="..\Classes\GameMain\shadow\ShadowObjectBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\shadow\ShadowObjectList.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\SkillAttackData.cpp" />
@@ -205,6 +208,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\GameUi\UiBase.h" />
     <ClInclude Include="..\Classes\GameMain\GAME_SETTING.h" />
     <ClInclude Include="..\Classes\GameMain\hit\HitCircle.h" />
+    <ClInclude Include="..\Classes\GameMain\hit\HitSquare.h" />
     <ClInclude Include="..\Classes\GameMain\item\equip_item\EquipItem.h" />
     <ClInclude Include="..\Classes\GameMain\item\equip_item\HaveEquipItemList.h" />
     <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\WeaponBase.h" />
@@ -215,6 +219,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\item\use_item\UseItem.h" />
     <ClInclude Include="..\Classes\GameMain\item\use_item\useItemId.h" />
     <ClInclude Include="..\Classes\GameMain\magic\MagicBase.h" />
+    <ClInclude Include="..\Classes\GameMain\map\MapObjectBase.h" />
+    <ClInclude Include="..\Classes\GameMain\map\MapObjectList.h" />
     <ClInclude Include="..\Classes\GameMain\shadow\ShadowObjectBase.h" />
     <ClInclude Include="..\Classes\GameMain\shadow\ShadowObjectList.h" />
     <ClInclude Include="..\Classes\GameMain\skill\SkillAttackData.h" />
