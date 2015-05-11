@@ -174,10 +174,10 @@
     <ClCompile Include="..\Classes\GameMain\skill\SkillList.cpp">
       <Filter>src\GameMain\skill</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Input\InputController.cpp">
+    <ClCompile Include="..\Classes\Input\Gamepad.cpp">
       <Filter>src\Input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\Input\InputControllerButton.cpp">
+    <ClCompile Include="..\Classes\Input\GamepadButton.cpp">
       <Filter>src\Input</Filter>
     </ClCompile>
   </ItemGroup>
@@ -320,10 +320,10 @@
     <ClInclude Include="..\Classes\GameMain\skill\SkillList.h">
       <Filter>src\GameMain\skill</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Input\InputController.h">
+    <ClInclude Include="..\Classes\Input\Gamepad.h">
       <Filter>src\Input</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\Input\InputControllerButton.h">
+    <ClInclude Include="..\Classes\Input\GamepadButton.h">
       <Filter>src\Input</Filter>
     </ClInclude>
   </ItemGroup>

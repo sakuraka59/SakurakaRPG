@@ -2,7 +2,7 @@
 #include "GameUi\PlayUi.h"
 #include "GameUi\PlayerCommentUI.h"
 
-#include "..\Input\InputController.h"
+#include "..\Input\Gamepad.h"
 
 #define COCOS2D_DEBUG 1
 USING_NS_CC;
@@ -135,16 +135,16 @@ bool GameMain::init()
 }
 void GameMain::update(float delta) {
 	// update start
-	//InputController::updateInit();
-	InputController::Up->updateInit();
+	//Gamepad::updateInit();
+	Gamepad::Up->updateInit();
 	
 	this->_play_ui_obj->Update();
 
 	
-//	InputController::test_button = new InputControllerButton(0x43);
-//	bool hoge = InputController::Circle->isPush();
+//	Gamepad::test_button = new GamepadButton(0x43);
+//	bool hoge = Gamepad::Circle->isPush();
 
-//	InputController::updateEnd();
+	Gamepad::updateEnd();
 }
 
 void GameMain::menuCloseCallback(Ref* pSender)

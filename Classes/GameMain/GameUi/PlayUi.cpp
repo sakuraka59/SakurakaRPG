@@ -33,11 +33,30 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 	this->_skill_list = new SkillList();
 
 	this->_player_obj = new CharaPlayer(this->_play_camera, comment_ui_obj, this->_chara_list, this->_skill_list, this->_magic_list, this->_shadow_list);
+	
+	this->_chara_list.push_back(this->_player_obj);
 
 	this->_order_object_list->addChild(this->_player_obj, (int)(this->_player_obj->getDrawY() * (-1)));
 
 	this->addChild(this->_order_object_list);
 }
 void PlayUi::Update(){
+	// キャラクターのアップデート処理
+	for (std::list<CharaBase*>::iterator chara_iterator = this->_chara_list.begin(); chara_iterator != this->_chara_list.end(); chara_iterator++) {
+		CharaBase* chara_data = *chara_iterator;
+		chara_data->Update();
+	}
 
+	// 魔法更新
+
+	// スキルあたり判定
+
+	this->_player_obj->updateCamera();
+	this->_play_camera->Update();
+
+	// 描画更新
+	for (std::list<CharaBase*>::iterator chara_iterator = this->_chara_list.begin(); chara_iterator != this->_chara_list.end(); chara_iterator++) {
+		CharaBase* chara_data = *chara_iterator;
+		chara_data->updateDraw();
+	}
 }

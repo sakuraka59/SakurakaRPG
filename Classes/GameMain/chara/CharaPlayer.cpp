@@ -7,6 +7,8 @@
 #include "charaGroupList.h"
 #include "chara_seed\human\SeedHuman.h"
 
+#include "../../Input/Gamepad.h"
+
 CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, std::list<CharaBase*> all_chara_list, SkillList* skill_list, std::list<MagicBase*> magic_list, ShadowObjectList* shadow_list)
 {
 	//this->_skill_list = skill_list;
@@ -36,12 +38,12 @@ CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, st
 
 	// 初期座標。オブジェクトとかぶると0,0へ強制移動するので注意
 	this->_draw_x = 500;
-	this->_draw_y = -544 / 2;//300;
+	this->_draw_y = 0 / 2;//300;
 	this->updateBlockPoint();
 	this->SetCharaHitData();
 
 	// test 
-//	this->updateDraw();
+	this->updateDraw();
 
 	// */
 
@@ -112,7 +114,6 @@ void CharaPlayer::updateCamera() {
 	// カメラ処理はキャラクターが動き終わった後にやること！
 	this->_play_camera->updateCharaPoint(this->getDrawX(), this->getDrawY());
 
-	this->getDrawX();
 }
 void CharaPlayer::charaDownMomentDetail() {
 	//TODO
@@ -150,6 +151,39 @@ void CharaPlayer::moveCharaPlusKey() {
 		// 移動方向、移動距離を取得
 		this->_move_speed_per = 1;
 
+		if (this->_control_flag == true && Gamepad::Right->isPress() == true && Gamepad::Up->isPress() == true) {
+			this->updateMoveAngle(45);
+		}
+		else if (this->_control_flag == true && Gamepad::Right->isPress() == true && Gamepad::Down->isPress() == true) {
+			this->updateMoveAngle(315);
+		}
+		else if (this->_control_flag == true && Gamepad::Left->isPress() == true && Gamepad::Down->isPress() == true) {
+			this->updateMoveAngle(225);
+		}
+		else if (this->_control_flag == true && Gamepad::Left->isPress() == true && Gamepad::Up->isPress() == true) {
+			this->updateMoveAngle(135);
+		}
+		else if (this->_control_flag == true && Gamepad::Left->isPress() == true) {
+			//			if((this->_game_pad_data.Buttons & GamePadButtons.Left) != 0) {
+			this->updateMoveAngle(180);
+		}
+		else if (this->_control_flag == true && Gamepad::Right->isPress() == true) {
+			//if ((this->_game_pad_data.Buttons & GamePadButtons.Right) != 0) {
+			this->updateMoveAngle(0);
+		}
+		else if (this->_control_flag == true && Gamepad::Up->isPress() == true) {
+			//if ((this->_game_pad_data.Buttons & GamePadButtons.Up) != 0) {
+			this->updateMoveAngle(90);
+		}
+		else if (this->_control_flag == true && Gamepad::Down->isPress() == true) {
+			//if ((this->_game_pad_data.Buttons & GamePadButtons.Down) != 0) {
+			this->updateMoveAngle(270);
+
+		}
+		else {
+
+			this->_move_speed_per = 0;
+		}
 		/*
 		if (this->_control_flag == true && Input2.GamePad0.Right.Down == true && Input2.GamePad0.Up.Down == true) {
 			this->updateMoveAngle(45);
@@ -184,7 +218,6 @@ void CharaPlayer::moveCharaPlusKey() {
 			this->_move_speed_per = 0;
 		}
 		*/
-		this->_move_speed_per = 0;
 
 		// 移動処理
 		if (this->_move_speed_per > 0) {

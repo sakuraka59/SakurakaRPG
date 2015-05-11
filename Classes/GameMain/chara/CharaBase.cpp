@@ -171,7 +171,7 @@ void CharaBase::updateMove(double move_speed) {
 	this->_draw_x += this->_move_x;
 	this->_draw_y += this->_move_y;
 
-
+	this->setPosition((float)this->_draw_x, (float)this->_draw_y);
 	//this->Position = new Vector2((int)this->_draw_x, (int)this->_draw_y);
 
 }
@@ -226,7 +226,7 @@ void CharaBase::updateJump() {
 	}
 
 	if (update_draw_flag == true) {
-		//this->updateDraw();
+		this->updateDraw();
 	}
 }
 bool CharaBase::checkGroundFlag() {
@@ -265,7 +265,8 @@ void CharaBase::updateSkillMove(double add_angle, double move_speed_1frame, doub
 void CharaBase::updateDraw() {
 	//this->Position = this->getDrawPosition();
 	// test
-	this->setPosition(*new Vec2(500, 0));
+	Vec2* set_position = this->getDrawPosition();
+	this->setPosition(*set_position);
 
 	//------------------------------
 	//this->Position = new Vector2((int)(this->_draw_x - this->_play_camera.getCameraX() - (this->_move_x * this->_move_speed_per)), (int)(this->_draw_y - this->_play_camera.getCameraY() + this->_draw_z - (this->_move_y * this->_move_speed_per)));

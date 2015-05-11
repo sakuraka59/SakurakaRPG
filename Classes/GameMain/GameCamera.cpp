@@ -1,5 +1,6 @@
 #include <random>
 #include "GameCamera.h"
+#include "GAME_SETTING.h"
 
 void GameCamera::Update() {
 	if (this->_shake_flag == true) {
@@ -21,8 +22,8 @@ void GameCamera::Update() {
 
 }
 void GameCamera::updateCharaPoint(double chara_x, double chara_y) {
-	this->_base_x = chara_x - (960 / 2);
-	this->_base_y = chara_y - (544 / 2);
+	this->_base_x = chara_x - (GAME_WIDTH / 2);
+	this->_base_y = chara_y - (GAME_HEIGHT / 2);
 }
 void GameCamera::updateCameraShake() {
 	if (this->_shake_state == 1) {
