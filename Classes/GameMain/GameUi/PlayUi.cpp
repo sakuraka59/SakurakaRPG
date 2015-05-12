@@ -13,10 +13,10 @@ using namespace cocos2d;
 
 PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* KEYBORD_EVENT) {
 	// test ---------------------------------------------------------
-	this->_test_sprite = Sprite::create("HelloWorld.png");
+//	this->_test_sprite = Sprite::create("HelloWorld.png");
 //	this->_test_sprite->setPosition(new Vec2(500,0));
-	this->_test_sprite->setPosition(500, 0);
-	this->addChild(this->_test_sprite);
+//	this->_test_sprite->setPosition(500, 200);
+//	this->addChild(this->_test_sprite);
 //	this->_test_sprite = ResourceManage::getSprite("icon.png");
 
 //	SeedBase* hoge = new SeedBase();
@@ -31,11 +31,13 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 	this->_shadow_list = new ShadowObjectList(this->_play_camera);
 
 	// スキルオブジェクトの宣言
-	this->_skill_list = new SkillList();
+//	this->_skill_list = new SkillList();
 
+	// プレイヤーキャラクターの宣言
 	this->_player_obj = new CharaPlayer(this->_play_camera, comment_ui_obj, this->_chara_list, this->_skill_list, this->_magic_list, this->_shadow_list);
 	
 	this->_chara_list.push_back(this->_player_obj);
+
 
 	this->_order_object_list->addChild(this->_player_obj, (int)(this->_player_obj->getDrawY() * (-1)));
 
@@ -44,12 +46,41 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 
 	// テスト
 	
-	this->_map_obj_line_list[0] = new MapObjectList(0, this->_play_camera, this->_player_obj);
+	this->_map_obj_line_list[0] = new MapObjectList(-5, this->_play_camera, this->_player_obj);
 	
 	this->_map_obj_line_list[0]->setObject(0);
+	this->_order_object_list->addChild(this->_map_obj_line_list[0], this->_map_obj_line_list[0]->getDrawY());
 	
+	/*
+	ParticleSystemQuad* particle = ParticleSystemQuad::create("particle/test_particle.plist");
+	particle->setPosition(0, 0);
+	this->addChild(particle);
+	*/
 }
 void PlayUi::Update(){
+	// マップアップデート処理
+	//std::unordered_map<std::string, CMyClass>::iterator iterator;
+	/*
+	for (auto itr = this->_map_obj_line_list.begin(); itr != this->_map_obj_line_list.end(); ++itr) {
+		//MapObjectList* hoge = itr->first;
+		
+	}
+	// */
+	
+	for (std::unordered_map<int, MapObjectList*>::iterator map_obj_iterator = this->_map_obj_line_list.begin(); map_obj_iterator != this->_map_obj_line_list.end(); map_obj_iterator++) {
+//		std::pair<int, MapObjectList*> map_obj_line = *map_obj_iterator;
+		this->_map_obj_line_list[map_obj_iterator->first]->Update();
+//		map_obj_line;
+		
+	}
+	// */
+	/*
+	foreach(KeyValuePair<int, Dictionary<int, MapObjectBase>> list_pair in this._map_obj_list) {
+		foreach(KeyValuePair<int, MapObjectBase> pair in list_pair.Value) {
+			pair.Value.Update();
+		}
+	}
+	*/
 	// キャラクターのアップデート処理
 	for (std::list<CharaBase*>::iterator chara_iterator = this->_chara_list.begin(); chara_iterator != this->_chara_list.end(); chara_iterator++) {
 		CharaBase* chara_data = *chara_iterator;

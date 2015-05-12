@@ -2,7 +2,7 @@
 #include "MapObjectList.h"
 #include "MapObjectBase.h"
 #include "../GameCamera.h"
-
+#include "cocos2d.h"
 MapObjectList::MapObjectList(int map_block_y, GameCamera* camera_obj, CharaPlayer* player_obj)
 {
 	this->_player_obj = player_obj;
@@ -16,6 +16,11 @@ MapObjectList::MapObjectList(int map_block_y, GameCamera* camera_obj, CharaPlaye
 	this->_draw_y = (map_block_y * MAP_BLOCK_HEIGHT);
 
 	//this->AddChild(this->_object_sprite_list);
+	/*
+	cocos2d::ParticleSystemQuad* particle = cocos2d::ParticleSystemQuad::create("particle/test_particle.plist");
+	particle->setPosition(0, 0);
+	this->addChild(particle);
+	// */
 }
 
 void MapObjectList::setObject(int map_block_x){
@@ -38,6 +43,9 @@ void MapObjectList::setObject(int map_block_x){
 	this->_map_obj_line_list[map_block_x] = map_obj;
 	this->_map_obj_draw_list[map_block_x] = false;
 
+	// @TODO とりあえず全オブジェクトを描画する
+	this->addChild(map_obj);
+	this->_map_obj_draw_list[map_block_x] = true;
 }
 bool MapObjectList::checkMapObject(int map_block_x) {
 	//this._map_obj_line_list[map_block_x];	

@@ -192,6 +192,12 @@
     <ClCompile Include="..\Classes\GameMain\map\MapObjectList.cpp">
       <Filter>src\GameMain\map</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\map\MapGroundBase.cpp">
+      <Filter>src\GameMain\map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\map\MapGroundList.cpp">
+      <Filter>src\GameMain\map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -345,6 +351,12 @@
       <Filter>src\GameMain\hit</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\map\MapObjectList.h">
+      <Filter>src\GameMain\map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\MapGroundBase.h">
+      <Filter>src\GameMain\map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\MapGroundList.h">
       <Filter>src\GameMain\map</Filter>
     </ClInclude>
   </ItemGroup>

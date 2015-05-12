@@ -1,9 +1,12 @@
 #pragma once
 #include "../../RenderObject.h"
+#include "cocos2d.h"
 
 class GameCamera;
 class HitSquare;
 class MapObjectBase : public RenderObject {
+
+public: cocos2d::ParticleSystemQuad* test_particle;
 
 	// object size
 protected: int _OBJECT_WIDTH = 96;
@@ -26,4 +29,6 @@ public: int getHitCheckType();
 public: HitSquare* getHitSquare();
 public: void resetDrawObject();
 public: void removeDrawObject();
+
+
 };

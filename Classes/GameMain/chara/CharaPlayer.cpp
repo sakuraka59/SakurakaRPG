@@ -37,7 +37,7 @@ CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, st
 	this->_now_state[mainStateType::hp] = 1000;
 
 	// 初期座標。オブジェクトとかぶると0,0へ強制移動するので注意
-	this->_draw_x = 500;
+	this->_draw_x = 0;
 	this->_draw_y = 0 / 2;//300;
 	this->updateBlockPoint();
 	this->SetCharaHitData();

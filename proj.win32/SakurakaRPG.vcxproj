@@ -166,6 +166,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\item\use_item\HaveUseItemList.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\use_item\UseItem.cpp" />
     <ClCompile Include="..\Classes\GameMain\magic\MagicBase.cpp" />
+    <ClCompile Include="..\Classes\GameMain\map\MapGroundBase.cpp" />
+    <ClCompile Include="..\Classes\GameMain\map\MapGroundList.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\MapObjectBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\MapObjectList.cpp" />
     <ClCompile Include="..\Classes\GameMain\shadow\ShadowObjectBase.cpp" />
@@ -219,6 +221,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\item\use_item\UseItem.h" />
     <ClInclude Include="..\Classes\GameMain\item\use_item\useItemId.h" />
     <ClInclude Include="..\Classes\GameMain\magic\MagicBase.h" />
+    <ClInclude Include="..\Classes\GameMain\map\MapGroundBase.h" />
+    <ClInclude Include="..\Classes\GameMain\map\MapGroundList.h" />
     <ClInclude Include="..\Classes\GameMain\map\MapObjectBase.h" />
     <ClInclude Include="..\Classes\GameMain\map\MapObjectList.h" />
     <ClInclude Include="..\Classes\GameMain\shadow\ShadowObjectBase.h" />
