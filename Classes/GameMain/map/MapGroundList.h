@@ -18,5 +18,13 @@ private: int _map_outer_size_y = -1;
 
 private: CharaPlayer* _player_obj;
 
+private: RenderObject* _ground_sprite_list;
 
+public: MapGroundList(GameCamera* camera_obj, std::unordered_map<int, int> map_data, int map_type, CharaPlayer* player_obj);
+public: void Init();
+public: void Update();
+private: void reviewGroundBlockX(int add_block_draw_x, int remove_block_draw_x, int block_draw_y, int map_max_y);
+private: void reviewGroundBlockY(int add_block_draw_y, int remove_block_draw_y, int block_draw_x, int map_max_x);
+private: void setCharaPoint();
+public: std::unordered_map<int, int> getMapData();
 };
