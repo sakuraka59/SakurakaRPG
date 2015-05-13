@@ -166,10 +166,12 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\item\use_item\HaveUseItemList.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\use_item\UseItem.cpp" />
     <ClCompile Include="..\Classes\GameMain\magic\MagicBase.cpp" />
+    <ClCompile Include="..\Classes\GameMain\map\MapBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\MapGroundBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\MapGroundList.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\MapObjectBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\MapObjectList.cpp" />
+    <ClCompile Include="..\Classes\GameMain\map\RandomDungeon.cpp" />
     <ClCompile Include="..\Classes\GameMain\shadow\ShadowObjectBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\shadow\ShadowObjectList.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\SkillAttackData.cpp" />
@@ -221,10 +223,13 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\item\use_item\UseItem.h" />
     <ClInclude Include="..\Classes\GameMain\item\use_item\useItemId.h" />
     <ClInclude Include="..\Classes\GameMain\magic\MagicBase.h" />
+    <ClInclude Include="..\Classes\GameMain\map\RandomDungeonSetting.h" />
+    <ClInclude Include="..\Classes\GameMain\map\MapBase.h" />
     <ClInclude Include="..\Classes\GameMain\map\MapGroundBase.h" />
     <ClInclude Include="..\Classes\GameMain\map\MapGroundList.h" />
     <ClInclude Include="..\Classes\GameMain\map\MapObjectBase.h" />
     <ClInclude Include="..\Classes\GameMain\map\MapObjectList.h" />
+    <ClInclude Include="..\Classes\GameMain\map\RandomDungeon.h" />
     <ClInclude Include="..\Classes\GameMain\shadow\ShadowObjectBase.h" />
     <ClInclude Include="..\Classes\GameMain\shadow\ShadowObjectList.h" />
     <ClInclude Include="..\Classes\GameMain\skill\SkillAttackData.h" />

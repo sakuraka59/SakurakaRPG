@@ -9,11 +9,13 @@ MapObjectBase::MapObjectBase(int map_block_x, int map_block_y, GameCamera* camer
 	double test_angle = 0;
 	this->_hit_square_obj = new HitSquare(this->_draw_x, this->_draw_y, MAP_BLOCK_WIDTH, MAP_BLOCK_HEIGHT, test_angle);
 
+
 	this->setPosition((float)(this->_draw_x), 0);
 
 
 	this->test_particle = cocos2d::ParticleSystemQuad::create("particle/test_particle.plist");
 	this->test_particle->setPositionType(cocos2d::ParticleSystem::PositionType::RELATIVE);//ParticleSystem::PositionType::RELATIVE
+	this->test_particle->setPosition(0, 0);
 	this->addChild(this->test_particle);
 }
 

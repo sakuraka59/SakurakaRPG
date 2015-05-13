@@ -3,10 +3,12 @@
 #include "PlayUi.h"
 //#include "../chara/chara_seed/SeedBase.h"
 
+#include "../GAME_SETTING.h"
 #include "../GameCamera.h"
 #include "../chara/CharaPlayer.h"
 #include "../shadow/ShadowObjectList.h"
 #include "../skill/SkillList.h"
+#include "../map/MapBase.h"
 #include "../map/MapObjectList.h"
 
 using namespace cocos2d;
@@ -37,17 +39,23 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 	this->_player_obj = new CharaPlayer(this->_play_camera, comment_ui_obj, this->_chara_list, this->_skill_list, this->_magic_list, this->_shadow_list);
 	
 	this->_chara_list.push_back(this->_player_obj);
-
-
 	this->_order_object_list->addChild(this->_player_obj, (int)(this->_player_obj->getDrawY() * (-1)));
+
+	//マップ情報の宣言
+	//if (SET_VIEW_STATE == 1) {
+		this->_map_obj = new MapBase(this->_play_camera, this->_player_obj);
+		this->addChild(this->_map_obj);
+	//}
+
+
+
 
 	this->addChild(this->_order_object_list);
 
-
 	// テスト
 	
-	this->_map_obj_line_list[0] = new MapObjectList(-5, this->_play_camera, this->_player_obj);
-	
+	this->_map_obj_line_list[0] = new MapObjectList(0, this->_play_camera, this->_player_obj);
+
 	this->_map_obj_line_list[0]->setObject(0);
 	this->_order_object_list->addChild(this->_map_obj_line_list[0], this->_map_obj_line_list[0]->getDrawY());
 	
@@ -59,6 +67,9 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 }
 void PlayUi::Update(){
 	// マップアップデート処理
+//	if (SET_VIEW_STATE == 1) {
+		this->_map_obj->Update();
+//	}
 	//std::unordered_map<std::string, CMyClass>::iterator iterator;
 	/*
 	for (auto itr = this->_map_obj_line_list.begin(); itr != this->_map_obj_line_list.end(); ++itr) {

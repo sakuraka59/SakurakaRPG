@@ -198,6 +198,12 @@
     <ClCompile Include="..\Classes\GameMain\map\MapGroundList.cpp">
       <Filter>src\GameMain\map</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\map\MapBase.cpp">
+      <Filter>src\GameMain\map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\map\RandomDungeon.cpp">
+      <Filter>src\GameMain\map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -357,6 +363,15 @@
       <Filter>src\GameMain\map</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\map\MapGroundList.h">
+      <Filter>src\GameMain\map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\MapBase.h">
+      <Filter>src\GameMain\map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\RandomDungeon.h">
+      <Filter>src\GameMain\map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\RandomDungeonSetting.h">
       <Filter>src\GameMain\map</Filter>
     </ClInclude>
   </ItemGroup>
