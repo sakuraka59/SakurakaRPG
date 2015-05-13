@@ -27,7 +27,7 @@ public: MapBase(GameCamera* camera_obj, CharaPlayer* player_obj);
 public: void Init();
 public: void Update();
 public: std::unordered_map<int, std::unordered_map<int, MapObjectBase*>> getMapObjectList();
-public: void initMapObject(std::unordered_map<int, int> map_data);
+public: void initMapObject(std::unordered_map<int, std::unordered_map<int, int>> map_data);
 public: std::unordered_map<int, MapObjectList*> getMapObjectLineList();
 
 public: void createRandomMap();

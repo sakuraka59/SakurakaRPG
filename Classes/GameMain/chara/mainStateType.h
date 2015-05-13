@@ -1,5 +1,4 @@
-#ifndef __MAIN_STATE_TYPE__
-#define __MAIN_STATE_TYPE__
+#pragma once
 #include <iostream>
 
 enum class mainStateType
@@ -39,5 +38,3 @@ enum class mainStateType
 	enum_end,
 
 };
-
-#endif

@@ -107,7 +107,8 @@ void PlayUi::Update(){
 
 	// •`‰æXV
 	for (std::list<CharaBase*>::iterator chara_iterator = this->_chara_list.begin(); chara_iterator != this->_chara_list.end(); chara_iterator++) {
-		CharaBase* chara_data = *chara_iterator;
-		chara_data->updateDraw();
+		CharaBase* chara_obj = *chara_iterator;
+//		this->_order_object_list->reorderChild(chara_obj, (int)chara_obj->getDrawY() * (-1));
+			chara_obj->updateDraw();
 	}
 }

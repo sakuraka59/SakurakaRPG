@@ -172,6 +172,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\map\MapObjectBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\MapObjectList.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\RandomDungeon.cpp" />
+    <ClCompile Include="..\Classes\GameMain\map\RandomDungeonRoom.cpp" />
     <ClCompile Include="..\Classes\GameMain\shadow\ShadowObjectBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\shadow\ShadowObjectList.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\SkillAttackData.cpp" />
@@ -223,6 +224,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\item\use_item\UseItem.h" />
     <ClInclude Include="..\Classes\GameMain\item\use_item\useItemId.h" />
     <ClInclude Include="..\Classes\GameMain\magic\MagicBase.h" />
+    <ClInclude Include="..\Classes\GameMain\map\RandomDungeonRoom.h" />
     <ClInclude Include="..\Classes\GameMain\map\RandomDungeonSetting.h" />
     <ClInclude Include="..\Classes\GameMain\map\MapBase.h" />
     <ClInclude Include="..\Classes\GameMain\map\MapGroundBase.h" />
@@ -230,6 +232,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\map\MapObjectBase.h" />
     <ClInclude Include="..\Classes\GameMain\map\MapObjectList.h" />
     <ClInclude Include="..\Classes\GameMain\map\RandomDungeon.h" />
+    <ClInclude Include="..\Classes\GameMain\map\randomRoadType.h" />
     <ClInclude Include="..\Classes\GameMain\shadow\ShadowObjectBase.h" />
     <ClInclude Include="..\Classes\GameMain\shadow\ShadowObjectList.h" />
     <ClInclude Include="..\Classes\GameMain\skill\SkillAttackData.h" />
@@ -239,6 +242,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\skill\SkillMove.h" />
     <ClInclude Include="..\Classes\Input\Gamepad.h" />
     <ClInclude Include="..\Classes\Input\GamepadButton.h" />
+    <ClInclude Include="..\Classes\Random.h" />
     <ClInclude Include="..\Classes\RenderObject.h" />
     <ClInclude Include="..\Classes\ResourceManage.h" />
     <ClInclude Include="main.h" />

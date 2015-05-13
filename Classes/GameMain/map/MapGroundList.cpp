@@ -5,9 +5,9 @@
 #include "MapGroundBase.h"
 #include "../chara/CharaPlayer.h"
 #include "../GameCamera.h"
+#include "RandomDungeonSetting.h"
 
-
-MapGroundList::MapGroundList(GameCamera* camera_obj, std::unordered_map<int, int> map_data, int map_type, CharaPlayer* player_obj) {
+MapGroundList::MapGroundList(GameCamera* camera_obj, std::unordered_map<int, std::unordered_map<int, int>> map_data, int map_type, CharaPlayer* player_obj) {
 	//this._texture_info = ResourceManage.getTextureInfo("/Application/res/map/maptest.png", 2, 3);
 	this->_camera_obj = camera_obj;
 	//this._ground_sprite_list = new SpriteList(this._texture_info);
@@ -56,32 +56,36 @@ MapGroundList::MapGroundList(GameCamera* camera_obj, std::unordered_map<int, int
 		}
 		break;
 	case 1:
+
 		/*
 		int map_width = map_data.GetLength(0);
 		int map_height = map_data.GetLength(1);
-
+		*/
+		int map_width = RandomDungeonSetting::getDungeonWidth();
+		int map_height = RandomDungeonSetting::getDungeonHeight();
 		for (int x = 0; x < map_width; x++) {
+			/*
 			if (this._ground_obj_list.ContainsKey(x) == false) {
 				this._ground_obj_list[x] = new Dictionary<int, SpriteTile>();
 			}
 			if (this._map_draw_list.ContainsKey(x) == false) {
 				this._map_draw_list[x] = new Dictionary<int, bool>();
 			}
+			*/
 			for (int y = 0; y < map_height; y++) {
 
-				MapGroundBase test_obj = new MapGroundBase(
-					this._texture_info,
-					vector_list[map_data[x, y]],
+				MapGroundBase* test_obj = new MapGroundBase(
 					x, y * (-1),
-					map_width, map_height
+					map_width, map_height,
+					map_data[x][y]
 					);
 
 
-				this._ground_obj_list[x][y * (-1)] = test_obj.getGroundSprite();
+				//this->_ground_obj_list[x][y * (-1)] = test_obj->getGroundSprite();
 				//this._ground_sprite_list.AddChild(this._ground_obj_list[x][y]);
+				this->_ground_sprite_list->addChild(test_obj);
 
-
-				this._map_draw_list[x][y * (-1)] = false;
+				this->_map_draw_list[x][y * (-1)] = false;
 			}
 
 		}
@@ -330,6 +334,6 @@ void MapGroundList::setCharaPoint() {
 		}
 	*/
 }
-std::unordered_map<int, int> MapGroundList::getMapData() {
+std::unordered_map<int, std::unordered_map<int, int>> MapGroundList::getMapData() {
 	return this->_map_data;
 }

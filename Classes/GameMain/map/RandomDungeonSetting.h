@@ -1,6 +1,6 @@
 #pragma once
 
-static class RandomDungeonSetting{
+class RandomDungeonSetting{
 // ã§í ê›íË -----------------------------------------------------
 // road width
 public: static const int _ROAD_WIDTH = 3;

@@ -4,11 +4,18 @@
 #include <random>
 #include "RandomDungeonSetting.h"
 
-class RandomDungeon {
-private: std::unordered_map<int, int> _map_data;
+class Random;
 
-//	private Random _rand_obj;
+class RandomDungeon {
+private: std::unordered_map<int, std::unordered_map<int, int>> _map_data;
+private: Random* _rand_obj;
 public: RandomDungeon();
+
+// 部屋分割法でマップ作成
+private: void DungeonCreateRogelike(int dungeon_width, int dungeon_height);
+
+// 独自処理でマップ作成
+private: void DungeonCreateOriginal(int dungeon_width, int dungeon_height);
 
 // マス指定による、部屋を作成
 private: void setRoomExpansion(int room_core_x, int room_core_y);
@@ -31,7 +38,7 @@ private: bool checkRoadCreateMini(int room_core_x, int room_core_y, int first_co
 private: bool checkRoadCreateRandom(int room_core_x, int room_core_y);
 
 // 通路作成チェック。ランダム版の詳細処理
-private: bool checkRoadCreateMiniDetail(int room_core_x, int room_core_y, int main_load_search_num, int road_type, std::unordered_map<int, int>map_search_data);
+private: bool checkRoadCreateMiniDetail(int room_core_x, int room_core_y, int main_load_search_num, int road_type, std::unordered_map<int, std::unordered_map<int, int>>map_search_data);
 
 
 // 通路を作成
@@ -39,7 +46,7 @@ private: void setRoadExpansion(int room_core_x, int room_core_y, int road_type, 
 
 private: void setMapData(int expansion_x, int expansion_y, int map_type);
 
-public: std::unordered_map<int, int> getMapData();
+public: std::unordered_map<int, std::unordered_map<int, int>> getMapData();
 
 private: int getMapDataFreeNum();
 };

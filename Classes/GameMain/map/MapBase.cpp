@@ -5,6 +5,7 @@
 #include "MapObjectList.h"
 #include "../GAME_SETTING.h"
 #include <math.h>
+#include "RandomDungeon.h"
 
 MapBase::MapBase(GameCamera* camera_obj, CharaPlayer* player_obj) {
 	this->_player_obj = player_obj;
@@ -40,7 +41,7 @@ void MapBase::Update() {
 std::unordered_map<int, std::unordered_map<int, MapObjectBase*>> MapBase::getMapObjectList() {
 	return this->_map_obj_list;
 }
-void MapBase::initMapObject(std::unordered_map<int, int> map_data) {
+void MapBase::initMapObject(std::unordered_map<int, std::unordered_map<int, int>> map_data) {
 	/*
 	if (GameSetting._SET_MAP_MODE == 1) {
 				return;
@@ -85,11 +86,12 @@ std::unordered_map<int, MapObjectList*> MapBase::getMapObjectLineList() {
 }
 
 void MapBase::createRandomMap() {
-	//var get_dungeon_obj = new RandomDungeon();
-	std::unordered_map<int, int> test_map;
-
-	//this->_map_ground_obj = new MapGroundList(this->_camera_obj, get_dungeon_obj.getMapData(), 1, player_obj);
+	RandomDungeon* get_dungeon_obj = new RandomDungeon();
+	this->_map_ground_obj = new MapGroundList(this->_camera_obj, get_dungeon_obj->getMapData(), 1, this->_player_obj);
+	/*
+	std::unordered_map<int, std::unordered_map<int, int>> test_map;
 	this->_map_ground_obj = new MapGroundList(this->_camera_obj, test_map, 0, this->_player_obj);
+	// */
 
 	this->addChild(this->_map_ground_obj);
 

@@ -204,6 +204,9 @@
     <ClCompile Include="..\Classes\GameMain\map\RandomDungeon.cpp">
       <Filter>src\GameMain\map</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\map\RandomDungeonRoom.cpp">
+      <Filter>src\GameMain\map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -372,6 +375,15 @@
       <Filter>src\GameMain\map</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\map\RandomDungeonSetting.h">
+      <Filter>src\GameMain\map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Random.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\randomRoadType.h">
+      <Filter>src\GameMain\map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\RandomDungeonRoom.h">
       <Filter>src\GameMain\map</Filter>
     </ClInclude>
   </ItemGroup>
