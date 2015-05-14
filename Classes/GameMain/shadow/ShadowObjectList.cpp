@@ -29,11 +29,11 @@ void ShadowObjectList::setRenderObject(RenderObject* render_obj){
 }
 void ShadowObjectList::removeRenderObject(RenderObject* render_obj) {
 
-	if (this->_shadow_obj_list[render_obj] == NULL) {
+	if (this->_shadow_obj_list[render_obj] == nullptr) {
 		//this._object_sprite_list.RemoveChild(this._shadow_obj_list[render_obj].getObjectSprite(), true);
 		//this._shadow_obj_list.Remove(render_obj);
 
-		this->_shadow_obj_list[render_obj] = NULL;
+		this->_shadow_obj_list[render_obj] = nullptr;
 	}
 }
 void ShadowObjectList::Update() {

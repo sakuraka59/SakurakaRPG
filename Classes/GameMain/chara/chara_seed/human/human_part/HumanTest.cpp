@@ -14,7 +14,7 @@ HumanTest::HumanTest()
 
 	float scale_per = 0.2f;
 	this->setScale(scale_per, scale_per);
-	this->setPosition(0, 0);
+	this->setPosition(0, -5);
 	this->addChild(this->_part_test);
 
 	

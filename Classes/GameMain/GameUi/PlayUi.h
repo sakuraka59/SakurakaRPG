@@ -19,9 +19,7 @@ class MapObjectList;
 
 class PlayUi : public UiBase
 {
-private: cocos2d::EventListenerKeyboard* _KEYBORD_EVENT;
-public: PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* KEYBORD_EVENT);
-public: void Update();
+//private: cocos2d::EventListenerKeyboard* _KEYBORD_EVENT;
 
 private: cocos2d::Sprite* _test_sprite;
 
@@ -37,5 +35,9 @@ public: SkillList* _skill_list;
 
 private: MapBase* _map_obj;
 private: std::unordered_map<int, MapObjectList*> _map_obj_line_list;
+
+public: PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* KEYBORD_EVENT);
+public: void Update();
+private: void PlayUi::checkHitMapObject(CharaBase* chara_obj);
 
 };

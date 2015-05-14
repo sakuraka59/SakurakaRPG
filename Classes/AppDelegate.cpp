@@ -1,6 +1,6 @@
 #include "AppDelegate.h"
 #include "GameMain\GameMain.h"
-
+#include "GameMain\GAME_SETTING.h"
 USING_NS_CC;
 
 AppDelegate::AppDelegate() {
@@ -43,9 +43,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 
 	// 表示解像度変更
-	glview->setFrameSize(1280, 720);
+	glview->setFrameSize(GAME_WIDTH, GAME_HEIGHT);
 	// プログラム内解像度変更
-	glview->setDesignResolutionSize(1280, 720, ResolutionPolicy::NO_BORDER);
+	glview->setDesignResolutionSize(GAME_WIDTH, GAME_HEIGHT, ResolutionPolicy::NO_BORDER);
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0 / 60);

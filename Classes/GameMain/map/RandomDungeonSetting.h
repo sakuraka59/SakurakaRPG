@@ -27,7 +27,7 @@ public: static const int _MAP_HEIGHT = 9 * 3;
 public: static const int _MAP_FRAME_NUM = 1;
 
 // •”‰®”
-public: static const int _ROOM_MIN = 5;
+public: static const int _ROOM_MIN = 15;
 public: static const int _ROOM_MAX = 25;
 
 public: static const int _ROOM_MIN_WIDTH = 5;

@@ -157,12 +157,12 @@ protected: HaveEquipItemList* _equip_item_list;
 
 // 敵に使おうとしているスキル
 // TODO NPCのAIのみで使用している。下記の使用中スキルで代替できるようにしたい
-protected: SkillAttack* _set_attack_skill = NULL;
+protected: SkillAttack* _set_attack_skill = nullptr;
 // 現在使用中のスキル
-protected: SkillBase* _set_now_skill = NULL;
+protected: SkillBase* _set_now_skill = nullptr;
 
 // スキル使用中によるターゲット追尾
-protected: CharaBase* _skill_target_obj = NULL;
+protected: CharaBase* _skill_target_obj = nullptr;
 private: int _skill_chain_num;
 
 // 当たり判定

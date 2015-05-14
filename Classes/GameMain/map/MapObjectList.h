@@ -17,7 +17,7 @@ private: GameCamera* _camera_obj;
 protected: std::unordered_map<int, bool> _map_obj_draw_list;
 
 private: int _draw_correction_x = 0;
-private: int _draw_correction_y = 30;
+private: int _draw_correction_y = 0;
 private: int _OBJECT_WIDTH = 96;
 private: int _OBJECT_HEIGHT = 192;
 private: int _map_block_y = 0;

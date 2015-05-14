@@ -207,6 +207,9 @@
     <ClCompile Include="..\Classes\GameMain\map\RandomDungeonRoom.cpp">
       <Filter>src\GameMain\map</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\hit\HitCheck.cpp">
+      <Filter>src\GameMain\hit</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -385,6 +388,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\map\RandomDungeonRoom.h">
       <Filter>src\GameMain\map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\hit\HitCheck.h">
+      <Filter>src\GameMain\hit</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

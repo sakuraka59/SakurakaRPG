@@ -34,7 +34,7 @@ CharaBase::CharaBase()
 	}
 	/*
 	foreach(equipType equip_type in Enum.GetValues(typeof(equipType))) {
-		this->_equip_list[equip_type] = null;
+		this->_equip_list[equip_type] = nullptr ;
 	}
 	*/
 	this->_skill_chain_num = 0;
@@ -600,13 +600,13 @@ void CharaBase::setEquipItem(equipType equip_type, EquipItem* item_obj, std::uno
 		this->removeEquipItem(equip_type, item_obj, abnormal_state_list);
 		return;
 	}
-	else if (this->_equip_list[equip_type] != NULL) {
+	else if (this->_equip_list[equip_type] != nullptr) {
 		
 		this->removeEquipItem(equip_type, this->_equip_list[equip_type], this->_equip_list[equip_type]->getStateDefaultList());
 
 	}
 	// check sub weapon
-	if (equip_type == equipType::weapon && this->_equip_list[equipType::sub_weapon] != NULL) {
+	if (equip_type == equipType::weapon && this->_equip_list[equipType::sub_weapon] != nullptr) {
 		if (this->_equip_list[equipType::sub_weapon]->checkEquipRelease() == true) {
 			this->removeEquipItem(equipType::sub_weapon, this->_equip_list[equipType::sub_weapon], this->_equip_list[equipType::sub_weapon]->getStateDefaultList());
 		}
@@ -644,7 +644,7 @@ void CharaBase::setEquipItem(equipType equip_type, EquipItem* item_obj, std::uno
 	return;
 }
 void CharaBase::removeEquipItem(equipType equip_type, EquipItem* item_obj, std::unordered_map<abnormalStateType, int> abnormal_state_list) {
-	this->_equip_list[equip_type] = NULL;
+	this->_equip_list[equip_type] = nullptr;
 
 	std::unordered_map<mainStateType, int> item_state = item_obj->getItemState();
 
@@ -917,11 +917,11 @@ void CharaBase::checkRemoveSkill(){
 void CharaBase::removeSkill(){
 
 	/*
-	if (this->_set_attack_skill != NULL) {
+	if (this->_set_attack_skill != nullptr ) {
 		this->_skill_list->removeSkillList(this->_set_attack_skill);
 		this->_set_attack_skill->setDeleteFlag();
 	}
-	if (this->_set_now_skill != NULL) {
+	if (this->_set_now_skill != nullptr ) {
 		this->_skill_list->removeSkillList(this->_set_now_skill);
 		this->_set_now_skill->setDeleteFlag();
 	}
@@ -1073,7 +1073,7 @@ GameCamera* CharaBase::getGameCamera() {
 
 // equip data -----------------------------------------------
 weaponType CharaBase::getMainWeaponType() {
-	if (this->_equip_list[equipType::weapon] == NULL) {
+	if (this->_equip_list[equipType::weapon] == nullptr) {
 		return weaponType::no_weapon;
 	}
 
@@ -1082,7 +1082,7 @@ weaponType CharaBase::getMainWeaponType() {
 }
 weaponType CharaBase::getSubWeaponType() {
 	//Debug.WriteLine("[CharaBase]getSubWeaponType check");
-	if (this->_equip_list[equipType::sub_weapon] == NULL) {
+	if (this->_equip_list[equipType::sub_weapon] == nullptr) {
 		return weaponType::no_weapon;
 	}
 
@@ -1148,7 +1148,7 @@ void CharaBase::updateDamagePush() {
 
 // battle target --------------------------------------------
 void CharaBase::setTargetChara(CharaBase* set_target_chara_obj) {
-	if (this->_skill_target_obj == NULL) {
+	if (this->_skill_target_obj == nullptr) {
 		this->_skill_target_obj = set_target_chara_obj;
 	}
 }
@@ -1156,7 +1156,7 @@ void CharaBase::setTargetChara(CharaBase* set_target_chara_obj) {
 //	ターゲットの方向を取得する
 //-----------------------------------------------------------
 double CharaBase::getTargetAngleSkill() {
-	if (this->_skill_target_obj == NULL) {
+	if (this->_skill_target_obj == nullptr) {
 		return -1000;
 	}
 	double target_angle = this->getTargetAngle(
@@ -1170,8 +1170,8 @@ double CharaBase::getTargetAngleSkill() {
 
 }
 void CharaBase::resetTargetChara() {
-	if (this->_skill_target_obj != NULL) {
-		this->_skill_target_obj = NULL;
+	if (this->_skill_target_obj != nullptr) {
+		this->_skill_target_obj = nullptr;
 	}
 }
 //-----------------------------------------------------------

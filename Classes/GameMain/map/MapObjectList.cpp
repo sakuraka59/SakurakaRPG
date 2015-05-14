@@ -10,17 +10,18 @@ MapObjectList::MapObjectList(int map_block_y, GameCamera* camera_obj, CharaPlaye
 	//this->_texture_info = texture_info;
 
 	//this->_object_sprite_list = new SpriteList(this->_texture_info);
-	this->_draw_correction_x = (MAP_BLOCK_WIDTH - this->_OBJECT_WIDTH) / 2;
+//	this->_draw_correction_x = (MAP_BLOCK_WIDTH - this->_OBJECT_WIDTH) / 2;
 
 	this->_map_block_y = map_block_y;
 	this->_draw_y = (map_block_y * MAP_BLOCK_HEIGHT);
-
+	int hoge = 0;
 	//this->AddChild(this->_object_sprite_list);
 	/*
 	cocos2d::ParticleSystemQuad* particle = cocos2d::ParticleSystemQuad::create("particle/test_particle.plist");
 	particle->setPosition(0, 0);
 	this->addChild(particle);
 	// */
+
 }
 
 void MapObjectList::setObject(int map_block_x){
@@ -59,7 +60,7 @@ bool MapObjectList::checkMapObject(int map_block_x) {
 }
 MapObjectBase* MapObjectList::getMapObject(int map_block_x) {
 	if (this->checkMapObject(map_block_x) == false) {
-		return NULL;
+		return nullptr;
 	}
 	return this->_map_obj_line_list[map_block_x];
 

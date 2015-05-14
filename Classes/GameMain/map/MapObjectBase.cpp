@@ -11,16 +11,25 @@ MapObjectBase::MapObjectBase(int map_block_x, int map_block_y, GameCamera* camer
 
 
 	this->setPosition((float)(this->_draw_x), 0);
-	/*
+	// /*
 	cocos2d::Sprite* sprite_data = cocos2d::Sprite::create("CloseNormal.png");
+	int particle_width = 64;
+	int particle_height = 64;
+	sprite_data->setPosition((particle_width / 2), (particle_height / 2));
 	this->addChild(sprite_data);
 	// */
-	// /*
+	 /*
 	// test object
-	this->test_particle = cocos2d::ParticleSystemQuad::create("particle/test_obj1.plist");
+	this->test_particle = cocos2d::ParticleSystemQuad::create("particle/test_obj2.plist");
 	this->test_particle->setPositionType(cocos2d::ParticleSystem::PositionType::RELATIVE);//ParticleSystem::PositionType::RELATIVE
-	this->test_particle->setPosition(0, 0);
+//	cocos2d::Size imgSize = this->test_particle->getContentSize();
+	int particle_width = 64;
+	int particle_height = 64;
+	this->test_particle->setPosition((particle_width / 2), (particle_height / 2));
+
 	this->addChild(this->test_particle);
+
+
 	// */
 }
 
