@@ -3,6 +3,7 @@
 
 class GameCamera;
 class CharaPlayer;
+class MapGroundBase;
 
 class MapGroundList : public RenderObject {
 private: GameCamera* _camera_obj;
@@ -19,6 +20,8 @@ private: int _map_outer_size_y = -1;
 private: CharaPlayer* _player_obj;
 
 private: RenderObject* _ground_sprite_list;
+
+private: std::unordered_map<int, std::unordered_map<int, MapGroundBase*>>_ground_obj_list;
 
 public: MapGroundList(GameCamera* camera_obj, std::unordered_map<int, std::unordered_map<int, int>> map_data, int map_type, CharaPlayer* player_obj);
 public: void Init();

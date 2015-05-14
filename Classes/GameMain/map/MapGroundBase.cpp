@@ -11,12 +11,14 @@ MapGroundBase::MapGroundBase(int block_x, int block_y, int map_width, int map_he
 	cocos2d::Rect rect = cocos2d::Rect(0, 0, MAP_BLOCK_WIDTH, MAP_BLOCK_HEIGHT);
 	cocos2d::Sprite* sprite_data = cocos2d::Sprite::create();
 	sprite_data->setTextureRect(rect);
+
+
 //	sprite_data->setScale((float)MAP_BLOCK_WIDTH, (float)MAP_BLOCK_HEIGHT);
 	
 //	sprite_data->setScale((float)MAP_BLOCK_WIDTH, (float)MAP_BLOCK_HEIGHT);
 //	cocos2d::Sprite* sprite_data = cocos2d::Sprite::create("HelloWorld.png");
 	
-//	sprite_data->setPosition(0, 0);
+	sprite_data->setPosition(32, 32);
 	cocos2d::ccBlendFunc blend;
 	blend.src = GL_SRC_ALPHA;
 	blend.dst = GL_ONE;

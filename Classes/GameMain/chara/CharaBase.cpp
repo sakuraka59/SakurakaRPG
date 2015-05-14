@@ -46,6 +46,15 @@ CharaBase::CharaBase()
 
 	this->AddChild(this->_test_label);
 	*/
+
+
+	TTFConfig conf_test("fonts/arial.ttf", 16);
+	this->_test_label = "angle: ";
+	this->_label_obj = Label::createWithTTF(conf_test, this->_test_label);
+	//label_obj->setColor(Color3B::WHITE);
+	this->_label_obj->setPosition(-20, -20);
+	this->addChild(this->_label_obj);
+
 }
 void CharaBase::SetCharaHitData() {
 	this->_hit_circle_obj = new HitCircle(this, this->_chara_seed->getWidthHalf());
@@ -271,6 +280,14 @@ void CharaBase::updateDraw() {
 	//------------------------------
 	//this->Position = new Vector2((int)(this->_draw_x - this->_play_camera.getCameraX() - (this->_move_x * this->_move_speed_per)), (int)(this->_draw_y - this->_play_camera.getCameraY() + this->_draw_z - (this->_move_y * this->_move_speed_per)));
 	//this->Position = new Vector2((int)(this->_draw_x), (int)(this->_draw_y));
+	this->_test_label =
+		"x :" + std::to_string(this->_draw_x) +
+		"\n y :" + std::to_string(this->_draw_y) +
+		"\n z :" + std::to_string(this->_draw_z) +
+		"\n map x :" + std::to_string(this->_map_block_x) +
+		"\n map y :" + std::to_string(this->_map_block_y);
+
+	this->_label_obj->setString(this->_test_label);
 
 	/*
 	this->_test_label.Text = " angle: " + this->_move_angle +

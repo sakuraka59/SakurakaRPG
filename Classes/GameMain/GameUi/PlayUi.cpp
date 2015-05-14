@@ -64,6 +64,8 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 	particle->setPosition(0, 0);
 	this->addChild(particle);
 	*/
+
+	this->_map_obj->Init();
 }
 void PlayUi::Update(){
 	// マップアップデート処理
@@ -108,7 +110,7 @@ void PlayUi::Update(){
 	// 描画更新
 	for (std::list<CharaBase*>::iterator chara_iterator = this->_chara_list.begin(); chara_iterator != this->_chara_list.end(); chara_iterator++) {
 		CharaBase* chara_obj = *chara_iterator;
-//		this->_order_object_list->reorderChild(chara_obj, (int)chara_obj->getDrawY() * (-1));
-			chara_obj->updateDraw();
+		this->_order_object_list->reorderChild(chara_obj, (int)chara_obj->getDrawY() * (-1));
+		chara_obj->updateDraw();
 	}
 }

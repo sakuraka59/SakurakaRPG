@@ -20,4 +20,3 @@ public: ItemBase(CharaBase* chara_obj);
 public: virtual bool useItem();
 public: std::string getItemName();
 };
-// */

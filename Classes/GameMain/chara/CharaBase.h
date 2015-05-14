@@ -167,6 +167,9 @@ private: int _skill_chain_num;
 
 // “–‚½‚è”»’è
 protected: HitCircle* _hit_circle_obj;
+
+protected: std::string _test_label;
+protected: cocos2d::Label* _label_obj;
 //-------------------------------------------------------------------
 public: CharaBase();
 protected: void SetCharaHitData();

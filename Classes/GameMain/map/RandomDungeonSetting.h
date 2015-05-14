@@ -22,13 +22,13 @@ public: static const int _ROOM_FRAME_SIZE = 2;
 
 // 2：ランダム地点選択からの部屋展開による作成にて使用 ----------
 // map size
-public: static const int _MAP_WIDTH = 16 * 4;
-public: static const int _MAP_HEIGHT = 9 * 4;
+public: static const int _MAP_WIDTH = 16 * 3;
+public: static const int _MAP_HEIGHT = 9 * 3;
 public: static const int _MAP_FRAME_NUM = 1;
 
 // 部屋数
 public: static const int _ROOM_MIN = 5;
-public: static const int _ROOM_MAX = 15;
+public: static const int _ROOM_MAX = 25;
 
 public: static const int _ROOM_MIN_WIDTH = 5;
 public: static const int _ROOM_MIN_HEIGHT = 5;
