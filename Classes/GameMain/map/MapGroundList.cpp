@@ -19,7 +19,8 @@ MapGroundList::MapGroundList(GameCamera* camera_obj, std::unordered_map<int, std
 
 	this->_map_type = map_type;
 
-	
+	// キャラクターをセットする
+	this->setCharaPoint();
 
 	this->_ground_sprite_list = new RenderObject();
 	
@@ -128,8 +129,7 @@ void MapGroundList::Init(){
 		}
 	}
 	//*/
-	// キャラクターをセットする
-	this->setCharaPoint();
+	
 }
 void MapGroundList::Update() {
 	this->_ground_sprite_list->setPosition(
@@ -200,6 +200,9 @@ void MapGroundList::Update() {
 				this->reviewGroundBlockY(add_block_draw_y, remove_block_draw_y, block_draw_x, map_max_x);
 			}
 		}
+
+		
+
 	}
 
 	//*/
@@ -362,7 +365,8 @@ void MapGroundList::setCharaPoint() {
 							
 							
 					// test
-							
+					chara_room_x = 10;
+					chara_room_y = 5;
 					if (SET_MAP_MODE == 1) {
 						chara_room_x = 1;
 						chara_room_y = 1;
@@ -374,6 +378,7 @@ void MapGroundList::setCharaPoint() {
 							
 					this->_player_obj->setDrawX(chara_x);
 					this->_player_obj->setDrawY(chara_y);
+					this->_player_obj->updateCamera();
 					return;
 				} else {
 					check_room_block_count++;
@@ -381,7 +386,7 @@ void MapGroundList::setCharaPoint() {
 			}
 		}
 	}
-	
+	delete rand_obj;
 	// */
 }
 std::unordered_map<int, std::unordered_map<int, int>> MapGroundList::getMapData() {

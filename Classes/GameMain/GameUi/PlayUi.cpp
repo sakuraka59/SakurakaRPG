@@ -70,7 +70,7 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 //		std::pair<int, MapObjectList*> map_obj_line = *map_obj_iterator;
 //		this->_map_obj_line_list[map_obj_iterator->first]->Update();
 //		map_obj_line;
-		this->_order_object_list->addChild(this->_map_obj_line_list[map_obj_iterator->first], this->_map_obj_line_list[map_obj_iterator->first]->getDrawY());
+		this->_order_object_list->addChild(this->_map_obj_line_list[map_obj_iterator->first], this->_map_obj_line_list[map_obj_iterator->first]->getDrawY() * (-1));
 
 	}
 	

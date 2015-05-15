@@ -11,6 +11,7 @@ class MapObjectList : public RenderObject  {
 
 protected: std::unordered_map<int, MapObjectBase*> _map_obj_line_list;
 //	protected SpriteList _object_sprite_list;
+private: RenderObject* _object_draw_list;
 private: GameCamera* _camera_obj;
 //	private TextureInfo _texture_info;
 
