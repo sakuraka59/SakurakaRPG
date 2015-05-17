@@ -45,6 +45,9 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 	this->_player_obj = new CharaPlayer(this->_play_camera, comment_ui_obj, this->_chara_list, this->_skill_list, this->_magic_list, this->_shadow_list);
 	
 	this->_chara_list.push_back(this->_player_obj);
+	this->_shadow_list->setRenderObject(this->_player_obj);
+
+
 	this->_order_object_list->addChild(this->_player_obj, (int)(this->_player_obj->getDrawY() * (-1)));
 
 	//マップ情報の宣言
@@ -55,6 +58,8 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 
 
 
+	// 影は地面の上で、かつorder切り替える系オブジェクトの下
+	this->addChild(this->_shadow_list);
 
 	this->addChild(this->_order_object_list);
 
@@ -65,14 +70,7 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 	this->_map_obj_line_list[0]->setObject(0);
 	this->_order_object_list->addChild(this->_map_obj_line_list[0], this->_map_obj_line_list[0]->getDrawY());
 	*/
-	this->_map_obj_line_list = this->_map_obj->getMapObjectLineList();
-	for (std::unordered_map<int, MapObjectList*>::iterator map_obj_iterator = this->_map_obj_line_list.begin(); map_obj_iterator != this->_map_obj_line_list.end(); map_obj_iterator++) {
-//		std::pair<int, MapObjectList*> map_obj_line = *map_obj_iterator;
-//		this->_map_obj_line_list[map_obj_iterator->first]->Update();
-//		map_obj_line;
-		this->_order_object_list->addChild(this->_map_obj_line_list[map_obj_iterator->first], this->_map_obj_line_list[map_obj_iterator->first]->getDrawY() * (-1));
 
-	}
 	
 	
 	/*
@@ -82,6 +80,15 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 	*/
 
 	this->_map_obj->Init();
+
+	this->_map_obj_line_list = this->_map_obj->getMapObjectLineList();
+	for (std::unordered_map<int, MapObjectList*>::iterator map_obj_iterator = this->_map_obj_line_list.begin(); map_obj_iterator != this->_map_obj_line_list.end(); map_obj_iterator++) {
+		//		std::pair<int, MapObjectList*> map_obj_line = *map_obj_iterator;
+		//		this->_map_obj_line_list[map_obj_iterator->first]->Update();
+		//		map_obj_line;
+		this->_order_object_list->addChild(this->_map_obj_line_list[map_obj_iterator->first], this->_map_obj_line_list[map_obj_iterator->first]->getDrawY() * (-1));
+
+	}
 }
 void PlayUi::Update(){
 	// マップアップデート処理
@@ -125,8 +132,14 @@ void PlayUi::Update(){
 		this->_order_object_list->reorderChild(chara_obj, (int)chara_obj->getDrawY() * (-1));
 		chara_obj->updateDraw();
 	}
+
+
+	// 影描画する
+	this->_shadow_list->Update();
 }
 void PlayUi::checkHitMapObject(CharaBase* chara_obj) {
+
+
 	//			if (chara_obj.getDrawX() != chara_obj.getBeforeX() ||
 	//			    chara_obj.getDrawY() != chara_obj.getBeforeY()) {
 	

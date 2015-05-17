@@ -20,6 +20,7 @@ MapBase::MapBase(GameCamera* camera_obj, CharaPlayer* player_obj) {
 	this->_map_obj_line_list[0] = new MapObjectList(0, this->_camera_obj, this->_player_obj);
 	this->_map_obj_line_list[0]->setObject(0);
 	//*/
+	int hoge = 1;
 }
 void MapBase::Init() {
 	this->_map_ground_obj->Init();

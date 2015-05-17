@@ -1,7 +1,7 @@
 #include "cocos2d.h"
 #include "ShadowObjectBase.h"
-#include "../../RenderObject.h"
-ShadowObjectBase::ShadowObjectBase(GameCamera* camera_obj, RenderObject* render_obj, TextureInfo* texture_info)
+
+ShadowObjectBase::ShadowObjectBase(RenderObject* render_obj)
 {
 	this->_render_obj = render_obj;
 //	this->_object_sprite = new SpriteTile(){ TextureInfo = texture_info };
@@ -9,6 +9,11 @@ ShadowObjectBase::ShadowObjectBase(GameCamera* camera_obj, RenderObject* render_
 
 //	this._object_sprite.Color = new Vector4(0.0f, 0.0f, 0.0f, 0.3f);
 
+	cocos2d::Rect rect = cocos2d::Rect(0, 0, this->_SHADOW_WIDTH, 10);
+	cocos2d::Sprite* sprite_data = cocos2d::Sprite::create();
+	sprite_data->setTextureRect(rect);
+	sprite_data->setPosition(this->_SHADOW_WIDTH / 2, 0);
+	this->addChild(sprite_data);
 }
 /*
 ShadowObjectBase::SpriteTile getObjectSprite() {
@@ -18,7 +23,7 @@ ShadowObjectBase::SpriteTile getObjectSprite() {
 */
 void ShadowObjectBase::Update() {
 	//this->_object_sprite->Position = new cocos2d::Vec2(this->_render_obj->getDrawPositionX() - (this->_SHADOW_WIDTH / 2), this->_render_obj->getDrawPositionY() - 3);
-	
+	this->setPosition(this->_render_obj->getDrawPositionX() - (this->_SHADOW_WIDTH / 2), this->_render_obj->getDrawPositionY() - 3);
 	
 
 };

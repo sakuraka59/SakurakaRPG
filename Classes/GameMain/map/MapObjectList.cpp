@@ -72,10 +72,14 @@ MapObjectBase* MapObjectList::getMapObject(int map_block_x) {
 
 }
 void MapObjectList::Update() {
+
+	
+
 	int set_x = (int)(0 - this->_camera_obj->getCameraX() + this->_draw_correction_x);
 	int set_y = (int)(this->_draw_y - this->_camera_obj->getCameraY() - this->_draw_correction_y);
 	if (this->_draw_y == 0) {
-		int hoge = 1;
+		int hoge = this->_camera_obj->getCameraX();
+		int piyo = 1;
 	}
 	// カメラが動いた場合のみ
 	if (set_x != this->_before_x || set_y != this->_before_y) {
@@ -91,14 +95,14 @@ void MapObjectList::Update() {
 
 		int player_map_y = this->_player_obj->getMapBlockY();
 
-		int test_map_width = 5 + 1;
-		int test_map_height = 2 + 1;
+		int obj_draw_width = (int)ceil((double)GAME_WIDTH / (double)MAP_BLOCK_WIDTH); +1;
+		int obj_draw_height = (int)ceil((double)GAME_HEIGHT / (double)MAP_BLOCK_HEIGHT); +1;
 		bool draw_change_flag = false;
 		
 		// ライン上のオブジェクトを非表示にする
 		if (this->_draw_flag == true) {
-			if (this->_map_block_y + test_map_height < player_map_y ||
-				this->_map_block_y - test_map_height > player_map_y) {
+			if (this->_map_block_y + obj_draw_height < player_map_y ||
+				this->_map_block_y - obj_draw_height > player_map_y) {
 
 				this->removeChild(this->_object_draw_list, true);
 				this->_draw_flag = false;
@@ -106,8 +110,8 @@ void MapObjectList::Update() {
 				draw_change_flag = true;
 			}
 		} else {
-			if (this->_map_block_y + test_map_height >= player_map_y &&
-				this->_map_block_y - test_map_height <= player_map_y) {
+			if (this->_map_block_y + obj_draw_height >= player_map_y &&
+				this->_map_block_y - obj_draw_height <= player_map_y) {
 				this->addChild(this->_object_draw_list);
 				this->_draw_flag = true;
 
@@ -117,7 +121,7 @@ void MapObjectList::Update() {
 		//*/
 		// x -----------------------------
 		int player_map_x = this->_player_obj->getMapBlockX();
-		int check_x_width = (test_map_width + 1);
+		int check_x_width = (obj_draw_width + 1);
 		for (int check_obj_x = 0; check_obj_x < (check_x_width * 2 + 1); check_obj_x++){
 
 			int check_map_x = player_map_x - check_x_width + check_obj_x;
@@ -128,8 +132,8 @@ void MapObjectList::Update() {
 			//	Debug.WriteLine("[MapObjectList]rand : "+rand_obj.Next(1000000));
 			//	Debug.WriteLine("[MapObjectList]check_obj_x : "+check_obj_x+"_map_block_y : "+this->_map_block_y);
 
-			if (check_map_x + test_map_width < player_map_x ||
-				check_map_x - test_map_width > player_map_x) {
+			if (check_map_x + obj_draw_width < player_map_x ||
+				check_map_x - obj_draw_width > player_map_x) {
 
 				if (this->_map_obj_draw_list[check_map_x] == true) {
 
@@ -140,8 +144,8 @@ void MapObjectList::Update() {
 				//						check_map_obj.removeDrawObject();
 
 			}
-			else if (check_map_x + test_map_width >= player_map_x &&
-				check_map_x - test_map_width <= player_map_x) {
+			else if (check_map_x + obj_draw_width >= player_map_x &&
+				check_map_x - obj_draw_width <= player_map_x) {
 				if (this->_map_obj_draw_list[check_map_x] == false) {
 
 					this->_object_draw_list->addChild(check_map_obj);
@@ -164,13 +168,14 @@ void MapObjectList::Update() {
 	// 各オブジェクトアニメーション
 	int draw_block_width = RandomDungeonSetting::getDungeonWidth();
 //	int draw_block_width = (int)ceil((double)GAME_WIDTH / (double)MAP_BLOCK_WIDTH);
-	for (int map_x = 0; map_x < draw_block_width; map_x++) {
-		
-		if (this->_map_obj_line_list[map_x] != nullptr  &&
-			this->_map_obj_draw_list[map_x] == true) {
+	if (this->_draw_flag == true) {
+		for (int map_x = 0; map_x < draw_block_width; map_x++) {
 
-			//this->_map_obj_line_list[map_x]->Update();
+			if (this->_map_obj_line_list[map_x] != nullptr  &&
+				this->_map_obj_draw_list[map_x] == true) {
+
+				this->_map_obj_line_list[map_x]->Update();
+			}
 		}
-		
 	}
 }

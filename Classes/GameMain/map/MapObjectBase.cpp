@@ -21,14 +21,14 @@ MapObjectBase::MapObjectBase(int map_block_x, int map_block_y, GameCamera* camer
 	cocos2d::Rect clip_rect = cocos2d::Rect(sprite_x, sprite_y, sprite_one_width, sprite_one_height);
 	cocos2d::Sprite* sprite_data = cocos2d::Sprite::create("img/map/test_objects.png", clip_rect);
 	
-
+	// /*
 	int particle_width = 64;
 	int particle_height = 64;
 	sprite_data->setPosition((particle_width / 2), 75);
 	sprite_data->setScaleY(1.1f);
 	this->addChild(sprite_data);
 	// */
-	 /*
+	/*
 	// test sprite object
 	this->test_particle = cocos2d::ParticleSystemQuad::create("particle/test_obj2.plist");
 	this->test_particle->setPositionType(cocos2d::ParticleSystem::PositionType::RELATIVE);//ParticleSystem::PositionType::RELATIVE
@@ -46,14 +46,14 @@ void MapObjectBase::Update() {
 	//test anime
 	Random* random_obj = new Random();
 
-	double anime_move_base = 0.01;
+	double anime_move_base = 0.005;
 	if (this->_anime_num >= 0) {
 		this->_anime_move_speed -= (anime_move_base + (anime_move_base * (random_obj->getRandNum(100) / 100)));
 	} else {
 		this->_anime_move_speed += (anime_move_base + (anime_move_base * (random_obj->getRandNum(100) / 100)));
 	}
 	this->_anime_num += this->_anime_move_speed;
-	this->setRotationX(this->_anime_num);
+	this->setRotationSkewX(this->_anime_num);
 	/*
 	double anime_move = 0.2;
 	double anime_max = 5;

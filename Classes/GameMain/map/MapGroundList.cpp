@@ -16,11 +16,12 @@ MapGroundList::MapGroundList(GameCamera* camera_obj, std::unordered_map<int, std
 
 	this->_map_data = map_data;
 	this->_player_obj = player_obj;
+	// キャラクターをセットする
+	this->setCharaPoint();
 
 	this->_map_type = map_type;
 
-	// キャラクターをセットする
-	this->setCharaPoint();
+
 
 	this->_ground_sprite_list = new RenderObject();
 	
@@ -166,7 +167,7 @@ void MapGroundList::Update() {
 				// 描画削除するX座標を取得
 				int remove_block_draw_x = this->_before_block_draw_x - (int)floor((double)draw_block_width / 2) + check_x + this->_map_outer_size_x;
 				// 描画追加するX座標を取得
-				int add_block_draw_x = this->_before_block_draw_x + (int)floor((double)draw_block_width / 2) + 1 + check_x - this->_map_outer_size_x;
+				int add_block_draw_x = this->_before_block_draw_x + (int)floor((double)draw_block_width / 2) + check_x - this->_map_outer_size_x;
 
 				this->reviewGroundBlockX(add_block_draw_x, remove_block_draw_x, block_draw_y, map_max_y);
 
@@ -175,7 +176,7 @@ void MapGroundList::Update() {
 				// 描画削除するX座標を取得
 				int remove_block_draw_x = this->_before_block_draw_x + (int)floor((double)draw_block_width / 2) - check_x - this->_map_outer_size_x;
 				// 描画追加するX座標を取得
-				int add_block_draw_x = this->_before_block_draw_x - (int)floor((double)draw_block_width / 2) - 1 - check_x + this->_map_outer_size_x;
+				int add_block_draw_x = this->_before_block_draw_x - (int)floor((double)draw_block_width / 2) - check_x + this->_map_outer_size_x;
 
 				this->reviewGroundBlockX(add_block_draw_x, remove_block_draw_x, block_draw_y, map_max_y);
 			}
@@ -186,7 +187,7 @@ void MapGroundList::Update() {
 				// 描画削除するY座標を取得
 				int remove_block_draw_y = this->_before_block_draw_y - (int)floor((double)draw_block_height / 2) + check_y + this->_map_outer_size_y;
 				// 描画追加するY座標を取得
-				int add_block_draw_y = this->_before_block_draw_y + (int)floor((double)draw_block_height / 2) + 1 + check_y - this->_map_outer_size_y;
+				int add_block_draw_y = this->_before_block_draw_y + (int)floor((double)draw_block_height / 2) + check_y - this->_map_outer_size_y;
 
 				this->reviewGroundBlockY(add_block_draw_y, remove_block_draw_y, block_draw_x, map_max_x);
 
@@ -195,7 +196,7 @@ void MapGroundList::Update() {
 				// 描画削除するY座標を取得
 				int remove_block_draw_y = this->_before_block_draw_y + (int)floor((double)draw_block_height / 2) - check_y - this->_map_outer_size_y;
 				// 描画追加するY座標を取得
-				int add_block_draw_y = this->_before_block_draw_y - (int)floor((double)draw_block_height / 2) - 1 - check_y + this->_map_outer_size_y;
+				int add_block_draw_y = this->_before_block_draw_y - (int)floor((double)draw_block_height / 2)  - check_y + this->_map_outer_size_y;
 
 				this->reviewGroundBlockY(add_block_draw_y, remove_block_draw_y, block_draw_x, map_max_x);
 			}
@@ -333,13 +334,16 @@ void MapGroundList::setCharaPoint() {
 	//*
 	int map_width = RandomDungeonSetting::getDungeonWidth();
 	int map_height = RandomDungeonSetting::getDungeonHeight();
-			
+
 	int room_block_count = 0;
 	for (int x = 0; x < map_width; x++) {
 		for (int y=0; y < map_height; y++) {
 					
 			if (this->_map_data[x][y] == 2) {
 				room_block_count++;
+				int hoge = x;
+				int piyo = y;
+				int huga = 0;
 			}
 		}
 	}
@@ -348,8 +352,12 @@ void MapGroundList::setCharaPoint() {
 			
 	int chara_room_x = 0;
 	int chara_room_y = 0;
-	int chara_room_num = rand_obj->getRandNum(room_block_count);
+	int chara_room_num = 0;
 	int check_room_block_count = 0;
+
+	chara_room_num = rand_obj->getRandNum(room_block_count -1);
+//	chara_room_num = room_block_count; //この場合、マス見つけられないので、初期位置に移動してしまうため、注意
+	
 			
 			
 //			bool room_check_break_flag = false;
@@ -365,8 +373,8 @@ void MapGroundList::setCharaPoint() {
 							
 							
 					// test
-					chara_room_x = 10;
-					chara_room_y = 5;
+//					chara_room_x = 10;
+//					chara_room_y = 5;
 					if (SET_MAP_MODE == 1) {
 						chara_room_x = 1;
 						chara_room_y = 1;
@@ -376,9 +384,9 @@ void MapGroundList::setCharaPoint() {
 					double chara_x = 64 * chara_room_x + (64 /2);
 					double chara_y = (64 * chara_room_y - (64 /2)) * (-1);
 							
-					this->_player_obj->setDrawX(chara_x);
-					this->_player_obj->setDrawY(chara_y);
-					this->_player_obj->updateCamera();
+					this->_player_obj->setCharaMapPoint(chara_x, chara_y);
+
+					delete rand_obj;
 					return;
 				} else {
 					check_room_block_count++;
@@ -386,6 +394,7 @@ void MapGroundList::setCharaPoint() {
 			}
 		}
 	}
+	int hioge = 1;
 	delete rand_obj;
 	// */
 }
