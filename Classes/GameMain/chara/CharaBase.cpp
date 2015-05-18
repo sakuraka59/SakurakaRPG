@@ -28,7 +28,7 @@ CharaBase::CharaBase()
 
 	this->_state_list = new StateList(this);
 	//this->CenterSprite();
-
+	
 	for (int equip_type = static_cast<int>(equipType::no_type) + 1; equip_type < static_cast<int>(equipType::enum_end); equip_type++) {
 		this->_equip_list[static_cast<equipType>(equip_type)] = 0;
 	}
@@ -73,10 +73,11 @@ void CharaBase::Update() {
 
 	if (this->_set_now_skill != nullptr) {
 		if (this->_set_now_skill->getDeleteFlag() == true) {
-			
+			/*
 			SkillBase* delete_skill_obj = this->_set_now_skill;
 			this->_set_now_skill = nullptr;
-			this->_set_now_skill = nullptr;			int hoge = 0;
+			this->_set_now_skill = nullptr;
+			*/
 		}
 	}
 }

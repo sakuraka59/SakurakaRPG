@@ -8,7 +8,7 @@
 SkillAttack::SkillAttack(CharaBase* use_chara_obj, std::list<CharaBase*> all_chara_list) : SkillBase(use_chara_obj, all_chara_list)
 {
 }
-void SkillAttack::skillInit() {
+void SkillAttack::skillExtendInit() {
 	this->_use_chara_obj->setAttackFrame(this->_set_attack_frame);
 	this->_use_chara_obj->setSkillFrame(this->_set_skill_frame);
 
@@ -67,8 +67,10 @@ void SkillAttack::attackCheck() {
 			this->_reset_count_flag = true;
 		}
 
-		for (std::list<CharaBase*>::iterator chara_iterator = this->_all_chara_list.begin(); chara_iterator != this->_all_chara_list.end(); chara_iterator++) {
-			CharaBase* check_chara_obj = *chara_iterator;
+//		for (std::list<CharaBase*>::iterator chara_iterator = this->_all_chara_list.begin(); chara_iterator != this->_all_chara_list.end(); chara_iterator++) {
+//		CharaBase* check_chara_obj = *chara_iterator;
+		for (CharaBase* check_chara_obj : _all_chara_list) {
+			
 
 			if (check_chara_obj == this->_use_chara_obj) {
 				continue;
@@ -84,8 +86,9 @@ void SkillAttack::attackCheck() {
 			// すでにヒット済みのキャラクターを探す。空なら誰もいないから処理しないよ
 			if (this->_hitcheck_chara_list.empty() != true) {
 //				foreach(CharaBase hit_chara_obj in this->_hitcheck_chara_list) {
-				for (std::list<CharaBase*>::iterator chara_iterator = this->_all_chara_list.begin(); chara_iterator != this->_all_chara_list.end(); chara_iterator++) {
-					CharaBase* hit_chara_obj = *chara_iterator;
+//				for (std::list<CharaBase*>::iterator chara_iterator = this->_all_chara_list.begin(); chara_iterator != this->_all_chara_list.end(); chara_iterator++) {
+//					CharaBase* hit_chara_obj = *chara_iterator;
+				for (CharaBase* hit_chara_obj : _all_chara_list) {
 
 					if (hit_chara_obj == check_chara_obj) {
 						hit_flag = true;

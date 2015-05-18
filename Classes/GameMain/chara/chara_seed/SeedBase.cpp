@@ -4,6 +4,7 @@
 // #include StateList.h
 #include "../CharaBase.h"
 
+#include "../abnormal_state/StateList.h"
 
 
 /*
@@ -88,11 +89,11 @@ int SeedBase::getBaseCc() {
 	return this->_base_cc;
 }
 
-//StateList SeedBase::getStateList(CharaBase* chara_obj) {
-//	this->_seed_state_list = new StateList(chara_obj);
-//	this->setStateList(chara_obj);
-//	return this->_seed_state_list;
-//}
+StateList* SeedBase::getStateList(CharaBase* chara_obj) {
+	this->_seed_state_list = new StateList(chara_obj);
+	this->setStateList(chara_obj);
+	return this->_seed_state_list;
+}
 
 void SeedBase::setStateList(CharaBase* chara_obj) {
 

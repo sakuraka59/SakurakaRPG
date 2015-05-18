@@ -145,12 +145,14 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\StateBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\StateList.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\CharaBase.cpp" />
+    <ClCompile Include="..\Classes\GameMain\chara\CharaNpc.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\CharaPlayer.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\chara_seed\human\human_part\HumanTest.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\chara_seed\human\SeedHuman.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\chara_seed\PartBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\chara_seed\PartSetBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\chara_seed\SeedBase.cpp" />
+    <ClCompile Include="..\Classes\GameMain\chara\chara_seed\test_puppet\SeedTestPuppet.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameCamera.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameMain.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\PlayerCommentUI.cpp" />
@@ -199,6 +201,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\chara\CharaBase.h" />
     <ClInclude Include="..\Classes\GameMain\chara\charaCommentType.h" />
     <ClInclude Include="..\Classes\GameMain\chara\charaGroupList.h" />
+    <ClInclude Include="..\Classes\GameMain\chara\CharaNpc.h" />
     <ClInclude Include="..\Classes\GameMain\chara\CharaPlayer.h" />
     <ClInclude Include="..\Classes\GameMain\chara\charaSexualState.h" />
     <ClInclude Include="..\Classes\GameMain\chara\charaSexualType.h" />
@@ -207,6 +210,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\chara\chara_seed\PartBase.h" />
     <ClInclude Include="..\Classes\GameMain\chara\chara_seed\PartSetBase.h" />
     <ClInclude Include="..\Classes\GameMain\chara\chara_seed\SeedBase.h" />
+    <ClInclude Include="..\Classes\GameMain\chara\chara_seed\test_puppet\SeedTestPuppet.h" />
     <ClInclude Include="..\Classes\GameMain\chara\equipType.h" />
     <ClInclude Include="..\Classes\GameMain\chara\mainStateType.h" />
     <ClInclude Include="..\Classes\GameMain\GameCamera.h" />

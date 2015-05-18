@@ -21,7 +21,7 @@ protected: int _set_attack_frame = 0;
 protected: int _set_skill_frame = 0;
 
 public: SkillAttack(CharaBase* use_chara_obj, std::list<CharaBase*> all_chara_list);
-public: void skillInit() override;
+public: void skillExtendInit() override;
 protected: bool updateSkillEffect() override;
 protected: virtual void attackUpdateEffect();
 private: void attackCheck();

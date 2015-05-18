@@ -76,6 +76,9 @@
     <Filter Include="src\GameMain\skill\weapon_skill\no_weapon">
       <UniqueIdentifier>{fbc1bdc1-3305-4fb1-9e34-ce1be6a8b4ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\chara\chara_seed\test_puppet">
+      <UniqueIdentifier>{a551a571-c94b-4339-aa50-33bf943bb858}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -224,6 +227,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\no_weapon\NoWeaponDefault.cpp">
       <Filter>src\GameMain\skill\weapon_skill\no_weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\chara_seed\test_puppet\SeedTestPuppet.cpp">
+      <Filter>src\GameMain\chara\chara_seed\test_puppet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\CharaNpc.cpp">
+      <Filter>src\GameMain\chara</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -412,6 +421,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\no_weapon\NoWeaponDefault.h">
       <Filter>src\GameMain\skill\weapon_skill\no_weapon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\chara_seed\test_puppet\SeedTestPuppet.h">
+      <Filter>src\GameMain\chara\chara_seed\test_puppet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\CharaNpc.h">
+      <Filter>src\GameMain\chara</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

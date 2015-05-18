@@ -42,7 +42,7 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 //	this->_skill_list = new SkillList();
 
 	// プレイヤーキャラクターの宣言
-	this->_player_obj = new CharaPlayer(this->_play_camera, comment_ui_obj, this->_chara_list, this->_skill_list, this->_magic_list, this->_shadow_list);
+	this->_player_obj = new CharaPlayer(this->_play_camera, comment_ui_obj, this->_chara_list, this->_magic_list, this->_shadow_list);
 	
 	this->_chara_list.push_back(this->_player_obj);
 	this->_shadow_list->setRenderObject(this->_player_obj);
@@ -82,12 +82,16 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 	this->_map_obj->Init();
 
 	this->_map_obj_line_list = this->_map_obj->getMapObjectLineList();
-	for (std::unordered_map<int, MapObjectList*>::iterator map_obj_iterator = this->_map_obj_line_list.begin(); map_obj_iterator != this->_map_obj_line_list.end(); map_obj_iterator++) {
+//	for (std::unordered_map<int, MapObjectList*>::iterator map_obj_iterator = this->_map_obj_line_list.begin(); map_obj_iterator != this->_map_obj_line_list.end(); map_obj_iterator++) {
+
+	//for(auto pair:mp){
+
 		//		std::pair<int, MapObjectList*> map_obj_line = *map_obj_iterator;
 		//		this->_map_obj_line_list[map_obj_iterator->first]->Update();
 		//		map_obj_line;
-		this->_order_object_list->addChild(this->_map_obj_line_list[map_obj_iterator->first], this->_map_obj_line_list[map_obj_iterator->first]->getDrawY() * (-1));
-
+		//this->_order_object_list->addChild(this->_map_obj_line_list[map_obj_iterator->first], this->_map_obj_line_list[map_obj_iterator->first]->getDrawY() * (-1));
+	for (auto map_obj_line : this->_map_obj_line_list) {
+		this->_order_object_list->addChild(map_obj_line.second, map_obj_line.second->getDrawY() *(-1));
 	}
 }
 void PlayUi::Update(){
@@ -172,7 +176,7 @@ void PlayUi::checkHitMapObject(CharaBase* chara_obj) {
 			//*
 			if (check_map_obj->getHitCheckType() == 3) {
 
-				HitSquare* square_obj = check_map_obj->getHitSquare();
+				std::unique_ptr<HitSquare>& square_obj = check_map_obj->getHitSquare();
 				//HitCheck.checkRectAndCircle(circle_obj, square_obj);
 				//Debug.WriteLine("["+this.GetType()+"]check_chara:"+circle_obj.getRadius());
 

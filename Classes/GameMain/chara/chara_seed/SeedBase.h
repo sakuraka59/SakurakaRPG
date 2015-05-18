@@ -77,7 +77,7 @@ public: double getWalkSpeed();
 public: int getBaseHp();
 public: int getBaseSp();
 public: int getBaseCc();
-public: StateList getStateList(CharaBase* chara_obj);
+public: StateList* getStateList(CharaBase* chara_obj);
 protected: virtual void setStateList(CharaBase* chara_obj);
 
 // vision data ----------------------------------------------
