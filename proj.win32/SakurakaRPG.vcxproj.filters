@@ -67,6 +67,15 @@
     <Filter Include="src\GameMain\map">
       <UniqueIdentifier>{2382f89e-6a93-4fe6-abc8-ee96d08ee223}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\skill\weapon_skill">
+      <UniqueIdentifier>{6019dc0f-70f4-4615-b698-68e6e152e206}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\skill\skill_type">
+      <UniqueIdentifier>{74b4e731-b601-4c4a-ac8d-64073317efa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\skill\weapon_skill\no_weapon">
+      <UniqueIdentifier>{fbc1bdc1-3305-4fb1-9e34-ce1be6a8b4ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -209,6 +218,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\hit\HitCheck.cpp">
       <Filter>src\GameMain\hit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\skill_type\SkillAttack.cpp">
+      <Filter>src\GameMain\skill\skill_type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\no_weapon\NoWeaponDefault.cpp">
+      <Filter>src\GameMain\skill\weapon_skill\no_weapon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -391,6 +406,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\hit\HitCheck.h">
       <Filter>src\GameMain\hit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\skill_type\SkillAttack.h">
+      <Filter>src\GameMain\skill\skill_type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\no_weapon\NoWeaponDefault.h">
+      <Filter>src\GameMain\skill\weapon_skill\no_weapon</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

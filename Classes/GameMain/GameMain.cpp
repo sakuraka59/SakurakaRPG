@@ -136,7 +136,7 @@ bool GameMain::init()
 void GameMain::update(float delta) {
 	// update start
 	//Gamepad::updateInit();
-	Gamepad::Up->updateInit();
+	Gamepad::updateInit();
 	
 	this->_play_ui_obj->Update();
 

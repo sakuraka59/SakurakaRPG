@@ -181,6 +181,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\skill\SkillBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\SkillList.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\SkillMove.cpp" />
+    <ClCompile Include="..\Classes\GameMain\skill\skill_type\SkillAttack.cpp" />
+    <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\no_weapon\NoWeaponDefault.cpp" />
     <ClCompile Include="..\Classes\Input\Gamepad.cpp" />
     <ClCompile Include="..\Classes\Input\GamepadButton.cpp" />
     <ClCompile Include="..\Classes\RenderObject.cpp" />
@@ -242,6 +244,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\skill\SkillBase.h" />
     <ClInclude Include="..\Classes\GameMain\skill\SkillList.h" />
     <ClInclude Include="..\Classes\GameMain\skill\SkillMove.h" />
+    <ClInclude Include="..\Classes\GameMain\skill\skill_type\SkillAttack.h" />
+    <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\no_weapon\NoWeaponDefault.h" />
     <ClInclude Include="..\Classes\Input\Gamepad.h" />
     <ClInclude Include="..\Classes\Input\GamepadButton.h" />
     <ClInclude Include="..\Classes\Random.h" />

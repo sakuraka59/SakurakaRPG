@@ -15,8 +15,27 @@ SkillBase::SkillBase(CharaBase* use_chara_obj, std::list<CharaBase*> all_chara_l
 
 
 }
+SkillBase::~SkillBase() {
+
+	// @TODO 各種オブジェクト破棄は後でつくるよ！
+	/*
+	if (this->_skill_move_max > 0) {
+		for (int move_num = 0; move_num < this->_skill_move_max; move_num++){
+			this->_skill_move_list[this->_skill_move_max];
+		}
+	}
+	*/
+}
+void SkillBase::skillInit() {
+	this->_skill_attack_count = 0;
+	this->_skill_move_count = 0;
+	this->_move_frame = 0;
+	this->_attack_frame = 0;
+	this->skillExtendInit();
+}
+
 // set skill data to override
-void SkillBase::skillInit() { // virtual
+void SkillBase::skillExtendInit() { // virtual
 
 }
 
@@ -103,7 +122,7 @@ void SkillBase::moveCheck() {
 	}
 
 	//@TODO 
-//	this->_use_chara_obj->updateSkillMove(skill_move_obj->getAddAngle(), skill_move_obj->getOneFrameSpeed(), jump_power);
+	this->_use_chara_obj->updateSkillMove(skill_move_obj->getAddAngle(), skill_move_obj->getOneFrameSpeed(), jump_power);
 }
 // this object to delete 
 void SkillBase::setDeleteFlag() {

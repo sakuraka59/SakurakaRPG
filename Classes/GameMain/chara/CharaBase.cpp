@@ -61,12 +61,24 @@ void CharaBase::SetCharaHitData() {
 
 }
 void CharaBase::Update() {
+
+	if (this->_set_now_skill != nullptr) {
+		this->_set_now_skill->Update();
+	}
 	this->commonUpdate();
 	this->mainUpdate();
 
 	// last update
 	this->updateBlockPoint();
 
+	if (this->_set_now_skill != nullptr) {
+		if (this->_set_now_skill->getDeleteFlag() == true) {
+			
+			SkillBase* delete_skill_obj = this->_set_now_skill;
+			this->_set_now_skill = nullptr;
+			this->_set_now_skill = nullptr;			int hoge = 0;
+		}
+	}
 }
 void CharaBase::mainUpdate() {
 
@@ -745,7 +757,7 @@ bool CharaBase::setSkill(SkillBase* skill_obj) {
 
 	// @TODO
 //	bool skill_set_flag = this->_skill_list->setSkillData(skill_obj, this->checkGroundFlag());
-	bool skill_set_flag = false;
+	bool skill_set_flag = true;
 	// ƒXƒLƒ‹‚ª”­“®‚Å‚«‚éê‡
 	if (skill_set_flag == true) {
 

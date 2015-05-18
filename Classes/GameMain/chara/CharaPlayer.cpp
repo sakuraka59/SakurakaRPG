@@ -9,6 +9,8 @@
 
 #include "../../Input/Gamepad.h"
 
+#include "../skill/weapon_skill/no_weapon/NoWeaponDefault.h"
+
 CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, std::list<CharaBase*> all_chara_list, SkillList* skill_list, std::list<MagicBase*> magic_list, ShadowObjectList* shadow_list)
 {
 	//this->_skill_list = skill_list;
@@ -475,6 +477,24 @@ void CharaPlayer::testAction() {
 		}
 	}
 	*/
+
+
+	// ƒeƒXƒg“®ì
+	if (this->_control_flag == true && Gamepad::Cross->isPush() == true) {
+		bool jump_flag = this->setJumpNormal(4.0);
+		if (jump_flag == true) {
+			this->sendComment("‚¶‚á`‚ñ‚Õ");
+		}
+	}
+	// keybord to D
+	if (this->_control_flag == true && Gamepad::Circle->isPush() == true) {
+		bool attack_flag = this->setSkill(new NoWeaponDefault(this, this->_all_chara_list));
+
+		if (attack_flag == true) {
+//			this->sendComment(this->_comment_list.getComment(charaCommentType.chara_attack, charaSexualType.normal));
+		}
+	}
+
 }
 
 void CharaPlayer::setCharaMapPoint(double point_x, double point_y) {
