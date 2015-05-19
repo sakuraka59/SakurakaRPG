@@ -5,6 +5,6 @@
 class SeedTestPuppet : public SeedBase {
 
 public: SeedTestPuppet();
-protected: void setStateList(std::unique_ptr<CharaBase>& chara_obj) override;
+protected: void setStateList(CharaBase* chara_obj) override;
 
 };

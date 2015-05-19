@@ -26,7 +26,7 @@ private: GameCamera* _camera_obj;
 private: int _hit_check_type = 3;
 //protected: HitSquare* _hit_square_obj;
 
-protected: HitSquare _hit_square_obj;
+protected: HitSquare* _hit_square_obj;
 
 private: double _anime_num = 0;
 private: double _anime_move_speed = 0.3;

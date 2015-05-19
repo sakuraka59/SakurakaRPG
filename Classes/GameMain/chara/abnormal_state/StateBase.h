@@ -37,16 +37,16 @@ protected: int _state_level = 0;
 protected: int _effect_count = 0;
 protected: int _effect_interval = 1;
 
-protected: std::shared_ptr<CharaBase> _chara_obj;
+protected: CharaBase* _chara_obj;
 
 // resist 10000 to Completely resist or 0 down to no resist 
 protected: int _state_resist = 0;				// seed to default resist
 protected: int _state_resist_correction = 0;		//
 // equip item address to set
-protected: std::list<std::shared_ptr<EquipItem>> _equip_list;
+protected: std::list<EquipItem*> _equip_list;
 
 //-------------------------------------------------------------------
-public: StateBase(std::shared_ptr<CharaBase> chara_obj);
+public: StateBase(CharaBase* chara_obj);
 public: virtual bool Update();
 protected: virtual void stateUpdate();
 protected: void stateEffectCheck();
@@ -55,8 +55,8 @@ protected: virtual void stateEffect();
 protected: virtual void endStateEffect();
 public: void setState(int state_level);
 public: void endState();
-public: void setEquipItem(std::shared_ptr<EquipItem> equip_item);
-public: void removeEquipItem(std::shared_ptr<EquipItem> equip_item);
+public: void setEquipItem(EquipItem* equip_item);
+public: void removeEquipItem(EquipItem* equip_item);
 public: bool getEndFlag();
 public: std::string getStateName();
 public: int getRepairFrame();

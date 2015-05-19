@@ -6,7 +6,8 @@ class PartBase;
 
 class HumanTest : public PartSetBase
 {
-private: std::shared_ptr<PartBase> _part_test;
+//private: std::shared_ptr<PartBase> _part_test;
+private: PartBase* _part_test;
 public: HumanTest();
 
 };

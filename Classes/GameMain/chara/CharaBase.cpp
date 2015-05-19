@@ -21,19 +21,14 @@
 
 using namespace cocos2d;
 
-CharaBase::CharaBase(std::shared_ptr<GameCamera>& camera_obj, std::list<std::shared_ptr<CharaBase>&> all_chara_list, std::list<std::shared_ptr<MagicBase>&> magic_list, std::shared_ptr<ShadowObjectList>& shadow_list)
+CharaBase::CharaBase()
 {
-	this->_play_camera = camera_obj;
+	this->_use_item_list = new HaveUseItemList(this);
+	this->_use_item_list->autorelease();
+	this->_equip_item_list = new HaveEquipItemList(this);
+	this->_state_list = new StateList(this);
+	this->_set_now_skill = nullptr;
 
-	//this->_shadow_list = all_chara_list;
-	this->_set_attack_skill.reset(nullptr);
-	this->_set_now_skill.reset(nullptr);
-	this->_skill_target_obj.reset(nullptr);
-
-	this->_use_item_list = std::make_unique<HaveUseItemList>(this);
-	this->_equip_item_list = std::make_unique<HaveEquipItemList>(this);
-
-	this->_state_list = std::make_unique<StateList>(this);
 	//this->CenterSprite();
 	
 	for (int equip_type = static_cast<int>(equipType::no_type) + 1; equip_type < static_cast<int>(equipType::enum_end); equip_type++) {

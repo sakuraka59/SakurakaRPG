@@ -176,7 +176,7 @@ void PlayUi::checkHitMapObject(CharaBase* chara_obj) {
 			//*
 			if (check_map_obj->getHitCheckType() == 3) {
 
-				std::unique_ptr<HitSquare>& square_obj = check_map_obj->getHitSquare();
+				HitSquare* square_obj = check_map_obj->getHitSquare();
 				//HitCheck.checkRectAndCircle(circle_obj, square_obj);
 				//Debug.WriteLine("["+this.GetType()+"]check_chara:"+circle_obj.getRadius());
 

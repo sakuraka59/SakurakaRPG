@@ -42,7 +42,7 @@ SeedBase::SeedBase() {
 	// •\Ž¦ˆÊ’u‚Ì’²®
 	// Vita ‰ð‘œ“x 960,544
 
-//	this->_seed_state_list = std::make_unique<StateList>();
+//	this->_seed_state_list = new StateList();
 }
 
 void SeedBase::Update() {
@@ -89,13 +89,13 @@ int SeedBase::getBaseCc() {
 	return this->_base_cc;
 }
 
-std::unique_ptr<StateList>& SeedBase::getStateList(std::unique_ptr<CharaBase>& chara_obj) {
-	this->_seed_state_list = std::make_unique<StateList>(chara_obj);
+StateList* SeedBase::getStateList(CharaBase* chara_obj) {
+	this->_seed_state_list = new StateList(chara_obj);
 	this->setStateList(chara_obj);
 	return this->_seed_state_list;
 }
 
-void SeedBase::setStateList(std::unique_ptr<CharaBase>& chara_obj) {
+void SeedBase::setStateList(CharaBase* chara_obj) {
 
 }
 // vision data ----------------------------------------------

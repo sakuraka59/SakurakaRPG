@@ -3,7 +3,7 @@
 #include "HitSquare.h"
 #include <math.h>
 
-bool HitCheck::checkRectAndCircle(HitCircle* circle_obj, std::unique_ptr<HitSquare>& square_obj) {
+bool HitCheck::checkRectAndCircle(HitCircle* circle_obj, HitSquare* square_obj) {
 	
 	if (circle_obj->getCneterX() + circle_obj->getRadius() >= square_obj->getX() &&
 		circle_obj->getCneterX() - circle_obj->getRadius() <= square_obj->getX() + square_obj->getWidth() &&

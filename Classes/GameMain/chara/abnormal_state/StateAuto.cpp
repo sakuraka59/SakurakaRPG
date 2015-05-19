@@ -1,7 +1,7 @@
 #include "StateAuto.h"
 #include "../CharaBase.h"
 
-StateAuto::StateAuto(std::unique_ptr<CharaBase>& chara_obj) : StateBase(chara_obj)
+StateAuto::StateAuto(CharaBase* chara_obj) : StateBase(chara_obj)
 {
 
 }

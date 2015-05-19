@@ -1,8 +1,9 @@
 #pragma once
+#include "cocos2d.h"
 
 class CharaBase;
 
-class HaveItemList
+class HaveItemList : public cocos2d::Ref
 {
 
 private: CharaBase* _chara_obj;

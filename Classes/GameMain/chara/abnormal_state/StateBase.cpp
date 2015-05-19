@@ -2,7 +2,7 @@
 #include "../CharaBase.h"
 #include "../../item/equip_item/EquipItem.h"
 
-StateBase::StateBase(std::shared_ptr<CharaBase> chara_obj) {
+StateBase::StateBase(CharaBase* chara_obj) {
 	this->_chara_obj = chara_obj;
 }
 
