@@ -1,6 +1,6 @@
 #pragma once
-
-class HitSquare{
+#include "cocos2d.h"
+class HitSquare : cocos2d::Ref{
 
 protected: double _x = 0;
 protected: double _y = 0;

@@ -4,6 +4,6 @@
 class CharaBase;
 
 class Poison : public StateAuto{
-public: Poison(CharaBase* chara_obj);
+public: Poison(std::unique_ptr<CharaBase>& chara_obj);
 protected: void stateEffect() override;
 };

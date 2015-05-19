@@ -1,7 +1,7 @@
 #include "StateList.h"
 #include "default/Poison.h"
 
-StateList::StateList(CharaBase* chara_obj) {
+StateList::StateList(std::unique_ptr<CharaBase>& chara_obj) {
 	// テスト用
 	this->_state_list[abnormalStateType::poison] = new Poison(chara_obj);
 //	this->_state_list[abnormalStateType.feel_hot] = new Poison(chara_obj);
@@ -58,16 +58,16 @@ bool StateList::checkToSetState(abnormalStateType state_type, int state_level, i
 bool StateList::getStateEndFlag(abnormalStateType state_type) {
 	return this->_state_list[state_type]->getEndFlag();
 }
-std::unordered_map<abnormalStateType, StateBase*> StateList::getStateList() {
+std::unordered_map<abnormalStateType, std::unique_ptr<StateBase>&> StateList::getStateList() {
 	return this->_state_list;
 }
 //-----------------------------------------------------------
 //	equip item to abnormal state default
 //-----------------------------------------------------------
-void StateList::setEquipItemToState(abnormalStateType state_type, EquipItem* item_obj) {
+void StateList::setEquipItemToState(abnormalStateType state_type, std::unique_ptr<EquipItem>& item_obj) {
 	this->_state_list[state_type]->setEquipItem(item_obj);
 }
-void StateList::removeEquipItemToState(abnormalStateType state_type, EquipItem* item_obj) {
+void StateList::removeEquipItemToState(abnormalStateType state_type, std::unique_ptr<EquipItem>& item_obj) {
 	this->_state_list[state_type]->removeEquipItem(item_obj);
 }
 // guard ----------------------------------------------------

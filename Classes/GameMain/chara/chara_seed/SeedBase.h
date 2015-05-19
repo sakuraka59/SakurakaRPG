@@ -52,12 +52,12 @@ protected: double _vision_angle = 45;// 向いている方向から左右数値分の視界 （180
 protected: double _unvision_range = 40.0;
 
 // 画像描画用
-public: std::unordered_map<std::string, PartSetBase*> _parts_list;
+public: std::unordered_map<std::string, std::shared_ptr<PartSetBase>> _parts_list;
 
 //プレイヤー用 PlayerViewに表示用
 //public: std::unordered_map<std::string, EquipSprite> _view_parts_list;
 
-protected: StateList* _seed_state_list;
+protected: std::shared_ptr<StateList> _seed_state_list;
 
 
 
@@ -77,8 +77,8 @@ public: double getWalkSpeed();
 public: int getBaseHp();
 public: int getBaseSp();
 public: int getBaseCc();
-public: StateList* getStateList(CharaBase* chara_obj);
-protected: virtual void setStateList(CharaBase* chara_obj);
+public: std::shared_ptr<StateList> getStateList(std::shared_ptr<CharaBase> chara_obj);
+protected: virtual void setStateList(std::shared_ptr<CharaBase> chara_obj);
 
 // vision data ----------------------------------------------
 public: double getVisionRange();

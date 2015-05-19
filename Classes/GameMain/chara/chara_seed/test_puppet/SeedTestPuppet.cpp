@@ -32,11 +32,13 @@ SeedTestPuppet::SeedTestPuppet()
 	this->_parts_list.Add("body", new TentacleBody());
 	this->addChild(this->_parts_list["body"]);
 	*/
-	this->_parts_list["body"] = new HumanTest();
-	this->addChild(this->_parts_list["body"]);
+
+	// @TODO
+	this->_parts_list["body"] = std::make_unique<HumanTest>();
+	this->addChild(this->_parts_list["body"].get());
 }
 
-void SeedTestPuppet::setStateList(CharaBase* chara_obj){
+void SeedTestPuppet::setStateList(std::unique_ptr<CharaBase>& chara_obj){
 	//this->_seed_state_list.setSeedStateResist(abnormalStateType.oestrus, 10000);
 	this->_seed_state_list->setStateGuard(abnormalStateType::oestrus);
 }

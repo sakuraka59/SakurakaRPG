@@ -71,7 +71,7 @@ public: std::unordered_map<mainStateType, int> _max_state;
 //	protected Dictionary<mainStateType, int> _max_state = new Dictionary<mainStateType, int>();
 
 // 現在装備しているアイテム
-protected: std::unordered_map<equipType, EquipItem*> _equip_list;
+protected: std::unordered_map<equipType, std::unique_ptr<EquipItem>&> _equip_list;
 
 // 自身が所属しているグループ
 protected: std::list<charaGroupList> _my_group_list;
@@ -126,7 +126,7 @@ protected: double _push_speed = 0;		// 吹き飛ばし速度
 protected: int _weapon_state = 0;		// 武器の構え等の状態。主に片手直剣+鞘での抜刀剣で使用する
 
 // 状態異常ステータスリスト
-protected: StateList* _state_list;
+protected: std::unique_ptr<StateList> _state_list;
 
 // 性的に関する状態。コメントでのみ使用すること
 protected: charaSexualState _sexual_state = charaSexualState::normal;
@@ -145,38 +145,38 @@ protected: int _AUTO_HEAL_EXCITATION = 1;
 protected: int _draw_correct_x = 0;
 protected: int _draw_correct_y = 0;
 
-protected: GameCamera* _play_camera;
+protected: std::shared_ptr<GameCamera>& _play_camera;
 
 // 各種オブジェクトのリスト
-protected: std::list<CharaBase*> _all_chara_list;
+protected: std::list<std::shared_ptr<CharaBase>&> _all_chara_list;
 //protected: SkillList* _skill_list;
-protected: std::list<MagicBase*> _magic_list;
-protected: ShadowObjectList* _shadow_list;
+protected: std::list<std::shared_ptr<MagicBase>&> _magic_list;
+protected: std::shared_ptr<ShadowObjectList>& _shadow_list;
 
 // 所持アイテム
-protected: HaveUseItemList* _use_item_list;
-protected: HaveEquipItemList* _equip_item_list;
+protected: std::unique_ptr<HaveUseItemList> _use_item_list;
+protected: std::unique_ptr<HaveEquipItemList> _equip_item_list;
 
 // 敵に使おうとしているスキル
 // TODO NPCのAIのみで使用している。下記の使用中スキルで代替できるようにしたい
-protected: SkillAttack* _set_attack_skill = nullptr;
+protected: std::unique_ptr<SkillAttack>& _set_attack_skill;
 
 // 現在使用中のスキル
-protected: SkillBase* _set_now_skill = nullptr;
+protected: std::unique_ptr<SkillBase>& _set_now_skill;
 //protected: std::unique_ptr<SkillBase> _set_now_skill;
 
 // スキル使用中によるターゲット追尾
-protected: CharaBase* _skill_target_obj = nullptr;
+protected: std::unique_ptr<CharaBase>& _skill_target_obj;
 private: int _skill_chain_num;
 
 // 当たり判定
 //protected: std::unique_ptr<HitCircle>& _hit_circle_obj;
-protected: HitCircle* _hit_circle_obj;
+protected: std::unique_ptr<HitCircle> _hit_circle_obj;
 
 protected: std::string _test_label;
 protected: cocos2d::Label* _label_obj;
 //-------------------------------------------------------------------
-public: CharaBase();
+public: CharaBase(std::shared_ptr<GameCamera>& camera_obj, std::list<std::shared_ptr<CharaBase>&> all_chara_list, std::list<std::shared_ptr<MagicBase>&> magic_list, std::shared_ptr<ShadowObjectList>& shadow_list);
 protected: void SetCharaHitData();
 public: void Update();
 protected: virtual void mainUpdate();
@@ -217,8 +217,8 @@ public: int getMoveAnagleDirection();
 public: void updateSpellAim(double angle);
 
 
-public: SeedBase* getCharaSeed();
-public: HitCircle* getHitCircle();
+public: std::unique_ptr<SeedBase>& getCharaSeed();
+public: std::unique_ptr<HitCircle>& getHitCircle();
 public: void setRunSpeedBase(double speed);
 public: void setRunSpeed();
 public: double getRunSpeed();
@@ -277,20 +277,20 @@ public: std::list<charaGroupList> getMyGroupList();
 //-----------------------------------------------------------
 // equip item
 //-----------------------------------------------------------
-public: void setEquipItem(equipType equip_type, EquipItem* item_obj, std::unordered_map<abnormalStateType, int> abnormal_state_list);
+public: void setEquipItem(equipType equip_type, std::unique_ptr<EquipItem>& item_obj, std::unordered_map<abnormalStateType, int> abnormal_state_list);
 
-public: void removeEquipItem(equipType equip_type, EquipItem* item_obj, std::unordered_map<abnormalStateType, int> abnormal_state_list);
+public: void removeEquipItem(equipType equip_type, std::unique_ptr<EquipItem>& item_obj, std::unordered_map<abnormalStateType, int> abnormal_state_list);
 
 public: void reColStatus(mainStateType state_type);
-public: void setEquipToAbnormalState(abnormalStateType state_type, EquipItem* item_obj);
-public: void removeEquipToAbnormalState(abnormalStateType state_type, EquipItem* item_obj);
+public: void setEquipToAbnormalState(abnormalStateType state_type, std::unique_ptr<EquipItem>& item_obj);
+public: void removeEquipToAbnormalState(abnormalStateType state_type, std::unique_ptr<EquipItem>& item_obj);
 
 // get set data etc -----------------------------------------
-public: std::list<CharaBase*> getAllCharaList();
-public: StateList* getStateList();
+public: std::list<std::unique_ptr<CharaBase>&> getAllCharaList();
+public: std::unique_ptr<StateList>& getStateList();
 
-public: bool setSkill(SkillBase* skill_obj);
-private: bool checkSetSkill(SkillBase* skill_obj);
+public: bool setSkill(std::unique_ptr<SkillBase>& skill_obj);
+private: bool checkSetSkill(std::unique_ptr<SkillBase>& skill_obj);
 
 private: void countActionFrame();
 public: bool checkAttackFlag();
@@ -330,11 +330,11 @@ public: virtual void sendTypeCommentDirect(charaCommentType comment_type, charaS
 public: virtual void sendSexualComment();
 
 // set magic list
-public: void setMagicList(MagicBase* magic_obj);
+public: void setMagicList(std::unique_ptr<MagicBase>& magic_obj);
 
-public: void setShadowList(MagicBase* magic_obj);
+public: void setShadowList(std::unique_ptr<MagicBase>& magic_obj);
 
-public: GameCamera* getGameCamera();
+public: std::unique_ptr<GameCamera>& getGameCamera();
 
 // equip data -----------------------------------------------
 public: weaponType getMainWeaponType();
@@ -354,7 +354,7 @@ public: void setDamagePush(double push_speed, double push_angle, int push_frame)
 private: void updateDamagePush();
 
 // battle target --------------------------------------------
-public: void setTargetChara(CharaBase* set_target_chara_obj);
+public: void setTargetChara(std::unique_ptr<CharaBase>& set_target_chara_obj);
 
 //-----------------------------------------------------------
 //	ターゲットの方向を取得する

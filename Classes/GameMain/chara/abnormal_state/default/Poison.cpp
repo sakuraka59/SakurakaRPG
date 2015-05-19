@@ -1,7 +1,7 @@
 #include "Poison.h"
 #include "../../CharaBase.h"
 
-Poison::Poison(CharaBase* chara_obj) : StateAuto(chara_obj)
+Poison::Poison(std::unique_ptr<CharaBase>& chara_obj) : StateAuto(chara_obj)
 {
 	this->_state_name = "“Å";
 	// state heal time

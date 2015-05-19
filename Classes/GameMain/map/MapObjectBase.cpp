@@ -16,8 +16,8 @@ MapObjectBase::MapObjectBase(int map_block_x, int map_block_y, GameCamera* camer
 
 //	std::shared_ptr<HitSquare> hoge(new HitSquare(this->_draw_x, this->_draw_y, MAP_BLOCK_WIDTH, MAP_BLOCK_HEIGHT, test_angle));
 //	this->_hit_square_obj = std::move(hoge);
-
-	this->_hit_square_obj = std::make_unique<HitSquare>(this->_draw_x, this->_draw_y, MAP_BLOCK_WIDTH, MAP_BLOCK_HEIGHT, test_angle);
+	this->_hit_square_obj = HitSquare::();
+	//this->_hit_square_obj = std::make_unique<HitSquare>(this->_draw_x, this->_draw_y, MAP_BLOCK_WIDTH, MAP_BLOCK_HEIGHT, test_angle);
 	
 	//---------------------------
 
