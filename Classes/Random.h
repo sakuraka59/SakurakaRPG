@@ -13,7 +13,6 @@ public: Random() {
 public: int getRandNum(int num) {
 
 	std::uniform_int_distribution<> rand_num(0, num);
-
 	return rand_num(this->_mt);
 }
 };
