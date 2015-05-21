@@ -38,8 +38,8 @@ public: void sendTypeCommentDirect(charaCommentType comment_type, charaSexualTyp
 public: void sendSexualComment() override;
 protected: void setGroupList() override;
 
-// マップ移動による初期位置設定
-public: void setCharaMapPoint(double point_x, double point_y);
+public: void setCharaMapPoint(double point_x, double point_y) override;
+
 
 //test only -------------------------------------------------
 private: void testComment();

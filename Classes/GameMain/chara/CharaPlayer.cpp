@@ -25,7 +25,6 @@ CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, st
 	this->_my_group_list.push_back(charaGroupList::player);
 
 	this->_chara_seed = new SeedHuman();
-
 	this->addChild(this->_chara_seed);
 
 	this->_comment_ui_obj = comment_ui_obj;
@@ -499,8 +498,6 @@ void CharaPlayer::testAction() {
 
 void CharaPlayer::setCharaMapPoint(double point_x, double point_y) {
 
-	this->setDrawX(point_x);
-	this->setDrawY(point_y);
-	this->updateBlockPoint();
+	CharaBase::setCharaMapPoint(point_x, point_y);
 	this->updateCamera();
 }

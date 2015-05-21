@@ -5,9 +5,11 @@
 //class RenderObject;
 class MapObjectBase;
 class MapObjectList;
+class CharaBase;
 class CharaPlayer;
 class MapGroundList;
 class GameCamera;
+
 
 
 class MapBase : public RenderObject {
@@ -31,4 +33,6 @@ public: void initMapObject(std::unordered_map<int, std::unordered_map<int, int>>
 public: std::unordered_map<int, MapObjectList*> getMapObjectLineList();
 
 public: void createRandomMap();
+
+public: void setCharaPoint(CharaBase* set_chara_obj);
 };

@@ -363,4 +363,7 @@ private: void resetTargetChara();
 protected: double getTargetAngle(double x1, double y1, double x2, double y2);
 
 
+
+// マップ移動による初期位置設定
+public: virtual void setCharaMapPoint(double point_x, double point_y);
 };

@@ -10,6 +10,7 @@ class GameCamera;
 class CharaPlayer;
 class PlayerCommentUI;
 
+class CharaNpc;
 class CharaBase;
 class MagicBase;
 class SkillList;
@@ -27,6 +28,7 @@ private: GameCamera* _play_camera;
 private: CharaPlayer* _player_obj;
 
 private: RenderObject* _order_object_list;
+private: std::list<CharaNpc*> _npc_list;
 private: std::list<CharaBase*> _chara_list;
 private: std::list<MagicBase*> _magic_list;
 public: ShadowObjectList* _shadow_list;

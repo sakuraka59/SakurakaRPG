@@ -36,6 +36,12 @@ SeedTestPuppet::SeedTestPuppet()
 	this->_parts_list["body"] = new HumanTest();
 	this->addChild(this->_parts_list["body"]);
 	
+	this->_draw_correct_x = (int)((float)(340 / 2) *0.20f);
+	this->_draw_correct_y = 0;
+
+	this->_scale_per = 1.0f;//0.22f;
+	this->setScale(this->_scale_per);
+
 	/*
 	this->_parts_list["body"] = std::make_unique<HumanTest>();
 	this->addChild(this->_parts_list["body"].get());

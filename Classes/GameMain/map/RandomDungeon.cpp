@@ -160,6 +160,7 @@ void RandomDungeon::DungeonCreateOriginal(int dungeon_width, int dungeon_height)
 
 	//	Debug.WriteLine("[RandomDungeon]correct "+road_top_correct+"/"+road_bottom_correct+"/"+road_left_correct+"/"+road_right_correct+"/");
 
+
 	int first_core_x = -1;
 	int first_core_y = -1;
 	// Å‘å•”‰®”•ªA•”‰®‚Ì€”õ‚ğs‚¤
@@ -211,7 +212,8 @@ void RandomDungeon::DungeonCreateOriginal(int dungeon_width, int dungeon_height)
 		}
 		//Debug.WriteLine("[RandomDungeon]room_core nokori " + room_core);
 		// •”‰®‚ğ“WŠJ‚·‚é
-		if (block_core_count <= RandomDungeonSetting::_ROOM_MIN) {
+		int set_room_min = RandomDungeonSetting::_ROOM_MIN;
+		if (block_core_count <= set_room_min) {
 
 
 			if (block_core_count == 0) {

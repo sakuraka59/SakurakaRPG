@@ -1208,3 +1208,10 @@ double CharaBase::getTargetAngle(double x1, double y1, double x2, double y2) {
 	}
 	return degree + 180;
 }
+void CharaBase::setCharaMapPoint(double point_x, double point_y) {
+
+	this->setDrawX(point_x);
+	this->setDrawY(point_y);
+	this->updateBlockPoint();
+	
+}

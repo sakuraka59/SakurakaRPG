@@ -1,11 +1,14 @@
 #include "MapBase.h"
 #include "../GameCamera.h"
 #include "../chara/CharaPlayer.h"
+#include "../chara/CharaBase.h"
 #include "MapGroundList.h"
 #include "MapObjectList.h"
 #include "../GAME_SETTING.h"
 #include <math.h>
 #include "RandomDungeon.h"
+
+#include "../../Random.h"
 
 MapBase::MapBase(GameCamera* camera_obj, CharaPlayer* player_obj) {
 	this->_player_obj = player_obj;
@@ -165,4 +168,80 @@ void MapBase::createRandomMap() {
 		}
 		*/
 	}
+}
+
+
+
+void MapBase::setCharaPoint(CharaBase* set_chara_obj) {
+	//*
+
+	// @TODO ランダムMAPのみ対応。
+	int map_width = RandomDungeonSetting::getDungeonWidth();
+	int map_height = RandomDungeonSetting::getDungeonHeight();
+
+	std::unordered_map<int, std::unordered_map<int, int>> map_data = this->_map_ground_obj->getMapData();
+	int room_block_count = 0;
+
+	int check_map_type = 3;
+	for (int x = 0; x < map_width; x++) {
+		for (int y = 0; y < map_height; y++) {
+
+			if (map_data[x][y] == check_map_type) {
+				room_block_count++;
+
+			}
+		}
+	}
+
+	Random* rand_obj = new Random();
+
+	int chara_room_x = 0;
+	int chara_room_y = 0;
+	int chara_room_num = 0;
+	int check_room_block_count = 0;
+
+	chara_room_num = rand_obj->getRandNum(room_block_count - 1);
+	//	chara_room_num = room_block_count; //この場合、マス見つけられないので、初期位置に移動してしまうため、注意
+
+
+
+	//			bool room_check_break_flag = false;
+
+	for (int x = 0; x < map_width; x++) {
+		for (int y = 0; y < map_height; y++) {
+
+			if (map_data[x][y] == check_map_type) {
+				//Debug.WriteLine("check :"+ x +":"+ y);
+				if (chara_room_num == check_room_block_count) {
+					chara_room_x = x;
+					chara_room_y = y;
+
+
+					// test
+					//					chara_room_x = 10;
+					//					chara_room_y = 5;
+					if (SET_MAP_MODE == 1) {
+						chara_room_x = 1;
+						chara_room_y = 1;
+					}
+
+					//Debug.WriteLine("set :"+ chara_room_x +":"+ chara_room_y);
+					double chara_x = MAP_BLOCK_WIDTH * chara_room_x + (MAP_BLOCK_WIDTH / 2);
+					double chara_y = (MAP_BLOCK_HEIGHT * chara_room_y - (MAP_BLOCK_HEIGHT / 2)) * (-1);
+
+					set_chara_obj->setCharaMapPoint(chara_x, chara_y);
+					int chara_block_x = set_chara_obj->getMapBlockX();
+					int chara_block_y = set_chara_obj->getMapBlockY();
+					delete rand_obj;
+					return;
+				}
+				else {
+					check_room_block_count++;
+				}
+			}
+		}
+	}
+
+	delete rand_obj;
+	// */
 }

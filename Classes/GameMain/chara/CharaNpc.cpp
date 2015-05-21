@@ -1,6 +1,7 @@
 #include "CharaNpc.h"
 
 #include "chara_seed/test_puppet/SeedTestPuppet.h"
+#include "chara_seed/human/SeedHuman.h"
 #include "chara_seed/SeedBase.h"
 #include "../GameCamera.h"
 
@@ -26,9 +27,13 @@ CharaNpc::CharaNpc(int set_x, int set_y, GameCamera* camera_obj, std::list<Chara
 	this->_restart_x = set_x;
 	this->_restart_y = set_y;
 
-	//this->_chara_seed = new SeedHuman();
+//	this->_chara_seed = new SeedHuman();
 	this->_chara_seed = new SeedTestPuppet();
 	//this->_chara_seed = new SeedTentacle();
+
+
+	this->addChild(this->_chara_seed);
+
 	this->setState();// set seed after
 
 	this->_state_list = this->_chara_seed->getStateList(this);
@@ -36,7 +41,6 @@ CharaNpc::CharaNpc(int set_x, int set_y, GameCamera* camera_obj, std::list<Chara
 	this->_fellow_group_list = this->_chara_seed->getFellowGroupList();
 	this->_fellow_group_list.push_back(charaGroupList::game_master);
 
-	this->addChild(this->_chara_seed);
 
 	int seed_correct_x = this->_chara_seed->getCorrectX();
 	this->_draw_correct_x = (int)((float)seed_correct_x * this->_chara_seed->getScalePer());
@@ -45,8 +49,8 @@ CharaNpc::CharaNpc(int set_x, int set_y, GameCamera* camera_obj, std::list<Chara
 	this->setPosition((int)(this->_draw_x - this->_play_camera->getCameraX()), (int)(this->_draw_y - this->_play_camera->getCameraY() + this->_draw_z));
 
 
-
-
+	this->SetCharaHitData();
+	this->updateDraw();
 /*
 	var texture_info = Director.Instance.GL.WhiteTextureInfo;
 

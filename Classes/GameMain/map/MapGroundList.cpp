@@ -332,14 +332,18 @@ void MapGroundList::reviewGroundBlockY(int add_block_draw_y, int remove_block_dr
 }
 void MapGroundList::setCharaPoint() {
 	//*
+
+	// @TODO ƒ‰ƒ“ƒ_ƒ€MAP‚Ì‚İ‘Î‰B
 	int map_width = RandomDungeonSetting::getDungeonWidth();
 	int map_height = RandomDungeonSetting::getDungeonHeight();
 
 	int room_block_count = 0;
+
+	int check_map_type = 2;
 	for (int x = 0; x < map_width; x++) {
 		for (int y=0; y < map_height; y++) {
 					
-			if (this->_map_data[x][y] == 2) {
+			if (this->_map_data[x][y] == check_map_type) {
 				room_block_count++;
 				int hoge = x;
 				int piyo = y;
@@ -365,12 +369,13 @@ void MapGroundList::setCharaPoint() {
 	for (int x = 0; x < map_width; x++) {
 		for (int y=0; y < map_height; y++) {
 					
-			if (this->_map_data[x][y] == 2) {
+			if (this->_map_data[x][y] == check_map_type) {
 				//Debug.WriteLine("check :"+ x +":"+ y);
 				if (chara_room_num == check_room_block_count) {
 					chara_room_x = x;
 					chara_room_y = y;
 							
+					int hoge = this->_map_data[x][y];
 							
 					// test
 //					chara_room_x = 10;

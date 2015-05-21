@@ -6,6 +6,7 @@
 #include "../GAME_SETTING.h"
 #include "../GameCamera.h"
 #include "../chara/CharaPlayer.h"
+#include "../chara/CharaNpc.h"
 #include "../shadow/ShadowObjectList.h"
 #include "../skill/SkillList.h"
 #include "../map/MapBase.h"
@@ -52,10 +53,24 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 
 	//マップ情報の宣言
 	//if (SET_VIEW_STATE == 1) {
-		this->_map_obj = new MapBase(this->_play_camera, this->_player_obj);
-		this->addChild(this->_map_obj);
+	this->_map_obj = new MapBase(this->_play_camera, this->_player_obj);
+	this->addChild(this->_map_obj);
 	//}
 
+
+	//if (SET_MAP_MODE == 1) {
+	for (int i = 0; i < 1; i++){
+		CharaNpc* npc_obj = new CharaNpc(400 + 50 * i, -100, this->_play_camera, this->_chara_list, this->_magic_list, this->_shadow_list);
+			
+		this->_npc_list.push_back(npc_obj);
+		this->_chara_list.push_back(npc_obj);
+
+		this->_shadow_list->setRenderObject(npc_obj);
+		this->_map_obj->setCharaPoint(npc_obj);
+
+		this->_order_object_list->addChild(npc_obj, (int)(npc_obj->getDrawY() * (-1)));
+	}
+	//}
 
 
 	// 影は地面の上で、かつorder切り替える系オブジェクトの下
@@ -172,6 +187,7 @@ void PlayUi::checkHitMapObject(CharaBase* chara_obj) {
 				continue;
 			}
 
+			
 			HitCircle* circle_obj = chara_obj->getHitCircle();
 			//*
 			if (check_map_obj->getHitCheckType() == 3) {
