@@ -49,4 +49,6 @@ private: void setMapData(int expansion_x, int expansion_y, int map_type);
 public: std::unordered_map<int, std::unordered_map<int, int>> getMapData();
 
 private: int getMapDataFreeNum();
+
+private: int getMapBlockNum();
 };

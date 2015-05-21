@@ -160,6 +160,7 @@ void RandomDungeon::DungeonCreateOriginal(int dungeon_width, int dungeon_height)
 
 	//	Debug.WriteLine("[RandomDungeon]correct "+road_top_correct+"/"+road_bottom_correct+"/"+road_left_correct+"/"+road_right_correct+"/");
 
+	int map_all_block_num = this->getMapBlockNum();
 
 	int first_core_x = -1;
 	int first_core_y = -1;
@@ -167,6 +168,9 @@ void RandomDungeon::DungeonCreateOriginal(int dungeon_width, int dungeon_height)
 	for (int room_num = 0; room_num < room_max; room_num++) {
 
 		int free_core_num = this->getMapDataFreeNum();
+		if (free_core_num <= 0) {
+			break;
+		}
 
 		int room_core = this->_rand_obj->getRandNum(free_core_num);
 
@@ -175,8 +179,11 @@ void RandomDungeon::DungeonCreateOriginal(int dungeon_width, int dungeon_height)
 		int room_core_y = -1;
 		//	Debug.WriteLine("[RandomDungeon]set core num"+room_core);
 		// 全ブロックを検索
-		for (int block_base_count = 0; block_base_count < free_core_num; block_base_count++) {
 
+		int block_base_count = 0;
+		for (int block_base_count = 0; block_base_count < map_all_block_num; block_base_count++) {
+		//while (block_base_count >= free_core_num) {
+			
 			int check_room_core_x = (block_base_count % block_core_width) + RandomDungeonSetting::_MAP_FRAME_NUM;// + road_left_correct;
 			int check_room_core_y = (int)ceil((double)(block_base_count / block_core_width)) + RandomDungeonSetting::_MAP_FRAME_NUM;// + road_top_correct;						
 
@@ -847,5 +854,14 @@ int RandomDungeon::getMapDataFreeNum() {
 		}
 	}
 	
+	return count;
+}
+int RandomDungeon::getMapBlockNum() {
+	int count = 0;
+
+	//	int[int, int] hoge;
+
+	count = RandomDungeonSetting::getDungeonWidth() * RandomDungeonSetting::getDungeonHeight();
+
 	return count;
 }

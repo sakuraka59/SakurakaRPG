@@ -43,6 +43,8 @@ MapObjectBase::MapObjectBase(int map_block_x, int map_block_y, GameCamera* camer
 	// */
 }
 void MapObjectBase::Update() {
+	
+
 	//test anime
 	Random* random_obj = new Random();
 
