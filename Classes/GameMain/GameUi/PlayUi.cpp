@@ -155,10 +155,16 @@ void PlayUi::Update(){
 
 	// ‰e•`‰æ‚·‚é
 	this->_shadow_list->Update();
+
+
+	//
+	float camera_set_x = this->_play_camera->getCameraX();
+	float camera_set_y = this->_play_camera->getCameraY();
+	this->setPosition(camera_set_x, camera_set_y);
 }
 void PlayUi::checkHitMapObject(CharaBase* chara_obj) {
 
-
+	return;
 	//			if (chara_obj.getDrawX() != chara_obj.getBeforeX() ||
 	//			    chara_obj.getDrawY() != chara_obj.getBeforeY()) {
 	

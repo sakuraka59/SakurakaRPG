@@ -46,7 +46,8 @@ CharaNpc::CharaNpc(int set_x, int set_y, GameCamera* camera_obj, std::list<Chara
 	this->_draw_correct_x = (int)((float)seed_correct_x * this->_chara_seed->getScalePer());
 
 	// ‰Šú•\Ž¦
-	this->setPosition((int)(this->_draw_x - this->_play_camera->getCameraX()), (int)(this->_draw_y - this->_play_camera->getCameraY() + this->_draw_z));
+	this->setPosition((int)(this->_draw_x), (int)(this->_draw_y + this->_draw_z));
+//	this->setPosition((int)(this->_draw_x - this->_play_camera->getCameraX()), (int)(this->_draw_y - this->_play_camera->getCameraY() + this->_draw_z));
 
 
 	this->SetCharaHitData();

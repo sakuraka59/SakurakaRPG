@@ -133,11 +133,19 @@ void MapGroundList::Init(){
 	
 }
 void MapGroundList::Update() {
+	/*
+	this->_ground_sprite_list->setPosition(
+		(float)(0),
+		(float)(0)
+	);
+	*/
+
+	/*
 	this->_ground_sprite_list->setPosition(
 		(float)(0 - this->_camera_obj->getCameraX()),
 		(float)(0 - this->_camera_obj->getCameraY())
 	);
-
+	*/
 	
 	int block_draw_x = (this->_player_obj->getMapBlockX());
 	int block_draw_y = (this->_player_obj->getMapBlockY());
@@ -375,11 +383,10 @@ void MapGroundList::setCharaPoint() {
 					chara_room_x = x;
 					chara_room_y = y;
 							
-					int hoge = this->_map_data[x][y];
 							
 					// test
-//					chara_room_x = 10;
-//					chara_room_y = 5;
+					chara_room_x = -2;
+					chara_room_y = -2;
 					if (SET_MAP_MODE == 1) {
 						chara_room_x = 1;
 						chara_room_y = 1;
@@ -399,7 +406,6 @@ void MapGroundList::setCharaPoint() {
 			}
 		}
 	}
-	int hioge = 1;
 	delete rand_obj;
 	// */
 }

@@ -17,13 +17,14 @@ void GameCamera::Update() {
 			this->updateCameraShake();
 		}
 	}
+	
 	this->_x = this->_base_x + this->_shake_x;
 	this->_y = this->_base_y + this->_shake_y;
 
 }
 void GameCamera::updateCharaPoint(double chara_x, double chara_y) {
-	this->_base_x = chara_x - (GAME_WIDTH / 2);
-	this->_base_y = chara_y - (GAME_HEIGHT / 2);
+	this->_base_x = (GAME_WIDTH / 2) - chara_x;
+	this->_base_y = (GAME_HEIGHT / 2) -  chara_y;
 }
 void GameCamera::updateCameraShake() {
 	if (this->_shake_state == 1) {

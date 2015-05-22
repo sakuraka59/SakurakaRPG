@@ -192,10 +192,11 @@ void CharaBase::updateMove(double move_speed) {
 	if (this->_move_y < 0.00001f && this->_move_y > -0.00001f) {
 		this->_move_y = 0;
 	}
+	
 	this->_draw_x += this->_move_x;
 	this->_draw_y += this->_move_y;
 
-	this->setPosition((float)this->_draw_x, (float)this->_draw_y);
+//	this->setPosition((float)this->_draw_x, (float)this->_draw_y);
 	//this->Position = new Vector2((int)this->_draw_x, (int)this->_draw_y);
 
 }
@@ -291,10 +292,11 @@ void CharaBase::updateDraw() {
 	// test
 	Vec2* set_position = this->getDrawPosition();
 	this->setPosition(*set_position);
-
+	delete set_position;
 	//------------------------------
 	//this->Position = new Vector2((int)(this->_draw_x - this->_play_camera.getCameraX() - (this->_move_x * this->_move_speed_per)), (int)(this->_draw_y - this->_play_camera.getCameraY() + this->_draw_z - (this->_move_y * this->_move_speed_per)));
 	//this->Position = new Vector2((int)(this->_draw_x), (int)(this->_draw_y));
+
 	this->_test_label =
 		"x :" + std::to_string(this->_draw_x) +
 		"\n y :" + std::to_string(this->_draw_y) +
@@ -343,11 +345,19 @@ cocos2d::Vec2* CharaBase::getDrawPosition() {
 	return new cocos2d::Vec2((float)this->getDrawPositionX(), (float)(this->getDrawPositionY() + this->_draw_z));
 }
 float CharaBase::getDrawPositionX() {
-	return (float)(this->_draw_x - this->_play_camera->getCameraX());
+	return (float)(this->_draw_x);
+
+//	return (float)(this->_draw_x - this->_play_camera->getCameraX());
+
+
 	//return new Vector2((float)(this->_draw_x - this->_play_camera.getCameraX()), (float)(this->_draw_y - this->_play_camera.getCameraY() + this->_draw_z));	
 }
 float CharaBase::getDrawPositionY() {
-	return (float)(this->_draw_y - this->_play_camera->getCameraY());
+	return (float)(this->_draw_y);
+
+//	return (float)(this->_draw_y - this->_play_camera->getCameraY());
+
+
 	//return new Vector2((float)(this->_draw_x - this->_play_camera.getCameraX()), (float)(this->_draw_y - this->_play_camera.getCameraY() + this->_draw_z));	
 }
 void CharaBase::updateMoveAngle(double angle) {

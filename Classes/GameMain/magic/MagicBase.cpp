@@ -28,8 +28,10 @@ MagicBase::MagicBase(CharaBase* chara_obj, cocos2d::Vec2* sprite_vector, GameCam
 
 
 	// draw point
-	this->_before_x = (int)(this->_draw_x - this->_camera_obj->getCameraX() - (this->_width / 2));
-	this->_before_y = (int)((this->_draw_y + this->_draw_z) - this->_camera_obj->getCameraY());
+	this->_before_x = (int)(this->_draw_x - (this->_width / 2));
+	this->_before_y = (int)((this->_draw_y + this->_draw_z) );
+//	this->_before_x = (int)(this->_draw_x - this->_camera_obj->getCameraX() - (this->_width / 2));
+//	this->_before_y = (int)((this->_draw_y + this->_draw_z) - this->_camera_obj->getCameraY());
 
 
 /*
@@ -57,8 +59,11 @@ void MagicBase::Update() {
 
 void MagicBase::drawUpdate() {
 
-	int set_x = (int)(this->_draw_x - this->_camera_obj->getCameraX() - (this->_width / 2));
-	int set_y = (int)((this->_draw_y + this->_draw_z) - this->_camera_obj->getCameraY());
+	int set_x = (int)(this->_draw_x - (this->_width / 2));
+	int set_y = (int)((this->_draw_y + this->_draw_z) );
+
+//	int set_x = (int)(this->_draw_x - this->_camera_obj->getCameraX() - (this->_width / 2));
+//	int set_y = (int)((this->_draw_y + this->_draw_z) - this->_camera_obj->getCameraY());
 	if (this->_before_x != set_x || this->_before_y != set_y) {
 
 		// ‰æ–Ê•`‰æ”ÍˆÍŠO‚É‚æ‚é•`‰æŠÇ—
@@ -78,8 +83,11 @@ void MagicBase::drawUpdate() {
 			}
 		}
 		*/
-		this->_before_x = (int)(this->_draw_x - this->_camera_obj->getCameraX());
-		this->_before_y = (int)(this->_draw_y - this->_camera_obj->getCameraY());
+		this->_before_x = (int)(this->_draw_x);
+		this->_before_y = (int)(this->_draw_y);
+
+//		this->_before_x = (int)(this->_draw_x - this->_camera_obj->getCameraX());
+//		this->_before_y = (int)(this->_draw_y - this->_camera_obj->getCameraY());
 	}
 	//			DrawHelpers
 	//			Director.Instance.DrawHelpers.DrawCircle
@@ -116,10 +124,12 @@ void MagicBase::hitCharaDamage(CharaBase* hit_chara_obj) {
 }
 
 float MagicBase::getDrawPositionX() {
-	return (float)(this->_draw_x - this->_camera_obj->getCameraX());
+	return (float)(this->_draw_x);
+//	return (float)(this->_draw_x - this->_camera_obj->getCameraX());
 }
 float MagicBase::getDrawPositionY() {
-	return (float)(this->_draw_y - this->_camera_obj->getCameraY());
+	return (float)(this->_draw_y);
+//	return (float)(this->_draw_y - this->_camera_obj->getCameraY());
 }
 
 double MagicBase::getHitHeight() {
