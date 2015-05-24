@@ -52,9 +52,10 @@ CharaBase::CharaBase()
 
 	TTFConfig conf_test("fonts/arial.ttf", 16);
 	this->_test_label = "angle: ";
+	
 	this->_label_obj = Label::createWithTTF(conf_test, this->_test_label);
 	//label_obj->setColor(Color3B::WHITE);
-	this->_label_obj->setPosition(-20, -20);
+	this->_label_obj->setPosition(-20, -50);
 	this->addChild(this->_label_obj);
 
 }
@@ -301,6 +302,7 @@ void CharaBase::updateDraw() {
 		"x :" + std::to_string(this->_draw_x) +
 		"\n y :" + std::to_string(this->_draw_y) +
 		"\n z :" + std::to_string(this->_draw_z) +
+		"hp :" + std::to_string(this->_now_state[mainStateType::hp] / 100) +
 		"\n map x :" + std::to_string(this->_map_block_x) +
 		"\n map y :" + std::to_string(this->_map_block_y);
 
@@ -726,7 +728,7 @@ void CharaBase::removeEquipToAbnormalState(abnormalStateType state_type, EquipIt
 	this->_state_list->removeEquipItemToState(state_type, item_obj);
 }
 // get set data etc -----------------------------------------
-std::list<CharaBase*> CharaBase::getAllCharaList() {
+std::list<CharaBase*>* CharaBase::getAllCharaList() {
 	return this->_all_chara_list;
 }
 StateList* CharaBase::getStateList() {

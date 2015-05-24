@@ -3,7 +3,7 @@
 
 #include "../chara/CharaBase.h"
 
-SkillBase::SkillBase(CharaBase* use_chara_obj, std::list<CharaBase*> all_chara_list) {
+SkillBase::SkillBase(CharaBase* use_chara_obj, std::list<CharaBase*>* all_chara_list) {
 	this->_use_chara_obj = use_chara_obj;
 	this->_all_chara_list = all_chara_list;
 	this->_skill_attack_count = 0;

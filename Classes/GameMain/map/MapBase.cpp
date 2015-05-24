@@ -27,6 +27,9 @@ MapBase::MapBase(GameCamera* camera_obj, CharaPlayer* player_obj) {
 }
 void MapBase::Init() {
 	this->_map_ground_obj->Init();
+	for (std::unordered_map<int, MapObjectList*>::iterator map_obj_iterator = this->_map_obj_line_list.begin(); map_obj_iterator != this->_map_obj_line_list.end(); map_obj_iterator++) {	
+		this->_map_obj_line_list[map_obj_iterator->first]->mapSetDrawInit();
+	}
 }
 void MapBase::Update() {
 	this->_map_ground_obj->Update();
@@ -117,6 +120,7 @@ void MapBase::createRandomMap() {
 	// map obj ----------------------------------------------
 	this->initMapObject(get_dungeon_obj->getMapData());
 
+	
 	// test object
 	//*
 	//	TextureInfo test_texture_info = ResourceManage.getTextureInfo("/Application/res/Objects.png", 7, 3);

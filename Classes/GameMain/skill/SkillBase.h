@@ -40,7 +40,7 @@ protected: int _skill_attack_count = 0;
 protected: int _attack_frame = 0;
 
 protected: CharaBase* _use_chara_obj;
-protected: std::list<CharaBase*> _all_chara_list;
+protected: std::list<CharaBase*> *_all_chara_list;
 protected: std::list<CharaBase*> _hitcheck_chara_list;
 
 // private int _skill_attack_frame = 0;
@@ -59,7 +59,7 @@ protected: std::unordered_map<weaponType, weaponType> _main_weapon_list;
 protected: std::unordered_map<weaponType, weaponType> _sub_weapon_list;
 //-------------------------------------------------------------------
 
-public: SkillBase(CharaBase* use_chara_obj, std::list<CharaBase*> all_chara_list);
+public: SkillBase(CharaBase* use_chara_obj, std::list<CharaBase*>* all_chara_list);
 public: ~SkillBase();
 public: void skillInit();
 public: virtual void skillExtendInit();

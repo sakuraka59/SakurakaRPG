@@ -147,7 +147,7 @@ protected: int _draw_correct_y = 0;
 protected: GameCamera* _play_camera;
 
 // 各種オブジェクトのリスト
-protected: std::list<CharaBase*> _all_chara_list;
+protected: std::list<CharaBase*> *_all_chara_list;
 //protected: SkillList* _skill_list;
 protected: std::list<MagicBase*> _magic_list;
 protected: ShadowObjectList* _shadow_list;
@@ -285,7 +285,7 @@ public: void setEquipToAbnormalState(abnormalStateType state_type, EquipItem* it
 public: void removeEquipToAbnormalState(abnormalStateType state_type, EquipItem* item_obj);
 
 // get set data etc -----------------------------------------
-public: std::list<CharaBase*> getAllCharaList();
+public: std::list<CharaBase*>* getAllCharaList();
 public: StateList* getStateList();
 
 public: bool setSkill(SkillBase* skill_obj);

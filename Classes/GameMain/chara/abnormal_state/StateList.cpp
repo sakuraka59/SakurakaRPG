@@ -4,10 +4,10 @@
 StateList::StateList(CharaBase* chara_obj) {
 	// テスト用
 	this->_state_list[abnormalStateType::poison] = new Poison(chara_obj);
-//	this->_state_list[abnormalStateType.feel_hot] = new Poison(chara_obj);
-//	this->_state_list[abnormalStateType.oestrus] = new Poison(chara_obj);
-//	this->_state_list[abnormalStateType.extasy] = new Poison(chara_obj);
-//	this->_state_list[abnormalStateType.absent_mindedness] = new Poison(chara_obj);
+	this->_state_list[abnormalStateType::feel_hot] = new Poison(chara_obj);
+	this->_state_list[abnormalStateType::oestrus] = new Poison(chara_obj);
+	this->_state_list[abnormalStateType::extasy] = new Poison(chara_obj);
+	this->_state_list[abnormalStateType::absent_mindedness] = new Poison(chara_obj);
 
 	/*
 	this->_state_list[abnormalStateType.feel_hot] = new FeelHot(chara_obj);

@@ -20,13 +20,22 @@ MapObjectList::MapObjectList(int map_block_y, GameCamera* camera_obj, CharaPlaye
 
 	this->_map_block_y = map_block_y;
 	this->_draw_y = (map_block_y * MAP_BLOCK_HEIGHT);
-	int hoge = 0;
+	
+	
+	/*
+	this->_draw_flag = true;
 	this->addChild(this->_object_draw_list);
+	//*/
 
+	this->_draw_flag = false;
+	this->removeChild(this->_object_draw_list, true);
 
 	int set_x = (int)(0 + this->_draw_correction_x);
 	int set_y = (int)(this->_draw_y - this->_draw_correction_y);
 	this->setPosition(set_x, set_y);
+
+	this->_before_x = this->_player_obj->getMapBlockX();
+	this->_before_y = this->_player_obj->getMapBlockY();
 	/*
 	cocos2d::ParticleSystemQuad* particle = cocos2d::ParticleSystemQuad::create("particle/test_particle.plist");
 	particle->setPosition(0, 0);
@@ -56,9 +65,12 @@ void MapObjectList::setObject(int map_block_x){
 	this->_map_obj_draw_list[map_block_x] = false;
 
 	// @TODO とりあえず全オブジェクトを描画する
-	this->_object_draw_list->addChild(map_obj);
-	//this->addChild(map_obj);
-	this->_map_obj_draw_list[map_block_x] = true;
+	// /*
+	if (this->_draw_flag == true) {
+		this->_object_draw_list->addChild(map_obj);
+		this->_map_obj_draw_list[map_block_x] = true;
+	}
+	// */
 }
 bool MapObjectList::checkMapObject(int map_block_x) {
 	//this._map_obj_line_list[map_block_x];	
@@ -95,12 +107,12 @@ void MapObjectList::Update() {
 	//---------------------------------------------------------------
 
 	// キャラクターのマス座標から端までのマス数
-	int width_side = 1;
-	int height_side = 1;
+	int width_side = this->mapDrawWidth();
+	int height_side = this->mapDrawHeight();
+
 
 	int player_map_x = this->_player_obj->getMapBlockX();
 	int player_map_y = this->_player_obj->getMapBlockY();
-	
 
 	// Yマス座標移動した場合
 	if (this->_before_y != player_map_y) {
@@ -109,115 +121,57 @@ void MapObjectList::Update() {
 
 			// 描画範囲外の場合、オブジェクトの表示を全削除
 			if (this->_map_block_y < player_map_y - height_side) {
-				this->removeLineObjectDraw();
+				this->removeObjectDrawY(height_side);
 			} else {
 				// 描画範囲内の場合
-				this->resetLineObjectDraw(player_map_y, width_side);
+				this->resetObjectDrawY(width_side, height_side);
 			}
 
 		} else {
 			// 下へ移動
-
+			if (this->_map_block_y > player_map_y - height_side) {
+				this->removeObjectDrawY(height_side);
+			}
+			else {
+				// 描画範囲内の場合
+				this->resetObjectDrawY(width_side, height_side);
+			}
 		}
 
+		this->_before_y = this->_player_obj->getMapBlockY();
 	}
 
-	this->_before_x = this->_player_obj->getMapBlockX();
-	this->_before_y = this->_player_obj->getMapBlockY();
+	// Xマス座標移動した場合
+	if (this->_draw_flag == true) {
+		if (this->_before_x != player_map_x) {
+
+			if (this->_before_x < player_map_x){
+				// 右へ移動
+				// 自身の位置から端の隣なので「-1」が必要
+				int remove_x = player_map_x - width_side -1;
+				this->removeObjectDrawX(remove_x);
+
+
+				// 右へ移動
+				int add_x = player_map_x + width_side;
+				this->resetObjectDrawX(add_x);
+			} else {
+				// 左へ移動
+				// 自身の位置から端の隣なので「+1」が必要
+				int remove_x = player_map_x + width_side + 1;
+				this->removeObjectDrawX(remove_x);
+
+
+				// 右へ移動
+				int add_x = player_map_x - width_side;
+				this->resetObjectDrawX(add_x);
+			}
+			this->_before_x = this->_player_obj->getMapBlockX();
+		}
+	}
+	
 	return;
 	/*
-	int set_x = (int)(0 + this->_draw_correction_x);
-	int set_y = (int)(this->_draw_y - this->_draw_correction_y);
-
-//	int set_x = (int)(0 - this->_camera_obj->getCameraX() + this->_draw_correction_x);
-//	int set_y = (int)(this->_draw_y - this->_camera_obj->getCameraY() - this->_draw_correction_y);
-
-	// カメラが動いた場合のみ
-	if (set_x != this->_before_x || set_y != this->_before_y) {
-		//this->Position = new Vector2(set_x, set_y);
-		this->setPosition(set_x, set_y);
-
-		// /*
-		
-		Random* rand_obj = new Random();
-
-		this->_before_x = set_x;
-		this->_before_y = set_y;
-
-		int player_map_y = this->_player_obj->getMapBlockY();
-
-		int obj_draw_width = (int)ceil((double)GAME_WIDTH / (double)MAP_BLOCK_WIDTH); +1;
-		int obj_draw_height = (int)ceil((double)GAME_HEIGHT / (double)MAP_BLOCK_HEIGHT); ;
-		bool draw_change_flag = false;
-		
-		// ライン上のオブジェクトを非表示にする
-		if (this->_draw_flag == true) {
-			if (this->_map_block_y + obj_draw_height < player_map_y ||
-				this->_map_block_y - obj_draw_height > player_map_y) {
-
-				this->removeChild(this->_object_draw_list, true);
-				this->_draw_flag = false;
-
-				draw_change_flag = true;
-			}
-		} else {
-			if (this->_map_block_y + obj_draw_height >= player_map_y &&
-				this->_map_block_y - obj_draw_height <= player_map_y) {
-				this->addChild(this->_object_draw_list);
-				this->_draw_flag = true;
-
-				draw_change_flag = true;
-			}
-		}
-		
-		// x -----------------------------
-		//*
-		int player_map_x = this->_player_obj->getMapBlockX();
-		int check_x_width = (obj_draw_width + 1);
-		for (int check_obj_x = 0; check_obj_x < (check_x_width * 2 + 1); check_obj_x++){
-
-			int check_map_x = player_map_x - check_x_width + check_obj_x;
-			MapObjectBase* check_map_obj = this->getMapObject(check_map_x);
-			if (check_map_obj == nullptr) {
-				continue;
-			}
-			//	Debug.WriteLine("[MapObjectList]rand : "+rand_obj.Next(1000000));
-			//	Debug.WriteLine("[MapObjectList]check_obj_x : "+check_obj_x+"_map_block_y : "+this->_map_block_y);
-
-			if (check_map_x + obj_draw_width < player_map_x ||
-				check_map_x - obj_draw_width > player_map_x) {
-
-				if (this->_map_obj_draw_list[check_map_x] == true) {
-
-					this->_object_draw_list->removeChild(check_map_obj, true);
-
-					this->_map_obj_draw_list[check_map_x] = false;
-				}
-				//						check_map_obj.removeDrawObject();
-
-			}
-			else if (check_map_x + obj_draw_width >= player_map_x &&
-				check_map_x - obj_draw_width <= player_map_x) {
-				if (this->_map_obj_draw_list[check_map_x] == false) {
-
-					this->_object_draw_list->addChild(check_map_obj);
-
-					this->_map_obj_draw_list[check_map_x] = true;
-				}
-				//						this->_object_sprite_list.AddChild(check_map_obj.getObjectSprite());
-				//						check_map_obj.resetDrawObject();
-
-			}
-			
-		}
-		//	this->_map_obj_line_list[map_block_x]
-		
-		delete rand_obj;
-		
-	}
-
-
-
 	// 各オブジェクトアニメーション
 	int draw_block_width = RandomDungeonSetting::getDungeonWidth();
 //	int draw_block_width = (int)ceil((double)GAME_WIDTH / (double)MAP_BLOCK_WIDTH);
@@ -234,18 +188,68 @@ void MapObjectList::Update() {
 	// */
 }
 //-------------------------------------------------------------------
+//	キャラクター初期位置設定後の各種オブジェクト描画
+//-------------------------------------------------------------------
+void MapObjectList::mapSetDrawInit() {
+	
+	// キャラクターのマス座標から端までのマス数
+	int width_side = this->mapDrawWidth();
+	int height_side = this->mapDrawHeight();
+
+	int player_map_x = this->_player_obj->getMapBlockX();
+	int player_map_y = this->_player_obj->getMapBlockY();
+	if (this->_map_block_y < player_map_y - height_side ||
+		this->_map_block_y > player_map_y + height_side) {
+
+		return;
+	}
+
+	this->resetObjectDrawY(width_side, height_side);
+}
+//-------------------------------------------------------------------
+//	オブジェクトの描画マス範囲
+//-------------------------------------------------------------------
+int MapObjectList::mapDrawWidth() {
+	int draw_width = ceil(GAME_WIDTH / MAP_BLOCK_WIDTH) / 2;
+
+
+	draw_width -= 2;
+	return draw_width;
+}
+//-------------------------------------------------------------------
+//	オブジェクトの描画マス範囲
+//-------------------------------------------------------------------
+int MapObjectList::mapDrawHeight(){
+	int draw_height = ceil(GAME_HEIGHT / MAP_BLOCK_HEIGHT) / 2;
+	draw_height += 2;
+
+
+	draw_height -= 3;
+	return draw_height;
+}
+
+//-------------------------------------------------------------------
 //	Yマス座標の描画範囲外での非表示処理
 //-------------------------------------------------------------------
-void MapObjectList::removeLineObjectDraw() {
+void MapObjectList::removeObjectDrawY(int height_side) {
 	if (this->_draw_flag == false) {
+		return;
+	}
+//	int player_map_x = this->_player_obj->getMapBlockX();
+	int player_map_y = this->_player_obj->getMapBlockY();
+	int check_y_min = player_map_y - height_side;
+	int check_y_max = player_map_y + height_side;
+	if (this->_map_block_y >= check_y_min && this->_map_block_y <= check_y_max) {
 		return;
 	}
 	int random_map_width = RandomDungeonSetting::getDungeonWidth();
 	for (int map_block_x = 0; map_block_x < random_map_width; map_block_x++) {
+		/*
 		MapObjectBase* check_map_obj = this->getMapObject(map_block_x);
 		if (check_map_obj == nullptr) {
 			continue;
 		}
+		// */
 		this->_map_obj_draw_list[map_block_x] = false;
 	}
 	this->_object_draw_list->removeAllChildren();
@@ -256,16 +260,31 @@ void MapObjectList::removeLineObjectDraw() {
 //-------------------------------------------------------------------
 //	Yマス座標の描画範囲内への表示再開処理
 //-------------------------------------------------------------------
-void MapObjectList::resetLineObjectDraw(int player_map_x, int width_side) {
-	return;
+void MapObjectList::resetObjectDrawY(int width_side, int height_side) {
+	
+	
+	if (this->_draw_flag == true) {
+		return;
+	}
 	int random_map_width = RandomDungeonSetting::getDungeonWidth();
+
+	int player_map_x = this->_player_obj->getMapBlockX();
+	int player_map_y = this->_player_obj->getMapBlockY();
+
+	int check_y_min = player_map_y - height_side;
+	int check_y_max = player_map_y + height_side;
+	if (this->_map_block_y < check_y_min || this->_map_block_y > check_y_max) {
+		return;
+	}
+
 	for (int map_block_x = 0; map_block_x < random_map_width; map_block_x++) {
 		MapObjectBase* check_map_obj = this->getMapObject(map_block_x);
 		if (check_map_obj == nullptr) {
 			continue;
 		}
-
-		if (map_block_x < player_map_x - width_side || map_block_x > player_map_x + width_side) {
+		int check_x_min = player_map_x - width_side;
+		int check_x_max = player_map_x + width_side;
+		if (map_block_x < check_x_min || map_block_x > check_x_max) {
 			continue;
 		}
 		this->_object_draw_list->addChild(check_map_obj);
@@ -275,4 +294,40 @@ void MapObjectList::resetLineObjectDraw(int player_map_x, int width_side) {
 	// 自身のオブジェクトの表示を表示
 	this->addChild(this->_object_draw_list, true);
 	this->_draw_flag = true;
+}
+
+//-------------------------------------------------------------------
+//	Xマス座標の描画範囲外での非表示処理
+//-------------------------------------------------------------------
+void MapObjectList::removeObjectDrawX(int remove_x) {
+	if (this->_draw_flag == false) {
+		return;
+	}
+
+	MapObjectBase* check_map_obj = this->getMapObject(remove_x);
+	if (check_map_obj == nullptr) {
+		return;
+	}
+	this->_object_draw_list->removeChild(check_map_obj, true);
+	this->_map_obj_draw_list[remove_x] = false;
+}
+
+//-------------------------------------------------------------------
+//	Xマス座標の描画範囲内への表示再開処理
+//-------------------------------------------------------------------
+void MapObjectList::resetObjectDrawX(int reset_x) {
+	if (this->_draw_flag == false) {
+		return;
+	}
+	if (this->_map_obj_draw_list[reset_x] == true) {
+		return;
+	}
+
+	MapObjectBase* check_map_obj = this->getMapObject(reset_x);
+	if (check_map_obj == nullptr) {
+		return;
+	}
+	
+	this->_object_draw_list->addChild(check_map_obj, true);
+	this->_map_obj_draw_list[reset_x] = true;
 }

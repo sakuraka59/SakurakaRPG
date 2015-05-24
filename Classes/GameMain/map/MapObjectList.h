@@ -34,6 +34,11 @@ public: bool checkMapObject(int map_block_x);
 public: MapObjectBase* getMapObject(int map_block_x);
 public: void Update();
 
-private: void removeLineObjectDraw();
-private: void resetLineObjectDraw(int player_map_x, int width_side);
+public: void mapSetDrawInit();
+private: int mapDrawWidth();
+private: int mapDrawHeight();
+private: void removeObjectDrawY(int height_side);
+private: void resetObjectDrawY(int width_side, int height_side);
+private: void removeObjectDrawX(int remove_x);
+private: void resetObjectDrawX(int reset_x);
 };

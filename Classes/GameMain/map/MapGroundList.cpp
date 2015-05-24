@@ -382,17 +382,11 @@ void MapGroundList::setCharaPoint() {
 				if (chara_room_num == check_room_block_count) {
 					chara_room_x = x;
 					chara_room_y = y;
-							
-							
+						
 					// test
-					chara_room_x = -2;
-					chara_room_y = -2;
-					if (SET_MAP_MODE == 1) {
-						chara_room_x = 1;
-						chara_room_y = 1;
-					}
-							
-					//Debug.WriteLine("set :"+ chara_room_x +":"+ chara_room_y);
+//					chara_room_x = 12;
+//					chara_room_y = 12;
+
 					double chara_x = 64 * chara_room_x + (64 /2);
 					double chara_y = (64 * chara_room_y - (64 /2)) * (-1);
 							

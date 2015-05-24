@@ -11,7 +11,7 @@
 
 #include "../skill/weapon_skill/no_weapon/NoWeaponDefault.h"
 
-CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, std::list<CharaBase*> all_chara_list, std::list<MagicBase*> magic_list, ShadowObjectList* shadow_list)
+CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, std::list<CharaBase*> *all_chara_list, std::list<MagicBase*> magic_list, ShadowObjectList* shadow_list)
 {
 	//this->_skill_list = skill_list;
 	this->_all_chara_list = all_chara_list;
@@ -103,13 +103,13 @@ void CharaPlayer::mainUpdate() {
 	this->testState();
 	this->testAction();
 
-
+	auto hoge = this->_all_chara_list;
 
 	if (this->_comment_delay_count > 0) {
 		this->_comment_delay_count--;
 	}
 
-
+	
 }
 void CharaPlayer::updateCamera() {
 	// カメラ処理はキャラクターが動き終わった後にやること！

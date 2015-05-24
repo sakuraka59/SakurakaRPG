@@ -4,7 +4,7 @@
 #include "../../../chara/abnormal_state/abnormalStateType.h"
 #include "../../../chara/CharaBase.h"
 
-NoWeaponDefault::NoWeaponDefault(CharaBase* use_chara_obj, std::list<CharaBase*> all_chara_list) : SkillAttack(use_chara_obj, all_chara_list) {
+NoWeaponDefault::NoWeaponDefault(CharaBase* use_chara_obj, std::list<CharaBase*> *all_chara_list) : SkillAttack(use_chara_obj, all_chara_list) {
 	//this->_skill_attack_list 
 	this->_npc_use_range = 30.0;
 

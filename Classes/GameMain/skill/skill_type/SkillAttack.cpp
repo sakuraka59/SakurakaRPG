@@ -5,7 +5,7 @@
 #include "../SkillAttackData.h"
 
 
-SkillAttack::SkillAttack(CharaBase* use_chara_obj, std::list<CharaBase*> all_chara_list) : SkillBase(use_chara_obj, all_chara_list)
+SkillAttack::SkillAttack(CharaBase* use_chara_obj, std::list<CharaBase*> *all_chara_list) : SkillBase(use_chara_obj, all_chara_list)
 {
 }
 void SkillAttack::skillExtendInit() {
@@ -44,9 +44,7 @@ void SkillAttack::attackUpdateEffect() {
 }
 void SkillAttack::attackCheck() {
 	SkillAttackGroup* check_attack_group = this->_skill_attack_list[this->_skill_attack_count];
-
-	//			Debug.WriteLine("["+this->GetType()+"]"+this->_skill_attack_count+"/"+this->_attack_frame+"-------------------------------------");
-	//			Debug.WriteLine("["+this->GetType()+"]-------------------------------------");
+	
 	// attack data list
 	for (int i = 0; i < check_attack_group->getSkillSize(); i++) {
 		SkillAttackData* skill_attack_data = check_attack_group->getSkillAttack(i);
@@ -69,7 +67,8 @@ void SkillAttack::attackCheck() {
 
 //		for (std::list<CharaBase*>::iterator chara_iterator = this->_all_chara_list.begin(); chara_iterator != this->_all_chara_list.end(); chara_iterator++) {
 //		CharaBase* check_chara_obj = *chara_iterator;
-		for (CharaBase* check_chara_obj : _all_chara_list) {
+		auto hoge = this->_all_chara_list;
+		for (CharaBase* check_chara_obj : *this->_all_chara_list) {
 			
 
 			if (check_chara_obj == this->_use_chara_obj) {
@@ -88,7 +87,7 @@ void SkillAttack::attackCheck() {
 //				foreach(CharaBase hit_chara_obj in this->_hitcheck_chara_list) {
 //				for (std::list<CharaBase*>::iterator chara_iterator = this->_all_chara_list.begin(); chara_iterator != this->_all_chara_list.end(); chara_iterator++) {
 //					CharaBase* hit_chara_obj = *chara_iterator;
-				for (CharaBase* hit_chara_obj : _all_chara_list) {
+				for (CharaBase* hit_chara_obj : *this->_all_chara_list) {
 
 					if (hit_chara_obj == check_chara_obj) {
 						hit_flag = true;
@@ -260,7 +259,6 @@ void SkillAttack::attackCheck() {
 		*/
 		//check_attack_group.getSkillAttack(i);
 	}
-	int hoge = 1;
 }
 double SkillAttack::getTargetRange(double x1, double y1, double x2, double y2){
 

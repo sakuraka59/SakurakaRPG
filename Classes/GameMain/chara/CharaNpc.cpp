@@ -11,7 +11,7 @@
 #include "../magic/MagicBase.h"
 #include "../shadow/ShadowObjectList.h"
 
-CharaNpc::CharaNpc(int set_x, int set_y, GameCamera* camera_obj, std::list<CharaBase*> all_chara_list, std::list<MagicBase*> magic_list, ShadowObjectList* shadow_list)
+CharaNpc::CharaNpc(int set_x, int set_y, GameCamera* camera_obj, std::list<CharaBase*> *all_chara_list, std::list<MagicBase*> magic_list, ShadowObjectList* shadow_list)
 {
 //	this->_skill_list = skill_list;
 	this->_all_chara_list = all_chara_list;
@@ -127,6 +127,12 @@ void CharaNpc::charaRevival() {
 	this->_set_attack_skill = nullptr;
 	this->addChild(this->_chara_seed);
 }
+void CharaNpc::setCharaMapPoint(double point_x, double point_y) {
+
+	CharaBase::setCharaMapPoint(point_x, point_y);
+	this->_restart_x = point_x;
+	this->_restart_y = point_y;
+}
 // npc ai base ----------------------------------------------
 void CharaNpc::npcAi() {
 	if (this->_down_flag == true || this->_no_control_frame > 0) {
@@ -229,7 +235,7 @@ void CharaNpc::searchEnemyChara() {
 
 	if (this->_target_enemy_chara == nullptr) {
 
-		for (CharaBase* search_chara : _all_chara_list) {
+		for (CharaBase* search_chara : *this->_all_chara_list) {
 
 
 			if (search_chara == this) {

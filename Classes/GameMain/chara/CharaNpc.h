@@ -42,11 +42,12 @@ protected: CharaBase* _target_enemy_chara = nullptr;
 // AIópïœêî
 private: bool _before_skill_flag = false;
 
-public: CharaNpc(int set_x, int set_y, GameCamera* camera_obj, std::list<CharaBase*> all_chara_list, std::list<MagicBase*> magic_list, ShadowObjectList* shadow_list);
+public: CharaNpc(int set_x, int set_y, GameCamera* camera_obj, std::list<CharaBase*> *all_chara_list, std::list<MagicBase*> magic_list, ShadowObjectList* shadow_list);
 protected: void setGroupList() override;
 protected: void mainUpdate() override;
 protected: void charaDownMomentDetail() override;
 protected: void charaRevival() override;
+public: void setCharaMapPoint(double point_x, double point_y) override;
 private: void npcAi();
 private: void searchEnemyChara();
 private: double getTargetRange(double x1, double y1, double x2, double y2);
