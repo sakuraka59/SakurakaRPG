@@ -170,8 +170,8 @@ void MapObjectList::Update() {
 		}
 	}
 	
-	return;
-	/*
+	
+	
 	// 各オブジェクトアニメーション
 	int draw_block_width = RandomDungeonSetting::getDungeonWidth();
 //	int draw_block_width = (int)ceil((double)GAME_WIDTH / (double)MAP_BLOCK_WIDTH);
@@ -186,6 +186,7 @@ void MapObjectList::Update() {
 		}
 	}
 	// */
+	return;
 }
 //-------------------------------------------------------------------
 //	キャラクター初期位置設定後の各種オブジェクト描画
@@ -211,9 +212,9 @@ void MapObjectList::mapSetDrawInit() {
 //-------------------------------------------------------------------
 int MapObjectList::mapDrawWidth() {
 	int draw_width = ceil(GAME_WIDTH / MAP_BLOCK_WIDTH) / 2;
+	draw_width += 1;
 
-
-	draw_width -= 2;
+//	draw_width -= 2;
 	return draw_width;
 }
 //-------------------------------------------------------------------
@@ -223,8 +224,7 @@ int MapObjectList::mapDrawHeight(){
 	int draw_height = ceil(GAME_HEIGHT / MAP_BLOCK_HEIGHT) / 2;
 	draw_height += 2;
 
-
-	draw_height -= 3;
+//	draw_height -= 3;
 	return draw_height;
 }
 
