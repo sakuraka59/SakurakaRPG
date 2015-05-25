@@ -155,6 +155,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\chara\chara_seed\test_puppet\SeedTestPuppet.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameCamera.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameMain.cpp" />
+    <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateGauge.cpp" />
+    <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateUI.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\PlayerCommentUI.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\PlayUi.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\UiBase.cpp" />
@@ -215,6 +217,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\chara\mainStateType.h" />
     <ClInclude Include="..\Classes\GameMain\GameCamera.h" />
     <ClInclude Include="..\Classes\GameMain\GameMain.h" />
+    <ClInclude Include="..\Classes\GameMain\GameUi\DefaultStateGauge.h" />
+    <ClInclude Include="..\Classes\GameMain\GameUi\DefaultStateUI.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\PlayerCommentUI.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\PlayUi.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\UiBase.h" />

@@ -5,6 +5,7 @@
 
 class PlayUi;
 class PlayerCommentUI;
+class DefaultStateUI;
 
 class GameMain : public cocos2d::Layer
 {
@@ -30,6 +31,7 @@ private:
 //	UiBase * _test_ui_obj;
 	PlayUi* _play_ui_obj;
 	PlayerCommentUI* _play_comment_ui_obj;
+	DefaultStateUI* _default_state_ui;
 
 	cocos2d::EventListenerKeyboard* _KEYBORD_EVENT;
 	// キー入力テスト

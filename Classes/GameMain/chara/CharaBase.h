@@ -149,7 +149,7 @@ protected: GameCamera* _play_camera;
 // 各種オブジェクトのリスト
 protected: std::list<CharaBase*> *_all_chara_list;
 //protected: SkillList* _skill_list;
-protected: std::list<MagicBase*> _magic_list;
+protected: std::list<MagicBase*>* _magic_list;
 protected: ShadowObjectList* _shadow_list;
 
 // 所持アイテム

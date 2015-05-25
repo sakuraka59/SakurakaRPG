@@ -1,6 +1,7 @@
 #include "GameMain.h"
 #include "GameUi\PlayUi.h"
 #include "GameUi\PlayerCommentUI.h"
+#include "GameUi\DefaultStateUI.h"
 
 #include "..\Input\Gamepad.h"
 
@@ -67,10 +68,15 @@ bool GameMain::init()
 	this->_play_comment_ui_obj = new PlayerCommentUI();
 	this->addChild(this->_play_comment_ui_obj);
 
-	this->_play_ui_obj = new PlayUi(this->_play_comment_ui_obj, this->_KEYBORD_EVENT);
+	this->_play_ui_obj = new PlayUi(this->_play_comment_ui_obj);
 	this->addChild(this->_play_ui_obj);
 
+	CharaPlayer* player_obj = this->_play_ui_obj->getCharaPlayerObj();
 
+	this->_default_state_ui = new DefaultStateUI(player_obj);
+//	this->_default_state_ui->setPosition(0, 0);
+
+	this->addChild(this->_default_state_ui);
 
 //	this->_test_ui_obj = new UiBase();
 //	this->addChild(this->_test_ui_obj);
@@ -139,6 +145,7 @@ void GameMain::update(float delta) {
 	Gamepad::updateInit();
 	
 	this->_play_ui_obj->Update();
+	this->_default_state_ui->Update();
 
 	
 //	Gamepad::test_button = new GamepadButton(0x43);

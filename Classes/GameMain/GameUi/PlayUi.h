@@ -38,8 +38,8 @@ public: SkillList* _skill_list;
 private: MapBase* _map_obj;
 private: std::unordered_map<int, MapObjectList*> _map_obj_line_list;
 
-public: PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* KEYBORD_EVENT);
+public: PlayUi(PlayerCommentUI* comment_ui_obj);
 public: void Update();
 private: void PlayUi::checkHitMapObject(CharaBase* chara_obj);
-
+public: CharaPlayer* getCharaPlayerObj();
 };

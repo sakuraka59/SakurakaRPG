@@ -17,7 +17,7 @@ private: int _comment_delay_count = 0;
 private: cocos2d::Sprite* _test_sprite;
 private: CharaCommentList* _comment_list;
 
-public: CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, std::list<CharaBase*> *all_chara_list, std::list<MagicBase*> magic_list, ShadowObjectList* shadow_list);
+public: CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, std::list<CharaBase*>* all_chara_list, std::list<MagicBase*>* magic_list, ShadowObjectList* shadow_list);
 
 // update ---------------------------------------------------
 protected: void mainUpdate() override;

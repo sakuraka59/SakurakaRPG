@@ -234,6 +234,12 @@
     <ClCompile Include="..\Classes\GameMain\chara\CharaNpc.cpp">
       <Filter>src\GameMain\chara</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateUI.cpp">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateGauge.cpp">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -427,6 +433,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\chara\CharaNpc.h">
       <Filter>src\GameMain\chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\DefaultStateUI.h">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\DefaultStateGauge.h">
+      <Filter>src\GameMain\GameUi</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

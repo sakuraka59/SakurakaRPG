@@ -20,7 +20,7 @@
 
 using namespace cocos2d;
 
-PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* KEYBORD_EVENT) {
+PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj) {
 	// test ---------------------------------------------------------
 //	this->_test_sprite = Sprite::create("HelloWorld.png");
 //	this->_test_sprite->setPosition(new Vec2(500,0));
@@ -43,7 +43,7 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 //	this->_skill_list = new SkillList();
 
 	// プレイヤーキャラクターの宣言
-	this->_player_obj = new CharaPlayer(this->_play_camera, comment_ui_obj, &this->_chara_list, this->_magic_list, this->_shadow_list);
+	this->_player_obj = new CharaPlayer(this->_play_camera, comment_ui_obj, &this->_chara_list, &this->_magic_list, this->_shadow_list);
 	
 	this->_chara_list.push_back(this->_player_obj);
 	this->_shadow_list->setRenderObject(this->_player_obj);
@@ -60,7 +60,7 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj, cocos2d::EventListenerKeyboard* 
 
 	//if (SET_MAP_MODE == 1) {
 	for (int i = 0; i < 1; i++){
-		CharaNpc* npc_obj = new CharaNpc(400 + 50 * i, -100, this->_play_camera, &this->_chara_list, this->_magic_list, this->_shadow_list);
+		CharaNpc* npc_obj = new CharaNpc(400 + 50 * i, -100, this->_play_camera, &this->_chara_list, &this->_magic_list, this->_shadow_list);
 			
 		this->_npc_list.push_back(npc_obj);
 		this->_chara_list.push_back(npc_obj);
@@ -220,4 +220,7 @@ void PlayUi::checkHitMapObject(CharaBase* chara_obj) {
 
 	//now_block_x = chara_obj._draw_x/ GameSetting._MAP_BLOCK_WIDTH;
 
+}
+CharaPlayer* PlayUi::getCharaPlayerObj() {
+	return this->_player_obj;
 }

@@ -55,7 +55,7 @@ CharaBase::CharaBase()
 	
 	this->_label_obj = Label::createWithTTF(conf_test, this->_test_label);
 	//label_obj->setColor(Color3B::WHITE);
-	this->_label_obj->setPosition(-20, -50);
+	this->_label_obj->setPosition(-20, -70);
 	this->addChild(this->_label_obj);
 
 }
@@ -210,6 +210,9 @@ void CharaBase::updateMagicPoint() {
 // jump
 bool CharaBase::setJumpNormal(double jump_speed) {
 	// if chara of ground
+	if (this->checkActionFlag() != true) {
+		return false;
+	}
 	if (this->_draw_z <= 0) {
 		this->_draw_z = jump_speed;
 		this->_jump_speed = jump_speed;
@@ -302,7 +305,7 @@ void CharaBase::updateDraw() {
 		"x :" + std::to_string(this->_draw_x) +
 		"\n y :" + std::to_string(this->_draw_y) +
 		"\n z :" + std::to_string(this->_draw_z) +
-		"hp :" + std::to_string(this->_now_state[mainStateType::hp] / 100) +
+		"\n hp :" + std::to_string(this->_now_state[mainStateType::hp] / 100) +
 		"\n map x :" + std::to_string(this->_map_block_x) +
 		"\n map y :" + std::to_string(this->_map_block_y);
 
@@ -1087,7 +1090,7 @@ void CharaBase::sendSexualComment() {
 // set magic list
 void CharaBase::setMagicList(MagicBase* magic_obj) {
 	//this->_magic_list.Add(magic_obj);
-	this->_magic_list.push_back(magic_obj);
+	this->_magic_list->push_back(magic_obj);
 }
 // set magic list
 void CharaBase::setShadowList(MagicBase* magic_obj) {

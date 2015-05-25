@@ -42,7 +42,7 @@ protected: CharaBase* _target_enemy_chara = nullptr;
 // AI—p•Ï”
 private: bool _before_skill_flag = false;
 
-public: CharaNpc(int set_x, int set_y, GameCamera* camera_obj, std::list<CharaBase*> *all_chara_list, std::list<MagicBase*> magic_list, ShadowObjectList* shadow_list);
+public: CharaNpc(int set_x, int set_y, GameCamera* camera_obj, std::list<CharaBase*>* all_chara_list, std::list<MagicBase*>* magic_list, ShadowObjectList* shadow_list);
 protected: void setGroupList() override;
 protected: void mainUpdate() override;
 protected: void charaDownMomentDetail() override;

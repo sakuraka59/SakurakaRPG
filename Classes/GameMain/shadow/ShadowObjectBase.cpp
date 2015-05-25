@@ -13,6 +13,10 @@ ShadowObjectBase::ShadowObjectBase(RenderObject* render_obj)
 	cocos2d::Sprite* sprite_data = cocos2d::Sprite::create();
 	sprite_data->setTextureRect(rect);
 	sprite_data->setPosition(this->_SHADOW_WIDTH / 2, 0);
+
+	sprite_data->setColor(cocos2d::Color3B(0, 0, 0));
+	sprite_data->setOpacity(128);
+
 	this->addChild(sprite_data);
 }
 /*
