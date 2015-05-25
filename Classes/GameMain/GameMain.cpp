@@ -66,10 +66,11 @@ bool GameMain::init()
 	//---------------------------------------------------------------
 
 	this->_play_comment_ui_obj = new PlayerCommentUI();
-	this->addChild(this->_play_comment_ui_obj);
+
 
 	this->_play_ui_obj = new PlayUi(this->_play_comment_ui_obj);
 	this->addChild(this->_play_ui_obj);
+	
 
 	CharaPlayer* player_obj = this->_play_ui_obj->getCharaPlayerObj();
 
@@ -77,6 +78,8 @@ bool GameMain::init()
 //	this->_default_state_ui->setPosition(0, 0);
 
 	this->addChild(this->_default_state_ui);
+	
+	this->addChild(this->_play_comment_ui_obj);
 
 //	this->_test_ui_obj = new UiBase();
 //	this->addChild(this->_test_ui_obj);
@@ -143,11 +146,12 @@ void GameMain::update(float delta) {
 	// update start
 	//Gamepad::updateInit();
 	Gamepad::updateInit();
-	
+
 	this->_play_ui_obj->Update();
 	this->_default_state_ui->Update();
 
-	
+	this->_play_comment_ui_obj->Update();
+
 //	Gamepad::test_button = new GamepadButton(0x43);
 //	bool hoge = Gamepad::Circle->isPush();
 

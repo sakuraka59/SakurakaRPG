@@ -307,7 +307,8 @@ void CharaBase::updateDraw() {
 		"\n z :" + std::to_string(this->_draw_z) +
 		"\n hp :" + std::to_string(this->_now_state[mainStateType::hp] / 100) +
 		"\n map x :" + std::to_string(this->_map_block_x) +
-		"\n map y :" + std::to_string(this->_map_block_y);
+		"\n map y :" + std::to_string(this->_map_block_y) +
+		"\n ‚Ù‚°‚Ò‚æ[";
 
 	this->_label_obj->setString(this->_test_label);
 
