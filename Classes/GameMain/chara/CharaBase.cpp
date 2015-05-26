@@ -50,10 +50,10 @@ CharaBase::CharaBase()
 	*/
 
 
-	TTFConfig conf_test("fonts/arial.ttf", 16);
+//	TTFConfig conf_test("fonts/arial.ttf", 16);
 	this->_test_label = "angle: ";
 	
-	this->_label_obj = Label::createWithTTF(conf_test, this->_test_label);
+	this->_label_obj = LabelTTF::create(this->_test_label, "fonts/arial.ttf", 16);
 	//label_obj->setColor(Color3B::WHITE);
 	this->_label_obj->setPosition(-20, -70);
 	this->addChild(this->_label_obj);
@@ -308,7 +308,7 @@ void CharaBase::updateDraw() {
 		"\n hp :" + std::to_string(this->_now_state[mainStateType::hp] / 100) +
 		"\n map x :" + std::to_string(this->_map_block_x) +
 		"\n map y :" + std::to_string(this->_map_block_y) +
-		"\n ‚Ù‚°‚Ò‚æ[";
+		"\n ‚Ù‚°‚Ò‚æ[ huga";
 
 	this->_label_obj->setString(this->_test_label);
 

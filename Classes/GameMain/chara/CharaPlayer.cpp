@@ -495,7 +495,19 @@ void CharaPlayer::testAction() {
 //			this->sendComment(this->_comment_list.getComment(charaCommentType.chara_attack, charaSexualType.normal));
 		}
 	}
-
+	// コメントテスト動作
+	if (this->_control_flag == true && Gamepad::Square->isPush() == true) {
+		bool jump_flag = this->setJumpNormal(4.0);
+		if (jump_flag == true) {
+			this->sendComment("じゃ～んぷ\nじゃーんぷ！");
+		}
+	}
+	if (this->_control_flag == true && Gamepad::Triangle->isPush() == true) {
+		bool jump_flag = this->setJumpNormal(4.0);
+		if (jump_flag == true) {
+			this->sendComment("じゃ～んぷ\nじゃんぷ\nじゃ～んぷ！");
+		}
+	}
 }
 
 void CharaPlayer::setCharaMapPoint(double point_x, double point_y) {
