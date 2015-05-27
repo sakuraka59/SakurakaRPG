@@ -79,6 +79,9 @@
     <Filter Include="src\GameMain\chara\chara_seed\test_puppet">
       <UniqueIdentifier>{a551a571-c94b-4339-aa50-33bf943bb858}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\item\use_item\hp_heal">
+      <UniqueIdentifier>{ea6aeff0-5b73-43c2-8b00-64efd3da1499}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -242,6 +245,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\GameUi\PlayerComment.cpp">
       <Filter>src\GameMain\GameUi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\item\use_item\hp_heal\TestHpHeal.cpp">
+      <Filter>src\GameMain\item\use_item\hp_heal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -445,6 +451,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\GameUi\PlayerComment.h">
       <Filter>src\GameMain\GameUi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\use_item\hp_heal\TestHpHeal.h">
+      <Filter>src\GameMain\item\use_item\hp_heal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

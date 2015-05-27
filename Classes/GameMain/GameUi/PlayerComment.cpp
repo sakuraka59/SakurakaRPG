@@ -11,14 +11,14 @@ PlayerComment::PlayerComment(std::string comment)
 
 	this->_font_height = this->_FONT_SIZE + 2;
 	// 背景に１ドットのテクスチャを使用（引き伸ばしてつかう）
-	int comment_width = (text_width * this->_FONT_SIZE) / 1;// +(this->_BASE_WIDTH_MARGIN * 2);
-	int comment_height = (this->_font_height * this->_comment_line);
+	int comment_width = ((text_width * this->_FONT_SIZE) / 2) + (this->_BASE_WIDTH_MARGIN * 2);
+	int comment_height = (this->_font_height * this->_comment_line) + (this->_BASE_HEIGHT_MARGIN * 2);
 	cocos2d::Rect frame_rect = cocos2d::Rect(0, 0, comment_width, comment_height);
 	this->_base_sprite = cocos2d::Sprite::create();
 
 	this->_base_sprite->setTextureRect(frame_rect);
 //	this->_base_sprite->setColor(cocos2d::Color3B(255, 255 * 0.7, 255 * 0.8));
-	this->_base_sprite->setColor(cocos2d::Color3B(0, 0, 0));
+	this->_base_sprite->setColor(cocos2d::Color3B(0, 255, 0));
 	this->_base_sprite->setOpacity(this->_base_alpha);
 
 	this->_base_sprite->setAnchorPoint(cocos2d::Vec2(0, 0));
@@ -52,7 +52,7 @@ PlayerComment::PlayerComment(std::string comment)
 	this->_label_obj->setColor(cocos2d::Color3B::WHITE);
 	this->_label_obj->setOpacity(this->_text_alpha);
 	this->_label_obj->setAnchorPoint(cocos2d::Vec2(0.0f, 0.0f));
-	this->_label_obj->setPosition(0, 0);
+	this->_label_obj->setPosition(this->_BASE_WIDTH_MARGIN, this->_BASE_HEIGHT_MARGIN * (-1));
 	this->addChild(this->_label_obj);
 
 
@@ -67,7 +67,7 @@ PlayerComment::PlayerComment(std::string comment)
 	this->AddChild(this->_comment_label);
 	//*/
 	// 初期表示座標補正
-	this->setAnchorPoint(cocos2d::Vec2(0.0f, 0.0f));
+	this->setAnchorPoint(cocos2d::Vec2(0.0f, 1.0f));
 
 	this->_insert_move_x = comment_width;
 	this->_correct_x = comment_width - 200;
@@ -128,11 +128,12 @@ void PlayerComment::commentStartAnime() {
 	}
 	//*/
 	// 投稿直後の動作
+	
+	if (this->_insert_move_x > 0) {
+		this->_insert_move_x -= this->_BASE_MOVE_SPEED;
+	}
 	if (this->_insert_move_x < 0) {
 		this->_insert_move_x = 0;
-	}
-	else if (this->_insert_move_x > 0) {
-		this->_insert_move_x -= this->_BASE_MOVE_SPEED;
 	}
 }
 //-----------------------------------------------------------
@@ -194,8 +195,8 @@ int PlayerComment::oneLineWidth(std::string comment){
 	// データを確認する
 	//for (auto map_obj_line : this->_map_obj_line_list) {
 	for(std::string stData : stArrayData) {
-		int now_text_width = stData.size();
-
+		//int now_text_width = stData.length();
+		int now_text_width = this->getTextCount(stData);
 		if (now_text_width >= text_width) {
 			text_width = now_text_width;
 		}
@@ -203,7 +204,55 @@ int PlayerComment::oneLineWidth(std::string comment){
 	}
 	return text_width;
 }
+// 半角での文字数を返す（全角は2文字扱い
+int PlayerComment::getTextCount(std::string comment) {
+	int i = 0, iCnt = 0;
+	int break_num = comment.length();
+	while (comment[i] != '\0') {
+		iCnt++;
 
+		//-------------------
+		int iByte;
+
+		char cChar = comment[i];
+		if ((cChar >= 0x00) && (cChar <= 0x7f)) {
+			iByte = 1;
+		}
+		/*
+		else if ((cChar >= 0xc2) && (cChar <= 0xdf)) {
+			iByte = 2;
+		}
+		else if ((cChar >= 0xe0) && (cChar <= 0xef)) {
+			iByte = 3;
+		}
+		else if ((cChar >= 0xf0) && (cChar <= 0xf7)) {
+			iByte = 4;
+		}
+		else if ((cChar >= 0xf8) && (cChar <= 0xfb)) {
+			iByte = 5;
+		}
+		else if ((cChar >= 0xfc) && (cChar <= 0xfd)) {
+			iByte = 6;
+		}
+		*/
+		else {
+			// 現状日本語はマイナス値のコードを利用しているっぽい＋3バイトなのでそちらでカウント。
+			// 問題が発生した場合は適宜修正してください
+			iByte = 3;
+			iCnt++;
+		}
+		//-------------------
+		i += iByte;
+
+		if (iCnt > break_num) {
+			iCnt = 0;
+			break;
+		}
+	}
+
+
+	return iCnt;
+}
 std::list<std::string> PlayerComment::stringSplit(std::string str, std::string delim)
 {
 	std::list<std::string> result;
@@ -236,7 +285,7 @@ std::string PlayerComment::stringReplace(std::string str, std::string from, std:
 int PlayerComment::commentObjHeight() {
 //	int font_size_comment = comment_data.second->getFontHeight();
 //	int comment_line = comment_data.second->getCommentLine();
-	int obj_height = this->getFontHeight() * this->getCommentLine() + 5;
+	int obj_height = this->getFontHeight() * this->getCommentLine() + (this->_BASE_HEIGHT_MARGIN * 2) + 5;
 
 	return obj_height;
 }

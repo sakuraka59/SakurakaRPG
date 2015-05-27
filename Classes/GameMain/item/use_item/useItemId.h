@@ -1,6 +1,6 @@
 #pragma once
 enum class useItemId {
-	no_id = -1,
+	no_type = 0,
 	testHpHeal,
 
 	enum_end,

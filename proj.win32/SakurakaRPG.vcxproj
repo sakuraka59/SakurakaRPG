@@ -170,6 +170,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\item\HaveItemList.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\ItemBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\use_item\HaveUseItemList.cpp" />
+    <ClCompile Include="..\Classes\GameMain\item\use_item\hp_heal\TestHpHeal.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\use_item\UseItem.cpp" />
     <ClCompile Include="..\Classes\GameMain\magic\MagicBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\MapBase.cpp" />
@@ -235,6 +236,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\item\HaveItemList.h" />
     <ClInclude Include="..\Classes\GameMain\item\ItemBase.h" />
     <ClInclude Include="..\Classes\GameMain\item\use_item\HaveUseItemList.h" />
+    <ClInclude Include="..\Classes\GameMain\item\use_item\hp_heal\TestHpHeal.h" />
     <ClInclude Include="..\Classes\GameMain\item\use_item\UseItem.h" />
     <ClInclude Include="..\Classes\GameMain\item\use_item\useItemId.h" />
     <ClInclude Include="..\Classes\GameMain\magic\MagicBase.h" />

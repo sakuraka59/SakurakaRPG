@@ -6,9 +6,10 @@ class PlayerComment : public RenderObject{
 private: int _BASE_POSITION_X = 0;
 private: int _BASE_POSITION_Y = 0;
 
-private: int _BASE_WIDTH_MARGIN = 0;
-private: int _BASE_MOVE_SPEED = 10;	// 初期アニメーションでの右から左へ現れるアニメーション速度
-private: int _FONT_SIZE = 14;
+private: int _BASE_WIDTH_MARGIN = 5;
+private: int _BASE_HEIGHT_MARGIN = 5;
+private: int _BASE_MOVE_SPEED = 20;	// 初期アニメーションでの右から左へ現れるアニメーション速度
+private: int _FONT_SIZE = 20;
 private: int _font_height = 0;
 private: int _insert_move_x = 0;
 private: int _correct_x = 0;
@@ -48,6 +49,6 @@ public: int oneLineWidth(std::string comment);
 
 private: std::list<std::string> stringSplit(std::string str, std::string delim);
 private: std::string PlayerComment::stringReplace(std::string str, std::string from, std::string to);
-
+private: int getTextCount(std::string comment);
 public: int commentObjHeight();
 };

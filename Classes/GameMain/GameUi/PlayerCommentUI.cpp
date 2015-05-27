@@ -1,7 +1,10 @@
 #include "PlayerCommentUI.h"
 #include "PlayerComment.h"
+#include "../GAME_SETTING.h"
+
 PlayerCommentUI::PlayerCommentUI() {
 
+	/*
 	cocos2d::Rect frame_rect = cocos2d::Rect(0, 0, 100, 100);
 	cocos2d::Sprite* base_sprite = cocos2d::Sprite::create();
 
@@ -13,15 +16,15 @@ PlayerCommentUI::PlayerCommentUI() {
 	base_sprite->setAnchorPoint(*anchor_point);
 	base_sprite->setPosition(0, 0);
 	this->addChild(base_sprite);
-
-	this->setPosition(300, 500);
+	*/
+	this->setPosition(GAME_WIDTH - 202, 500);
 }
 void PlayerCommentUI::Update() {
 	
 	int now_comment_correct_y = 0;
 
 	int now_comment_line = 0;
-	int FONT_SIZE = 14;
+//	int FONT_SIZE = 14;
 	// 一度、コメントすべてのライン数を取得する
 	for (auto comment_data : this->_comment_list) {
 
@@ -31,8 +34,6 @@ void PlayerCommentUI::Update() {
 	}
 //	now_comment_correct_y = ((5 + 16) * this->_comment_count) + (14 * now_comment_line);
 //	now_comment_correct_y = FONT_SIZE * now_comment_line;
-	int hoge = FONT_SIZE * now_comment_line;
-	int piyo = 1;
 	for(auto comment_data : this->_comment_list) {
 
 		if (comment_data.second->getBreakFlag() == true) {

@@ -13,6 +13,9 @@
 
 #include "../GameUi/PlayerCommentUI.h"
 
+#include "../item/use_item/useItemId.h"
+#include "../item/use_item/HaveUseItemList.h"
+
 CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, std::list<CharaBase*>* all_chara_list, std::list<MagicBase*>* magic_list, ShadowObjectList* shadow_list)
 {
 	//this->_skill_list = skill_list;
@@ -484,7 +487,7 @@ void CharaPlayer::testAction() {
 	if (this->_control_flag == true && Gamepad::Cross->isPush() == true) {
 		bool jump_flag = this->setJumpNormal(4.0);
 		if (jump_flag == true) {
-			this->sendComment("じゃ～んぷ");
+			this->sendComment("abcdefghijklmnopqrstuvwxyz");
 		}
 	}
 	// keybord to D
@@ -495,17 +498,17 @@ void CharaPlayer::testAction() {
 //			this->sendComment(this->_comment_list.getComment(charaCommentType.chara_attack, charaSexualType.normal));
 		}
 	}
-	// コメントテスト動作
+	
 	if (this->_control_flag == true && Gamepad::Square->isPush() == true) {
-		bool jump_flag = this->setJumpNormal(4.0);
-		if (jump_flag == true) {
-			this->sendComment("じゃ～んぷ\nじゃーんぷ！");
-		}
+		
 	}
 	if (this->_control_flag == true && Gamepad::Triangle->isPush() == true) {
-		bool jump_flag = this->setJumpNormal(4.0);
-		if (jump_flag == true) {
-			this->sendComment("じゃ～んぷ\nじゃんぷ\nじゃ～んぷ！");
+
+		bool use_item_flag = this->_use_item_list->itemUse(useItemId::testHpHeal);
+		if (use_item_flag == true) {
+			this->sendComment("もぐもぐ…");
+		} else {
+			this->sendComment("アイテム切れだよ…");
 		}
 	}
 }

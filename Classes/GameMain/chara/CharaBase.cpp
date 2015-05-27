@@ -24,7 +24,7 @@ using namespace cocos2d;
 CharaBase::CharaBase()
 {
 	this->_use_item_list = new HaveUseItemList(this);
-	this->_use_item_list->autorelease();
+//	this->_use_item_list->autorelease();
 	this->_equip_item_list = new HaveEquipItemList(this);
 	this->_state_list = new StateList(this);
 	this->_set_now_skill = nullptr;
