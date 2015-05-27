@@ -77,6 +77,7 @@ void SkillBase::Update() {	//virtual
 
 	if (this->_delete_flag == true) {
 		// delete this object
+		int hoge = 1;
 	}
 
 }

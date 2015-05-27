@@ -81,6 +81,7 @@ void CharaBase::Update() {
 			this->_set_now_skill = nullptr;
 			this->_set_now_skill = nullptr;
 			*/
+			this->_set_now_skill = nullptr;
 		}
 	}
 }

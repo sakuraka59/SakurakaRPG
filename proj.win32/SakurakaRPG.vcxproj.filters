@@ -82,6 +82,9 @@
     <Filter Include="src\GameMain\item\use_item\hp_heal">
       <UniqueIdentifier>{ea6aeff0-5b73-43c2-8b00-64efd3da1499}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\skill\hp_heal">
+      <UniqueIdentifier>{ae2fbd95-5916-4407-986c-02665413fe29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -248,6 +251,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\item\use_item\hp_heal\TestHpHeal.cpp">
       <Filter>src\GameMain\item\use_item\hp_heal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\skill_type\SkillMyself.cpp">
+      <Filter>src\GameMain\skill\skill_type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\hp_heal\TestHeal.cpp">
+      <Filter>src\GameMain\skill\hp_heal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -454,6 +463,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\item\use_item\hp_heal\TestHpHeal.h">
       <Filter>src\GameMain\item\use_item\hp_heal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\skill_type\SkillMyself.h">
+      <Filter>src\GameMain\skill\skill_type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\hp_heal\TestHeal.h">
+      <Filter>src\GameMain\skill\hp_heal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

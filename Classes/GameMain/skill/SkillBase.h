@@ -61,7 +61,7 @@ protected: std::unordered_map<weaponType, weaponType> _sub_weapon_list;
 
 public: SkillBase(CharaBase* use_chara_obj, std::list<CharaBase*>* all_chara_list);
 public: ~SkillBase();
-public: void skillInit();
+public: virtual void skillInit();
 public: virtual void skillExtendInit();
 protected: void setSkillAttackGroup(SkillAttackGroup* skill_attack_obj);
 protected: void setSkillMove(SkillMove* skill_move_obj);
