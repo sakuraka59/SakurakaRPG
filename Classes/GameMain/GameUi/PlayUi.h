@@ -5,6 +5,8 @@
 #include "../chara/CharaBase.h"
 #include <unordered_map>
 
+using namespace std;
+
 class SeedBase;
 class GameCamera;
 class CharaPlayer;
@@ -28,9 +30,9 @@ private: GameCamera* _play_camera;
 private: CharaPlayer* _player_obj;
 
 private: RenderObject* _order_object_list;
-private: std::list<CharaNpc*> _npc_list;
-private: std::list<CharaBase*> _chara_list;
-private: std::list<MagicBase*> _magic_list;
+private: list<CharaNpc*> _npc_list;
+private: list<CharaBase*> _chara_list;
+private: list<MagicBase*> _magic_list;
 public: ShadowObjectList* _shadow_list;
 
 public: SkillList* _skill_list;

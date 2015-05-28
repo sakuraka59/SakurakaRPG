@@ -18,7 +18,7 @@ PlayerComment::PlayerComment(std::string comment)
 
 	this->_base_sprite->setTextureRect(frame_rect);
 //	this->_base_sprite->setColor(cocos2d::Color3B(255, 255 * 0.7, 255 * 0.8));
-	this->_base_sprite->setColor(cocos2d::Color3B(0, 255, 0));
+	this->_base_sprite->setColor(cocos2d::Color3B(0, 0, 255));
 	this->_base_sprite->setOpacity(this->_base_alpha);
 
 	this->_base_sprite->setAnchorPoint(cocos2d::Vec2(0, 0));

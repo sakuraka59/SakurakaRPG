@@ -85,6 +85,15 @@
     <Filter Include="src\GameMain\skill\hp_heal">
       <UniqueIdentifier>{ae2fbd95-5916-4407-986c-02665413fe29}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\skill\magic">
+      <UniqueIdentifier>{06ab24a6-fba6-4d35-8aed-0cb3ebfa4d80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\skill\magic\normal">
+      <UniqueIdentifier>{f6f9759a-7495-4e16-a925-6b3d27bcfa56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\skill\magic\magic_type">
+      <UniqueIdentifier>{17366c19-9052-4224-82a0-e22bbd69fdd9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -257,6 +266,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\skill\hp_heal\TestHeal.cpp">
       <Filter>src\GameMain\skill\hp_heal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\skill_type\SkillMagic.cpp">
+      <Filter>src\GameMain\skill\skill_type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\SkillMagicSpell.cpp">
+      <Filter>src\GameMain\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\magic\magic_type\MagicShot.cpp">
+      <Filter>src\GameMain\skill\magic\magic_type</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -469,6 +487,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\skill\hp_heal\TestHeal.h">
       <Filter>src\GameMain\skill\hp_heal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\skill_type\SkillMagic.h">
+      <Filter>src\GameMain\skill\skill_type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\SkillMagicSpell.h">
+      <Filter>src\GameMain\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\magic\normal\TestShot.h">
+      <Filter>src\GameMain\skill\magic\normal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\magic\magic_type\MagicShot.h">
+      <Filter>src\GameMain\skill\magic\magic_type</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
