@@ -94,6 +94,9 @@
     <Filter Include="src\GameMain\skill\magic\magic_type">
       <UniqueIdentifier>{17366c19-9052-4224-82a0-e22bbd69fdd9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\magic\normal">
+      <UniqueIdentifier>{cba13175-85cf-43e3-8237-70ccc41c5e35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -275,6 +278,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\skill\magic\magic_type\MagicShot.cpp">
       <Filter>src\GameMain\skill\magic\magic_type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\magic\normal\TestMagicShot.cpp">
+      <Filter>src\GameMain\magic\normal</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -499,6 +505,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\skill\magic\magic_type\MagicShot.h">
       <Filter>src\GameMain\skill\magic\magic_type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\magic\normal\TestMagicShot.h">
+      <Filter>src\GameMain\magic\normal</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -13,11 +13,13 @@
 #include "../map/MapObjectList.h"
 #include "../map/MapObjectBase.h"
 
+#include "../magic/MagicBase.h"
+
 #include "../hit/HitCheck.h"
 #include "../hit/HitCircle.h"
 #include "../hit/HitSquare.h"
 
-
+using namespace std;
 using namespace cocos2d;
 
 PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj) {
@@ -145,13 +147,49 @@ void PlayUi::Update(){
 	this->_player_obj->updateCamera();
 	this->_play_camera->Update();
 
-	// 描画更新
+	// キャラクター更新
 	for (std::list<CharaBase*>::iterator chara_iterator = this->_chara_list.begin(); chara_iterator != this->_chara_list.end(); chara_iterator++) {
 		CharaBase* chara_obj = *chara_iterator;
 		this->_order_object_list->reorderChild(chara_obj, (int)chara_obj->getDrawY() * (-1));
 		chara_obj->updateDraw();
 	}
 
+
+	// 魔法の更新処理 -----------------------------------------
+	list<MagicBase*> delete_magic_list;
+
+	for(MagicBase* magic_obj : this->_magic_list) {
+		//Debug.WriteLine("[PlayUI]test:"+ hoge);
+		if (magic_obj->getOrderSetFlag() == false) {
+			this->_order_object_list->addChild(magic_obj, (int)magic_obj->getDrawY() * (-1));
+			magic_obj->setOrderSetFlag();
+		}
+
+		magic_obj->Update();
+		if (magic_obj->getRemoveFlag() == true) {
+
+
+			// ループ内で元リストから削除するとエラー発生するので、削除処理は別に行う
+			delete_magic_list.push_back(magic_obj);
+			//					this._order_object_list.RemoveChild(magic_obj, true);
+			//					this._magic_list.Remove(magic_obj);
+		}
+		else {
+			this->_order_object_list->reorderChild(magic_obj, (int)magic_obj->getDrawY() * (-1));
+			
+			//this->checkHitMagic(magic_obj, delete_magic_list);
+		}
+
+	}
+	// 削除リストに入った魔法を削除する
+	/*
+	foreach(MagicBase magic_obj in delete_magic_list) {
+		this._order_object_list.RemoveChild(magic_obj, true);
+		this._shadow_list.removeRenderObject(magic_obj);
+		this._magic_list.Remove(magic_obj);
+		//Debug.WriteLine("[PlayUI]delete_magle "+magic_obj.GetType());
+	}
+	*/
 
 	// 影描画する
 	this->_shadow_list->Update();

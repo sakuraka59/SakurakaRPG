@@ -4,12 +4,13 @@
 #include "../GameCamera.h"
 #include "../GAME_SETTING.h"
 
-MagicBase::MagicBase(CharaBase* chara_obj, cocos2d::Vec2* sprite_vector, GameCamera* camera_obj, int draw_x, int draw_y, int draw_z, double angle) {
+MagicBase::MagicBase(CharaBase* chara_obj, int draw_x, int draw_y, int draw_z, double angle) {
 
 	// 各種魔法ごとの初期設定を行う
-	this->magicInit();
+	// C#と違い、コンストラクタ
+//	this->magicInit();
 
-	this->_camera_obj = camera_obj;
+//	this->_camera_obj = camera_obj;
 	// 誰が放った魔法か
 	this->_chara_obj = chara_obj;
 
@@ -30,6 +31,8 @@ MagicBase::MagicBase(CharaBase* chara_obj, cocos2d::Vec2* sprite_vector, GameCam
 	// draw point
 	this->_before_x = (int)(this->_draw_x - (this->_width / 2));
 	this->_before_y = (int)((this->_draw_y + this->_draw_z) );
+	this->setPosition(((float)this->_before_x), ((float)this->_before_y));
+
 //	this->_before_x = (int)(this->_draw_x - this->_camera_obj->getCameraX() - (this->_width / 2));
 //	this->_before_y = (int)((this->_draw_y + this->_draw_z) - this->_camera_obj->getCameraY());
 
@@ -134,4 +137,11 @@ float MagicBase::getDrawPositionY() {
 
 double MagicBase::getHitHeight() {
 	return this->_hit_height;
+}
+
+bool MagicBase::getOrderSetFlag() {
+	return this->_order_set_flag;
+}
+void MagicBase::setOrderSetFlag() {
+	this->_order_set_flag = true;
 }

@@ -9,12 +9,14 @@
 
 #include "../../Input/Gamepad.h"
 
-#include "../skill/weapon_skill/no_weapon/NoWeaponDefault.h"
-
 #include "../GameUi/PlayerCommentUI.h"
 
 #include "../item/use_item/useItemId.h"
 #include "../item/use_item/HaveUseItemList.h"
+
+// スキルテスト
+#include "../skill/weapon_skill/no_weapon/NoWeaponDefault.h"
+#include "../skill/magic/normal/TestShot.h"
 
 CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, std::list<CharaBase*>* all_chara_list, std::list<MagicBase*>* magic_list, ShadowObjectList* shadow_list)
 {
@@ -486,9 +488,11 @@ void CharaPlayer::testAction() {
 	// テスト動作
 	if (this->_control_flag == true && Gamepad::Cross->isPush() == true) {
 		bool jump_flag = this->setJumpNormal(4.0);
+		/*
 		if (jump_flag == true) {
-			this->sendComment("abcdefghijklmnopqrstuvwxyz");
+			this->sendComment("じゃ～んぷ");
 		}
+		*/
 	}
 	// keybord to D
 	if (this->_control_flag == true && Gamepad::Circle->isPush() == true) {
@@ -500,16 +504,17 @@ void CharaPlayer::testAction() {
 	}
 	
 	if (this->_control_flag == true && Gamepad::Square->isPush() == true) {
-		
-	}
-	if (this->_control_flag == true && Gamepad::Triangle->isPush() == true) {
-
 		bool use_item_flag = this->_use_item_list->itemUse(useItemId::testHpHeal);
 		if (use_item_flag == true) {
 			this->sendComment("もぐもぐ…");
-		} else {
+		}
+		else {
 			this->sendComment("アイテム切れだよ…");
 		}
+	}
+	if (this->_control_flag == true && Gamepad::Triangle->isPush() == true) {
+		bool attack_flag = this->setSkill(new TestShot(this, this->_all_chara_list));
+		
 	}
 }
 

@@ -29,6 +29,7 @@ private: int _before_x = 0;
 private: int _before_y = 0;
 private: bool _draw_flag = true;
 
+private: bool _order_set_flag = false;
 private: bool _remove_flag = false;
 
 //private SpriteTile _object_sprite;
@@ -37,9 +38,10 @@ private: bool _remove_flag = false;
 // hit check to correct
 protected: double _hit_height = 0;
 
-public: MagicBase(CharaBase* chara_obj, cocos2d::Vec2* sprite_vector, GameCamera* camera_obj, int draw_x, int draw_y, int draw_z, double angle);
+public: MagicBase(CharaBase* chara_obj, int draw_x, int draw_y, int draw_z, double angle);
 
-protected: virtual void magicInit();
+
+public: virtual void magicInit();
 public: void Update();
 private: void drawUpdate();
 protected: virtual void UpdateDetail();
@@ -52,4 +54,7 @@ public: void hitCharaDamage(CharaBase* hit_chara_obj);
 public: float getDrawPositionX() override;
 public: float getDrawPositionY() override;
 public: double getHitHeight();
+
+public: bool getOrderSetFlag();
+public: void setOrderSetFlag();
 };

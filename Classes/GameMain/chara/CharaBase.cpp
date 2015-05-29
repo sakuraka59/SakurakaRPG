@@ -14,6 +14,7 @@
 #include "../item/equip_item/weapon/WeaponBase.h"
 
 #include "../skill/SkillBase.h"
+#include "../magic/MagicBase.h"
 
 #include "../shadow/ShadowObjectList.h"
 
@@ -1093,6 +1094,7 @@ void CharaBase::sendSexualComment() {
 void CharaBase::setMagicList(MagicBase* magic_obj) {
 	//this->_magic_list.Add(magic_obj);
 	this->_magic_list->push_back(magic_obj);
+	magic_obj->magicInit();
 }
 // set magic list
 void CharaBase::setShadowList(MagicBase* magic_obj) {

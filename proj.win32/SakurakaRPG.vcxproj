@@ -173,6 +173,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\item\use_item\hp_heal\TestHpHeal.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\use_item\UseItem.cpp" />
     <ClCompile Include="..\Classes\GameMain\magic\MagicBase.cpp" />
+    <ClCompile Include="..\Classes\GameMain\magic\normal\TestMagicShot.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\MapBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\MapGroundBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\MapGroundList.cpp" />
@@ -245,6 +246,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\item\use_item\UseItem.h" />
     <ClInclude Include="..\Classes\GameMain\item\use_item\useItemId.h" />
     <ClInclude Include="..\Classes\GameMain\magic\MagicBase.h" />
+    <ClInclude Include="..\Classes\GameMain\magic\normal\TestMagicShot.h" />
     <ClInclude Include="..\Classes\GameMain\map\RandomDungeonRoom.h" />
     <ClInclude Include="..\Classes\GameMain\map\RandomDungeonSetting.h" />
     <ClInclude Include="..\Classes\GameMain\map\MapBase.h" />
