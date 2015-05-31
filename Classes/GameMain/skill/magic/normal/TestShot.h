@@ -13,7 +13,7 @@ public: TestShot(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list) : M
 		//	this._in_air_flag = true;
 
 		// Á”ïSP
-		this->_use_sp = 200;
+		this->_use_sp = 50;
 
 		// ‰r¥•K—vŽžŠÔ
 		this->_starting_magic_frame = 60;
@@ -33,7 +33,7 @@ public: TestShot(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list) : M
 
 
 		//this->_magic_active_obj
-		this->_magic_active_obj = new TestMagicShot(this->_use_chara_obj, this->_use_chara_obj->getDrawX(), this->_use_chara_obj->getDrawY(), this->_use_chara_obj->getDrawZ(), this->_use_chara_obj->getMoveAngle());
+		this->_magic_active_obj = new TestMagicShot(this->_use_chara_obj);
 		
 	}
 };

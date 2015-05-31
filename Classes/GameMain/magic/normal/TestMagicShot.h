@@ -2,8 +2,8 @@
 #include "../MagicBase.h"
 
 class TestMagicShot : public MagicBase {
-public: TestMagicShot(CharaBase* chara_obj, int draw_x, int draw_y, int draw_z, double angle);
+public: TestMagicShot(CharaBase* chara_obj);
 
-public: void magicInit() override;
+public: void magicInitExtend() override;
 protected: void UpdateDetail() override;
 };

@@ -1,4 +1,5 @@
 #include "EquipItem.h"
+#include "../../chara/CharaBase.h"
 
 using namespace std;
 EquipItem::EquipItem(CharaBase* chara_obj) : ItemBase (chara_obj) {
@@ -32,10 +33,10 @@ bool EquipItem::useItem(){
 	if (this->checkExtendEquipItem() != true) {
 		return false;
 	}
-//	this->_chara_obj.setEquipItem(this._item_type, this, this._state_default_list);
+	this->_chara_obj->setEquipItem(this->_item_type, this, this->_state_default_list);
 
 
-//	this.releaseEquipChain();
+	this->releaseEquipChain();
 	return true;
 }
 unordered_map<mainStateType, int> EquipItem::getItemState() {

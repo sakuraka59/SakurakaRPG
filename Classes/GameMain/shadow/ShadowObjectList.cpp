@@ -24,12 +24,15 @@ void ShadowObjectList::setRenderObject(RenderObject* render_obj){
 }
 void ShadowObjectList::removeRenderObject(RenderObject* render_obj) {
 
-	if (this->_shadow_obj_list[render_obj] == nullptr) {
+	if (this->_shadow_obj_list[render_obj] != nullptr) {
 		//this._object_sprite_list.RemoveChild(this._shadow_obj_list[render_obj].getObjectSprite(), true);
 		//this._shadow_obj_list.Remove(render_obj);
 		this->removeChild(this->_shadow_obj_list[render_obj]);
 		delete this->_shadow_obj_list[render_obj];
+
+		
 		//this->_shadow_obj_list[render_obj] = nullptr;
+		this->_shadow_obj_list.erase(render_obj);
 	}
 }
 void ShadowObjectList::Update() {
@@ -40,6 +43,12 @@ void ShadowObjectList::Update() {
 
 	}
 	*/
+
+
+	for (auto shadow_obj : this->_shadow_obj_list) {
+		shadow_obj.second->Update();
+	}
+	/*
 	for (std::unordered_map<RenderObject*, ShadowObjectBase*>::iterator shadow_itr = this->_shadow_obj_list.begin(); shadow_itr != this->_shadow_obj_list.end(); shadow_itr++) {
 		this->_shadow_obj_list[shadow_itr->first]->Update();
 
@@ -49,4 +58,5 @@ void ShadowObjectList::Update() {
 		//this->_shadow_obj_list->addChild(this->_shadow_obj_list[map_obj_iterator->first], this->_shadow_obj_list[map_obj_iterator->first]->getDrawY() * (-1));
 
 	}
+	*/
 }

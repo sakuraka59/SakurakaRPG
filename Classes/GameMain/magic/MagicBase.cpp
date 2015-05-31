@@ -3,8 +3,9 @@
 #include "../chara/CharaBase.h"
 #include "../GameCamera.h"
 #include "../GAME_SETTING.h"
+#include "../shadow/ShadowObjectList.h"
 
-MagicBase::MagicBase(CharaBase* chara_obj, int draw_x, int draw_y, int draw_z, double angle) {
+MagicBase::MagicBase(CharaBase* chara_obj) {
 
 	// 各種魔法ごとの初期設定を行う
 	// C#と違い、コンストラクタ
@@ -14,10 +15,6 @@ MagicBase::MagicBase(CharaBase* chara_obj, int draw_x, int draw_y, int draw_z, d
 	// 誰が放った魔法か
 	this->_chara_obj = chara_obj;
 
-	this->_draw_x = draw_x;
-	this->_draw_y = draw_y;
-	this->_draw_z = draw_z;
-	this->_angle = angle;
 
 
 //	this->_object_sprite = new SpriteTile(){ TextureInfo = this->_texture_info };
@@ -28,10 +25,19 @@ MagicBase::MagicBase(CharaBase* chara_obj, int draw_x, int draw_y, int draw_z, d
 //	this.AddChild(this._object_sprite);
 
 
+	/*
+	this->_draw_x = draw_x;
+	this->_draw_y = draw_y;
+	this->_draw_z = draw_z;
+	this->_angle = angle;
+
 	// draw point
 	this->_before_x = (int)(this->_draw_x - (this->_width / 2));
 	this->_before_y = (int)((this->_draw_y + this->_draw_z) );
-	this->setPosition(((float)this->_before_x), ((float)this->_before_y));
+	*/
+
+
+//	this->setPosition(((float)this->_before_x), ((float)this->_before_y));
 
 //	this->_before_x = (int)(this->_draw_x - this->_camera_obj->getCameraX() - (this->_width / 2));
 //	this->_before_y = (int)((this->_draw_y + this->_draw_z) - this->_camera_obj->getCameraY());
@@ -44,20 +50,44 @@ MagicBase::MagicBase(CharaBase* chara_obj, int draw_x, int draw_y, int draw_z, d
 		);
 */
 //	chara_obj->setShadowList(this);
-}
-void MagicBase::magicInit() {
-}
 
+}
+void MagicBase::magicInit(int draw_x, int draw_y, int draw_z, double angle) {
+	this->_draw_x = draw_x;
+	this->_draw_y = draw_y;
+	this->_draw_z = draw_z;
+	this->_angle = angle;
+
+	this->_before_x = (int)(this->_draw_x - (this->_width / 2));
+	this->_before_y = (int)((this->_draw_y + this->_draw_z));
+
+	this->magicInitExtend();
+}
+void MagicBase::magicInitExtend() {
+}
 void MagicBase::Update() {
 	if (this->_frame_time <= 0) {
-		this->_remove_flag = true;
-		return;
+		// 影を消す準備
+		this->_shadow_remove_flag = true;
+
+		// 演出が完全終了した場合、オブジェクト破棄の準備をする
+		if (this->_frame_end_time <= 0) {
+			this->_remove_flag = true;
+			return;
+		}
+		
+		
 	}
 
-	this->UpdateDetail();
 
-	this->drawUpdate();
-	this->_frame_time--;
+
+	if (this->_frame_time > 0 && this->_shadow_flag == true) {
+		this->UpdateDetail();
+		this->drawUpdate();
+		this->_frame_time--;
+	} else {
+		this->_frame_end_time--;
+	}
 }
 
 void MagicBase::drawUpdate() {
@@ -86,6 +116,9 @@ void MagicBase::drawUpdate() {
 			}
 		}
 		*/
+
+//		this->setPosition(set_x, set_y);
+		this->_test_particle->setPosition(set_x + this->_particle_width, set_y + this->_particle_height);
 		this->_before_x = (int)(this->_draw_x);
 		this->_before_y = (int)(this->_draw_y);
 
@@ -144,4 +177,14 @@ bool MagicBase::getOrderSetFlag() {
 }
 void MagicBase::setOrderSetFlag() {
 	this->_order_set_flag = true;
+}
+
+bool MagicBase::getShadowRemoveFlag() {
+	return this->_shadow_remove_flag;
+}
+void MagicBase::removeShadow(ShadowObjectList* shadow_list) {
+	if (this->_shadow_flag == true) {
+		this->_shadow_flag = false;
+		shadow_list->removeRenderObject(this);
+	}
 }

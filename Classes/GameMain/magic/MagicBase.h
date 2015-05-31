@@ -6,8 +6,15 @@
 class CharaBase;
 class HitCircle;
 class GameCamera;
+class ShadowObjectList;
 
 class MagicBase : public RenderObject {
+
+
+// treste
+protected: cocos2d::ParticleSystemQuad* _test_particle;
+protected: int _particle_width = 0;
+protected: int _particle_height = 0;
 
 // move angle
 protected: double _angle = -1;
@@ -15,6 +22,7 @@ protected: double _move_speed = 0;
 
 // 0 = object delete
 protected: int _frame_time = 0;
+protected: int _frame_end_time = 0;
 
 protected: int _width = 0;
 protected: int _height = 0;
@@ -31,6 +39,8 @@ private: bool _draw_flag = true;
 
 private: bool _order_set_flag = false;
 private: bool _remove_flag = false;
+private: bool _shadow_flag = true;
+private: bool _shadow_remove_flag = false;
 
 //private SpriteTile _object_sprite;
 //protected TextureInfo _texture_info;
@@ -38,10 +48,12 @@ private: bool _remove_flag = false;
 // hit check to correct
 protected: double _hit_height = 0;
 
-public: MagicBase(CharaBase* chara_obj, int draw_x, int draw_y, int draw_z, double angle);
+public: MagicBase(CharaBase* chara_obj);
 
 
-public: virtual void magicInit();
+public: void magicInit(int draw_x, int draw_y, int draw_z, double angle);
+public: virtual void magicInitExtend();
+
 public: void Update();
 private: void drawUpdate();
 protected: virtual void UpdateDetail();
@@ -57,4 +69,7 @@ public: double getHitHeight();
 
 public: bool getOrderSetFlag();
 public: void setOrderSetFlag();
+
+public: bool getShadowRemoveFlag();
+public: void removeShadow(ShadowObjectList* shadow_list);
 };

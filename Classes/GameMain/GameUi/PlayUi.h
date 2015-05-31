@@ -43,5 +43,7 @@ private: std::unordered_map<int, MapObjectList*> _map_obj_line_list;
 public: PlayUi(PlayerCommentUI* comment_ui_obj);
 public: void Update();
 private: void PlayUi::checkHitMapObject(CharaBase* chara_obj);
+private: void checkHitMagic(MagicBase* magic_obj, std::list<MagicBase*>* delete_magic_list);
+private: bool PlayUi::checkHeightHit(MagicBase* magic_obj, CharaBase* check_chara_obj);
 public: CharaPlayer* getCharaPlayerObj();
 };

@@ -14,6 +14,8 @@
 #include "../item/use_item/useItemId.h"
 #include "../item/use_item/HaveUseItemList.h"
 
+#include "../item/equip_item/HaveEquipItemList.h"
+
 // スキルテスト
 #include "../skill/weapon_skill/no_weapon/NoWeaponDefault.h"
 #include "../skill/magic/normal/TestShot.h"
@@ -488,11 +490,11 @@ void CharaPlayer::testAction() {
 	// テスト動作
 	if (this->_control_flag == true && Gamepad::Cross->isPush() == true) {
 		bool jump_flag = this->setJumpNormal(4.0);
-		/*
+		
 		if (jump_flag == true) {
 			this->sendComment("じゃ～んぷ");
 		}
-		*/
+		
 	}
 	// keybord to D
 	if (this->_control_flag == true && Gamepad::Circle->isPush() == true) {
@@ -515,6 +517,12 @@ void CharaPlayer::testAction() {
 	if (this->_control_flag == true && Gamepad::Triangle->isPush() == true) {
 		bool attack_flag = this->setSkill(new TestShot(this, this->_all_chara_list));
 		
+	}
+
+	if (this->_control_flag == true && Gamepad::L1->isPush() == true) {
+
+		this->sendComment("剣装備なう");
+		this->_equip_item_list->itemUse(0);
 	}
 }
 

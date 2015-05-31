@@ -97,6 +97,9 @@
     <Filter Include="src\GameMain\magic\normal">
       <UniqueIdentifier>{cba13175-85cf-43e3-8237-70ccc41c5e35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\item\equip_item\weapon\sword">
+      <UniqueIdentifier>{f3e35ee0-7a19-4f3b-ad42-abf074efb19d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -281,6 +284,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\magic\normal\TestMagicShot.cpp">
       <Filter>src\GameMain\magic\normal</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\sword\WeaponSwordBase.cpp">
+      <Filter>src\GameMain\item\equip_item\weapon\sword</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\sword\TestSword.cpp">
+      <Filter>src\GameMain\item\equip_item\weapon\sword</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -508,6 +517,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\magic\normal\TestMagicShot.h">
       <Filter>src\GameMain\magic\normal</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\sword\WeaponSwordBase.h">
+      <Filter>src\GameMain\item\equip_item\weapon\sword</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\sword\TestSword.h">
+      <Filter>src\GameMain\item\equip_item\weapon\sword</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

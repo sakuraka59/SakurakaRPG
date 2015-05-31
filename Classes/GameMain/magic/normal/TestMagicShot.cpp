@@ -2,34 +2,45 @@
 #include "../../hit/HitCircle.h"
 #include <math.h>
 
-TestMagicShot::TestMagicShot(CharaBase* chara_obj, int draw_x, int draw_y, int draw_z, double angle)
-	: MagicBase(chara_obj, draw_x, draw_y, draw_z, angle){
+TestMagicShot::TestMagicShot(CharaBase* chara_obj)
+	: MagicBase(chara_obj){
 
 }
 
-void TestMagicShot::magicInit() {
+void TestMagicShot::magicInitExtend() {
 	// •`‰æ‚Ì€”õ
 //	this->_texture_info = ResourceManage.getTextureInfo("/Application/res/magic/magictest.png", 2, 2);
-	this->_width = 30;
-	this->_height = 30;
+	this->_width = 32;
+	this->_height = 32;
+	
+	// ‚¿‚å‚Á‚Æ•‚‚©‚¹‚é
+	this->_draw_z += 10;
 
 	// –‚–@Ž©‘Ì‚ÌÝ’è
-	this->_frame_time = 20;
+	this->_frame_time = 60;
+	this->_frame_end_time = 30;
 	this->_move_speed = 10.0;
 
 	//			this->_hit_square_obj = new HitSquare(ref this->_draw_x, ref this->_draw_y, this->_width, this->_height, ref this->_angle);
 	this->_hit_circle_obj = new HitCircle(this, this->_width / 2);
 	this->_hit_height = 16;
 
+	this->_test_particle = cocos2d::ParticleSystemQuad::create("particle/magic/normal/testShot.plist");
+//	this->_test_particle = cocos2d::ParticleSystemQuad::create("particle/magic/normal/testShot_endress.plist");
+//	this->_test_particle = cocos2d::ParticleSystemQuad::create("particle/magic/fire/fire_ball.plist");
+//	this->_test_particle = cocos2d::ParticleSystemQuad::create("particle/magic/fire/fire_ball_endress.plist");
+	
+	this->_test_particle->setPositionType(cocos2d::ParticleSystem::PositionType::RELATIVE);//ParticleSystem::PositionType::RELATIVE
 
-	cocos2d::ParticleSystemQuad* test_particle = cocos2d::ParticleSystemQuad::create("particle/magic/normal/testShot.plist");
-	test_particle->setPositionType(cocos2d::ParticleSystem::PositionType::RELATIVE);//ParticleSystem::PositionType::RELATIVE
-	//	cocos2d::Size imgSize = this->test_particle->getContentSize();
-	int particle_width = 64;
-	int particle_height = 64;
-	test_particle->setPosition((particle_width / 2), (particle_height / 2));
+	this->_particle_width = 16;
+	this->_particle_height = 16;
+//	this->_test_particle->setPosition((particle_width / 2), (particle_height / 2));
 
-	this->addChild(test_particle);
+	this->addChild(this->_test_particle);
+	// setSourcePosition
+	
+
+	
 }
 void TestMagicShot::UpdateDetail() {
 

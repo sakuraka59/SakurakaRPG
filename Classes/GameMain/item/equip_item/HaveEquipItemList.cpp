@@ -1,13 +1,14 @@
 #include "HaveEquipItemList.h"
 #include "EquipItem.h"
-
+#include "../../chara/CharaBase.h"
+#include "weapon\sword\TestSword.h"
 HaveEquipItemList::HaveEquipItemList(CharaBase* chara_obj) : HaveItemList(chara_obj) {
-	/*
+	
 	// テスト用アイテム追加
-	EquipItem item_obj = new TestSword(chara_obj);
-	int item_index = this.setListToItem(item_obj);
-	chara_obj.setWeaponTestIndex(item_index);
-
+	EquipItem* item_obj = new TestSword(chara_obj);
+	int item_index = this->setListToItem(item_obj);
+	chara_obj->setWeaponTestIndex(item_index);
+	/*
 	// テスト用アイテム追加
 	EquipItem item_obj2 = new TestSheath(chara_obj);
 	int item_index2 = this.setListToItem(item_obj2);

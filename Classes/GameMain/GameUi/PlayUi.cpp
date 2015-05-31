@@ -113,33 +113,25 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj) {
 }
 void PlayUi::Update(){
 	// マップアップデート処理
-//	if (SET_VIEW_STATE == 1) {
-		this->_map_obj->Update();
-//	}
-	
-	/*
-	for (std::unordered_map<int, MapObjectList*>::iterator map_obj_iterator = this->_map_obj_line_list.begin(); map_obj_iterator != this->_map_obj_line_list.end(); map_obj_iterator++) {
-//		std::pair<int, MapObjectList*> map_obj_line = *map_obj_iterator;
-//		this->_map_obj_line_list[map_obj_iterator->first]->Update();
-//		map_obj_line;
-		
-	}
-	// */
-	/*
-	foreach(KeyValuePair<int, Dictionary<int, MapObjectBase>> list_pair in this._map_obj_list) {
-		foreach(KeyValuePair<int, MapObjectBase> pair in list_pair.Value) {
-			pair.Value.Update();
-		}
-	}
-	*/
+
+	this->_map_obj->Update();
+
+
+
 	// キャラクターのアップデート処理
+	for (CharaBase* chara_obj : this->_chara_list) {
+		chara_obj->Update();
+		// マップオブジェクトとの当たり判定
+		this->checkHitMapObject(chara_obj);
+	}
+	/*
 	for (std::list<CharaBase*>::iterator chara_iterator = this->_chara_list.begin(); chara_iterator != this->_chara_list.end(); chara_iterator++) {
 		CharaBase* chara_obj = *chara_iterator;
 		chara_obj->Update();
 		// マップオブジェクトとの当たり判定
 		this->checkHitMapObject(chara_obj);
 	}
-
+	*/
 	// 魔法更新
 
 	// スキルあたり判定
@@ -147,13 +139,18 @@ void PlayUi::Update(){
 	this->_player_obj->updateCamera();
 	this->_play_camera->Update();
 
-	// キャラクター更新
+	// キャラクター描画更新
+	for (CharaBase* chara_obj : this->_chara_list) {
+		this->_order_object_list->reorderChild(chara_obj, (int)chara_obj->getDrawY() * (-1));
+		chara_obj->updateDraw();
+	}
+	/*
 	for (std::list<CharaBase*>::iterator chara_iterator = this->_chara_list.begin(); chara_iterator != this->_chara_list.end(); chara_iterator++) {
 		CharaBase* chara_obj = *chara_iterator;
 		this->_order_object_list->reorderChild(chara_obj, (int)chara_obj->getDrawY() * (-1));
 		chara_obj->updateDraw();
 	}
-
+	*/
 
 	// 魔法の更新処理 -----------------------------------------
 	list<MagicBase*> delete_magic_list;
@@ -166,30 +163,32 @@ void PlayUi::Update(){
 		}
 
 		magic_obj->Update();
-		if (magic_obj->getRemoveFlag() == true) {
+		if (magic_obj->getShadowRemoveFlag() == true) {
+			magic_obj->removeShadow(this->_shadow_list);
+		}
 
+		if (magic_obj->getRemoveFlag() == true) {
 
 			// ループ内で元リストから削除するとエラー発生するので、削除処理は別に行う
 			delete_magic_list.push_back(magic_obj);
-			//					this._order_object_list.RemoveChild(magic_obj, true);
-			//					this._magic_list.Remove(magic_obj);
-		}
-		else {
+
+		} else {
 			this->_order_object_list->reorderChild(magic_obj, (int)magic_obj->getDrawY() * (-1));
 			
-			//this->checkHitMagic(magic_obj, delete_magic_list);
+			this->checkHitMagic(magic_obj, &delete_magic_list);
 		}
 
 	}
 	// 削除リストに入った魔法を削除する
-	/*
-	foreach(MagicBase magic_obj in delete_magic_list) {
-		this._order_object_list.RemoveChild(magic_obj, true);
-		this._shadow_list.removeRenderObject(magic_obj);
-		this._magic_list.Remove(magic_obj);
-		//Debug.WriteLine("[PlayUI]delete_magle "+magic_obj.GetType());
+	
+	for(MagicBase* magic_obj : delete_magic_list) {
+
+//		this->_shadow_list->removeRenderObject(magic_obj);
+		this->_order_object_list->removeChild(magic_obj, true);
+		this->_magic_list.remove(magic_obj);
+		
 	}
-	*/
+
 
 	// 影描画する
 	this->_shadow_list->Update();
@@ -203,15 +202,9 @@ void PlayUi::Update(){
 void PlayUi::checkHitMapObject(CharaBase* chara_obj) {
 
 	return;
-	//			if (chara_obj.getDrawX() != chara_obj.getBeforeX() ||
-	//			    chara_obj.getDrawY() != chara_obj.getBeforeY()) {
-	
+
 	int chara_map_x = chara_obj->getMapBlockX();
 	int chara_map_y = chara_obj->getMapBlockY();
-
-	//			HitCheck hit_check_obj = new HitCheck();
-	//			Debug.WriteLine("chara point:"+ chara_map_x+"/"+chara_map_y);
-
 
 	for (int y = -1; y < 3; y++) {
 		int check_map_y = chara_map_y + y;
@@ -224,40 +217,98 @@ void PlayUi::checkHitMapObject(CharaBase* chara_obj) {
 		for (int x = -1; x < 3; x++) {
 			int check_map_x = chara_map_x + x;
 
-			//							MapObjectBase check_map_obj = this._map_obj_line_list.getMapObject(check_map_x);
 			MapObjectBase* check_map_obj = this->_map_obj_line_list[check_map_y]->getMapObject(check_map_x);
 			if (check_map_obj == nullptr) {
-				//								Debug.WriteLine("[PlayUI]hit check "+check_map_x+":"+check_map_y);
 				continue;
 			}
 
 			
 			HitCircle* circle_obj = chara_obj->getHitCircle();
-			//*
+
 			if (check_map_obj->getHitCheckType() == 3) {
 
 				HitSquare* square_obj = check_map_obj->getHitSquare();
-				//HitCheck.checkRectAndCircle(circle_obj, square_obj);
-				//Debug.WriteLine("["+this.GetType()+"]check_chara:"+circle_obj.getRadius());
-
 
 				if (HitCheck::checkRectAndCircle(circle_obj, square_obj) == true) {
 					// 適当に戻す
 					chara_obj->setBeforeInsertDraw();
 				}
 			}
-			//*/
+		}
+	}
+}
+void PlayUi::checkHitMagic(MagicBase* magic_obj, std::list<MagicBase*>* delete_magic_list) {
+	int main_obj_map_x = magic_obj->getMapBlockX();
+	int main_obj_map_y = magic_obj->getMapBlockY();
+	HitCircle* circle_obj = magic_obj->getHitCircle();
+
+	// キャラクターとの当たり判定
+	for(CharaBase* chara_obj : this->_chara_list) {
+		// 放った本人は当たらない
+		if (magic_obj->getCharaObj() == chara_obj) {
+			continue;
+		}
+
+		// 倒した敵には当たらない
+		if (chara_obj->getDownFlag() == true) {
+			continue;
+		}
+		if (HitCheck::checkCircleAndCircle(circle_obj, chara_obj->getHitCircle()) == true &&
+			this->checkHeightHit(magic_obj, chara_obj) == true) {
+			// 当たった判定あり
+			magic_obj->hitCharaDamage(chara_obj);
+			delete_magic_list->push_back(magic_obj);
 		}
 	}
 
-	
-	//			Debug.WriteLine("------------------");
-	//			} else {
-	//				Debug.WriteLine("before no");
-	//			}
+	// オブジェクトとの当たり判定 ----------------------------------------
+	for (int y = -1; y < 3; y++) {
+		int check_map_y = main_obj_map_y + y;
 
-	//now_block_x = chara_obj._draw_x/ GameSetting._MAP_BLOCK_WIDTH;
+		if (this->_map_obj_line_list[check_map_y] == nullptr) {
+			continue;
+		}
+		for (int x = -1; x < 3; x++) {
+			int check_map_x = main_obj_map_x + x;
 
+			MapObjectBase* check_map_obj = this->_map_obj_line_list[check_map_y]->getMapObject(check_map_x);
+			if (check_map_obj == nullptr) {
+				continue;
+			}
+
+
+			HitSquare* square_obj = check_map_obj->getHitSquare();
+
+			HitCheck::checkRectAndCircle(circle_obj, square_obj);
+			// とりあえず適当に判定をもつ
+
+			//Debug.WriteLine("["+this.GetType()+"]check_magic:"+circle_obj.getRadius());
+			if (check_map_obj->getHitCheckType() == 3) {
+
+				if (HitCheck::checkRectAndCircle(circle_obj, square_obj) == true) {
+					// 当たった判定あり
+					magic_obj->removeShadow(this->_shadow_list);
+					//delete_magic_list->push_back(magic_obj);
+				}
+			}
+
+		}
+	}
+
+}
+bool PlayUi::checkHeightHit(MagicBase* magic_obj, CharaBase* check_chara_obj) {
+
+	double hit_height_base = (double)(magic_obj->getDrawZ());
+	double hit_height_top = (double)(hit_height_base + magic_obj->getHitHeight());
+	double chara_height_base = (double)(check_chara_obj->getDrawZ());
+	double chara_height_top = (double)(check_chara_obj->getDrawZ() + check_chara_obj->getHitHeight());
+
+	if (hit_height_top >= chara_height_base &&
+		hit_height_base <= chara_height_top) {
+
+		return true;
+	}
+	return false;
 }
 CharaPlayer* PlayUi::getCharaPlayerObj() {
 	return this->_player_obj;

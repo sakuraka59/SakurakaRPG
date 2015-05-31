@@ -27,7 +27,10 @@ ShadowObjectBase::SpriteTile getObjectSprite() {
 */
 void ShadowObjectBase::Update() {
 	//this->_object_sprite->Position = new cocos2d::Vec2(this->_render_obj->getDrawPositionX() - (this->_SHADOW_WIDTH / 2), this->_render_obj->getDrawPositionY() - 3);
-	this->setPosition(this->_render_obj->getDrawPositionX() - (this->_SHADOW_WIDTH / 2), this->_render_obj->getDrawPositionY() - 3);
-	
-
+	if (this != nullptr) {
+		this->setPosition(this->_render_obj->getDrawPositionX() - (this->_SHADOW_WIDTH / 2), this->_render_obj->getDrawPositionY() - 3);
+	}
+	else {
+		delete this;
+	}
 };

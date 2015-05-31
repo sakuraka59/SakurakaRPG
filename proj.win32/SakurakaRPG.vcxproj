@@ -166,6 +166,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\hit\HitSquare.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\equip_item\EquipItem.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\equip_item\HaveEquipItemList.cpp" />
+    <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\sword\TestSword.cpp" />
+    <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\sword\WeaponSwordBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\WeaponBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\HaveItemList.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\ItemBase.cpp" />
@@ -237,6 +239,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\hit\HitSquare.h" />
     <ClInclude Include="..\Classes\GameMain\item\equip_item\EquipItem.h" />
     <ClInclude Include="..\Classes\GameMain\item\equip_item\HaveEquipItemList.h" />
+    <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\sword\TestSword.h" />
+    <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\sword\WeaponSwordBase.h" />
     <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\WeaponBase.h" />
     <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\weaponType.h" />
     <ClInclude Include="..\Classes\GameMain\item\HaveItemList.h" />
