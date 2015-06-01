@@ -24,6 +24,8 @@ private: CharaPlayer* _player_obj;
 private: MapGroundList* _map_ground_obj;
 private: GameCamera* _camera_obj;
 
+private: int _map_type = 0;
+
 
 public: MapBase(GameCamera* camera_obj, CharaPlayer* player_obj);
 public: void Init();
@@ -33,6 +35,6 @@ public: void initMapObject(std::unordered_map<int, std::unordered_map<int, int>>
 public: std::unordered_map<int, MapObjectList*> getMapObjectLineList();
 
 public: void createRandomMap();
-
+public: void createMiniMap();
 public: void setCharaPoint(CharaBase* set_chara_obj);
 };

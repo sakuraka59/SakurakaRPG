@@ -106,6 +106,9 @@
     <Filter Include="src\GameMain\skill\weapon_skill\sword\SwordGale">
       <UniqueIdentifier>{4f999bea-990e-4eb0-bb9d-4ae58256a219}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\map\mini_map">
+      <UniqueIdentifier>{1be6f31d-a432-46ac-ac7e-1b185527d234}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

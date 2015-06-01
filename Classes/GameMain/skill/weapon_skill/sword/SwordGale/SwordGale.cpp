@@ -14,7 +14,7 @@ SwordGale::SwordGale(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list)
 	int attack_range = 50;
 
 	this->_set_attack_frame = 50;
-	this->_set_skill_frame = 40;
+	this->_set_skill_frame = 20;
 
 	// ‘•”õŽí§ŒÀ
 	this->_main_weapon_list[weaponType::sword] = weaponType::sword;

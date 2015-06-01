@@ -15,15 +15,14 @@ MapBase::MapBase(GameCamera* camera_obj, CharaPlayer* player_obj) {
 	
 	this->_camera_obj = camera_obj;
 	
-	// @TODO
-	// 移植中。とりあえずMAPはランダムマップにする
+
+	// ランダムマップ
 	this->createRandomMap();
 
-	/*
-	this->_map_obj_line_list[0] = new MapObjectList(0, this->_camera_obj, this->_player_obj);
-	this->_map_obj_line_list[0]->setObject(0);
-	//*/
-	int hoge = 1;
+	// 固定ミニマップ
+//	this->createMiniMap();
+
+	// ワールドマップ
 }
 void MapBase::Init() {
 	this->_map_ground_obj->Init();
@@ -105,8 +104,11 @@ void MapBase::initMapObject(std::unordered_map<int, std::unordered_map<int, int>
 std::unordered_map<int, MapObjectList*> MapBase::getMapObjectLineList() {
 	return this->_map_obj_line_list;
 }
-
+//-------------------------------------------------------------------
+//	ランダムマップを作成
+//-------------------------------------------------------------------
 void MapBase::createRandomMap() {
+	this->_map_type = 1;
 	RandomDungeon* get_dungeon_obj = new RandomDungeon();
 	this->_map_ground_obj = new MapGroundList(this->_camera_obj, get_dungeon_obj->getMapData(), 1, this->_player_obj);
 	/*
@@ -116,69 +118,23 @@ void MapBase::createRandomMap() {
 
 	this->addChild(this->_map_ground_obj);
 
-
 	// map obj ----------------------------------------------
 	this->initMapObject(get_dungeon_obj->getMapData());
 
-	
-	// test object
-	//*
-	//	TextureInfo test_texture_info = ResourceManage.getTextureInfo("/Application/res/Objects.png", 7, 3);
-
-
-
-	if (SET_MAP_MODE == 1) {
-		// @TODO 一度コメントアウト
-		// オブジェクトテストを行うときに戻すとよい
-		/*
-		for (int y = 0; y < 16; y++){
-		int set_y = (int)((int)FMath.Floor((float)y*1.2f)) * (-1);
-		MapObjectList map_obj_list = new MapObjectList(
-		test_texture_info,
-		new Vector2i(4, 2),
-		set_y,
-		this._camera_obj,
-		this._player_obj
-		);
-		this._map_obj_line_list[set_y] = map_obj_list;
-
-		for (int x = 0; x < 16; x++){
-		int set_x = (x)+5;
-		this._map_obj_line_list[set_y].setObject(set_x);
-		}
-		}
-		*/
-	}
-	// */
-
-	if (SET_MAP_MODE == 1) {
-
-		// @TODO 一度コメントアウト
-		// オブジェクトテストを行うときに戻すとよい
-		/*
-		for (int i = 1; i <= 1; i++) {
-		// 配列に初代入の場合
-		if (this->_map_obj_list.ContainsKey(i) == false) {
-		this->_map_obj_list[i] = new Dictionary<int, MapObjectBase>();
-		}
-		for (int j = 0; j < 3; j++) {
-		this._map_obj_list[i][j * 3 * (-1)] = new MapObjectBase(
-		test_texture_info,
-		new Vector2i(4, 2),
-		i, j * 3 * (-1)
-		, this._camera_obj
-		);
-		}
-		}
-		*/
-	}
 }
-
+//-------------------------------------------------------------------
+//	固定未にマップ作成
+//-------------------------------------------------------------------
+void MapBase::createMiniMap(){
+	this->_map_type = 2;
+}
 
 
 void MapBase::setCharaPoint(CharaBase* set_chara_obj) {
 	//*
-
+	if (this->_map_type != 1) {
+		return;
+	}
 	// @TODO ランダムMAPのみ対応。
 	int map_width = RandomDungeonSetting::getDungeonWidth();
 	int map_height = RandomDungeonSetting::getDungeonHeight();

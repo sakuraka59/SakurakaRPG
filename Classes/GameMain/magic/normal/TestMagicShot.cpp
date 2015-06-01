@@ -25,7 +25,7 @@ void TestMagicShot::magicInitExtend() {
 	this->_hit_circle_obj = new HitCircle(this, this->_width / 2);
 	this->_hit_height = 16;
 
-	this->_test_particle = cocos2d::ParticleSystemQuad::create("particle/magic/normal/testShot.plist");
+	this->_test_particle = cocos2d::ParticleSystemQuad::create("particle/magic/normal/testShot2.plist");
 //	this->_test_particle = cocos2d::ParticleSystemQuad::create("particle/magic/normal/testShot_endress.plist");
 //	this->_test_particle = cocos2d::ParticleSystemQuad::create("particle/magic/fire/fire_ball.plist");
 //	this->_test_particle = cocos2d::ParticleSystemQuad::create("particle/magic/fire/fire_ball_endress.plist");
