@@ -197,6 +197,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\skill\skill_type\SkillMagic.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\skill_type\SkillMyself.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\no_weapon\NoWeaponDefault.cpp" />
+    <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\OneHandBase.cpp" />
+    <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword\SkillSwordBase.cpp" />
+    <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword\SwordGale\SwordGale.cpp" />
     <ClCompile Include="..\Classes\Input\Gamepad.cpp" />
     <ClCompile Include="..\Classes\Input\GamepadButton.cpp" />
     <ClCompile Include="..\Classes\RenderObject.cpp" />
@@ -275,6 +278,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\skill\skill_type\SkillMagic.h" />
     <ClInclude Include="..\Classes\GameMain\skill\skill_type\SkillMyself.h" />
     <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\no_weapon\NoWeaponDefault.h" />
+    <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\OneHandBase.h" />
+    <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword\SkillSwordBase.h" />
+    <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword\SwordGale\SwordGale.h" />
     <ClInclude Include="..\Classes\Input\Gamepad.h" />
     <ClInclude Include="..\Classes\Input\GamepadButton.h" />
     <ClInclude Include="..\Classes\Random.h" />

@@ -150,6 +150,11 @@ bool SkillBase::checkWeaponType() {
 
 	// メイン武器チェック
 	// list
+
+	//if (this->_main_weapon_list[this->_use_chara_obj->getMainWeaponType()] != nullptr) {
+	if (this->_main_weapon_list.find(this->_use_chara_obj->getMainWeaponType()) == this->_main_weapon_list.end()) {
+		return false;
+	}
 	/*
 	if (this->_main_weapon_list.Count > 0 &&
 		this->_main_weapon_list.Contains(this->_use_chara_obj.getMainWeaponType()) == false &&

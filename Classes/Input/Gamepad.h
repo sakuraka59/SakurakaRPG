@@ -4,13 +4,8 @@
 #include "GamepadButton.h"
 
 class Gamepad {
-//public: static GamepadButton* test_button;
 
 public: static GamepadButton* Up;
-
-public: static std::unique_ptr<GamepadButton> hoge;
-
-
 public: static GamepadButton* Down;
 public: static GamepadButton* Left;
 public: static GamepadButton* Right;

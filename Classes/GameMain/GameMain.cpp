@@ -143,8 +143,7 @@ bool GameMain::init()
 	// */
 }
 void GameMain::update(float delta) {
-	// update start
-	//Gamepad::updateInit();
+	
 	Gamepad::updateInit();
 
 	this->_play_ui_obj->Update();
@@ -152,8 +151,6 @@ void GameMain::update(float delta) {
 
 	this->_play_comment_ui_obj->Update();
 
-//	Gamepad::test_button = new GamepadButton(0x43);
-//	bool hoge = Gamepad::Circle->isPush();
 
 	Gamepad::updateEnd();
 }

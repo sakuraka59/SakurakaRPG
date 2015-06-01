@@ -30,8 +30,6 @@ Gamepad::Gamepad() {
 }
 void Gamepad::updateInit() {
 
-	//Gamepad::hoge();
-	Gamepad::Up->updateInit();
 	Gamepad::Up->updateInit();
 	Gamepad::Down->updateInit();
 	Gamepad::Left->updateInit();

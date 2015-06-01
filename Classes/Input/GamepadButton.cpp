@@ -7,6 +7,9 @@ GamepadButton::GamepadButton(int key) {
 }
 void GamepadButton::updateInit() {
 	this->_push_flag = false;
+	// 毎回判定をとって初期化を行う
+	// でないと、各種判定が通る前に入力された際に判定を抜けてしまうため
+	GetAsyncKeyState(this->_key_code);
 }
 
 void GamepadButton::updateEnd() {

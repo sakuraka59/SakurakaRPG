@@ -100,6 +100,12 @@
     <Filter Include="src\GameMain\item\equip_item\weapon\sword">
       <UniqueIdentifier>{f3e35ee0-7a19-4f3b-ad42-abf074efb19d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\skill\weapon_skill\sword">
+      <UniqueIdentifier>{8833d70f-2d6b-44cf-8761-8219342cf111}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\skill\weapon_skill\sword\SwordGale">
+      <UniqueIdentifier>{4f999bea-990e-4eb0-bb9d-4ae58256a219}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -290,6 +296,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\sword\TestSword.cpp">
       <Filter>src\GameMain\item\equip_item\weapon\sword</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword\SwordGale\SwordGale.cpp">
+      <Filter>src\GameMain\skill\weapon_skill\sword\SwordGale</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\OneHandBase.cpp">
+      <Filter>src\GameMain\skill\weapon_skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword\SkillSwordBase.cpp">
+      <Filter>src\GameMain\skill\weapon_skill\sword</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -523,6 +538,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\sword\TestSword.h">
       <Filter>src\GameMain\item\equip_item\weapon\sword</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword\SwordGale\SwordGale.h">
+      <Filter>src\GameMain\skill\weapon_skill\sword\SwordGale</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\OneHandBase.h">
+      <Filter>src\GameMain\skill\weapon_skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword\SkillSwordBase.h">
+      <Filter>src\GameMain\skill\weapon_skill\sword</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

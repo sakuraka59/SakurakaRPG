@@ -19,6 +19,7 @@
 // スキルテスト
 #include "../skill/weapon_skill/no_weapon/NoWeaponDefault.h"
 #include "../skill/magic/normal/TestShot.h"
+#include "../skill/weapon_skill/sword/SwordGale/SwordGale.h"
 
 CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, std::list<CharaBase*>* all_chara_list, std::list<MagicBase*>* magic_list, ShadowObjectList* shadow_list)
 {
@@ -161,6 +162,10 @@ void CharaPlayer::moveCharaPlusKey() {
 		// 移動方向、移動距離を取得
 		this->_move_speed_per = 1;
 
+		bool up_press_flag = Gamepad::Up->isPress();
+		bool up_press_flag2 = Gamepad::Up->isPress();
+
+
 		if (this->_control_flag == true && Gamepad::Right->isPress() == true && Gamepad::Up->isPress() == true) {
 			this->updateMoveAngle(45);
 		}
@@ -181,9 +186,11 @@ void CharaPlayer::moveCharaPlusKey() {
 			//if ((this->_game_pad_data.Buttons & GamePadButtons.Right) != 0) {
 			this->updateMoveAngle(0);
 		}
-		else if (this->_control_flag == true && Gamepad::Up->isPress() == true) {
+		else if (this->_control_flag == true && up_press_flag == true) {
 			//if ((this->_game_pad_data.Buttons & GamePadButtons.Up) != 0) {
 			this->updateMoveAngle(90);
+			bool hoge = Gamepad::Up->isPress();
+			int piyo = 1;
 		}
 		else if (this->_control_flag == true && Gamepad::Down->isPress() == true) {
 			//if ((this->_game_pad_data.Buttons & GamePadButtons.Down) != 0) {
@@ -498,8 +505,8 @@ void CharaPlayer::testAction() {
 	}
 	// keybord to D
 	if (this->_control_flag == true && Gamepad::Circle->isPush() == true) {
-		bool attack_flag = this->setSkill(new NoWeaponDefault(this, this->_all_chara_list));
-
+		//bool attack_flag = this->setSkill(new NoWeaponDefault(this, this->_all_chara_list));
+		bool attack_flag = this->setSkill(new SwordGale(this, this->_all_chara_list));
 		if (attack_flag == true) {
 //			this->sendComment(this->_comment_list.getComment(charaCommentType.chara_attack, charaSexualType.normal));
 		}

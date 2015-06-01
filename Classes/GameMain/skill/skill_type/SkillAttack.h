@@ -6,6 +6,8 @@ class CharaBase;
 class SkillAttackData;
 
 class SkillAttack : public SkillBase {
+
+
 // npc use only
 protected: double _npc_use_range = 10.0;// attack start range
 
@@ -17,8 +19,8 @@ protected: int _state_rate = 0; // max = 10000
 protected: int _attack_reset_count = 0;
 private: bool _reset_count_flag = true;
 
-protected: int _set_attack_frame = 0;
-protected: int _set_skill_frame = 0;
+protected: int _set_attack_frame = 0;	// 発動から自由に行動出来るようになるまでのフレーム数
+protected: int _set_skill_frame = 0;	// 発動から別スキルへキャンセル出来るようになるまでのフレーム数
 
 public: SkillAttack(CharaBase* use_chara_obj, std::list<CharaBase*> *all_chara_list);
 public: void skillExtendInit() override;

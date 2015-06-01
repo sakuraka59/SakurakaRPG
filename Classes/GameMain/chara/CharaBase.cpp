@@ -188,7 +188,14 @@ void CharaBase::updateMove(double move_speed) {
 
 	this->_move_x = (double)(cos(this->_move_angle * M_PI / 180) * move_speed);
 	this->_move_y = (double)(sin(this->_move_angle * M_PI / 180) * move_speed);
-
+	
+	if (this->_move_x > 0){
+		int piyo = 1;
+	}
+	if (this->_move_y > 0){
+		int hoge = 1;
+	}
+	
 	if (this->_move_x < 0.00001f && this->_move_x > -0.00001f) {
 		this->_move_x = 0;
 	}
