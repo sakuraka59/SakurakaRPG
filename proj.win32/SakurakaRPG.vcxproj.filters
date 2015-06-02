@@ -109,6 +109,9 @@
     <Filter Include="src\GameMain\map\mini_map">
       <UniqueIdentifier>{1be6f31d-a432-46ac-ac7e-1b185527d234}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\map\mini_map\test_map">
+      <UniqueIdentifier>{2cb7e850-134f-4a75-bce9-29ce39c603a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -308,6 +311,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword\SkillSwordBase.cpp">
       <Filter>src\GameMain\skill\weapon_skill\sword</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\map\mini_map\MiniMapBase.cpp">
+      <Filter>src\GameMain\map\mini_map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\map\mini_map\MiniMapManager.cpp">
+      <Filter>src\GameMain\map\mini_map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\map\mini_map\test_map\TestMap.cpp">
+      <Filter>src\GameMain\map\mini_map\test_map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -550,6 +562,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword\SkillSwordBase.h">
       <Filter>src\GameMain\skill\weapon_skill\sword</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\mini_map\MiniMapBase.h">
+      <Filter>src\GameMain\map\mini_map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\mini_map\MiniMapManager.h">
+      <Filter>src\GameMain\map\mini_map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\mini_map\miniMapType.h">
+      <Filter>src\GameMain\map\mini_map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\mini_map\test_map\TestMap.h">
+      <Filter>src\GameMain\map\mini_map\test_map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

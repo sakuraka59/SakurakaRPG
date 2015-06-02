@@ -10,6 +10,12 @@
 
 #include "../../Random.h"
 
+#include "mini_map/MiniMapManager.h"
+#include "mini_map/miniMapType.h"
+
+// テスト
+#include "mini_map\test_map\TestMap.h"
+
 MapBase::MapBase(GameCamera* camera_obj, CharaPlayer* player_obj) {
 	this->_player_obj = player_obj;
 	
@@ -17,10 +23,10 @@ MapBase::MapBase(GameCamera* camera_obj, CharaPlayer* player_obj) {
 	
 
 	// ランダムマップ
-	this->createRandomMap();
+//	this->createRandomMap();
 
 	// 固定ミニマップ
-//	this->createMiniMap();
+	this->createMiniMap();
 
 	// ワールドマップ
 }
@@ -110,23 +116,39 @@ std::unordered_map<int, MapObjectList*> MapBase::getMapObjectLineList() {
 void MapBase::createRandomMap() {
 	this->_map_type = 1;
 	RandomDungeon* get_dungeon_obj = new RandomDungeon();
-	this->_map_ground_obj = new MapGroundList(this->_camera_obj, get_dungeon_obj->getMapData(), 1, this->_player_obj);
+	this->_map_ground_obj = new MapGroundList(get_dungeon_obj->getMapData(), 1, this->_player_obj);
 	/*
 	std::unordered_map<int, std::unordered_map<int, int>> test_map;
 	this->_map_ground_obj = new MapGroundList(this->_camera_obj, test_map, 0, this->_player_obj);
 	// */
 
 	this->addChild(this->_map_ground_obj);
-
+	this->setCharaPoint(this->_player_obj);
 	// map obj ----------------------------------------------
 	this->initMapObject(get_dungeon_obj->getMapData());
 
 }
 //-------------------------------------------------------------------
-//	固定未にマップ作成
+//	固定ミニマップ作成
 //-------------------------------------------------------------------
 void MapBase::createMiniMap(){
 	this->_map_type = 2;
+//	MiniMapManager::loadMiniMap(miniMapType::test_map);
+//	auto map_data = MiniMapManager::getMapData();
+
+	TestMap* test_map_obj = new TestMap();
+	auto map_data = test_map_obj->getMapData();
+	this->_map_ground_obj = new MapGroundList(map_data, 2, this->_player_obj);
+
+//	this->createRandomMap();
+
+	this->addChild(this->_map_ground_obj);
+
+	this->setCharaPoint(this->_player_obj);
+	this->initMapObject(map_data);
+//	this->_map_ground_obj = new MapGroundList(this->_camera_obj, get_dungeon_obj->getMapData(), 1, this->_player_obj);
+
+//	this->addChild(this->_map_ground_obj);
 }
 
 

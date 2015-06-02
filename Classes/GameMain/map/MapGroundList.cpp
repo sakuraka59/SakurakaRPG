@@ -9,15 +9,14 @@
 
 #include "../../Random.h"
 
-MapGroundList::MapGroundList(GameCamera* camera_obj, std::unordered_map<int, std::unordered_map<int, int>> map_data, int map_type, CharaPlayer* player_obj) {
+MapGroundList::MapGroundList(std::unordered_map<int, std::unordered_map<int, int>> map_data, int map_type, CharaPlayer* player_obj) {
 	//this->_texture_info = ResourceManage.getTextureInfo("/Application/res/map/maptest.png", 2, 3);
-	this->_camera_obj = camera_obj;
 	//this->_ground_sprite_list = new SpriteList(this->_texture_info);
 
 	this->_map_data = map_data;
 	this->_player_obj = player_obj;
 	// キャラクターをセットする
-	this->setCharaPoint();
+//	this->setCharaPoint();
 
 	this->_map_type = map_type;
 
@@ -39,6 +38,10 @@ MapGroundList::MapGroundList(GameCamera* camera_obj, std::unordered_map<int, std
 	int map_test_width = 15;
 	int map_test_height = 9;
 
+	auto piyo = map_data;
+
+	int map_width = 0;
+	int map_height = 0;
 	switch (map_type) {
 	case 0:
 		//Random rnd = new Random();
@@ -59,14 +62,14 @@ MapGroundList::MapGroundList(GameCamera* camera_obj, std::unordered_map<int, std
 			//this->_ground_sprite_list->addChild(test_obj);
 		}
 		break;
-	case 1:
+	case 1:	// ランダムマップ用
 
 		/*
 		int map_width = map_data.GetLength(0);
 		int map_height = map_data.GetLength(1);
 		*/
-		int map_width = RandomDungeonSetting::getDungeonWidth();
-		int map_height = RandomDungeonSetting::getDungeonHeight();
+		map_width = RandomDungeonSetting::getDungeonWidth();
+		map_height = RandomDungeonSetting::getDungeonHeight();
 		for (int x = 0; x < map_width; x++) {
 			/*
 			if (this->_ground_obj_list.ContainsKey(x) == false) {
@@ -95,6 +98,10 @@ MapGroundList::MapGroundList(GameCamera* camera_obj, std::unordered_map<int, std
 
 		}
 		//*/
+		break;
+	case 2:// 固定ミニマップ用
+		//		std::unordered_map<int, std::unordered_map<int, int>> hahu = map_data;
+		
 		break;
 	}
 
