@@ -57,34 +57,21 @@ MapGroundList::MapGroundList(std::unordered_map<int, std::unordered_map<int, int
 				15, 9
 				);
 				*/
-			MapGroundBase* test_obj = new MapGroundBase(i % map_test_width, (int)(i / map_test_width) * (-1), map_test_width, map_test_height, 0);
+			MapGroundBase* test_obj = new MapGroundBase(i % map_test_width, (int)(i / map_test_width) * (-1), 0);
 			this->_ground_sprite_list->addChild(test_obj);
 			//this->_ground_sprite_list->addChild(test_obj);
 		}
 		break;
 	case 1:	// ランダムマップ用
 
-		/*
-		int map_width = map_data.GetLength(0);
-		int map_height = map_data.GetLength(1);
-		*/
 		map_width = RandomDungeonSetting::getDungeonWidth();
 		map_height = RandomDungeonSetting::getDungeonHeight();
 		for (int x = 0; x < map_width; x++) {
-			/*
-			if (this->_ground_obj_list.ContainsKey(x) == false) {
-				this->_ground_obj_list[x] = new Dictionary<int, SpriteTile>();
-			}
-			if (this->_map_draw_list.ContainsKey(x) == false) {
-				this->_map_draw_list[x] = new Dictionary<int, bool>();
-			}
-			*/
-			
+
 			for (int y = 0; y < map_height; y++) {
 
 				MapGroundBase* test_obj = new MapGroundBase(
 					x, y * (-1),
-					map_width, map_height,
 					map_data[x][y]
 					);
 
@@ -101,7 +88,22 @@ MapGroundList::MapGroundList(std::unordered_map<int, std::unordered_map<int, int
 		break;
 	case 2:// 固定ミニマップ用
 		//		std::unordered_map<int, std::unordered_map<int, int>> hahu = map_data;
-		
+		map_width = map_data.size();
+		map_height = map_data[0].size();
+		int ouga = map_data[0][0];
+	
+		for (int map_search_x = 0; map_search_x < map_width; map_search_x++) {
+			int map_search_y = 0;
+			for (int map_search_y = 0; map_search_y < map_height; map_search_y++) {
+				MapGroundBase* ground_obj = new MapGroundBase(
+					map_search_x, map_search_y * (-1),
+					map_data[map_search_x][map_search_y]
+					);
+				auto heig = map_data[map_search_x][map_search_y];
+				this->_ground_obj_list[map_search_x][map_search_y * (-1)] = ground_obj;
+				this->_map_draw_list[map_search_x][(map_search_y * (-1))] = false;
+			}
+		}
 		break;
 	}
 

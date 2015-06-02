@@ -3,9 +3,7 @@
 MiniMapBase::MiniMapBase(){
 
 }
-void MiniMapBase::loadMapData() {
 
-}
 unordered_map<int, std::unordered_map<int, int>> MiniMapBase::getMapData() {
 
 	if (this->_load_map_data == true) {

@@ -24,7 +24,7 @@ private: bool _load_map_obj = false;
 
 
 public: MiniMapBase();
-public: virtual void loadMapData();
+//public: virtual void loadMapData();
 public: unordered_map<int, unordered_map<int, int>> getMapData();
 public: unordered_map<int, MapObjectList*> getMapObjData();
 

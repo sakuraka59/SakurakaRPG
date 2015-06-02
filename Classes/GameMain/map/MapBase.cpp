@@ -116,7 +116,9 @@ std::unordered_map<int, MapObjectList*> MapBase::getMapObjectLineList() {
 void MapBase::createRandomMap() {
 	this->_map_type = 1;
 	RandomDungeon* get_dungeon_obj = new RandomDungeon();
-	this->_map_ground_obj = new MapGroundList(get_dungeon_obj->getMapData(), 1, this->_player_obj);
+	auto map_data = get_dungeon_obj->getMapData();
+	map_data[0][0] = 1;
+	this->_map_ground_obj = new MapGroundList(map_data, 1, this->_player_obj);
 	/*
 	std::unordered_map<int, std::unordered_map<int, int>> test_map;
 	this->_map_ground_obj = new MapGroundList(this->_camera_obj, test_map, 0, this->_player_obj);
@@ -125,7 +127,7 @@ void MapBase::createRandomMap() {
 	this->addChild(this->_map_ground_obj);
 	this->setCharaPoint(this->_player_obj);
 	// map obj ----------------------------------------------
-	this->initMapObject(get_dungeon_obj->getMapData());
+//	this->initMapObject(get_dungeon_obj->getMapData());
 
 }
 //-------------------------------------------------------------------
@@ -138,6 +140,7 @@ void MapBase::createMiniMap(){
 
 	TestMap* test_map_obj = new TestMap();
 	auto map_data = test_map_obj->getMapData();
+	int hoge = map_data[0][0];
 	this->_map_ground_obj = new MapGroundList(map_data, 2, this->_player_obj);
 
 //	this->createRandomMap();
@@ -145,7 +148,12 @@ void MapBase::createMiniMap(){
 	this->addChild(this->_map_ground_obj);
 
 	this->setCharaPoint(this->_player_obj);
-	this->initMapObject(map_data);
+
+//	this->initMapObject(map_data);
+
+	this->_player_obj->setCharaMapPoint(0, 0);
+	int chara_block_x = this->_player_obj->getMapBlockX();
+	int chara_block_y = this->_player_obj->getMapBlockY();
 //	this->_map_ground_obj = new MapGroundList(this->_camera_obj, get_dungeon_obj->getMapData(), 1, this->_player_obj);
 
 //	this->addChild(this->_map_ground_obj);
