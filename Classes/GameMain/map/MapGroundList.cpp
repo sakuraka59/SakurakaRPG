@@ -8,6 +8,7 @@
 #include "RandomDungeonSetting.h"
 
 #include "../../Random.h"
+#include "mapGroundType.h"
 
 MapGroundList::MapGroundList(std::unordered_map<int, std::unordered_map<int, int>> map_data, int map_type, CharaPlayer* player_obj) {
 	//this->_texture_info = ResourceManage.getTextureInfo("/Application/res/map/maptest.png", 2, 3);
@@ -142,19 +143,6 @@ void MapGroundList::Init(){
 	
 }
 void MapGroundList::Update() {
-	/*
-	this->_ground_sprite_list->setPosition(
-		(float)(0),
-		(float)(0)
-	);
-	*/
-
-	/*
-	this->_ground_sprite_list->setPosition(
-		(float)(0 - this->_camera_obj->getCameraX()),
-		(float)(0 - this->_camera_obj->getCameraY())
-	);
-	*/
 	
 	int block_draw_x = (this->_player_obj->getMapBlockX());
 	int block_draw_y = (this->_player_obj->getMapBlockY());
@@ -218,9 +206,6 @@ void MapGroundList::Update() {
 				this->reviewGroundBlockY(add_block_draw_y, remove_block_draw_y, block_draw_x, map_max_x);
 			}
 		}
-
-		
-
 	}
 
 	//*/
@@ -259,36 +244,6 @@ void MapGroundList::reviewGroundBlockX(int add_block_draw_x, int remove_block_dr
 			this->_map_draw_list[remove_block_draw_x][remove_block] = false;
 		}
 
-		// 描画追加処理
-		/*
-		if (this->_ground_obj_list.ContainsKey(add_block_draw_x) == true &&
-		this->_ground_obj_list[add_block_draw_x].ContainsKey(remove_block) == true &&
-		this->_map_draw_list.ContainsKey(add_block_draw_x) == true &&
-		this->_map_draw_list[add_block_draw_x].ContainsKey(remove_block) == true &&
-		this->_map_draw_list[add_block_draw_x][remove_block] == false) {
-
-
-			this->_ground_sprite_list.AddChild(this->_ground_obj_list[add_block_draw_x][remove_block]);
-			this->_map_draw_list[add_block_draw_x][remove_block] = true;
-		}
-
-		if (remove_block >= map_max_y) {
-			continue;
-		}
-
-		// 左側のブロックを削除
-		if (this->_ground_obj_list.ContainsKey(remove_block_draw_x) == true &&
-		this->_ground_obj_list[remove_block_draw_x].ContainsKey(remove_block) == true &&
-		this->_map_draw_list.ContainsKey(remove_block_draw_x) == true &&
-		this->_map_draw_list[remove_block_draw_x].ContainsKey(remove_block) == true &&
-		this->_map_draw_list[remove_block_draw_x][remove_block] == true) {
-
-			this->_ground_sprite_list.RemoveChild(this->_ground_obj_list[remove_block_draw_x][remove_block], true);
-			this->_map_draw_list[remove_block_draw_x][remove_block] = false;
-		}
-
-		//*/
-
 	}
 }
 void MapGroundList::reviewGroundBlockY(int add_block_draw_y, int remove_block_draw_y, int block_draw_x, int map_max_x) {
@@ -313,39 +268,7 @@ void MapGroundList::reviewGroundBlockY(int add_block_draw_y, int remove_block_dr
 			this->_map_draw_list[remove_block][remove_block_draw_y] = false;
 		}
 	}
-	/*
-	int map_draw_size_x = 7 - this->_map_outer_size_x;
-	for (int x = 0; x < 1 + (map_draw_size_x * 2); x++) {
-		int remove_block = block_draw_x + x - map_draw_size_x;
 
-		// 描画追加処理
-		if (this->_ground_obj_list.ContainsKey(remove_block) == true &&
-			this->_ground_obj_list[remove_block].ContainsKey(add_block_draw_y) == true &&
-			this->_map_draw_list.ContainsKey(remove_block) == true &&
-			this->_map_draw_list[remove_block].ContainsKey(add_block_draw_y) == true &&
-			this->_map_draw_list[remove_block][add_block_draw_y] == false) {
-
-			this->_ground_sprite_list.AddChild(this->_ground_obj_list[remove_block][add_block_draw_y]);
-			this->_map_draw_list[remove_block][add_block_draw_y] = true;
-		}
-				
-		if (remove_block >= map_max_x) {
-			continue;	
-		}
-	
-		// 左側のブロックを削除
-		if (this->_ground_obj_list.ContainsKey(remove_block) == true &&
-			this->_ground_obj_list[remove_block].ContainsKey(remove_block_draw_y) == true &&
-			this->_map_draw_list.ContainsKey(remove_block) == true &&
-			this->_map_draw_list[remove_block].ContainsKey(remove_block_draw_y) == true &&
-			this->_map_draw_list[remove_block][remove_block_draw_y] == true) {
-
-			this->_ground_sprite_list.RemoveChild(this->_ground_obj_list[remove_block][remove_block_draw_y], true);
-
-			this->_map_draw_list[remove_block][remove_block_draw_y] = false;
-		}
-	}
-	*/
 }
 void MapGroundList::setCharaPoint() {
 	//*

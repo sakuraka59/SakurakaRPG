@@ -10,10 +10,8 @@ void MiniMapManager::loadMiniMap(miniMapType map_type) {
 	case miniMapType::no_type:
 		break;
 	case miniMapType::test_map:
-
+		MiniMapManager::map_obj = new TestMap();
 //		TestMap* load_map_obj = new TestMap();
-//		load_map_obj->loadMapData();
-		
 //		MiniMapManager::map_obj = load_map_obj;
 		//MiniMapManager::map_obj = new MiniMapBase();
 		break;

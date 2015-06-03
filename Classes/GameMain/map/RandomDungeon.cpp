@@ -8,7 +8,6 @@
 
 RandomDungeon::RandomDungeon() {
 
-	//this->_map_data = new int[RandomDungeonSetting::getDungeonWidth(), RandomDungeonSetting::getDungeonHeight()];
 
 	int dungeon_width = RandomDungeonSetting::getDungeonWidth();
 	int dungeon_height = RandomDungeonSetting::getDungeonHeight();
@@ -32,10 +31,10 @@ void RandomDungeon::DungeonCreateRogelike(int dungeon_width, int dungeon_height)
 	for (int x = 0; x < dungeon_width; x++) {
 		for (int y = 0; y < dungeon_height; y++) {
 			this->_map_data[x][y] = 1;
+			this->_map_ground_data[x][y] = 1;
 		}
 	}
 
-	//ceil((double)(RandomDungeonSetting::_ROAD_WIDTH / 2));
 
 	int map_frame_size = (int)(ceil((double)(RandomDungeonSetting::_ROAD_WIDTH / 2)) + RandomDungeonSetting::_ROOM_FRAME_SIZE);
 
@@ -48,20 +47,15 @@ void RandomDungeon::DungeonCreateRogelike(int dungeon_width, int dungeon_height)
 	if (room_height_max < 0) {
 		room_height_max = 0;
 	}
-	//Dictionary<int, Dictionary<int, RandomDungeonRoom>> map_rooms_list = new Dictionary<int, Dictionary<int, RandomDungeonRoom>>();
+
 	std::unordered_map<int, std::unordered_map<int, RandomDungeonRoom*>> map_rooms_list;
 
 	// マップの各部屋を作成
 	for (int x = 0; x < RandomDungeonSetting::_DUNGEON_BLOCK_X; x++) {
-		/*
-		if (map_rooms_list.find(x) == map_rooms_list.end()) {
-			map_rooms_list[x] = new std::unordered_map<int, RandomDungeonRoom>::;
-		}
-		//*/
+
 		for (int y = 0; y < RandomDungeonSetting::_DUNGEON_BLOCK_Y; y++) {
 			map_rooms_list[x][y] = new RandomDungeonRoom(room_width_max, room_height_max, RandomDungeonSetting::_ROAD_WIDTH, RandomDungeonSetting::_DUNGEON_MAP_X, RandomDungeonSetting::_DUNGEON_MAP_Y, map_frame_size, this->_rand_obj);
 			map_rooms_list[x][y]->setDungeonRoad(x, y, RandomDungeonSetting::_DUNGEON_BLOCK_X, RandomDungeonSetting::_DUNGEON_BLOCK_Y);
-			//map_rooms_list[x][y]->writeDebug();
 
 		}
 	}
@@ -79,15 +73,14 @@ void RandomDungeon::DungeonCreateRogelike(int dungeon_width, int dungeon_height)
 			// 右と下だけチェックして、お互いにつなげる
 			for (int i = 0; i < 2; i++) {
 				bool next_flag = false;
-				//						int join_point_x = -1;
-				//						int join_point_y = -1;
+
 				switch (i) {
 				case 0: // right
 					if (x >= RandomDungeonSetting::_DUNGEON_BLOCK_X - 1) {
 						next_flag = true;
 					}
 					else {
-						//Debug.WriteLine("map_block_point x:"+(x + 1)+" y:"+y+" next block left:"+map_rooms_list[x + 1][y]->getRoadPositionLeft());
+
 						map_rooms_list[x][y]->joinRoad(randomRoadType::right, map_rooms_list[x + 1][y]->getRoadPositionLeft());
 						map_rooms_list[x + 1][y]->joinRoad(randomRoadType::left, map_rooms_list[x][y]->getRoadPositionRight());
 					}
@@ -118,8 +111,6 @@ void RandomDungeon::DungeonCreateRogelike(int dungeon_width, int dungeon_height)
 					this->_map_data[map_access_x, map_access_y] = room_data[room_x, room_y];
 				}
 			}
-
-			//this->_map_data[,]
 		}
 	}
 }
@@ -137,7 +128,7 @@ void RandomDungeon::DungeonCreateOriginal(int dungeon_width, int dungeon_height)
 			else {
 				this->_map_data[x][y] = 1;
 			}
-
+			this->_map_ground_data[x][y] = 1;
 		}
 	}
 	// 道幅による補正
@@ -148,17 +139,12 @@ void RandomDungeon::DungeonCreateOriginal(int dungeon_width, int dungeon_height)
 	int road_left_correct = (int)floor((double)(RandomDungeonSetting::_ROAD_WIDTH - 1) / 2) + frame_num;
 	int road_right_correct = (int)ceil((double)(RandomDungeonSetting::_ROAD_WIDTH - 1) / 2) + frame_num;
 
-	//				int block_core_width = (dungeon_width - road_left_correct - road_right_correct);
-	//				int block_core_height = (dungeon_height - road_top_correct - road_bottom_correct);
 	int block_core_width = RandomDungeonSetting::_MAP_WIDTH;
 	int block_core_height = RandomDungeonSetting::_MAP_HEIGHT;
 	int block_core_count = 0;
 	int block_core_max = (block_core_width)* (block_core_height);
 
 	int room_max = RandomDungeonSetting::_ROOM_MAX;
-
-
-	//	Debug.WriteLine("[RandomDungeon]correct "+road_top_correct+"/"+road_bottom_correct+"/"+road_left_correct+"/"+road_right_correct+"/");
 
 	int map_all_block_num = this->getMapBlockNum();
 
@@ -177,12 +163,10 @@ void RandomDungeon::DungeonCreateOriginal(int dungeon_width, int dungeon_height)
 		// 部屋の基準位置の初期化
 		int room_core_x = -1;
 		int room_core_y = -1;
-		//	Debug.WriteLine("[RandomDungeon]set core num"+room_core);
-		// 全ブロックを検索
 
+		// 全ブロックを検索
 		int block_base_count = 0;
 		for (int block_base_count = 0; block_base_count < map_all_block_num; block_base_count++) {
-		//while (block_base_count >= free_core_num) {
 			
 			int check_room_core_x = (block_base_count % block_core_width) + RandomDungeonSetting::_MAP_FRAME_NUM;// + road_left_correct;
 			int check_room_core_y = (int)ceil((double)(block_base_count / block_core_width)) + RandomDungeonSetting::_MAP_FRAME_NUM;// + road_top_correct;						
@@ -194,22 +178,8 @@ void RandomDungeon::DungeonCreateOriginal(int dungeon_width, int dungeon_height)
 				if (room_core <= 0) {
 
 					// 部屋の基準位置の決定
-					//room_core_x = block_base_count % dungeon_width;
-					//room_core_y = (int)ceil((double)(block_base_count / dungeon_width));
 					room_core_x = check_room_core_x;
 					room_core_y = check_room_core_y;
-
-					/*
-					if (block_core_count == 0) {
-					room_core_x = 10 - 7;
-					room_core_y = 10 + 7;
-					} else if (block_core_count == 1) {
-					room_core_x = 10;
-					room_core_y = 10;
-					}
-					*/
-					//this->_map_data[room_core_x, room_core_y] = 2;
-					//	Debug.WriteLine("[RandomDungeon]set Room Core"+room_core_x+"."+room_core_y);
 
 					break;
 				}
@@ -217,29 +187,25 @@ void RandomDungeon::DungeonCreateOriginal(int dungeon_width, int dungeon_height)
 				room_core--;
 			}
 		}
-		//Debug.WriteLine("[RandomDungeon]room_core nokori " + room_core);
 		// 部屋を展開する
 		int set_room_min = RandomDungeonSetting::_ROOM_MIN;
 		if (block_core_count <= set_room_min) {
 
 
 			if (block_core_count == 0) {
-				//Debug.WriteLine("[RandomDungeon]create first room " + room_core_x + "/" + room_core_y);
 				this->setRoomExpansion(room_core_x, room_core_y);
 				this->setRoadFirstRoom(room_core_x, room_core_y);
 				first_core_x = room_core_x;
 				first_core_y = room_core_y;
-				//this->_map_data[room_core_x, room_core_y] = 2;
+
 				this->setMapData(room_core_x, room_core_y, 2);
 
 
 			}
 			else {
 				if (room_core_x >= 0 && room_core_y >= 0) {
-					//Debug.WriteLine("[RandomDungeon]check create min room " + room_core_x + "/" + room_core_y + " block:" + this->_map_data[room_core_x, room_core_y]);
+
 					if (this->setRoadSearchMin(room_core_x, room_core_y, first_core_x, first_core_y) == true) {
-						//Debug.WriteLine("[RandomDungeon]create min room " + room_core_x + "/" + room_core_y);
-						//this->setRoomExpansion(room_core_x, room_core_y);
 						this->setMapData(room_core_x, room_core_y, 2);
 
 					}
@@ -249,27 +215,18 @@ void RandomDungeon::DungeonCreateOriginal(int dungeon_width, int dungeon_height)
 		}
 		else {
 			if (room_core_x >= 0 && room_core_y >= 0) {
-				//Debug.WriteLine("[RandomDungeon]check create rand room " + room_core_x + "/" + room_core_y + " block:" + this->_map_data[room_core_x, room_core_y]);
+
 				if (this->checkRoadCreateRandom(room_core_x, room_core_y) == true) {
 					this->setRoomExpansion(room_core_x, room_core_y);
-					//this->_map_data[room_core_x, room_core_y] = 5;
+
 					this->setMapData(room_core_x, room_core_y, 5);
-					//Debug.WriteLine("[RandomDungeon]create rand room " + room_core_x + "/" + room_core_y);
-					
 				}
 			}
 		}
 
-		/*
-		if (room_max > 1 && block_core_count == 0) {
-
-		}
-		// */
-
 		// 部屋のブロック数を増やす
 		// @TODO 部屋のコア分のみしか追加してないので、部屋の広さ分、引いた通路分を変更すること
 		block_core_count++;
-		//block_core_count+=9;
 
 	}
 }
@@ -281,14 +238,11 @@ void RandomDungeon::setRoomExpansion(int room_core_x, int room_core_y) {
 
 	int room_width_randon_num = RandomDungeonSetting::_ROOM_MAX_WIDTH - RandomDungeonSetting::_ROOM_MIN_WIDTH;
 	int room_height_randon_num = RandomDungeonSetting::_ROOM_MAX_HEIGHT - RandomDungeonSetting::_ROOM_MIN_HEIGHT;
-	//Debug.WriteLine("[RandomDungeon]setRoomExpansion random max size : "+ room_width_randon_num +"/"+ room_height_randon_num);			
 
 	Random* rand_obj = this->_rand_obj;
 	int room_width = RandomDungeonSetting::_ROOM_MIN_WIDTH + rand_obj->getRandNum(room_width_randon_num);
 	int room_height = RandomDungeonSetting::_ROOM_MIN_HEIGHT + rand_obj->getRandNum(room_height_randon_num);
 
-
-	//Debug.WriteLine("[RandomDungeon]setRoomExpansion room size : "+ room_width +"/"+ room_height);			
 	int room_start_x = (int)floor((double)(room_width / 2));
 	int room_start_y = (int)floor((double)(room_height / 2));
 
@@ -314,7 +268,7 @@ void RandomDungeon::setRoomExpansion(int room_core_x, int room_core_y) {
 
 			// 壁の場合のみ書き換え
 			if (this->_map_data[expansion_x][expansion_y] == 1 || this->_map_data[expansion_x][expansion_y] == 4) {
-				//	this->_map_data[expansion_x, expansion_y] = 3;
+
 				this->setMapData(expansion_x, expansion_y, 3);
 			}
 		}
@@ -325,17 +279,11 @@ void RandomDungeon::setRoomExpansion(int room_core_x, int room_core_y) {
 void RandomDungeon::setRoadFirstRoom(int room_core_x, int room_core_y) {
 	Random* rand_obj = this->_rand_obj;
 	
-	//this->setRoadExpansion(room_core_x, room_core_y, rand_obj->getRandNum(4), rand_obj->getRandNum(10) + 10);
 	this->setRoadExpansion(room_core_x, room_core_y, 0, rand_obj->getRandNum(20) + 10);
 	this->setRoadExpansion(room_core_x, room_core_y, 1, rand_obj->getRandNum(20) + 10);
 	this->setRoadExpansion(room_core_x, room_core_y, 2, rand_obj->getRandNum(20) + 10);
 	this->setRoadExpansion(room_core_x, room_core_y, 3, rand_obj->getRandNum(20) + 10);
-	/*
-	this->setRoadExpansion(room_core_x, room_core_y, 0, rand_obj->getRandNum(10) + 20);
-	this->setRoadExpansion(room_core_x, room_core_y, 1, rand_obj->getRandNum(10) + 20);
-	this->setRoadExpansion(room_core_x, room_core_y, 2, rand_obj->getRandNum(10) + 20);
-	this->setRoadExpansion(room_core_x, room_core_y, 3, rand_obj->getRandNum(10) + 20);
-	*/
+
 }
 
 // マス指定による、道を作れるか検索(簡易版
@@ -432,7 +380,7 @@ bool RandomDungeon::setRoadSearchMin(int room_core_x, int room_core_y, int first
 //	通路を作成できるかチェック
 //	部屋の中心地から通路を延ばし、通路が曲がって別の部屋や通路に繋がるかチェック
 void RandomDungeon::checkRoadCreate(int room_core_x, int room_core_y, int first_core_x, int first_core_y, int road_type, int sub_road_type) {
-	//int[, ] map_search_data = new int[RandomDungeonSetting::getDungeonWidth(), RandomDungeonSetting::getDungeonHeight()];
+
 	std::unordered_map<int, std::unordered_map<int, int>> map_search_data;
 	// 配列のコピー
 	for (int copy_x = 0; copy_x < RandomDungeonSetting::getDungeonWidth(); copy_x++) {
@@ -441,19 +389,12 @@ void RandomDungeon::checkRoadCreate(int room_core_x, int room_core_y, int first_
 
 		}
 	}
-	//	int [][] hoge;
-
-
-	//map_search_data.CopyTo(this->_map_data, 0);
-	//int[,] map_search_data = this->_map_data;
-
 
 
 	int turn_point_x = -1;
 	int turn_point_y = -1;
 	int turn_next_road_num = -1;
 
-	//map_search_data.CopyTo(this->_map_data, 0)
 	int expansion_x = room_core_x;
 	int expansion_y = room_core_y;
 
@@ -467,14 +408,12 @@ void RandomDungeon::checkRoadCreate(int room_core_x, int room_core_y, int first_
 		main_load_search_num = room_core_y - first_core_y;
 		break;
 	case 2:
-		//	expansion_y = room_core_y - i;
 		main_load_search_num = first_core_y - room_core_y;
 		break;
 	case 1:
 		main_load_search_num = first_core_x - room_core_x;
 		break;
 	case 3:
-		//	expansion_x = room_core_x + i;
 		main_load_search_num = room_core_x - first_core_x;
 		break;
 	}
@@ -484,22 +423,18 @@ void RandomDungeon::checkRoadCreate(int room_core_x, int room_core_y, int first_
 		sub_load_search_num = room_core_y - first_core_y;
 		break;
 	case 2:
-		//	expansion_y = room_core_y - i;
 		sub_load_search_num = first_core_y - room_core_y;
 		break;
 	case 1:
 		sub_load_search_num = first_core_x - room_core_x;
 		break;
 	case 3:
-		//	expansion_x = room_core_x + i;
 		sub_load_search_num = room_core_x - first_core_x;
 		break;
 	}
 
 	main_load_search_num += 1;
 	sub_load_search_num += 1;
-	//	Debug.WriteLine("[RandomDungeon]get road size "+main_load_search_num+"/"+sub_load_search_num+"");
-	//	Debug.WriteLine("[RandomDungeon]---------------------------");
 
 	int main_load_num = 0;
 	int sub_load_num = 0;
@@ -508,22 +443,18 @@ void RandomDungeon::checkRoadCreate(int room_core_x, int room_core_y, int first_
 
 		switch (road_type) {
 		case 0:
-			//expansion_y--;
 			expansion_y = room_core_y - i;
 			expansion_x = room_core_x;
 			break;
 		case 1:
-			//expansion_x++;
 			expansion_x = room_core_x + i;
 			expansion_y = room_core_y;
 			break;
 		case 2:
-			//expansion_y++;
 			expansion_y = room_core_y + i;
 			expansion_x = room_core_x;
 			break;
 		case 3:
-			//expansion_x--;
 			expansion_x = room_core_x - i;
 			expansion_y = room_core_y;
 			break;
@@ -536,25 +467,18 @@ void RandomDungeon::checkRoadCreate(int room_core_x, int room_core_y, int first_
 
 			switch (sub_road_type) {
 			case 0:
-				//expansion_y--;
 				expansion_y = room_core_y - j;
 				break;
 			case 1:
-				//expansion_x++;
 				expansion_x = room_core_x + j;
 				break;
 			case 2:
-				//expansion_y++;
 				expansion_y = room_core_y + j;
 				break;
 			case 3:
-				//expansion_x--;
 				expansion_x = room_core_x - j;
 				break;
 			}
-
-			//	Debug.WriteLine("[RandomDungeon]search "+expansion_x+":"+expansion_y+"	("+i+":"+j+")");
-
 
 			if (expansion_x < 0 || expansion_x >= RandomDungeonSetting::getDungeonWidth() ||
 				expansion_y < 0 || expansion_y >= RandomDungeonSetting::getDungeonHeight()) {
@@ -570,8 +494,6 @@ void RandomDungeon::checkRoadCreate(int room_core_x, int room_core_y, int first_
 				map_search_data[expansion_x][expansion_y] = 4;
 			}
 			else {
-				//	Debug.WriteLine("[RandomDungeon]search break"+expansion_x+":"+expansion_y+"	("+i+":"+j+")");
-				//						turn_next_road_num = j;
 				sub_load_num = j;
 				break;
 			}
@@ -629,8 +551,9 @@ void RandomDungeon::checkRoadCreate(int room_core_x, int room_core_y, int first_
 //	通路を作成できるかチェック
 //	簡易版なので部屋の中心地から通路を延ばして別の部屋や通路に繋がるかチェック
 bool RandomDungeon::checkRoadCreateMini(int room_core_x, int room_core_y, int first_core_x, int first_core_y, int road_type) {
-	//int[, ] map_search_data = new int[RandomDungeonSetting::getDungeonWidth(), RandomDungeonSetting::getDungeonHeight()];
+
 	std::unordered_map<int, std::unordered_map<int, int>>map_search_data;
+
 	// 配列のコピー
 	for (int copy_x = 0; copy_x < RandomDungeonSetting::getDungeonWidth(); copy_x++) {
 		for (int copy_y = 0; copy_y < RandomDungeonSetting::getDungeonHeight(); copy_y++) {
@@ -647,14 +570,12 @@ bool RandomDungeon::checkRoadCreateMini(int room_core_x, int room_core_y, int fi
 		main_load_search_num = room_core_y - first_core_y;
 		break;
 	case 2:
-		//	expansion_y = room_core_y - i;
 		main_load_search_num = first_core_y - room_core_y;
 		break;
 	case 1:
 		main_load_search_num = first_core_x - room_core_x;
 		break;
 	case 3:
-		//	expansion_x = room_core_x + i;
 		main_load_search_num = room_core_x - first_core_x;
 		break;
 	}
@@ -667,7 +588,7 @@ bool RandomDungeon::checkRoadCreateMini(int room_core_x, int room_core_y, int fi
 
 // 通路作成チェック。ランダム版
 bool RandomDungeon::checkRoadCreateRandom(int room_core_x, int room_core_y) {
-	//int[, ] map_search_data = new int[RandomDungeonSetting::getDungeonWidth(), RandomDungeonSetting::getDungeonHeight()];
+
 	std::unordered_map<int, std::unordered_map<int, int>> map_search_data;
 	// 配列のコピー
 	for (int copy_x = 0; copy_x < RandomDungeonSetting::getDungeonWidth(); copy_x++) {
@@ -697,22 +618,18 @@ bool RandomDungeon::checkRoadCreateMiniDetail(int room_core_x, int room_core_y, 
 	for (int i = 0; i < main_load_search_num; i++) {
 		switch (road_type) {
 		case 0:
-			//expansion_y--;
 			expansion_y = room_core_y - i;
 			expansion_x = room_core_x;
 			break;
 		case 1:
-			//expansion_x++;
 			expansion_x = room_core_x + i;
 			expansion_y = room_core_y;
 			break;
 		case 2:
-			//expansion_y++;
 			expansion_y = room_core_y + i;
 			expansion_x = room_core_x;
 			break;
 		case 3:
-			//expansion_x--;
 			expansion_x = room_core_x - i;
 			expansion_y = room_core_y;
 			break;
@@ -727,7 +644,6 @@ bool RandomDungeon::checkRoadCreateMiniDetail(int room_core_x, int room_core_y, 
 		}
 		else {
 			if (search_start == true) {
-				//	Debug.WriteLine("[DandomDngeon]checkRoadCreateMini search ok");
 				this->setRoomExpansion(room_core_x, room_core_y);
 				this->setRoadExpansion(room_core_x, room_core_y, road_type, i);
 				return true;
@@ -784,7 +700,6 @@ void RandomDungeon::setRoadExpansion(int room_core_x, int room_core_y, int road_
 		}
 
 		if (this->_map_data[expansion_x][expansion_y] == 1) {
-			//this->_map_data[expansion_x, expansion_y] = 4;
 			this->setMapData(expansion_x, expansion_y, 4);
 
 			// マップ幅分広げる
@@ -800,7 +715,6 @@ void RandomDungeon::setRoadExpansion(int room_core_x, int room_core_y, int road_
 						continue;
 					}
 					if (this->_map_data[load_expansion_x][expansion_y] == 1) {
-						//this->_map_data[load_expansion_x, expansion_y] = 4;
 						this->setMapData(load_expansion_x, expansion_y, 4);
 					}
 				}
@@ -815,7 +729,6 @@ void RandomDungeon::setRoadExpansion(int room_core_x, int room_core_y, int road_
 						continue;
 					}
 					if (this->_map_data[expansion_x][load_expansion_y] == 1) {
-						//this->_map_data[expansion_x, load_expansion_y] = 4;
 						this->setMapData(expansion_x, load_expansion_y, 4);
 					}
 				}
@@ -834,16 +747,21 @@ void RandomDungeon::setMapData(int expansion_x, int expansion_y, int map_type) {
 		return;
 	}
 	this->_map_data[expansion_x][expansion_y] = map_type;
+
+	if (map_type == 4) {
+		this->_map_ground_data[expansion_x][expansion_y] = 100;
+
+	}
 }
 
 std::unordered_map<int, std::unordered_map<int, int>> RandomDungeon::getMapData() {
 	return this->_map_data;
 }
-
+std::unordered_map<int, std::unordered_map<int, int>> RandomDungeon::getMapGroundData() {
+	return this->_map_ground_data;
+}
 int RandomDungeon::getMapDataFreeNum() {
 	int count = 0;
-
-//	int[int, int] hoge;
 
 	for (int x = 0; x < RandomDungeonSetting::getDungeonWidth(); x++) {
 		for (int y = 0; y < RandomDungeonSetting::getDungeonHeight(); y++) {
@@ -858,8 +776,6 @@ int RandomDungeon::getMapDataFreeNum() {
 }
 int RandomDungeon::getMapBlockNum() {
 	int count = 0;
-
-	//	int[int, int] hoge;
 
 	count = RandomDungeonSetting::getDungeonWidth() * RandomDungeonSetting::getDungeonHeight();
 

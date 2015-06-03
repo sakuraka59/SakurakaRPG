@@ -17,6 +17,9 @@ class MapBase : public RenderObject {
 protected: std::unordered_map<int, std::unordered_map<int, MapObjectBase*>> _map_obj_list;
 protected: std::unordered_map<int, MapObjectList*> _map_obj_line_list;
 
+private: std::unordered_map<int, std::unordered_map<int, int>> _map_data;
+private: std::unordered_map<int, std::unordered_map<int, int>> _map_ground_data;
+
 
 private: CharaPlayer* _player_obj;
 //	protected Dictionary<int,Dictionary<int, MapObjectBase>> _map_obj_draw_list = new Dictionary<int, Dictionary<int, MapObjectBase>>();
@@ -36,5 +39,5 @@ public: std::unordered_map<int, MapObjectList*> getMapObjectLineList();
 
 public: void createRandomMap();
 public: void createMiniMap();
-public: void setCharaPoint(CharaBase* set_chara_obj);
+public: void setCharaPoint(CharaBase* set_chara_obj, int map_block_type);
 };

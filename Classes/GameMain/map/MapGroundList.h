@@ -13,8 +13,8 @@ private: int _before_block_draw_y = 0;
 
 private: int _map_type = 0;
 
-private: const int _map_outer_size_x = -1;
-private: const int _map_outer_size_y = -1;
+private: const int _map_outer_size_x = -2;
+private: const int _map_outer_size_y = -2;
 
 private: CharaPlayer* _player_obj;
 

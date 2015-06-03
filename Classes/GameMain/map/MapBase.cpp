@@ -23,10 +23,10 @@ MapBase::MapBase(GameCamera* camera_obj, CharaPlayer* player_obj) {
 	
 
 	// ランダムマップ
-//	this->createRandomMap();
+	this->createRandomMap();
 
 	// 固定ミニマップ
-	this->createMiniMap();
+//	this->createMiniMap();
 
 	// ワールドマップ
 }
@@ -116,18 +116,21 @@ std::unordered_map<int, MapObjectList*> MapBase::getMapObjectLineList() {
 void MapBase::createRandomMap() {
 	this->_map_type = 1;
 	RandomDungeon* get_dungeon_obj = new RandomDungeon();
-	auto map_data = get_dungeon_obj->getMapData();
-	map_data[0][0] = 1;
-	this->_map_ground_obj = new MapGroundList(map_data, 1, this->_player_obj);
+	this->_map_data = get_dungeon_obj->getMapData();
+	this->_map_ground_data = get_dungeon_obj->getMapGroundData();
+
+
+
+	this->_map_ground_obj = new MapGroundList(this->_map_ground_data, 1, this->_player_obj);
 	/*
 	std::unordered_map<int, std::unordered_map<int, int>> test_map;
 	this->_map_ground_obj = new MapGroundList(this->_camera_obj, test_map, 0, this->_player_obj);
 	// */
 
 	this->addChild(this->_map_ground_obj);
-	this->setCharaPoint(this->_player_obj);
+	this->setCharaPoint(this->_player_obj, 2);
 	// map obj ----------------------------------------------
-//	this->initMapObject(get_dungeon_obj->getMapData());
+	this->initMapObject(get_dungeon_obj->getMapData());
 
 }
 //-------------------------------------------------------------------
@@ -135,19 +138,23 @@ void MapBase::createRandomMap() {
 //-------------------------------------------------------------------
 void MapBase::createMiniMap(){
 	this->_map_type = 2;
-//	MiniMapManager::loadMiniMap(miniMapType::test_map);
+	MiniMapManager::loadMiniMap(miniMapType::test_map);
 //	auto map_data = MiniMapManager::getMapData();
 
+//	this->_map_data = get_dungeon_obj->getMapData();
+	this->_map_ground_data = MiniMapManager::getMapData();
+
+	/*
 	TestMap* test_map_obj = new TestMap();
 	auto map_data = test_map_obj->getMapData();
-	int hoge = map_data[0][0];
-	this->_map_ground_obj = new MapGroundList(map_data, 2, this->_player_obj);
+	*/
+	this->_map_ground_obj = new MapGroundList(this->_map_ground_data, 2, this->_player_obj);
 
 //	this->createRandomMap();
 
 	this->addChild(this->_map_ground_obj);
 
-	this->setCharaPoint(this->_player_obj);
+//	this->setCharaPoint(this->_player_obj, 2);
 
 //	this->initMapObject(map_data);
 
@@ -160,7 +167,8 @@ void MapBase::createMiniMap(){
 }
 
 
-void MapBase::setCharaPoint(CharaBase* set_chara_obj) {
+void MapBase::setCharaPoint(CharaBase* set_chara_obj, int map_block_type) {
+
 	//*
 	if (this->_map_type != 1) {
 		return;
@@ -169,10 +177,10 @@ void MapBase::setCharaPoint(CharaBase* set_chara_obj) {
 	int map_width = RandomDungeonSetting::getDungeonWidth();
 	int map_height = RandomDungeonSetting::getDungeonHeight();
 
-	std::unordered_map<int, std::unordered_map<int, int>> map_data = this->_map_ground_obj->getMapData();
+	std::unordered_map<int, std::unordered_map<int, int>> map_data = this->_map_data;
 	int room_block_count = 0;
 
-	int check_map_type = 3;
+	int check_map_type = map_block_type;
 	for (int x = 0; x < map_width; x++) {
 		for (int y = 0; y < map_height; y++) {
 
@@ -182,7 +190,9 @@ void MapBase::setCharaPoint(CharaBase* set_chara_obj) {
 			}
 		}
 	}
-
+	if (room_block_count <= 0) {
+		return;
+	}
 	Random* rand_obj = new Random();
 
 	int chara_room_x = 0;
@@ -191,11 +201,6 @@ void MapBase::setCharaPoint(CharaBase* set_chara_obj) {
 	int check_room_block_count = 0;
 
 	chara_room_num = rand_obj->getRandNum(room_block_count - 1);
-	//	chara_room_num = room_block_count; //この場合、マス見つけられないので、初期位置に移動してしまうため、注意
-
-
-
-	//			bool room_check_break_flag = false;
 
 	for (int x = 0; x < map_width; x++) {
 		for (int y = 0; y < map_height; y++) {

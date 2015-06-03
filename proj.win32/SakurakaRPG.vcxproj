@@ -183,7 +183,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\map\MapObjectList.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\mini_map\MiniMapBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\mini_map\MiniMapManager.cpp" />
-    <ClCompile Include="..\Classes\GameMain\map\mini_map\test_map\TestMap.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\RandomDungeon.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\RandomDungeonRoom.cpp" />
     <ClCompile Include="..\Classes\GameMain\shadow\ShadowObjectBase.cpp" />
@@ -257,6 +256,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\item\use_item\useItemId.h" />
     <ClInclude Include="..\Classes\GameMain\magic\MagicBase.h" />
     <ClInclude Include="..\Classes\GameMain\magic\normal\TestMagicShot.h" />
+    <ClInclude Include="..\Classes\GameMain\map\mapGroundType.h" />
     <ClInclude Include="..\Classes\GameMain\map\mini_map\MiniMapBase.h" />
     <ClInclude Include="..\Classes\GameMain\map\mini_map\MiniMapManager.h" />
     <ClInclude Include="..\Classes\GameMain\map\mini_map\miniMapType.h" />

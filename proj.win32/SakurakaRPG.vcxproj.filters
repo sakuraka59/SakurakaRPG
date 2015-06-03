@@ -318,9 +318,6 @@
     <ClCompile Include="..\Classes\GameMain\map\mini_map\MiniMapManager.cpp">
       <Filter>src\GameMain\map\mini_map</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameMain\map\mini_map\test_map\TestMap.cpp">
-      <Filter>src\GameMain\map\mini_map\test_map</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -574,6 +571,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\map\mini_map\test_map\TestMap.h">
       <Filter>src\GameMain\map\mini_map\test_map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\mapGroundType.h">
+      <Filter>src\GameMain\map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

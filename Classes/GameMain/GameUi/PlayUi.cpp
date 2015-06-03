@@ -68,7 +68,7 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj) {
 		this->_chara_list.push_back(npc_obj);
 
 		this->_shadow_list->setRenderObject(npc_obj);
-		this->_map_obj->setCharaPoint(npc_obj);
+		this->_map_obj->setCharaPoint(npc_obj, 3);
 
 		this->_order_object_list->addChild(npc_obj, (int)(npc_obj->getDrawY() * (-1)));
 	}
@@ -201,7 +201,7 @@ void PlayUi::Update(){
 }
 void PlayUi::checkHitMapObject(CharaBase* chara_obj) {
 
-	return;
+//	return;
 
 	int chara_map_x = chara_obj->getMapBlockX();
 	int chara_map_y = chara_obj->getMapBlockY();

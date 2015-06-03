@@ -8,6 +8,7 @@ class Random;
 
 class RandomDungeon {
 private: std::unordered_map<int, std::unordered_map<int, int>> _map_data;
+private: std::unordered_map<int, std::unordered_map<int, int>> _map_ground_data;
 private: Random* _rand_obj;
 public: RandomDungeon();
 
@@ -47,6 +48,7 @@ private: void setRoadExpansion(int room_core_x, int room_core_y, int road_type, 
 private: void setMapData(int expansion_x, int expansion_y, int map_type);
 
 public: std::unordered_map<int, std::unordered_map<int, int>> getMapData();
+public: std::unordered_map<int, std::unordered_map<int, int>> getMapGroundData();
 
 private: int getMapDataFreeNum();
 
