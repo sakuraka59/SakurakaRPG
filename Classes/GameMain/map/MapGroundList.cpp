@@ -39,7 +39,7 @@ MapGroundList::MapGroundList(std::unordered_map<int, std::unordered_map<int, int
 	int map_test_width = 15;
 	int map_test_height = 9;
 
-	auto piyo = map_data;
+
 
 	int map_width = 0;
 	int map_height = 0;

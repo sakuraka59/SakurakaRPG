@@ -11,12 +11,10 @@ void MiniMapManager::loadMiniMap(miniMapType map_type) {
 		break;
 	case miniMapType::test_map:
 		MiniMapManager::map_obj = new TestMap();
-//		TestMap* load_map_obj = new TestMap();
-//		MiniMapManager::map_obj = load_map_obj;
-		//MiniMapManager::map_obj = new MiniMapBase();
+
 		break;
 	}
-//	MiniMapManager::map_obj->loadMapData();
+
 }
 
 unordered_map<int, std::unordered_map<int, int>> MiniMapManager::getMapData() {
@@ -26,4 +24,7 @@ unordered_map<int, std::unordered_map<int, int>> MiniMapManager::getMapData() {
 
 unordered_map<int, MapObjectList*> MiniMapManager::getMapObjData() {
 	return MiniMapManager::map_obj->getMapObjData();
+}
+unordered_map<int, unordered_map<int, int>> MiniMapManager::getMapGroundObjData() {
+	return MiniMapManager::map_obj->getMapGoundObjData();
 }
