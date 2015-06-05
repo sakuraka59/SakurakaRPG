@@ -41,6 +41,7 @@ private: bool _order_set_flag = false;
 private: bool _remove_flag = false;
 private: bool _shadow_flag = true;
 private: bool _shadow_remove_flag = false;
+private: bool _hit_check_flag = true;
 
 //private SpriteTile _object_sprite;
 //protected TextureInfo _texture_info;
@@ -72,4 +73,5 @@ public: void setOrderSetFlag();
 
 public: bool getShadowRemoveFlag();
 public: void removeShadow(ShadowObjectList* shadow_list);
+public: bool getHitCheckFlag();
 };

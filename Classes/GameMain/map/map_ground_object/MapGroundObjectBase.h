@@ -6,6 +6,7 @@ using namespace std;
 using namespace cocos2d;
 
 class HitSquare;
+class CharaBase;
 
 class MapGroundObjectBase : public RenderObject {
 protected: int _OBJECT_CORRECT_WIDTH = 64;
@@ -33,5 +34,5 @@ public: HitSquare* getHitSquare();
 
 public: bool getHitFlag();
 public: bool getActionFlag();
-
+public: virtual void activeObject(CharaBase* chara_obj);
 };

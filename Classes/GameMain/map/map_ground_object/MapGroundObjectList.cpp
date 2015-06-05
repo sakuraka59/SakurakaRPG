@@ -1,5 +1,6 @@
 #include "MapGroundObjectList.h"
 #include "MapGroundObjectBase.h"
+#include "mg_object_type/MgObjectAuto.h"
 
 MapGroundObjectList::MapGroundObjectList(CharaPlayer* player_obj) {
 	this->_player_obj = player_obj;
@@ -22,7 +23,7 @@ void MapGroundObjectList::LoadData(unordered_map<int, unordered_map<int, int>> m
 				continue;
 			}
 			// @TODO 後で読み込み用マネージャを作成して、そちらから読み込むようにする
-			MapGroundObjectBase* ground_obj = new MapGroundObjectBase(
+			MapGroundObjectBase* ground_obj = new MgObjectAuto(
 				map_search_x, map_search_y * (-1)
 				);		
 			this->_ground_obj_list[map_search_x][map_search_y * (-1)] = ground_obj;
@@ -46,4 +47,7 @@ void MapGroundObjectList::reviewGroundBlockX(int add_block_draw_x, int remove_bl
 }
 void MapGroundObjectList::reviewGroundBlockY(int add_block_draw_y, int remove_block_draw_y, int block_draw_x, int map_max_x) {
 
+}
+unordered_map<int, unordered_map<int, MapGroundObjectBase*>> MapGroundObjectList::getGroundObjData() {
+	return this->_ground_obj_list;
 }

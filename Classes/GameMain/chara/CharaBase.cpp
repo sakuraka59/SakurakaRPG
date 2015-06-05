@@ -1106,6 +1106,7 @@ void CharaBase::setMagicList(MagicBase* magic_obj) {
 	//this->_magic_list.Add(magic_obj);
 	this->_magic_list->push_back(magic_obj);
 	magic_obj->magicInit(this->getDrawX(), this->getDrawY(), this->getDrawZ(), this->getMoveAngle());
+	this->setShadowList(magic_obj);
 }
 // set magic list
 void CharaBase::setShadowList(MagicBase* magic_obj) {

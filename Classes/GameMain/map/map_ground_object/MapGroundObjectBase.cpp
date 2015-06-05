@@ -1,6 +1,7 @@
 #include "MapGroundObjectBase.h"
 #include "../../GAME_SETTING.h"
 #include "../../hit/HitSquare.h"
+#include "../../chara/CharaBase.h"
 
 MapGroundObjectBase::MapGroundObjectBase(int map_block_x, int map_block_y) {
 	this->_draw_x = (map_block_x * MAP_BLOCK_WIDTH);
@@ -33,4 +34,8 @@ bool MapGroundObjectBase::getHitFlag() {
 }
 bool MapGroundObjectBase::getActionFlag() {
 	return this->_action_flag;
+}
+
+void MapGroundObjectBase::activeObject(CharaBase* chara_obj) {
+
 }

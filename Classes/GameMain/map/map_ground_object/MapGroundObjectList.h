@@ -31,4 +31,6 @@ public: void Update();
 private: void reviewGroundBlockX(int add_block_draw_x, int remove_block_draw_x, int block_draw_y, int map_max_y);
 private: void reviewGroundBlockY(int add_block_draw_y, int remove_block_draw_y, int block_draw_x, int map_max_x);
 
+
+public: unordered_map<int, std::unordered_map<int, MapGroundObjectBase*>> getGroundObjData();
 };

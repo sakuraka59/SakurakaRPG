@@ -19,6 +19,7 @@ class SkillList;
 class MapBase;
 
 class MapObjectList;
+class MapGroundObjectList;
 
 class PlayUi : public UiBase
 {
@@ -39,11 +40,13 @@ public: SkillList* _skill_list;
 
 private: MapBase* _map_obj;
 private: std::unordered_map<int, MapObjectList*> _map_obj_line_list;
+private: MapGroundObjectList* _mg_object_list_obj;
 
 public: PlayUi(PlayerCommentUI* comment_ui_obj);
 public: void Update();
-private: void PlayUi::checkHitMapObject(CharaBase* chara_obj);
+private: void checkHitMapObject(CharaBase* chara_obj);
+private: void checkHitMapGroundObject(CharaBase* chara_obj);
 private: void checkHitMagic(MagicBase* magic_obj, std::list<MagicBase*>* delete_magic_list);
-private: bool PlayUi::checkHeightHit(MagicBase* magic_obj, CharaBase* check_chara_obj);
+private: bool checkHeightHit(MagicBase* magic_obj, CharaBase* check_chara_obj);
 public: CharaPlayer* getCharaPlayerObj();
 };

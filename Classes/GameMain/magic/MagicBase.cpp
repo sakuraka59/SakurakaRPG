@@ -69,6 +69,7 @@ void MagicBase::Update() {
 	if (this->_frame_time <= 0) {
 		// 影を消す準備
 		this->_shadow_remove_flag = true;
+		this->_hit_check_flag = false;
 
 		// 演出が完全終了した場合、オブジェクト破棄の準備をする
 		if (this->_frame_end_time <= 0) {
@@ -156,6 +157,7 @@ CharaBase* MagicBase::getCharaObj(){
 void MagicBase::hitCharaDamage(CharaBase* hit_chara_obj) {
 	hit_chara_obj->directDamageHp(100);
 	this->_chara_obj->setTargetChara(hit_chara_obj);
+	
 
 }
 
@@ -183,8 +185,16 @@ bool MagicBase::getShadowRemoveFlag() {
 	return this->_shadow_remove_flag;
 }
 void MagicBase::removeShadow(ShadowObjectList* shadow_list) {
+	this->_hit_check_flag = false;
+	this->_shadow_remove_flag = true;
 	if (this->_shadow_flag == true) {
 		this->_shadow_flag = false;
 		shadow_list->removeRenderObject(this);
+
+		this->_test_particle->stopSystem();
 	}
+}
+
+bool MagicBase::getHitCheckFlag(){
+	return this->_hit_check_flag;
 }

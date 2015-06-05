@@ -12,6 +12,8 @@
 #include "../map/MapBase.h"
 #include "../map/MapObjectList.h"
 #include "../map/MapObjectBase.h"
+#include "../map/map_ground_object/MapGroundObjectList.h"
+#include "../map/map_ground_object/MapGroundObjectBase.h"
 
 #include "../magic/MagicBase.h"
 
@@ -99,6 +101,8 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj) {
 	this->_map_obj->Init();
 
 	this->_map_obj_line_list = this->_map_obj->getMapObjectLineList();
+
+	this->_mg_object_list_obj = this->_map_obj->getMgObjectList();
 //	for (std::unordered_map<int, MapObjectList*>::iterator map_obj_iterator = this->_map_obj_line_list.begin(); map_obj_iterator != this->_map_obj_line_list.end(); map_obj_iterator++) {
 
 	//for(auto pair:mp){
@@ -123,6 +127,7 @@ void PlayUi::Update(){
 		chara_obj->Update();
 		// マップオブジェクトとの当たり判定
 		this->checkHitMapObject(chara_obj);
+		this->checkHitMapGroundObject(chara_obj);
 	}
 	/*
 	for (std::list<CharaBase*>::iterator chara_iterator = this->_chara_list.begin(); chara_iterator != this->_chara_list.end(); chara_iterator++) {
@@ -186,7 +191,7 @@ void PlayUi::Update(){
 //		this->_shadow_list->removeRenderObject(magic_obj);
 		this->_order_object_list->removeChild(magic_obj, true);
 		this->_magic_list.remove(magic_obj);
-		
+		//delete magic_obj;
 	}
 
 
@@ -237,7 +242,48 @@ void PlayUi::checkHitMapObject(CharaBase* chara_obj) {
 		}
 	}
 }
+void PlayUi::checkHitMapGroundObject(CharaBase* chara_obj) {
+	int chara_map_x = chara_obj->getMapBlockX();
+	int chara_map_y = chara_obj->getMapBlockY();
+
+	std::unordered_map<int, unordered_map<int, MapGroundObjectBase*>> mg_obj_data = this->_mg_object_list_obj->getGroundObjData();
+
+	for (int y = -1; y < 3; y++) {
+		int check_map_y = chara_map_y + y;
+
+		for (int x = -1; x < 3; x++) {
+			int check_map_x = chara_map_x + x;
+
+
+			MapGroundObjectBase* mb_obj = mg_obj_data[check_map_x][check_map_y];
+
+			if (mb_obj == nullptr) {
+				continue;
+			}
+			
+			if (mb_obj->getHitFlag() != true) {
+				continue;
+			}
+
+
+			HitCircle* circle_obj = chara_obj->getHitCircle();
+
+
+			HitSquare* square_obj = mb_obj->getHitSquare();
+
+			if (HitCheck::checkRectAndCircle(circle_obj, square_obj) == true) {
+				mb_obj->activeObject(chara_obj);
+				// 適当に戻す
+				
+			}
+			
+		}
+	}
+}
 void PlayUi::checkHitMagic(MagicBase* magic_obj, std::list<MagicBase*>* delete_magic_list) {
+	if (magic_obj->getHitCheckFlag() != true) {
+		return;
+	}
 	int main_obj_map_x = magic_obj->getMapBlockX();
 	int main_obj_map_y = magic_obj->getMapBlockY();
 	HitCircle* circle_obj = magic_obj->getHitCircle();
@@ -257,7 +303,8 @@ void PlayUi::checkHitMagic(MagicBase* magic_obj, std::list<MagicBase*>* delete_m
 			this->checkHeightHit(magic_obj, chara_obj) == true) {
 			// 当たった判定あり
 			magic_obj->hitCharaDamage(chara_obj);
-			delete_magic_list->push_back(magic_obj);
+			magic_obj->removeShadow(this->_shadow_list);
+			//delete_magic_list->push_back(magic_obj);
 		}
 	}
 

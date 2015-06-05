@@ -106,6 +106,9 @@ void MapBase::initMapObject(std::unordered_map<int, std::unordered_map<int, int>
 std::unordered_map<int, MapObjectList*> MapBase::getMapObjectLineList() {
 	return this->_map_obj_line_list;
 }
+MapGroundObjectList* MapBase::getMgObjectList() {
+	return this->_mg_object_list_obj;
+}
 //-------------------------------------------------------------------
 //	ランダムマップを作成
 //-------------------------------------------------------------------
@@ -140,10 +143,10 @@ void MapBase::createMiniMap(){
 	this->_map_ground_obj = new MapGroundList(this->_map_ground_data, 2, this->_player_obj);
 	this->addChild(this->_map_ground_obj);
 
-	this->_map_ground_object_list_obj = new MapGroundObjectList(this->_player_obj);
-	this->_map_ground_object_list_obj->LoadData(MiniMapManager::getMapGroundObjData());
+	this->_mg_object_list_obj = new MapGroundObjectList(this->_player_obj);
+	this->_mg_object_list_obj->LoadData(MiniMapManager::getMapGroundObjData());
 
-	this->addChild(this->_map_ground_object_list_obj);
+	this->addChild(this->_mg_object_list_obj);
 
 	this->initMapObject(this->_map_ground_data);
 
