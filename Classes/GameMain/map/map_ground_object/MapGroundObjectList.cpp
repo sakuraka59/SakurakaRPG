@@ -1,6 +1,7 @@
 #include "MapGroundObjectList.h"
 #include "MapGroundObjectBase.h"
 #include "mg_object_type/MgObjectAuto.h"
+#include "mg_object_type/mg_object_auto/MgObjAutoPush.h"
 
 MapGroundObjectList::MapGroundObjectList(CharaPlayer* player_obj) {
 	this->_player_obj = player_obj;
@@ -23,7 +24,7 @@ void MapGroundObjectList::LoadData(unordered_map<int, unordered_map<int, int>> m
 				continue;
 			}
 			// @TODO 後で読み込み用マネージャを作成して、そちらから読み込むようにする
-			MapGroundObjectBase* ground_obj = new MgObjectAuto(
+			MapGroundObjectBase* ground_obj = new MgObjAutoPush(
 				map_search_x, map_search_y * (-1)
 				);		
 			this->_ground_obj_list[map_search_x][map_search_y * (-1)] = ground_obj;
@@ -39,8 +40,35 @@ void MapGroundObjectList::LoadData(unordered_map<int, unordered_map<int, int>> m
 void MapGroundObjectList::Init() {
 
 }
-void MapGroundObjectList::Update() {
+void MapGroundObjectList::UpdateInit() {
+	int map_width = this->_map_ground_obj_data.size();
+	int map_height = this->_map_ground_obj_data[0].size();
 
+
+	for (int map_search_x = 0; map_search_x < map_width; map_search_x++) {
+		int map_search_y = 0;
+		for (int map_search_y = 0; map_search_y < map_height; map_search_y++) {
+			if (this->_map_ground_obj_data[map_search_x][map_search_y] < 1) {
+				continue;
+			}
+			this->_ground_obj_list[map_search_x][map_search_y * (-1)]->UpdateInit();
+		}
+	}
+}
+void MapGroundObjectList::Update() {
+	int map_width = this->_map_ground_obj_data.size();
+	int map_height = this->_map_ground_obj_data[0].size();
+
+
+	for (int map_search_x = 0; map_search_x < map_width; map_search_x++) {
+		int map_search_y = 0;
+		for (int map_search_y = 0; map_search_y < map_height; map_search_y++) {
+			if (this->_map_ground_obj_data[map_search_x][map_search_y] < 1) {
+				continue;
+			}
+			this->_ground_obj_list[map_search_x][map_search_y * (-1)]->Update();
+		}
+	}
 }
 void MapGroundObjectList::reviewGroundBlockX(int add_block_draw_x, int remove_block_draw_x, int block_draw_y, int map_max_y) {
 

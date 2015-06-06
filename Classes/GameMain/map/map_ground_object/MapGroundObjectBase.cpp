@@ -24,6 +24,8 @@ MapGroundObjectBase::MapGroundObjectBase(int map_block_x, int map_block_y) {
 	this->addChild(this->_sprite_data);
 }
 void MapGroundObjectBase::Update() {
+}
+void MapGroundObjectBase::UpdateInit() {
 
 }
 HitSquare* MapGroundObjectBase::getHitSquare() {

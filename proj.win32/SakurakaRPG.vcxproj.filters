@@ -121,6 +121,9 @@
     <Filter Include="src\GameMain\map\map_ground_object\mg_object_type">
       <UniqueIdentifier>{9e646512-146e-4282-95d4-46311d3a2ccb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\map\map_ground_object\mg_object_type\mg_object_auto">
+      <UniqueIdentifier>{24b5fd08-17bd-4b77-b2e5-b52ed10002b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -335,6 +338,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\map\map_ground_object\mg_object_type\MgObjectAuto.cpp">
       <Filter>src\GameMain\map\map_ground_object\mg_object_type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\map\map_ground_object\mg_object_type\mg_object_auto\MgObjAutoPush.cpp">
+      <Filter>src\GameMain\map\map_ground_object\mg_object_type\mg_object_auto</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -601,6 +607,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\map\map_ground_object\mg_object_type\MgObjectAuto.h">
       <Filter>src\GameMain\map\map_ground_object\mg_object_type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\map_ground_object\mg_object_type\mg_object_auto\MgObjAutoPush.h">
+      <Filter>src\GameMain\map\map_ground_object\mg_object_type\mg_object_auto</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

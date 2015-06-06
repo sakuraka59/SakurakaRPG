@@ -184,6 +184,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\map\map_ground_object\MapGroundObjectBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\map_ground_object\MapGroundObjectList.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\map_ground_object\mg_object_type\MgObjectAuto.cpp" />
+    <ClCompile Include="..\Classes\GameMain\map\map_ground_object\mg_object_type\mg_object_auto\MgObjAutoPush.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\mini_map\MiniMapBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\mini_map\MiniMapManager.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\RandomDungeon.cpp" />
@@ -263,6 +264,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\map\map_ground_object\MapGroundObjectBase.h" />
     <ClInclude Include="..\Classes\GameMain\map\map_ground_object\MapGroundObjectList.h" />
     <ClInclude Include="..\Classes\GameMain\map\map_ground_object\mg_object_type\MgObjectAuto.h" />
+    <ClInclude Include="..\Classes\GameMain\map\map_ground_object\mg_object_type\mg_object_auto\MgObjAutoPush.h" />
     <ClInclude Include="..\Classes\GameMain\map\mini_map\MiniMapBase.h" />
     <ClInclude Include="..\Classes\GameMain\map\mini_map\MiniMapManager.h" />
     <ClInclude Include="..\Classes\GameMain\map\mini_map\miniMapType.h" />

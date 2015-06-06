@@ -26,6 +26,7 @@ public: MapGroundObjectList(CharaPlayer* player_obj);
 public: void LoadData(unordered_map<int, unordered_map<int, int>> map_ground_data);
 
 public: void Init();
+public: void UpdateInit();
 public: void Update();
 
 private: void reviewGroundBlockX(int add_block_draw_x, int remove_block_draw_x, int block_draw_y, int map_max_y);

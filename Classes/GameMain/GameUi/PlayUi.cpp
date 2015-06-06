@@ -119,6 +119,7 @@ void PlayUi::Update(){
 	// マップアップデート処理
 
 	this->_map_obj->Update();
+	this->_mg_object_list_obj->UpdateInit();
 
 
 
