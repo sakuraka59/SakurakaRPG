@@ -28,6 +28,10 @@ protected: HitSquare* _hit_square_obj;
 protected: string _sprite_img_pass = "";
 protected: Sprite* _sprite_data;
 
+private: list<CharaBase*> _active_chara_list;
+private: list<CharaBase*> _before_chara_list;
+
+
 public: MapGroundObjectBase(int map_block_x, int map_block_y);
 
 public: virtual void Update();
@@ -36,5 +40,14 @@ public: HitSquare* getHitSquare();
 
 public: bool getHitFlag();
 public: bool getActionFlag();
-public: virtual void activeObject(CharaBase* chara_obj);
+public: void activeObject(CharaBase* chara_obj);
+
+// “¥‚ñ‚¾‚É©“®”­“®
+public: void autoPushActive(CharaBase* chara_obj);		// “¥‚ñ‚¾uŠÔ
+public: void autoPressActive(CharaBase* chara_obj);		// “¥‚ñ‚Å‚¢‚éŠÔ
+public: void autoOnlyActive(CharaBase* chara_obj);		// 1‰ñ–Ú‚Ì‚İ
+
+// ’²‚×‚½‚É”­“®
+public: void actionPushActive(CharaBase* chara_obj);	// ’²‚×‚½uŠÔ
+public: void actionOnlyActive(CharaBase* chara_obj);	// 1‰ñ–Ú‚Ì‚İ
 };

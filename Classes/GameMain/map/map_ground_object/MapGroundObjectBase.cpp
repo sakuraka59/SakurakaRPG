@@ -22,6 +22,10 @@ MapGroundObjectBase::MapGroundObjectBase(int map_block_x, int map_block_y) {
 	this->setPosition((float)this->_draw_x, (float)this->_draw_y);
 
 	this->addChild(this->_sprite_data);
+
+
+	// TEST
+	this->_hit_flag = true;
 }
 void MapGroundObjectBase::Update() {
 }
@@ -39,5 +43,17 @@ bool MapGroundObjectBase::getActionFlag() {
 }
 
 void MapGroundObjectBase::activeObject(CharaBase* chara_obj) {
-
+	chara_obj->sendComment("‚Ç[‚ñI");
+	chara_obj->healHp(1);
+}
+void MapGroundObjectBase::autoPushActive(CharaBase* chara_obj) {
+}
+void MapGroundObjectBase::autoPressActive(CharaBase* chara_obj) {
+	this->activeObject(chara_obj);
+}
+void MapGroundObjectBase::autoOnlyActive(CharaBase* chara_obj) {
+}
+void MapGroundObjectBase::actionPushActive(CharaBase* chara_obj) {
+}
+void MapGroundObjectBase::actionOnlyActive(CharaBase* chara_obj) {
 }
