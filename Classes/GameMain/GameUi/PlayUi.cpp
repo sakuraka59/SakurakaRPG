@@ -273,7 +273,7 @@ void PlayUi::checkHitMapGroundObject(CharaBase* chara_obj) {
 			HitSquare* square_obj = mb_obj->getHitSquare();
 
 			if (HitCheck::checkRectAndCircle(circle_obj, square_obj) == true) {
-				mb_obj->activeObject(chara_obj);
+				mb_obj->autoActive(chara_obj);
 				// “K“–‚É–ß‚·
 				
 			}

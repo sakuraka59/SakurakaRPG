@@ -14,6 +14,10 @@ protected: int _OBJECT_CORRECT_HEIGHT = 64;
 
 private: bool _DRAW_FLAG = false;
 
+// ©“®Œ^‚Ì‰Ÿ‚µ‘±‚¯‚ª”½‰‚µ‚È‚¢‚æ‚¤‚Éƒ`ƒFƒbƒN
+private: unordered_map<CharaBase*, bool> _active_chara_list;
+private: unordered_map<CharaBase*, bool> _before_chara_list;
+
 // “–‚½‚è”»’è‚ğs‚¤‚©‚Ç‚¤‚©
 protected: bool _hit_flag = false;
 
@@ -28,8 +32,6 @@ protected: HitSquare* _hit_square_obj;
 protected: string _sprite_img_pass = "";
 protected: Sprite* _sprite_data;
 
-private: list<CharaBase*> _active_chara_list;
-private: list<CharaBase*> _before_chara_list;
 
 
 public: MapGroundObjectBase(int map_block_x, int map_block_y);
@@ -40,14 +42,18 @@ public: HitSquare* getHitSquare();
 
 public: bool getHitFlag();
 public: bool getActionFlag();
-public: void activeObject(CharaBase* chara_obj);
+
 
 // “¥‚ñ‚¾‚É©“®”­“®
-public: void autoPushActive(CharaBase* chara_obj);		// “¥‚ñ‚¾uŠÔ
-public: void autoPressActive(CharaBase* chara_obj);		// “¥‚ñ‚Å‚¢‚éŠÔ
-public: void autoOnlyActive(CharaBase* chara_obj);		// 1‰ñ–Ú‚Ì‚İ
+public: virtual void autoActive(CharaBase* chara_obj);
+protected: void autoPushActive(CharaBase* chara_obj);		// “¥‚ñ‚¾uŠÔ
+protected: void autoPressActive(CharaBase* chara_obj);		// “¥‚ñ‚Å‚¢‚éŠÔ
+protected: void autoOnlyActive(CharaBase* chara_obj);		// 1‰ñ–Ú‚Ì‚İ
+protected: virtual void autoObjBehavior(CharaBase* chara_obj);
 
 // ’²‚×‚½‚É”­“®
-public: void actionPushActive(CharaBase* chara_obj);	// ’²‚×‚½uŠÔ
-public: void actionOnlyActive(CharaBase* chara_obj);	// 1‰ñ–Ú‚Ì‚İ
+public: virtual void actionActive(CharaBase* chara_obj);
+protected: void actionPushActive(CharaBase* chara_obj);	// ’²‚×‚½uŠÔ
+protected: void actionOnlyActive(CharaBase* chara_obj);	// 1‰ñ–Ú‚Ì‚İ
+protected: virtual void actionObjBehavior(CharaBase* chara_obj);
 };
