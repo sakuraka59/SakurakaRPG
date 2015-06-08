@@ -3,6 +3,29 @@
 #include "HitSquare.h"
 #include <math.h>
 
+bool HitCheck::checkRectAndRect(HitSquare* square_obj1, HitSquare* square_obj2) {
+	double hoge1 = square_obj1->getX();
+	double hoge2 = square_obj2->getX() + square_obj2->getWidth();
+
+	double hoge3 = square_obj1->getY();
+	double hoge4 = square_obj2->getY() + square_obj2->getHeight();
+
+	double hoge5 = square_obj1->getX() + square_obj1->getWidth();
+	double hoge6 = square_obj2->getX();
+
+	double hoge7 = square_obj1->getY() + square_obj1->getHeight();
+	double hoge8 = square_obj2->getY();
+	
+	if (square_obj1->getX() <= square_obj2->getX() + square_obj2->getWidth() &&
+		square_obj1->getY() <= square_obj2->getY() + square_obj2->getHeight() &&
+		square_obj1->getX() + square_obj1->getWidth() >= square_obj2->getX() &&
+		square_obj1->getY() + square_obj1->getHeight() >= square_obj2->getY()
+		){
+
+		return true;
+	}
+	return false;
+}
 bool HitCheck::checkRectAndCircle(HitCircle* circle_obj, HitSquare* square_obj) {
 	
 	if (circle_obj->getCneterX() + circle_obj->getRadius() >= square_obj->getX() &&

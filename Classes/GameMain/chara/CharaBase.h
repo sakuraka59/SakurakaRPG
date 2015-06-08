@@ -174,6 +174,8 @@ protected: HitCircle* _hit_circle_obj;
 
 protected: std::string _test_label;
 protected: cocos2d::LabelTTF* _label_obj;
+
+
 //-------------------------------------------------------------------
 public: CharaBase();
 protected: void SetCharaHitData();

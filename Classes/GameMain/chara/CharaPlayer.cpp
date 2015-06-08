@@ -99,6 +99,8 @@ CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, st
 // update ---------------------------------------------------
 void CharaPlayer::mainUpdate() {
 
+	this->_search_flag = false;
+
 	//this->_game_pad_data = GamePad.GetData(0);
 	// 操作によるキャラクター移動
 	// 操作によるキャラクター移動
@@ -306,6 +308,20 @@ void CharaPlayer::sendSexualComment() {
 void CharaPlayer::setGroupList() {
 	this->_my_group_list = this->_chara_seed->getMyGroupList();
 }
+void CharaPlayer::setSearchFlag() {
+	this->_search_flag = true;
+	this->_search_x = this->getDrawX();
+	this->_search_y = this->getDrawY();
+}
+bool CharaPlayer::getSearchFlag() {
+	return this->_search_flag;
+}
+double CharaPlayer::getSearchX() {
+	return this->_search_x;
+}
+double CharaPlayer::getSearchY() {
+	return this->_search_y;
+}
 //test only -------------------------------------------------
 
 void CharaPlayer::testComment() {
@@ -506,10 +522,14 @@ void CharaPlayer::testAction() {
 	// keybord to D
 	if (this->_control_flag == true && Gamepad::Circle->isPush() == true) {
 		//bool attack_flag = this->setSkill(new NoWeaponDefault(this, this->_all_chara_list));
+
+		this->setSearchFlag();
+		/*
 		bool attack_flag = this->setSkill(new SwordGale(this, this->_all_chara_list));
 		if (attack_flag == true) {
 //			this->sendComment(this->_comment_list.getComment(charaCommentType.chara_attack, charaSexualType.normal));
 		}
+		*/
 	}
 	
 	if (this->_control_flag == true && Gamepad::Square->isPush() == true) {

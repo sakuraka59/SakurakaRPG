@@ -26,6 +26,7 @@ MapGroundObjectBase::MapGroundObjectBase(int map_block_x, int map_block_y) {
 
 	// TEST
 	this->_hit_flag = true;
+	this->_action_flag = true;
 }
 void MapGroundObjectBase::Update() {
 }
@@ -50,6 +51,9 @@ void MapGroundObjectBase::autoActive(CharaBase* chara_obj) {
 //	this->autoPushActive(chara_obj);
 //	this->autoPressActive(chara_obj);
 	this->autoOnlyActive(chara_obj);
+
+	// @TODO
+	// 1回限定ではなく、回数限定に変更したい
 }
 void MapGroundObjectBase::autoPushActive(CharaBase* chara_obj) {
 	if (chara_obj->checkGroundFlag() != true) {
@@ -75,14 +79,14 @@ void MapGroundObjectBase::autoOnlyActive(CharaBase* chara_obj) {
 }
 void MapGroundObjectBase::autoObjBehavior(CharaBase* chara_obj) {
 	chara_obj->sendComment("どーん！");
-	chara_obj->healHp(1);
+	chara_obj->healHp(1000);
 }
 
 
 void MapGroundObjectBase::actionActive(CharaBase* chara_obj) {
 	// TEST
-	//	this->actionPushActive(chara_obj);
-	this->actionOnlyActive(chara_obj);
+		this->actionPushActive(chara_obj);
+//	this->actionOnlyActive(chara_obj);
 
 }
 void MapGroundObjectBase::actionPushActive(CharaBase* chara_obj) {
@@ -104,5 +108,5 @@ void MapGroundObjectBase::actionOnlyActive(CharaBase* chara_obj) {
 }
 void MapGroundObjectBase::actionObjBehavior(CharaBase* chara_obj) {
 	chara_obj->sendComment("どーん！");
-	chara_obj->healHp(1);
+	chara_obj->healHp(1000);
 }

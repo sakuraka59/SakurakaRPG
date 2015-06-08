@@ -19,6 +19,10 @@ private: CharaCommentList* _comment_list;
 
 public: CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, std::list<CharaBase*>* all_chara_list, std::list<MagicBase*>* magic_list, ShadowObjectList* shadow_list);
 
+// 調べる系のデータ
+protected: double _search_x = 0;		// 調べる座標
+protected: double _search_y = 0;		// 調べる座標
+protected: bool _search_flag = false;	// 調べるフラグ
 // update ---------------------------------------------------
 protected: void mainUpdate() override;
 public: void updateCamera();
@@ -40,7 +44,11 @@ protected: void setGroupList() override;
 
 public: void setCharaMapPoint(double point_x, double point_y) override;
 
-
+// 調べる系の共通動作用
+private: void setSearchFlag();
+public: bool getSearchFlag();
+public: double getSearchX();
+public: double getSearchY();
 //test only -------------------------------------------------
 private: void testComment();
 private: void testState();

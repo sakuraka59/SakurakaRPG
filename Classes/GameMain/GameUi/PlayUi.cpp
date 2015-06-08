@@ -138,7 +138,6 @@ void PlayUi::Update(){
 		this->checkHitMapObject(chara_obj);
 	}
 	*/
-	// 魔法更新
 
 	// スキルあたり判定
 
@@ -199,6 +198,11 @@ void PlayUi::Update(){
 	// 影描画する
 	this->_shadow_list->Update();
 
+	// プレイヤーの調べる系アクション処理
+	if (this->_player_obj->getSearchFlag() == true) {
+
+		this->playerSearchAction();
+	}
 
 	//
 	float camera_set_x = this->_play_camera->getCameraX();
@@ -249,10 +253,10 @@ void PlayUi::checkHitMapGroundObject(CharaBase* chara_obj) {
 
 	std::unordered_map<int, unordered_map<int, MapGroundObjectBase*>> mg_obj_data = this->_mg_object_list_obj->getGroundObjData();
 
-	for (int y = -1; y < 3; y++) {
+	for (int y = -1; y < 2; y++) {
 		int check_map_y = chara_map_y + y;
 
-		for (int x = -1; x < 3; x++) {
+		for (int x = -1; x < 2; x++) {
 			int check_map_x = chara_map_x + x;
 
 
@@ -310,13 +314,13 @@ void PlayUi::checkHitMagic(MagicBase* magic_obj, std::list<MagicBase*>* delete_m
 	}
 
 	// オブジェクトとの当たり判定 ----------------------------------------
-	for (int y = -1; y < 3; y++) {
+	for (int y = -1; y < 2; y++) {
 		int check_map_y = main_obj_map_y + y;
 
 		if (this->_map_obj_line_list[check_map_y] == nullptr) {
 			continue;
 		}
-		for (int x = -1; x < 3; x++) {
+		for (int x = -1; x < 2; x++) {
 			int check_map_x = main_obj_map_x + x;
 
 			MapObjectBase* check_map_obj = this->_map_obj_line_list[check_map_y]->getMapObject(check_map_x);
@@ -360,4 +364,88 @@ bool PlayUi::checkHeightHit(MagicBase* magic_obj, CharaBase* check_chara_obj) {
 }
 CharaPlayer* PlayUi::getCharaPlayerObj() {
 	return this->_player_obj;
+}
+
+void PlayUi::playerSearchAction() {
+	
+	CharaPlayer* chara_obj = this->_player_obj;
+	double chara_search_x = chara_obj->getSearchX();
+	double chara_search_y = chara_obj->getSearchY();
+
+	int search_map_x = (int)floor(chara_search_x / MAP_BLOCK_WIDTH);
+	int search_map_y = (int)floor(chara_search_y / MAP_BLOCK_WIDTH);
+
+
+	// マップ上の地面オブジェクトを調べる -------------------------------------
+	unordered_map<int, unordered_map<int, MapGroundObjectBase*>> mg_obj_data = this->_mg_object_list_obj->getGroundObjData();
+
+
+	MapGroundObjectBase* mb_obj = mg_obj_data[search_map_x][search_map_y];
+	if (mb_obj == nullptr) {
+		return;
+	}
+
+	if (mb_obj->getActionFlag() != true) {
+		return;
+	}
+
+	HitSquare* obj_square_obj = mb_obj->getHitSquare();
+	
+	double test_angle = 0;
+	HitSquare* search_square_obj = new HitSquare(chara_search_x, chara_search_y, 1, 1, test_angle);
+
+	if (HitCheck::checkRectAndRect(obj_square_obj, search_square_obj) == true) {
+		mb_obj->actionActive(chara_obj);
+	}
+	int hoge = 1;
+
+	/*
+	for (int y = -1; y < 3; y++) {
+		int check_map_y = search_map_y + y;
+
+		for (int x = -1; x < 3; x++) {
+			int check_map_x = search_map_x + x;
+
+			MapGroundObjectBase* mb_obj = mg_obj_data[check_map_x][check_map_y];
+		}
+	}
+	
+	return;
+
+	/*
+	std::unordered_map<int, unordered_map<int, MapGroundObjectBase*>> mg_obj_data = this->_mg_object_list_obj->getGroundObjData();
+
+	for (int y = -1; y < 3; y++) {
+		int check_map_y = chara_map_y + y;
+
+		for (int x = -1; x < 3; x++) {
+			int check_map_x = chara_map_x + x;
+
+
+			MapGroundObjectBase* mb_obj = mg_obj_data[check_map_x][check_map_y];
+
+			if (mb_obj == nullptr) {
+				continue;
+			}
+
+			if (mb_obj->getHitFlag() != true) {
+				continue;
+			}
+
+
+			HitCircle* circle_obj = chara_obj->getHitCircle();
+
+
+			HitSquare* square_obj = mb_obj->getHitSquare();
+
+			if (HitCheck::checkRectAndCircle(circle_obj, square_obj) == true) {
+				mb_obj->autoActive(chara_obj);
+				// 適当に戻す
+
+			}
+
+		}
+	}
+	*/
+
 }
