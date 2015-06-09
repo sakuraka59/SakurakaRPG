@@ -50,7 +50,7 @@ void MapGroundObjectBase::autoActive(CharaBase* chara_obj) {
 	// TEST
 //	this->autoPushActive(chara_obj);
 //	this->autoPressActive(chara_obj);
-	this->autoOnlyActive(chara_obj);
+//	this->autoCountActive(chara_obj);
 
 	// @TODO
 	// 1‰ñŒÀ’è‚Å‚Í‚È‚­A‰ñ”ŒÀ’è‚É•ÏX‚µ‚½‚¢
@@ -70,7 +70,7 @@ void MapGroundObjectBase::autoPressActive(CharaBase* chara_obj) {
 	}
 	this->autoObjBehavior(chara_obj);
 }
-void MapGroundObjectBase::autoOnlyActive(CharaBase* chara_obj) {
+void MapGroundObjectBase::autoCountActive(CharaBase* chara_obj) {
 	if (chara_obj->checkGroundFlag() != true) {
 		return;
 	}
@@ -86,7 +86,7 @@ void MapGroundObjectBase::autoObjBehavior(CharaBase* chara_obj) {
 void MapGroundObjectBase::actionActive(CharaBase* chara_obj) {
 	// TEST
 		this->actionPushActive(chara_obj);
-//	this->actionOnlyActive(chara_obj);
+//	this->actionCountActive(chara_obj);
 
 }
 void MapGroundObjectBase::actionPushActive(CharaBase* chara_obj) {
@@ -97,7 +97,7 @@ void MapGroundObjectBase::actionPushActive(CharaBase* chara_obj) {
 		this->actionObjBehavior(chara_obj);
 	}
 }
-void MapGroundObjectBase::actionOnlyActive(CharaBase* chara_obj) {
+void MapGroundObjectBase::actionCountActive(CharaBase* chara_obj) {
 	if (chara_obj->checkGroundFlag() != true) {
 		return;
 	}

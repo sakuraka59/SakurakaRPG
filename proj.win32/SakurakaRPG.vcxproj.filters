@@ -330,6 +330,9 @@
     <ClCompile Include="..\Classes\GameMain\map\map_ground_object\MapGroundObjectList.cpp">
       <Filter>src\GameMain\map\map_ground_object</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\ItemUI.cpp">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -592,6 +595,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\map\map_ground_object\MapGroundObjectList.h">
       <Filter>src\GameMain\map\map_ground_object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\ItemUI.h">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\haveItemType.h">
+      <Filter>src\GameMain\item</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

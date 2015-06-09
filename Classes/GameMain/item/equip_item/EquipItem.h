@@ -10,7 +10,7 @@ class EquipItem : public ItemBase
 public: std::unordered_map<mainStateType, int> _default_state;
 public: std::unordered_map<abnormalStateType, int> _state_default_list;
 
-protected: equipType _item_type = equipType::no_type;
+protected: equipType _item_equip_type = equipType::no_type;
 
 public: EquipItem(CharaBase* chara_obj);
 protected: virtual void setStateInit();

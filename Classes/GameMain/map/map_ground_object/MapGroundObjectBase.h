@@ -48,12 +48,12 @@ public: bool getActionFlag();
 public: virtual void autoActive(CharaBase* chara_obj);
 protected: void autoPushActive(CharaBase* chara_obj);		// “¥‚ñ‚¾uŠÔ
 protected: void autoPressActive(CharaBase* chara_obj);		// “¥‚ñ‚Å‚¢‚éŠÔ
-protected: void autoOnlyActive(CharaBase* chara_obj);		// 1‰ñ–Ú‚Ì‚İ
+protected: void autoCountActive(CharaBase* chara_obj);		// 1‰ñ–Ú‚Ì‚İ
 protected: virtual void autoObjBehavior(CharaBase* chara_obj);
 
 // ’²‚×‚½‚É”­“®
 public: virtual void actionActive(CharaBase* chara_obj);
 protected: void actionPushActive(CharaBase* chara_obj);	// ’²‚×‚½uŠÔ
-protected: void actionOnlyActive(CharaBase* chara_obj);	// 1‰ñ–Ú‚Ì‚İ
+protected: void actionCountActive(CharaBase* chara_obj);	// 1‰ñ–Ú‚Ì‚İ
 protected: virtual void actionObjBehavior(CharaBase* chara_obj);
 };

@@ -2,7 +2,7 @@
 
 WeaponBase::WeaponBase(CharaBase* chara_obj) : EquipItem(chara_obj)
 {
-	this->_item_type = equipType::weapon;
+	this->_item_equip_type = equipType::weapon;
 }
 
 weaponType WeaponBase::getWeaponType() {

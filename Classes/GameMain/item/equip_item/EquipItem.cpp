@@ -27,13 +27,13 @@ void EquipItem::setStateInit() {
 }
 bool EquipItem::useItem(){
 
-	if (this->_item_type == equipType::no_type) {
+	if (this->_item_equip_type == equipType::no_type) {
 		return false;
 	}
 	if (this->checkExtendEquipItem() != true) {
 		return false;
 	}
-	this->_chara_obj->setEquipItem(this->_item_type, this, this->_state_default_list);
+	this->_chara_obj->setEquipItem(this->_item_equip_type, this, this->_state_default_list);
 
 
 	this->releaseEquipChain();
