@@ -2,7 +2,7 @@
 #include "EquipItem.h"
 #include "../../chara/CharaBase.h"
 #include "weapon\sword\TestSword.h"
-HaveEquipItemList::HaveEquipItemList(CharaBase* chara_obj) : HaveItemList(chara_obj) {
+HaveEquipItemList::HaveEquipItemList(CharaBase* chara_obj) : HaveItemListBase(chara_obj) {
 	
 	// テスト用アイテム追加
 	EquipItem* item_obj = new TestSword(chara_obj);

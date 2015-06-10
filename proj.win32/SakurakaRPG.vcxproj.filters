@@ -118,6 +118,9 @@
     <Filter Include="src\GameMain\map\map_ground_object">
       <UniqueIdentifier>{eceb8240-6ab0-4ddf-81a4-5afe823097d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\GameUi\ItemUi">
+      <UniqueIdentifier>{a920d9fb-e79c-4aba-87bf-ba900ee11614}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -167,9 +170,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\item\use_item\UseItem.cpp">
       <Filter>src\GameMain\item\use_item</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameMain\item\HaveItemList.cpp">
-      <Filter>src\GameMain\item</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\item\use_item\HaveUseItemList.cpp">
       <Filter>src\GameMain\item\use_item</Filter>
@@ -330,8 +330,14 @@
     <ClCompile Include="..\Classes\GameMain\map\map_ground_object\MapGroundObjectList.cpp">
       <Filter>src\GameMain\map\map_ground_object</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameMain\GameUi\ItemUI.cpp">
+    <ClCompile Include="..\Classes\GameMain\item\HaveItemListBase.cpp">
+      <Filter>src\GameMain\item</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\ItemUi.cpp">
       <Filter>src\GameMain\GameUi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\ItemUi\ObjItemList.cpp">
+      <Filter>src\GameMain\GameUi\ItemUi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -406,9 +412,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\item\use_item\UseItem.h">
       <Filter>src\GameMain\item\use_item</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameMain\item\HaveItemList.h">
-      <Filter>src\GameMain\item</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\item\use_item\HaveUseItemList.h">
       <Filter>src\GameMain\item\use_item</Filter>
@@ -596,11 +599,17 @@
     <ClInclude Include="..\Classes\GameMain\map\map_ground_object\MapGroundObjectList.h">
       <Filter>src\GameMain\map\map_ground_object</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GameMain\GameUi\ItemUI.h">
-      <Filter>src\GameMain\GameUi</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GameMain\item\haveItemType.h">
       <Filter>src\GameMain\item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\HaveItemListBase.h">
+      <Filter>src\GameMain\item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\ItemUi.h">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\ItemUi\ObjItemList.h">
+      <Filter>src\GameMain\GameUi\ItemUi</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

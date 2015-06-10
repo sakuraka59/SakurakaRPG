@@ -3,7 +3,7 @@
 
 #include "hp_heal/TestHpHeal.h"
 
-HaveUseItemList::HaveUseItemList(CharaBase* chara_obj) : HaveItemList(chara_obj) {
+HaveUseItemList::HaveUseItemList(CharaBase* chara_obj) : HaveItemListBase(chara_obj) {
 
 	this->_item_list[useItemId::testHpHeal] = new TestHpHeal(chara_obj);
 
