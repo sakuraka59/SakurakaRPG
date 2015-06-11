@@ -17,4 +17,5 @@ private: int _list_index = 0;
 public: HaveEquipItemList(CharaBase* chara_obj);
 private: int setListToItem(EquipItem* item_obj);
 public: bool itemUse(int index);
+public: unordered_map<haveItemType, unordered_map<int, EquipItem*>>* getItemTypeList();
 };

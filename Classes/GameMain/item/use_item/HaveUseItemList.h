@@ -16,4 +16,5 @@ protected: unordered_map<haveItemType, unordered_map<useItemId, ItemBase*>> _ite
 
 public: HaveUseItemList(CharaBase* chara_obj);
 public: bool itemUse(useItemId item_id);
+public: unordered_map<haveItemType, unordered_map<useItemId, ItemBase*>>* getItemTypeList();
 };

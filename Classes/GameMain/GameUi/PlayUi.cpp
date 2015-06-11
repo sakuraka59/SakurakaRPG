@@ -449,3 +449,7 @@ void PlayUi::playerSearchAction() {
 	*/
 
 }
+
+void PlayUi::setItemUiObj(ItemUi* item_ui_obj){
+	this->_item_ui_obj = item_ui_obj;
+}

@@ -55,8 +55,15 @@ CharaBase::CharaBase()
 	this->_test_label = "angle: ";
 	
 	this->_label_obj = LabelTTF::create(this->_test_label, "fonts/arial.ttf", 16);
+
+	auto anchor_point = new cocos2d::Vec2(0.5, 1);
+	this->_label_obj->setAnchorPoint(*anchor_point);
+	/*
+	auto anchor_point_line = new cocos2d::Vec2(0, 0);
+	frame_sprite->setAnchorPoint(*anchor_point_line);
+	*/
 	//label_obj->setColor(Color3B::WHITE);
-	this->_label_obj->setPosition(-20, -70);
+	this->_label_obj->setPosition(-20, -10);
 	this->addChild(this->_label_obj);
 
 }
@@ -1245,4 +1252,12 @@ void CharaBase::setCharaMapPoint(double point_x, double point_y) {
 	this->setDrawY(point_y);
 	this->updateBlockPoint();
 	
+}
+
+//---------------------------------------------------------
+HaveUseItemList* CharaBase::getHaveUseItemList() {
+	return this->_use_item_list;
+}
+HaveEquipItemList* CharaBase::getHaveEquipItemList() {
+	return this->_equip_item_list;
 }

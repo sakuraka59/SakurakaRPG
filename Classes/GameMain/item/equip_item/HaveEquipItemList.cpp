@@ -38,3 +38,6 @@ bool HaveEquipItemList::itemUse(int index) {
 	return this->_item_list[index]->useItem();
 
 }
+unordered_map<haveItemType, unordered_map<int, EquipItem*>>* HaveEquipItemList::getItemTypeList() {
+	return &this->_item_type_list;
+}

@@ -2,6 +2,7 @@
 #include "GameUi\PlayUi.h"
 #include "GameUi\PlayerCommentUI.h"
 #include "GameUi\DefaultStateUI.h"
+#include "GameUi\ItemUi.h"
 
 #include "..\Input\Gamepad.h"
 
@@ -69,17 +70,20 @@ bool GameMain::init()
 
 
 	this->_play_ui_obj = new PlayUi(this->_play_comment_ui_obj);
-	this->addChild(this->_play_ui_obj);
 	
 
 	CharaPlayer* player_obj = this->_play_ui_obj->getCharaPlayerObj();
 
 	this->_default_state_ui = new DefaultStateUI(player_obj);
+
+	this->_item_ui_obj = new ItemUi(player_obj);
+	this->_play_ui_obj->setItemUiObj(this->_item_ui_obj);
 //	this->_default_state_ui->setPosition(0, 0);
 
+	this->addChild(this->_play_ui_obj);
 	this->addChild(this->_default_state_ui);
-	
 	this->addChild(this->_play_comment_ui_obj);
+	this->addChild(this->_item_ui_obj);
 
 //	this->_test_ui_obj = new UiBase();
 //	this->addChild(this->_test_ui_obj);

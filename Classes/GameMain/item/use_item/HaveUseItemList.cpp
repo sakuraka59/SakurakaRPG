@@ -24,3 +24,7 @@ bool HaveUseItemList::itemUse(useItemId item_id) {
 	
 	return this->_item_list[item_id]->useItem();
 }
+
+unordered_map<haveItemType, unordered_map<useItemId, ItemBase*>>* HaveUseItemList::getItemTypeList() {
+	return &this->_item_type_list;
+}

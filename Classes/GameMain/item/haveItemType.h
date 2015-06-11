@@ -1,14 +1,14 @@
 #pragma once
 
 enum class haveItemType {
-	_no_type = -1,
+	_no_type = 0,
 
 	weapon,
 	head,
 	body,
 
-	portion,
 
+	portion,
 	etc,
 
 	_enum_end,
