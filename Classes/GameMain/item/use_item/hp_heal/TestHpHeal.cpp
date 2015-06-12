@@ -5,7 +5,8 @@
 #include "../../../chara/CharaPlayer.h"
 TestHpHeal::TestHpHeal(CharaBase* chara_obj) : UseItem(chara_obj)
 {
-	this->_num = 10;
+//	this->_num = 10;
+	this->_have_item_type = haveItemType::portion;
 }
 bool TestHpHeal::useSkill() {
 

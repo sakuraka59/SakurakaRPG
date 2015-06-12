@@ -16,7 +16,7 @@ ItemUi::ItemUi(CharaPlayer* player_obj) {
 	this->_player_item_list_obj->setPosition(50, 0);
 	this->addChild(this->_player_item_list_obj);
 	// test image draw ----------------------------------------------
-
+	this->_draw_flag = true;
 
 	/*
 	string image_pass = "img/map/ground/test_grass2.png";
@@ -36,4 +36,13 @@ void ItemUi::openItemUi() {
 // オブジェクトからのアイテム取得時に使う
 void ItemUi::openItemUiToObj(){
 
+}
+
+// 更新処理
+void ItemUi::Update() {
+	if (this->_draw_flag != true) {
+		return;
+	}
+
+	this->_player_item_list_obj->Update();
 }

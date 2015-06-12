@@ -151,6 +151,7 @@ void GameMain::update(float delta) {
 	Gamepad::updateInit();
 
 	this->_play_ui_obj->Update();
+	this->_item_ui_obj->Update();
 	this->_default_state_ui->Update();
 
 	this->_play_comment_ui_obj->Update();

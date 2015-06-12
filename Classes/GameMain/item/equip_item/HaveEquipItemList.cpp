@@ -1,6 +1,7 @@
 #include "HaveEquipItemList.h"
 #include "EquipItem.h"
 #include "../../chara/CharaBase.h"
+#include "../haveItemType.h"
 #include "weapon\sword\TestSword.h"
 HaveEquipItemList::HaveEquipItemList(CharaBase* chara_obj) : HaveItemListBase(chara_obj) {
 	
@@ -26,7 +27,9 @@ HaveEquipItemList::HaveEquipItemList(CharaBase* chara_obj) : HaveItemListBase(ch
 	//this._item_list[useItemId.testHpHeal] = new TestHpHeal(chara_obj);
 }
 int HaveEquipItemList::setListToItem(EquipItem* item_obj) {
+
 	this->_item_list[this->_list_index] = item_obj;
+	this->_item_type_list[item_obj->getHaveItemType()][this->_list_index] = item_obj;
 	int ret_index = this->_list_index;
 	this->_list_index++;
 	return ret_index;

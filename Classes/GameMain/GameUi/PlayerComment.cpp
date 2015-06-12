@@ -48,7 +48,7 @@ PlayerComment::PlayerComment(std::string comment)
 	*/
 
 
-	this->_label_obj = cocos2d::LabelTTF::create(comment, "fonts/arial.ttf", this->_FONT_SIZE, cocos2d::Size(comment_width, comment_height), cocos2d::TextHAlignment::LEFT);
+	this->_label_obj = cocos2d::LabelTTF::create(comment, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(comment_width, comment_height), cocos2d::TextHAlignment::LEFT);
 	this->_label_obj->setColor(cocos2d::Color3B::WHITE);
 	this->_label_obj->setOpacity(this->_text_alpha);
 	this->_label_obj->setAnchorPoint(cocos2d::Vec2(0.0f, 0.0f));

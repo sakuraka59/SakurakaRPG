@@ -13,4 +13,8 @@ bool ItemBase::useItem() {
 std::string ItemBase::getItemName() {
 	return this->_item_name;
 }
+
+haveItemType ItemBase::getHaveItemType() {
+	return this->_have_item_type;
+}
 // */

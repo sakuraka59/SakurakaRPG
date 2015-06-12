@@ -7,9 +7,9 @@
 
 class CharaBase;
 
-class ItemBase
-{
-protected: haveItemType _have_item_type;
+
+class ItemBase {
+protected: haveItemType _have_item_type = haveItemType::_no_type;
 //	protected Dictionary<mainStateType, int> _add_state = new Dictionary<mainStateType, int>();
 public: std::unordered_map<mainStateType, int> _add_state;
 protected: int _weight;	// one item to weight

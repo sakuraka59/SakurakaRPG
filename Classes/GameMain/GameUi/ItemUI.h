@@ -19,5 +19,7 @@ public: void openItemUiToObj();	// オブジェクトからのアイテム取得時に使う
 
 
 
+public: void Update();
+
 
 };
