@@ -13,27 +13,43 @@ ObjItemList::ObjItemList(HaveUseItemList* use_item_list, HaveEquipItemList* equi
 	this->_equip_item_list = equip_item_list;
 	this->_use_item_list = use_item_list;
 
-	this->_type_bg_render_obj = this->getBgRenderObj();
+	// type ---------------------------------------------------------
 
+	this->_type_bg_render_obj = this->getBgRenderObj();
 
 	this->_type_label = "hoge";
 
-//	this->_type_label_obj = LabelTTF::create(this->_type_label, "fonts/uzura.ttf", 16);
 	this->_type_label_obj = LabelTTF::create(this->_type_label, "fonts/APJapanesefontT.ttf", 32, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
 	this->_type_label_obj->setColor(cocos2d::Color3B(255, 255, 255));
-	auto anchor_point = new cocos2d::Vec2(0, 1);
-	this->_type_label_obj->setAnchorPoint(*anchor_point);
+	auto anchor_point_type = new cocos2d::Vec2(0, 1);
+	this->_type_label_obj->setAnchorPoint(*anchor_point_type);
 	this->_type_label_obj->setPosition(50, 400);
 	
+	this->_type_bg_render_obj->addChild(this->_type_label_obj);
 
-	// base
+	// detail -------------------------------------------------------
+	this->_detail_bg_render_obj = this->getBgRenderObj();
 
-	// test
+	this->_detail_label = "hoge";
+
+	this->_detail_label_obj = LabelTTF::create(this->_detail_label, "fonts/APJapanesefontT.ttf", 32, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
+	this->_detail_label_obj->setColor(cocos2d::Color3B(255, 255, 255));
+	auto anchor_point_detail = new cocos2d::Vec2(0, 1);
+	this->_detail_label_obj->setAnchorPoint(*anchor_point_detail);
+	this->_detail_label_obj->setPosition(50, 400);
+
+	this->_detail_bg_render_obj->addChild(this->_detail_label_obj);
+
+	this->_detail_bg_render_obj->setPosition(220, 0);
+	// test ---------------------------------------------------------
 	this->openItemListInit();
 
+	// --------------------------------------------------------------
+	
 
 	this->addChild(this->_type_bg_render_obj);
-	this->addChild(this->_type_label_obj);
+	this->addChild(this->_detail_bg_render_obj);
+	//this->addChild(;
 }
 RenderObject* ObjItemList::getBgRenderObj() {
 	RenderObject* bg_render_obj = new RenderObject();
@@ -105,6 +121,7 @@ void ObjItemList::openItemListInit(){
 	this->_use_item_list->getItemTypeList();
 	this->_equip_item_list->getItemTypeList();
 
+	this->_item_type_num = 0;
 	this->_type_label = "";
 
 	unordered_map<haveItemType, unordered_map<int, EquipItem*>>* equip_item_type_list = this->_equip_item_list->getItemTypeList();
@@ -112,12 +129,14 @@ void ObjItemList::openItemListInit(){
 		haveItemType item_type = item_list_obj.first;
 		string type_name = this->getItemTypeName(item_type);
 		this->_type_label += type_name + "\n\n";
+		this->_item_type_num++;
 
+		this->_item_detail_num_list[item_type] = 0;
 		for (auto use_item_obj : item_list_obj.second) {
 			this->_item_detail_list[item_type] += use_item_obj.second->getItemName();
+			this->_item_detail_list[item_type] += "\n\n";
+			this->_item_detail_num_list[item_type]++;
 		}
-
-		
 	}
 
 	unordered_map<haveItemType, unordered_map<useItemId, UseItem*>>* use_item_type_list = this->_use_item_list->getItemTypeList();
@@ -125,12 +144,14 @@ void ObjItemList::openItemListInit(){
 		haveItemType item_type = item_list_obj.first;
 		string type_name = this->getItemTypeName(item_type);
 		this->_type_label += type_name + "\n\n";
+		this->_item_type_num++;
 
+		this->_item_detail_num_list[item_type] = 0;
 		for (auto use_item_obj : item_list_obj.second) {
 			this->_item_detail_list[item_type] += use_item_obj.second->getItemName();
-		}
-		int hoeg = 1;
-		
+			this->_item_detail_list[item_type] += "\n\n";
+			this->_item_detail_num_list[item_type]++;
+		}		
 	}
 
 
