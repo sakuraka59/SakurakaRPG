@@ -16,34 +16,43 @@ ObjItemList::ObjItemList(HaveUseItemList* use_item_list, HaveEquipItemList* equi
 	// type ---------------------------------------------------------
 
 	this->_type_bg_render_obj = this->getBgRenderObj();
-
+	/*
 	this->_type_label = "hoge";
 
-	this->_type_label_obj = LabelTTF::create(this->_type_label, "fonts/APJapanesefontT.ttf", 32, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
-	this->_type_label_obj->setColor(cocos2d::Color3B(255, 255, 255));
+	LabelTTF* type_label_ttf = LabelTTF::create(this->_type_label, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
+	type_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
 	auto anchor_point_type = new cocos2d::Vec2(0, 1);
-	this->_type_label_obj->setAnchorPoint(*anchor_point_type);
-	this->_type_label_obj->setPosition(50, 400);
-	
+	type_label_ttf->setAnchorPoint(*anchor_point_type);
+	type_label_ttf->setPosition(0, 0);
+	*/
+	this->_type_label_obj = new RenderObject();
+	this->_type_label_obj->setPosition(30, 400);
+//	this->_type_label_obj->addChild(type_label_ttf);
+
 	this->_type_bg_render_obj->addChild(this->_type_label_obj);
 
 	// detail -------------------------------------------------------
 	this->_detail_bg_render_obj = this->getBgRenderObj();
 
+	
 	this->_detail_label = "hoge";
 
-	this->_detail_label_obj = LabelTTF::create(this->_detail_label, "fonts/APJapanesefontT.ttf", 32, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
-	this->_detail_label_obj->setColor(cocos2d::Color3B(255, 255, 255));
-	auto anchor_point_detail = new cocos2d::Vec2(0, 1);
-	this->_detail_label_obj->setAnchorPoint(*anchor_point_detail);
-	this->_detail_label_obj->setPosition(50, 400);
+	LabelTTF* type_label_ttf = LabelTTF::create(this->_type_label, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
+	type_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
+	auto anchor_point_type = new cocos2d::Vec2(0, 1);
+	type_label_ttf->setAnchorPoint(*anchor_point_type);
+	type_label_ttf->setPosition(0, 0);
+
+	this->_detail_label_obj = new RenderObject();
+	this->_detail_label_obj->setPosition(30, 400);
+//	this->_type_label_obj->addChild(type_label_ttf);
 
 	this->_detail_bg_render_obj->addChild(this->_detail_label_obj);
-
+	//*/
 	this->_detail_bg_render_obj->setPosition(220, 0);
 	// test ---------------------------------------------------------
 	this->openItemListInit();
-
+	this->openItemDetailInit(haveItemType::portion);
 	// --------------------------------------------------------------
 	
 
@@ -68,7 +77,7 @@ RenderObject* ObjItemList::getBgRenderObj() {
 
 	auto anchor_point_arrow = new cocos2d::Vec2(0, 0);
 	arrow_sprite->setAnchorPoint(*anchor_point_arrow);
-	arrow_sprite->setPosition(170, 380);
+	arrow_sprite->setPosition(170, 400 - (this->_FONT_SIZE/2));
 	bg_render_obj->addChild(arrow_sprite, 2);
 
 	//---------------------------------------------------------------
@@ -123,18 +132,47 @@ void ObjItemList::openItemListInit(){
 
 	this->_item_type_num = 0;
 	this->_type_label = "";
+	this->_type_label_obj->removeAllChildren();
 
 	unordered_map<haveItemType, unordered_map<int, EquipItem*>>* equip_item_type_list = this->_equip_item_list->getItemTypeList();
 	for (auto item_list_obj : *equip_item_type_list) {
 		haveItemType item_type = item_list_obj.first;
 		string type_name = this->getItemTypeName(item_type);
-		this->_type_label += type_name + "\n\n";
+//		this->_type_label += type_name + "\n\n";
+		
+
+		auto type_label_ttf = LabelTTF::create(type_name, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
+		type_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
+		auto anchor_point_type = new cocos2d::Vec2(0, 1);
+		type_label_ttf->setAnchorPoint(*anchor_point_type);
+		type_label_ttf->setPosition(0, (this->_TEXT_LINE_HEIGHT * this->_item_type_num * (-1)));
+		this->_type_label_obj->addChild(type_label_ttf);
+
 		this->_item_type_num++;
 
 		this->_item_detail_num_list[item_type] = 0;
 		for (auto use_item_obj : item_list_obj.second) {
+
+			/*
 			this->_item_detail_list[item_type] += use_item_obj.second->getItemName();
 			this->_item_detail_list[item_type] += "\n\n";
+			*/
+
+			auto detail_label_ttf = LabelTTF::create(use_item_obj.second->getItemName(), "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
+			detail_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
+			auto anchor_point_type = new cocos2d::Vec2(0, 1);
+			detail_label_ttf->setAnchorPoint(*anchor_point_type);
+			detail_label_ttf->setPosition(0, (this->_TEXT_LINE_HEIGHT * this->_item_detail_num_list[item_type] * (-1)));
+			//this->_type_label_obj->addChild(detail_label_ttf);
+
+			if (this->_item_detail_list[item_type] == nullptr) {
+				this->_item_detail_list[item_type] = new RenderObject();
+			} else {
+				this->_item_detail_list[item_type]->removeAllChildren();
+			}
+			this->_item_detail_list[item_type]->addChild(detail_label_ttf);
+
+
 			this->_item_detail_num_list[item_type]++;
 		}
 	}
@@ -143,20 +181,44 @@ void ObjItemList::openItemListInit(){
 	for (auto item_list_obj : *use_item_type_list) {
 		haveItemType item_type = item_list_obj.first;
 		string type_name = this->getItemTypeName(item_type);
-		this->_type_label += type_name + "\n\n";
+//		this->_type_label += type_name + "\n\n";
+
+		auto type_label_ttf = LabelTTF::create(type_name, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
+		type_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
+		auto anchor_point_type = new cocos2d::Vec2(0, 1);
+		type_label_ttf->setAnchorPoint(*anchor_point_type);
+		type_label_ttf->setPosition(0, (this->_TEXT_LINE_HEIGHT * this->_item_type_num * (-1)));
+		this->_type_label_obj->addChild(type_label_ttf);
+
 		this->_item_type_num++;
 
 		this->_item_detail_num_list[item_type] = 0;
 		for (auto use_item_obj : item_list_obj.second) {
+			/*
 			this->_item_detail_list[item_type] += use_item_obj.second->getItemName();
 			this->_item_detail_list[item_type] += "\n\n";
+			*/
+			auto detail_label_ttf = LabelTTF::create(use_item_obj.second->getItemName(), "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
+			detail_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
+			auto anchor_point_type = new cocos2d::Vec2(0, 1);
+			detail_label_ttf->setAnchorPoint(*anchor_point_type);
+			detail_label_ttf->setPosition(0, (this->_TEXT_LINE_HEIGHT * this->_item_detail_num_list[item_type] * (-1)));
+			//this->_type_label_obj->addChild(detail_label_ttf);
+			
+			if (this->_item_detail_list[item_type] == nullptr) {
+				this->_item_detail_list[item_type] = new RenderObject();
+			} else {
+				this->_item_detail_list[item_type]->removeAllChildren();
+			}
+			this->_item_detail_list[item_type]->addChild(detail_label_ttf);
+			//*/
 			this->_item_detail_num_list[item_type]++;
 		}		
 	}
 
 
 
-	this->_type_label_obj->setString(this->_type_label);
+//	this->_type_label_obj->setString(this->_type_label);
 }
 string ObjItemList::getItemTypeName(haveItemType item_type) {
 
@@ -179,7 +241,11 @@ string ObjItemList::getItemTypeName(haveItemType item_type) {
 
 	return type_name;
 }
-
+void ObjItemList::openItemDetailInit(haveItemType item_type) {
+//	this->_detail_label = this->_item_detail_list[item_type];
+//	this->_detail_label_obj->setString(this->_detail_label);
+	this->_detail_label_obj->addChild(this->_item_detail_list[item_type]);
+}
 void ObjItemList::Update() {
 
 }
