@@ -121,6 +121,9 @@
     <Filter Include="src\GameMain\GameUi\ItemUi">
       <UniqueIdentifier>{a920d9fb-e79c-4aba-87bf-ba900ee11614}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\item\equip_item\weapon\sheath">
+      <UniqueIdentifier>{69f6bfc0-ecaa-4d73-b32f-3e1d5c6a8264}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -338,6 +341,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\GameUi\ItemUi\ObjItemList.cpp">
       <Filter>src\GameMain\GameUi\ItemUi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\sheath\WeaponSheathBase.cpp">
+      <Filter>src\GameMain\item\equip_item\weapon\sheath</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\sheath\TestSheath.cpp">
+      <Filter>src\GameMain\item\equip_item\weapon\sheath</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -610,6 +619,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\GameUi\ItemUi\ObjItemList.h">
       <Filter>src\GameMain\GameUi\ItemUi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\sheath\WeaponSheathBase.h">
+      <Filter>src\GameMain\item\equip_item\weapon\sheath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\sheath\TestSheath.h">
+      <Filter>src\GameMain\item\equip_item\weapon\sheath</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

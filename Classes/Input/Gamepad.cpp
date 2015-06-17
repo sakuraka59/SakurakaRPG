@@ -22,7 +22,7 @@ GamepadButton* Gamepad::R3 = new GamepadButton('T');
 
 GamepadButton* Gamepad::Start = new GamepadButton('Z');
 GamepadButton* Gamepad::Select = new GamepadButton('X');
-
+//GamePadControllType Gamepad::_controll_type = GamePadControllType::chara;
 
 //*/
 Gamepad::Gamepad() {
@@ -75,3 +75,12 @@ void Gamepad::updateEnd() {
 	Gamepad::Select->updateEnd();
 	
 }
+/*
+GamePadControllType Gamepad::getControllType() {
+	return GamePadControllType::chara;
+}
+void Gamepad::setControllType(GamePadControllType controll_type) {
+//	Gamepad::_controll_type = GamePadControllType::chara;
+
+}
+*/

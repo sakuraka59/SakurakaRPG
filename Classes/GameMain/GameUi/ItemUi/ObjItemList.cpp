@@ -1,5 +1,6 @@
 #include "ObjItemList.h"
 #include "../../GAME_SETTING.h"
+#include "../../../Input/Gamepad.h"
 
 #include "../../item/equip_item/HaveEquipItemList.h"
 #include "../../item/use_item/HaveUseItemList.h"
@@ -26,7 +27,7 @@ ObjItemList::ObjItemList(HaveUseItemList* use_item_list, HaveEquipItemList* equi
 	type_label_ttf->setPosition(0, 0);
 	*/
 	this->_type_label_obj = new RenderObject();
-	this->_type_label_obj->setPosition(30, 400);
+	this->_type_label_obj->setPosition(20, 400);
 //	this->_type_label_obj->addChild(type_label_ttf);
 
 	this->_type_bg_render_obj->addChild(this->_type_label_obj);
@@ -37,14 +38,16 @@ ObjItemList::ObjItemList(HaveUseItemList* use_item_list, HaveEquipItemList* equi
 	
 	this->_detail_label = "hoge";
 
+	/*
 	LabelTTF* type_label_ttf = LabelTTF::create(this->_type_label, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
 	type_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
 	auto anchor_point_type = new cocos2d::Vec2(0, 1);
 	type_label_ttf->setAnchorPoint(*anchor_point_type);
 	type_label_ttf->setPosition(0, 0);
+	*/
 
 	this->_detail_label_obj = new RenderObject();
-	this->_detail_label_obj->setPosition(30, 400);
+	this->_detail_label_obj->setPosition(20, 400);
 //	this->_type_label_obj->addChild(type_label_ttf);
 
 	this->_detail_bg_render_obj->addChild(this->_detail_label_obj);
@@ -52,7 +55,7 @@ ObjItemList::ObjItemList(HaveUseItemList* use_item_list, HaveEquipItemList* equi
 	this->_detail_bg_render_obj->setPosition(220, 0);
 	// test ---------------------------------------------------------
 	this->openItemListInit();
-	this->openItemDetailInit(haveItemType::portion);
+	
 	// --------------------------------------------------------------
 	
 
@@ -68,7 +71,7 @@ RenderObject* ObjItemList::getBgRenderObj() {
 	int bg_width = 200;
 
 	//---------------------------------------------------------------
-	cocos2d::Rect arrow_rect = cocos2d::Rect(0, 0, 35, 2);
+	cocos2d::Rect arrow_rect = cocos2d::Rect(0, 0, 25, 2);
 	cocos2d::Sprite* arrow_sprite = cocos2d::Sprite::create();
 
 	arrow_sprite->setTextureRect(arrow_rect);
@@ -77,7 +80,7 @@ RenderObject* ObjItemList::getBgRenderObj() {
 
 	auto anchor_point_arrow = new cocos2d::Vec2(0, 0);
 	arrow_sprite->setAnchorPoint(*anchor_point_arrow);
-	arrow_sprite->setPosition(170, 400 - (this->_FONT_SIZE/2));
+	arrow_sprite->setPosition(180, 400 - (this->_FONT_SIZE/2));
 	bg_render_obj->addChild(arrow_sprite, 2);
 
 	//---------------------------------------------------------------
@@ -137,6 +140,7 @@ void ObjItemList::openItemListInit(){
 	unordered_map<haveItemType, unordered_map<int, EquipItem*>>* equip_item_type_list = this->_equip_item_list->getItemTypeList();
 	for (auto item_list_obj : *equip_item_type_list) {
 		haveItemType item_type = item_list_obj.first;
+		this->_type_list[this->_item_type_num] = item_type;
 		string type_name = this->getItemTypeName(item_type);
 //		this->_type_label += type_name + "\n\n";
 		
@@ -167,11 +171,9 @@ void ObjItemList::openItemListInit(){
 
 			if (this->_item_detail_list[item_type] == nullptr) {
 				this->_item_detail_list[item_type] = new RenderObject();
-			} else {
-				this->_item_detail_list[item_type]->removeAllChildren();
 			}
-			this->_item_detail_list[item_type]->addChild(detail_label_ttf);
 
+			this->_item_detail_list[item_type]->addChild(detail_label_ttf);
 
 			this->_item_detail_num_list[item_type]++;
 		}
@@ -180,8 +182,12 @@ void ObjItemList::openItemListInit(){
 	unordered_map<haveItemType, unordered_map<useItemId, UseItem*>>* use_item_type_list = this->_use_item_list->getItemTypeList();
 	for (auto item_list_obj : *use_item_type_list) {
 		haveItemType item_type = item_list_obj.first;
+		this->_type_list[this->_item_type_num] = item_type;
+
 		string type_name = this->getItemTypeName(item_type);
 //		this->_type_label += type_name + "\n\n";
+
+		this->_type_list[this->_item_type_num] = item_type;
 
 		auto type_label_ttf = LabelTTF::create(type_name, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
 		type_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
@@ -207,8 +213,6 @@ void ObjItemList::openItemListInit(){
 			
 			if (this->_item_detail_list[item_type] == nullptr) {
 				this->_item_detail_list[item_type] = new RenderObject();
-			} else {
-				this->_item_detail_list[item_type]->removeAllChildren();
 			}
 			this->_item_detail_list[item_type]->addChild(detail_label_ttf);
 			//*/
@@ -244,8 +248,61 @@ string ObjItemList::getItemTypeName(haveItemType item_type) {
 void ObjItemList::openItemDetailInit(haveItemType item_type) {
 //	this->_detail_label = this->_item_detail_list[item_type];
 //	this->_detail_label_obj->setString(this->_detail_label);
+	this->_detail_label_obj->removeAllChildren();
 	this->_detail_label_obj->addChild(this->_item_detail_list[item_type]);
 }
 void ObjItemList::Update() {
+	switch (this->_controll_type) {
+	case 0:
+		this->UpdateItemType();
+		break;
+	case 1:
+		this->UpdateItemDetail();
+		break;
+	}
+	
+}
+void ObjItemList::UpdateItemType() {
 
+	if (this->_type_cursor_delay > 0) {
+		this->_type_cursor_delay--;
+		return;
+	}
+
+	// カーソル移動処理
+	if (Gamepad::Down->isPush() == true) {
+		this->_item_type_cursor += 1;
+
+		if (this->_item_type_cursor >= this->_item_type_num) {
+			this->_item_type_cursor = this->_item_type_num - 1;
+		}
+		this->_type_label_obj->setPositionY(400 + (this->_TEXT_LINE_HEIGHT * this->_item_type_cursor));
+		this->_type_cursor_delay = 30;
+		return;
+	} else if (Gamepad::Up->isPush() == true) {
+		this->_item_type_cursor -= 1;
+
+		if (this->_item_type_cursor < 0) {
+			this->_item_type_cursor = 0;
+		}
+		this->_type_label_obj->setPositionY(400 + (this->_TEXT_LINE_HEIGHT * this->_item_type_cursor));
+		this->_type_cursor_delay = 30;
+		return;
+	}
+	// 右を押した場合、詳細を表示する
+	else if (Gamepad::Right->isPush() == true) {
+		this->_type_cursor_delay = 30;
+		this->_controll_type = 1;
+
+		this->openItemDetailInit(this->_type_list[this->_item_type_cursor]);
+	}
+
+}
+void ObjItemList::UpdateItemDetail() {
+	if (Gamepad::Left->isPush() == true) {
+		this->_type_cursor_delay = 30;
+		this->_controll_type = 0;
+
+//		this->openItemDetailInit(this->_type_list[this->_item_type_cursor]);
+	}
 }

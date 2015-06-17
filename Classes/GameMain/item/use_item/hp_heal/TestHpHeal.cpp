@@ -6,6 +6,7 @@
 TestHpHeal::TestHpHeal(CharaBase* chara_obj) : UseItem(chara_obj)
 {
 //	this->_num = 10;
+	this->_item_name = "テスト用HP回復薬";
 	this->_have_item_type = haveItemType::portion;
 }
 bool TestHpHeal::useSkill() {

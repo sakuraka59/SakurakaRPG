@@ -25,10 +25,24 @@ public: static GamepadButton* R3;
 public: static GamepadButton* Start;
 public: static GamepadButton* Select;
 
+//public: static GamePadControllType _controll_type;
+
 public: Gamepad();
 public: static void updateInit();
 
 private: void updateInitDetail();
 public: static void updateEnd();
 
+//public: static GamePadControllType getControllType();
+//public: static void setControllType(GamePadControllType controll_type);
+
+};
+
+enum class GamePadControllType {
+	no_type = -1,
+
+	chara,
+	item_ui,
+
+	enum_end,
 };
