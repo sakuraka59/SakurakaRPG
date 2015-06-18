@@ -210,6 +210,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword\SwordGale\SwordGale.cpp" />
     <ClCompile Include="..\Classes\Input\Gamepad.cpp" />
     <ClCompile Include="..\Classes\Input\GamepadButton.cpp" />
+    <ClCompile Include="..\Classes\Input\GamepadControll.cpp" />
     <ClCompile Include="..\Classes\RenderObject.cpp" />
     <ClCompile Include="..\Classes\ResourceManage.cpp" />
     <ClCompile Include="main.cpp" />
@@ -303,6 +304,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword\SwordGale\SwordGale.h" />
     <ClInclude Include="..\Classes\Input\Gamepad.h" />
     <ClInclude Include="..\Classes\Input\GamepadButton.h" />
+    <ClInclude Include="..\Classes\Input\GamepadControll.h" />
     <ClInclude Include="..\Classes\Random.h" />
     <ClInclude Include="..\Classes\RenderObject.h" />
     <ClInclude Include="..\Classes\ResourceManage.h" />

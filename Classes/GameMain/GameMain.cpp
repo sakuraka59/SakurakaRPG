@@ -9,6 +9,7 @@
 #define COCOS2D_DEBUG 1
 USING_NS_CC;
 
+ItemUi* GameMain::_item_ui_obj = new ItemUi();
 Scene* GameMain::createScene() {
 	// 'scene' is an autorelease object
 	auto scene = Scene::create();
@@ -75,15 +76,15 @@ bool GameMain::init()
 	CharaPlayer* player_obj = this->_play_ui_obj->getCharaPlayerObj();
 
 	this->_default_state_ui = new DefaultStateUI(player_obj);
-
-	this->_item_ui_obj = new ItemUi(player_obj);
-	this->_play_ui_obj->setItemUiObj(this->_item_ui_obj);
+	GameMain::_item_ui_obj->Init(player_obj);
+	
+	this->_play_ui_obj->setItemUiObj(GameMain::_item_ui_obj);
 //	this->_default_state_ui->setPosition(0, 0);
 
 	this->addChild(this->_play_ui_obj);
 	this->addChild(this->_default_state_ui);
 	this->addChild(this->_play_comment_ui_obj);
-	this->addChild(this->_item_ui_obj);
+	this->addChild(GameMain::_item_ui_obj);
 
 //	this->_test_ui_obj = new UiBase();
 //	this->addChild(this->_test_ui_obj);
@@ -151,7 +152,7 @@ void GameMain::update(float delta) {
 	Gamepad::updateInit();
 
 	this->_play_ui_obj->Update();
-	this->_item_ui_obj->Update();
+	GameMain::_item_ui_obj->Update();
 	this->_default_state_ui->Update();
 
 	this->_play_comment_ui_obj->Update();

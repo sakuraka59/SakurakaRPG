@@ -11,7 +11,8 @@ private: CharaPlayer* _player_obj;
 
 private: ObjItemList* _player_item_list_obj;
 
-public: ItemUi(CharaPlayer* player_obj);
+public: ItemUi();
+public: void Init(CharaPlayer* player_obj);
 
 public: void closeItemUi();		// 閉じる
 public: void openItemUi();		// 自身のアイテムUIのみ開く

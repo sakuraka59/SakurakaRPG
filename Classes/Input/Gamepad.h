@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <memory>
 #include "GamepadButton.h"
+#include "GamepadControll.h"
 
 class Gamepad {
 
@@ -25,7 +26,9 @@ public: static GamepadButton* R3;
 public: static GamepadButton* Start;
 public: static GamepadButton* Select;
 
-//public: static GamePadControllType _controll_type;
+
+public: static GamepadControll* GameControll;
+//
 
 public: Gamepad();
 public: static void updateInit();
@@ -33,8 +36,7 @@ public: static void updateInit();
 private: void updateInitDetail();
 public: static void updateEnd();
 
-//public: static GamePadControllType getControllType();
-//public: static void setControllType(GamePadControllType controll_type);
+
 
 };
 

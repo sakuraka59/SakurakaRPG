@@ -20,13 +20,15 @@ public:
 	// 引数含めて書かないと、ループ処理してくれない
 	virtual void update(float delta);
 
-	
 	// a selector callback
 	void menuCloseCallback(cocos2d::Ref* pSender);
 
 	// implement the "static create()" method manually
-		CREATE_FUNC(GameMain);
+	CREATE_FUNC(GameMain);
 	//*/
+
+
+
 
 private:
 //	UiBase * _test_ui_obj;
@@ -34,9 +36,13 @@ private:
 	PlayerCommentUI* _play_comment_ui_obj;
 	DefaultStateUI* _default_state_ui;
 
-	ItemUi* _item_ui_obj;
+
 
 	cocos2d::EventListenerKeyboard* _KEYBORD_EVENT;
 	// キー入力テスト
 	cocos2d::LabelTTF* _test_label;
+
+	// single
+public: 
+	static ItemUi* _item_ui_obj;
 };

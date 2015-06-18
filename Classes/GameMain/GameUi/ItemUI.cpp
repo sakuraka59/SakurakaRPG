@@ -8,7 +8,10 @@
 #include <unordered_map>
 
 using namespace std;
-ItemUi::ItemUi(CharaPlayer* player_obj) {
+ItemUi::ItemUi() {
+
+}
+void ItemUi::Init(CharaPlayer* player_obj) {
 	
 	this->_player_obj = player_obj;
 	

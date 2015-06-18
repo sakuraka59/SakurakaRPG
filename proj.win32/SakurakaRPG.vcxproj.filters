@@ -348,6 +348,9 @@
     <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\sheath\TestSheath.cpp">
       <Filter>src\GameMain\item\equip_item\weapon\sheath</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Input\GamepadControll.cpp">
+      <Filter>src\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -625,6 +628,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\sheath\TestSheath.h">
       <Filter>src\GameMain\item\equip_item\weapon\sheath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Input\GamepadControll.h">
+      <Filter>src\Input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
