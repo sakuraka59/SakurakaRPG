@@ -1,6 +1,8 @@
 #include "TestHeal.h"
 #include "../../chara/CharaBase.h"
 TestHeal::TestHeal(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list) : SkillMyself(use_chara_obj, all_chara_list) {
+	// ‘•”õŽí§ŒÀ
+	this->_main_weapon_list[weaponType::all_weapon] = weaponType::all_weapon;
 
 }
 void TestHeal::skillInit() {

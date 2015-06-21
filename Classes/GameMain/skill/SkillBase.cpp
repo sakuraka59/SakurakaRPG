@@ -152,7 +152,9 @@ bool SkillBase::checkWeaponType() {
 	// list
 
 	//if (this->_main_weapon_list[this->_use_chara_obj->getMainWeaponType()] != nullptr) {
-	if (this->_main_weapon_list.find(this->_use_chara_obj->getMainWeaponType()) == this->_main_weapon_list.end()) {
+	
+	if (this->_main_weapon_list.find(weaponType::all_weapon) == this->_main_weapon_list.end() &&
+		this->_main_weapon_list.find(this->_use_chara_obj->getMainWeaponType()) == this->_main_weapon_list.end()) {
 		return false;
 	}
 	/*

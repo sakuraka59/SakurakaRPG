@@ -40,7 +40,7 @@ public: static void updateEnd();
 
 };
 
-enum class GamePadControllType {
+enum class gamePadControllType {
 	no_type = -1,
 
 	chara,

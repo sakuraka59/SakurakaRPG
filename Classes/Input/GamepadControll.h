@@ -1,11 +1,11 @@
 #pragma once
 
-enum class GamePadControllType;
+enum class gamePadControllType;
 class GamepadControll {
-private: GamePadControllType _controll_type;
+private: gamePadControllType _controll_type;
 
 public: GamepadControll();
-public: GamePadControllType getControllType();
-public: void setControllType(GamePadControllType controll_type);
+public: gamePadControllType getControllType();
+public: void setControllType(gamePadControllType controll_type);
 };
 

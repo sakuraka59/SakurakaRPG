@@ -106,6 +106,7 @@ void CharaPlayer::mainUpdate() {
 	// 操作によるキャラクター移動
 	if (this->_down_flag == false) {
 		this->moveCharaPlusKey();
+		this->testAction();
 	}
 
 
@@ -113,7 +114,7 @@ void CharaPlayer::mainUpdate() {
 	this->testComment();
 
 	this->testState();
-	this->testAction();
+	
 
 	auto hoge = this->_all_chara_list;
 
@@ -159,6 +160,10 @@ void CharaPlayer::damageAction() {
 //-------------------------------------------------
 void CharaPlayer::moveCharaPlusKey() {
 	this->_move_speed_per = 0;
+
+	if (Gamepad::GameControll->getControllType() != gamePadControllType::chara) {
+		return;
+	}
 	if ((this->_no_control_frame <= 0 && this->_attack_frame <= 0 && this->_skill_frame <= 0) || this->checkSpellFlag() == true) {
 
 		// 移動方向、移動距離を取得
@@ -364,6 +369,9 @@ void CharaPlayer::testAction() {
 		return;
 	}
 
+	if (Gamepad::GameControll->getControllType() != gamePadControllType::chara) {
+		return;
+	}
 	//Debug.WriteLine("[charaPlayer] spell state : "+this->_spell_status);
 
 	if (this->checkSpellFlag() == true) {
@@ -550,6 +558,13 @@ void CharaPlayer::testAction() {
 
 		this->sendComment("剣装備なう");
 		this->_equip_item_list->itemUse(0);
+	}
+	if (this->_control_flag == true && Gamepad::R1->isPush() == true) {
+	
+		bool attack_flag = this->setSkill(new SwordGale(this, this->_all_chara_list));
+		if (attack_flag == true) {
+//			this->sendComment(this->_comment_list.getComment(charaCommentType.chara_attack, charaSexualType.normal));
+		}
 	}
 }
 
