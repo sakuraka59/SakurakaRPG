@@ -19,7 +19,12 @@ void GamepadButton::updateEnd() {
 		this->_key_frame = 0;
 	}
 }
+// 複数個所に置くと「開く→閉じる」が1フレーム内で発生するため、
+// isPushは1フレームに1回のみ反応可能にする
 bool GamepadButton::isPush() {
+	if (this->_push_flag == true) {
+		return false;
+	}
 	if (GetAsyncKeyState(this->_key_code)) {
 		
 		this->setPushFlag();

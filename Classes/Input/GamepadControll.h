@@ -1,6 +1,7 @@
 #pragma once
 
 enum class gamePadControllType;
+
 class GamepadControll {
 private: gamePadControllType _controll_type;
 

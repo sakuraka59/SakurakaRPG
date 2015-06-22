@@ -15,7 +15,7 @@ class ObjItemList : public RenderObject {
 
 private: const int _TEXT_LINE_HEIGHT = 30;
 private: const int _FONT_SIZE = 20;
-private: const int _CURSOR_DELAY_TIME = 30;
+private: const int _CURSOR_DELAY_TIME = 10;
 protected: HaveUseItemList* _use_item_list;
 protected: HaveEquipItemList* _equip_item_list;
 
@@ -56,6 +56,8 @@ private: void openItemDetailInit(haveItemType item_type);
 public: void Update();
 private: void UpdateItemType();
 private: void UpdateItemDetail();
+
+public: void closeItemList();
 };
 
 

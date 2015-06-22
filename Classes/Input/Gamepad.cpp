@@ -1,5 +1,5 @@
 ﻿#include "Gamepad.h"
-
+#include <windows.h>
 
 //GamepadButton* Gamepad::test_button;
 

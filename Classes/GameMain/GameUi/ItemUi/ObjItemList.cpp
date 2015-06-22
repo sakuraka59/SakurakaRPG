@@ -61,7 +61,7 @@ ObjItemList::ObjItemList(HaveUseItemList* use_item_list, HaveEquipItemList* equi
 	
 
 	this->addChild(this->_type_bg_render_obj);
-	this->addChild(this->_detail_bg_render_obj);
+//	this->addChild(this->_detail_bg_render_obj);
 	//this->addChild(;
 }
 RenderObject* ObjItemList::getBgRenderObj() {
@@ -306,6 +306,8 @@ void ObjItemList::openItemDetailInit(haveItemType item_type) {
 	// •\Ž¦ˆÊ’u‰Šú‰»
 	this->_item_detail_cursor = 0;
 	this->_detail_label_obj->setPositionY(400 + (this->_TEXT_LINE_HEIGHT * this->_item_detail_cursor));
+
+	this->addChild(this->_detail_bg_render_obj);
 }
 void ObjItemList::Update() {
 	switch (this->_controll_type) {
@@ -357,6 +359,8 @@ void ObjItemList::UpdateItemType() {
 
 }
 void ObjItemList::UpdateItemDetail() {
+
+
 	if (this->_cursor_delay > 0) {
 		this->_cursor_delay--;
 		return;
@@ -392,7 +396,14 @@ void ObjItemList::UpdateItemDetail() {
 	if (Gamepad::Left->isPush() == true || Gamepad::Cross->isPush() == true) {
 		this->_cursor_delay = this->_CURSOR_DELAY_TIME;
 		this->_controll_type = 0;
+		this->removeChild(this->_detail_bg_render_obj);
 		this->_detail_label_obj->removeAllChildren();
 //		this->openItemDetailInit(this->_type_list[this->_item_type_cursor]);
 	}
+}
+
+void ObjItemList::closeItemList() {
+	this->_controll_type = 0;
+	this->removeChild(this->_detail_bg_render_obj);
+	this->_detail_label_obj->removeAllChildren();
 }

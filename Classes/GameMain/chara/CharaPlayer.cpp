@@ -529,17 +529,10 @@ void CharaPlayer::testAction() {
 	}
 	// keybord to D
 	if (this->_control_flag == true && Gamepad::Circle->isPush() == true) {
-		//bool attack_flag = this->setSkill(new NoWeaponDefault(this, this->_all_chara_list));
-
 		this->setSearchFlag();
-		/*
-		bool attack_flag = this->setSkill(new SwordGale(this, this->_all_chara_list));
-		if (attack_flag == true) {
-//			this->sendComment(this->_comment_list.getComment(charaCommentType.chara_attack, charaSexualType.normal));
-		}
-		*/
+		
 	}
-	
+	// keybord to S
 	if (this->_control_flag == true && Gamepad::Square->isPush() == true) {
 		bool use_item_flag = this->_use_item_list->itemUse(useItemId::testHpHeal);
 		if (use_item_flag == true) {
@@ -549,9 +542,10 @@ void CharaPlayer::testAction() {
 			this->sendComment("アイテム切れだよ…");
 		}
 	}
+
+	// keybord to W
 	if (this->_control_flag == true && Gamepad::Triangle->isPush() == true) {
-		bool attack_flag = this->setSkill(new TestShot(this, this->_all_chara_list));
-		
+		Gamepad::GameControll->setControllType(gamePadControllType::item_ui);
 	}
 
 	if (this->_control_flag == true && Gamepad::L1->isPush() == true) {
@@ -565,6 +559,14 @@ void CharaPlayer::testAction() {
 		if (attack_flag == true) {
 //			this->sendComment(this->_comment_list.getComment(charaCommentType.chara_attack, charaSexualType.normal));
 		}
+	}
+
+
+	// test skill
+	// keybord to F
+	if (this->_control_flag == true && Gamepad::L2->isPush() == true) {
+		bool attack_flag = this->setSkill(new TestShot(this, this->_all_chara_list));
+
 	}
 }
 

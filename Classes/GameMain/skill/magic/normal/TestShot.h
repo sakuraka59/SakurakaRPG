@@ -12,6 +12,9 @@ public: TestShot(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list) : M
 		// –‚–@Œn‚Ì‹ó’†”­“®‚ÍNG
 		//	this._in_air_flag = true;
 
+		// ‘•”õŽí§ŒÀ
+		this->_main_weapon_list[weaponType::all_weapon] = weaponType::all_weapon;
+
 		// Á”ïSP
 		this->_use_sp = 50;
 

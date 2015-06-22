@@ -30,12 +30,15 @@ void ItemUi::Init(CharaPlayer* player_obj) {
 }
 // 閉じる
 void ItemUi::closeItemUi() {
-//	Gamepad::GameControll->setControllType(gamePadControllType::chara);
-//	this->removeAllChildren();
+	Gamepad::GameControll->setControllType(gamePadControllType::chara);
+	this->removeAllChildren();
+	this->_player_item_list_obj->closeItemList();
+	this->_draw_flag = false;
 }
 // 自身のアイテムUIのみ開く
 void ItemUi::openItemUi() {
 	this->addChild(this->_player_item_list_obj);
+	this->_draw_flag = true;
 }
 // オブジェクトからのアイテム取得時に使う
 void ItemUi::openItemUiToObj(){
