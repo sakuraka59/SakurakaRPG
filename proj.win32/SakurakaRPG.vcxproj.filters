@@ -124,6 +124,12 @@
     <Filter Include="src\GameMain\item\equip_item\weapon\sheath">
       <UniqueIdentifier>{69f6bfc0-ecaa-4d73-b32f-3e1d5c6a8264}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\magic\effect">
+      <UniqueIdentifier>{c8ef199c-4345-495e-8dac-0b45a7a93561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\magic\effect\slash">
+      <UniqueIdentifier>{5efe3f00-c2aa-4cd1-b792-a3a434da993e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -350,6 +356,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\Input\GamepadControll.cpp">
       <Filter>src\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\magic\effect\slash\SlashUp1.cpp">
+      <Filter>src\GameMain\magic\effect\slash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\magic\effect\EffectBase.cpp">
+      <Filter>src\GameMain\magic\effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -631,6 +643,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Input\GamepadControll.h">
       <Filter>src\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\magic\effect\slash\SlashUp1.h">
+      <Filter>src\GameMain\magic\effect\slash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\magic\effect\EffectBase.h">
+      <Filter>src\GameMain\magic\effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

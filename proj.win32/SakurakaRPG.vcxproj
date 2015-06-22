@@ -178,6 +178,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\item\use_item\HaveUseItemList.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\use_item\hp_heal\TestHpHeal.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\use_item\UseItem.cpp" />
+    <ClCompile Include="..\Classes\GameMain\magic\effect\EffectBase.cpp" />
+    <ClCompile Include="..\Classes\GameMain\magic\effect\slash\SlashUp1.cpp" />
     <ClCompile Include="..\Classes\GameMain\magic\MagicBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\magic\normal\TestMagicShot.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\MapBase.cpp" />
@@ -266,6 +268,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\item\use_item\hp_heal\TestHpHeal.h" />
     <ClInclude Include="..\Classes\GameMain\item\use_item\UseItem.h" />
     <ClInclude Include="..\Classes\GameMain\item\use_item\useItemId.h" />
+    <ClInclude Include="..\Classes\GameMain\magic\effect\EffectBase.h" />
+    <ClInclude Include="..\Classes\GameMain\magic\effect\slash\SlashUp1.h" />
     <ClInclude Include="..\Classes\GameMain\magic\MagicBase.h" />
     <ClInclude Include="..\Classes\GameMain\magic\normal\TestMagicShot.h" />
     <ClInclude Include="..\Classes\GameMain\map\mapGroundType.h" />

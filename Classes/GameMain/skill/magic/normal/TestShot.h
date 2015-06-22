@@ -3,6 +3,7 @@
 #include "../../SkillMagicSpell.h"
 
 #include "../../../magic/normal/TestMagicShot.h"
+#include "../../../magic/effect/slash/SlashUp1.h"
 
 using namespace std;
 
@@ -36,7 +37,7 @@ public: TestShot(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list) : M
 
 
 		//this->_magic_active_obj
-		this->_magic_active_obj = new TestMagicShot(this->_use_chara_obj);
+		this->_magic_active_obj = new SlashUp1(this->_use_chara_obj);
 		
 	}
 };

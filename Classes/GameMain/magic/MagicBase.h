@@ -29,6 +29,7 @@ protected: int _height = 0;
 
 protected: CharaBase* _chara_obj;
 //		protected HitSquare _hit_square_obj;
+protected: bool _hit_check_flag = true;
 protected: HitCircle* _hit_circle_obj;
 
 private: GameCamera* _camera_obj;
@@ -41,7 +42,7 @@ private: bool _order_set_flag = false;
 private: bool _remove_flag = false;
 private: bool _shadow_flag = true;
 private: bool _shadow_remove_flag = false;
-private: bool _hit_check_flag = true;
+
 
 //private SpriteTile _object_sprite;
 //protected TextureInfo _texture_info;
