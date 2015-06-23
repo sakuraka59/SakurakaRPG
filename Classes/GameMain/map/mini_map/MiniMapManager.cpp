@@ -28,3 +28,6 @@ unordered_map<int, MapObjectList*> MiniMapManager::getMapObjData() {
 unordered_map<int, unordered_map<int, int>> MiniMapManager::getMapGroundObjData() {
 	return MiniMapManager::map_obj->getMapGoundObjData();
 }
+list<MapMove*> MiniMapManager::getMapMoveObjData() {
+	return MiniMapManager::map_obj->getMapMoveObjData();
+}

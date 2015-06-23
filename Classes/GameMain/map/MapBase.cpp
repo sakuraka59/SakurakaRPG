@@ -144,14 +144,23 @@ void MapBase::createMiniMap(){
 	this->addChild(this->_map_ground_obj);
 
 	this->_mg_object_list_obj = new MapGroundObjectList(this->_player_obj);
+	
+	// マップ移動用設置オブジェクト読み込み
+	this->_mg_object_list_obj->LoadMapMoveData(MiniMapManager::getMapMoveObjData());
+
+	// 設置オブジェクト読み込み
 	this->_mg_object_list_obj->LoadData(MiniMapManager::getMapGroundObjData());
 
 	this->addChild(this->_mg_object_list_obj);
 
 	this->initMapObject(this->_map_ground_data);
 
-
-	this->_player_obj->setCharaMapPoint(0, 0);
+//
+	int chara_room_x = 2;
+	int chara_room_y = 2;
+	double chara_x = MAP_BLOCK_WIDTH * chara_room_x + (MAP_BLOCK_WIDTH / 2);
+	double chara_y = (MAP_BLOCK_HEIGHT * chara_room_y - (MAP_BLOCK_HEIGHT / 2)) * (-1);
+	this->_player_obj->setCharaMapPoint(chara_x, chara_y);
 	int chara_block_x = this->_player_obj->getMapBlockX();
 	int chara_block_y = this->_player_obj->getMapBlockY();
 

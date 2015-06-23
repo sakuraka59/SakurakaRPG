@@ -12,6 +12,9 @@ class MapGroundObjectBase : public RenderObject {
 protected: int _OBJECT_CORRECT_WIDTH = 64;
 protected: int _OBJECT_CORRECT_HEIGHT = 64;
 
+protected: int _map_block_x = -1;
+protected: int _map_block_y = -1;
+
 private: bool _DRAW_FLAG = false;
 
 // 自動型の押し続けが反応しないようにチェック
@@ -56,4 +59,8 @@ public: virtual void actionActive(CharaBase* chara_obj);
 protected: void actionPushActive(CharaBase* chara_obj);	// 調べた瞬間
 protected: void actionCountActive(CharaBase* chara_obj);	// 1回目のみ
 protected: virtual void actionObjBehavior(CharaBase* chara_obj);
+
+//
+public: int getMapBlockX();
+public: int getMapBlockY();
 };

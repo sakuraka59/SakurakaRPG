@@ -5,6 +5,7 @@
 using namespace cocos2d;
 using namespace std;
 
+class MapMove;
 class MapObjectList;
 class MiniMapBase;
 
@@ -15,4 +16,5 @@ public: static void loadMiniMap(miniMapType map_type);
 public: static unordered_map<int, unordered_map<int, int>> getMapData();
 public: static unordered_map<int, MapObjectList*> getMapObjData();
 public: static unordered_map<int, unordered_map<int, int>> getMapGroundObjData();
+public: static list<MapMove*> getMapMoveObjData();
 };

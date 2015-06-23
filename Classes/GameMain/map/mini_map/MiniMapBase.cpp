@@ -48,3 +48,6 @@ unordered_map<int, unordered_map<int, int>> MiniMapBase::getMapGoundObjData() {
 	;
 	return this->_map_ground_obj_list;
 }
+list<MapMove*> MiniMapBase::getMapMoveObjData() {
+	return this->_map_move_obj_list;
+}

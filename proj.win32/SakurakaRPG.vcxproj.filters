@@ -112,9 +112,6 @@
     <Filter Include="src\GameMain\map\mini_map\test_map">
       <UniqueIdentifier>{2cb7e850-134f-4a75-bce9-29ce39c603a6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\GameMain\map\map_object">
-      <UniqueIdentifier>{eb4b6f4e-708a-45f3-8961-a9742210ba8f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\GameMain\map\map_ground_object">
       <UniqueIdentifier>{eceb8240-6ab0-4ddf-81a4-5afe823097d6}</UniqueIdentifier>
     </Filter>
@@ -129,6 +126,9 @@
     </Filter>
     <Filter Include="src\GameMain\magic\effect\slash">
       <UniqueIdentifier>{5efe3f00-c2aa-4cd1-b792-a3a434da993e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\map\map_ground_object\map_bg_object">
+      <UniqueIdentifier>{eb4b6f4e-708a-45f3-8961-a9742210ba8f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -362,6 +362,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\magic\effect\EffectBase.cpp">
       <Filter>src\GameMain\magic\effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\map\map_ground_object\MapGroundObjLoad.cpp">
+      <Filter>src\GameMain\map\map_ground_object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\MapMove.cpp">
+      <Filter>src\GameMain\map\map_ground_object\map_bg_object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -649,6 +655,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\magic\effect\EffectBase.h">
       <Filter>src\GameMain\magic\effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\map_ground_object\MapGroundObjLoad.h">
+      <Filter>src\GameMain\map\map_ground_object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\MapMove.h">
+      <Filter>src\GameMain\map\map_ground_object\map_bg_object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

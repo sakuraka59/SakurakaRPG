@@ -4,8 +4,10 @@
 #include "../../chara/CharaBase.h"
 
 MapGroundObjectBase::MapGroundObjectBase(int map_block_x, int map_block_y) {
-	this->_draw_x = (map_block_x * MAP_BLOCK_WIDTH);
-	this->_draw_y = (map_block_y * MAP_BLOCK_HEIGHT);
+	this->_map_block_x = map_block_x;
+	this->_map_block_y = map_block_y;
+	this->_draw_x = (this->_map_block_x * MAP_BLOCK_WIDTH);
+	this->_draw_y = (this->_map_block_y * MAP_BLOCK_HEIGHT);
 
 	double test_angle = 0;
 
@@ -24,9 +26,7 @@ MapGroundObjectBase::MapGroundObjectBase(int map_block_x, int map_block_y) {
 	this->addChild(this->_sprite_data);
 
 
-	// TEST
-	this->_hit_flag = true;
-	this->_action_flag = true;
+
 }
 void MapGroundObjectBase::Update() {
 }
@@ -85,7 +85,7 @@ void MapGroundObjectBase::autoObjBehavior(CharaBase* chara_obj) {
 
 void MapGroundObjectBase::actionActive(CharaBase* chara_obj) {
 	// TEST
-		this->actionPushActive(chara_obj);
+	this->actionPushActive(chara_obj);
 //	this->actionCountActive(chara_obj);
 
 }
@@ -109,4 +109,12 @@ void MapGroundObjectBase::actionCountActive(CharaBase* chara_obj) {
 void MapGroundObjectBase::actionObjBehavior(CharaBase* chara_obj) {
 	chara_obj->sendComment("‚Ç[‚ñI");
 	chara_obj->healHp(1000);
+}
+
+
+int MapGroundObjectBase::getMapBlockX() {
+	return this->_map_block_x;
+}
+int MapGroundObjectBase::getMapBlockY() {
+	return this->_map_block_y;
 }
