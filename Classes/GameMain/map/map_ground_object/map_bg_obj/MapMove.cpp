@@ -1,7 +1,9 @@
 #include "MapMove.h"
 #include "../../../chara/CharaBase.h"
 
-MapMove::MapMove(int map_block_x, int map_block_y, int map_move_type) : MapGroundObjectBase(map_block_x, map_block_y) {
+MapMove::MapMove(int map_block_x, int map_block_y, MapMoveData* map_move_data) : MapGroundObjectBase(map_block_x, map_block_y) {
+
+	this->_map_move_data = map_move_data;
 	// TEST
 	this->_hit_flag = true;
 	this->_action_flag = true;

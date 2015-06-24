@@ -1,6 +1,7 @@
 #pragma once
 #include "../MiniMapBase.h"
 #include "../../map_ground_object/map_bg_obj/MapMove.h"
+#include "../../map_ground_object/map_bg_obj/MapMoveData.h"
 
 
 #include "cocos2d.h"
@@ -39,8 +40,9 @@ public: TestMap() {
 	};
 	this->_map_ground_obj_base = map_ground_obj_data;
 
-	this->_map_move_obj_list.push_back(new MapMove(5, -9, 1));
-	this->_map_move_obj_list.push_back(new MapMove(6, -9, 1));
+	MapMoveData* move_data_1 = new MapMoveData(3, 0, 0, 1, 0);
+	this->_map_move_obj_list.push_back(new MapMove(5, -9, move_data_1));
+	this->_map_move_obj_list.push_back(new MapMove(6, -9, move_data_1));
 	//this->_map_move_obj_list.push_back(new MapMove(1, 6, 9));
 }
 

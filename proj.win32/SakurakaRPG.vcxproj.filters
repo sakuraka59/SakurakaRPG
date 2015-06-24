@@ -369,6 +369,9 @@
     <ClCompile Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\MapMove.cpp">
       <Filter>src\GameMain\map\map_ground_object\map_bg_object</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\MapMoveData.cpp">
+      <Filter>src\GameMain\map\map_ground_object\map_bg_object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -660,6 +663,9 @@
       <Filter>src\GameMain\map\map_ground_object</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\MapMove.h">
+      <Filter>src\GameMain\map\map_ground_object\map_bg_object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\MapMoveData.h">
       <Filter>src\GameMain\map\map_ground_object\map_bg_object</Filter>
     </ClInclude>
   </ItemGroup>
