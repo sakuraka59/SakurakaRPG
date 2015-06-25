@@ -14,6 +14,7 @@
 #include "../map/MapObjectBase.h"
 #include "../map/map_ground_object/MapGroundObjectList.h"
 #include "../map/map_ground_object/MapGroundObjectBase.h"
+#include "../map/map_ground_object/map_bg_obj/map_move/MapMoveManager.h"
 
 #include "../magic/MagicBase.h"
 
@@ -130,14 +131,7 @@ void PlayUi::Update(){
 		this->checkHitMapObject(chara_obj);
 		this->checkHitMapGroundObject(chara_obj);
 	}
-	/*
-	for (std::list<CharaBase*>::iterator chara_iterator = this->_chara_list.begin(); chara_iterator != this->_chara_list.end(); chara_iterator++) {
-		CharaBase* chara_obj = *chara_iterator;
-		chara_obj->Update();
-		// マップオブジェクトとの当たり判定
-		this->checkHitMapObject(chara_obj);
-	}
-	*/
+
 
 	// スキルあたり判定
 
@@ -149,13 +143,7 @@ void PlayUi::Update(){
 		this->_order_object_list->reorderChild(chara_obj, (int)chara_obj->getDrawY() * (-1));
 		chara_obj->updateDraw();
 	}
-	/*
-	for (std::list<CharaBase*>::iterator chara_iterator = this->_chara_list.begin(); chara_iterator != this->_chara_list.end(); chara_iterator++) {
-		CharaBase* chara_obj = *chara_iterator;
-		this->_order_object_list->reorderChild(chara_obj, (int)chara_obj->getDrawY() * (-1));
-		chara_obj->updateDraw();
-	}
-	*/
+
 
 	// 魔法の更新処理 -----------------------------------------
 	list<MagicBase*> delete_magic_list;
@@ -204,6 +192,10 @@ void PlayUi::Update(){
 		this->playerSearchAction();
 	}
 
+	// 調べる系終えた後、マップ移動の更新処理
+	if (MapMoveManager::checkMapMove() == true) {
+		this->setMapMove();
+	}
 	//
 	float camera_set_x = this->_play_camera->getCameraX();
 	float camera_set_y = this->_play_camera->getCameraY();
@@ -452,4 +444,21 @@ void PlayUi::playerSearchAction() {
 
 void PlayUi::setItemUiObj(ItemUi* item_ui_obj){
 	this->_item_ui_obj = item_ui_obj;
+}
+void PlayUi::setMapMove() {
+	// とりあえず現状のマップオブジェクトを初期化する必要あり
+	for (auto map_obj_line : this->_map_obj_line_list) {
+		this->_order_object_list->removeChild(map_obj_line.second, true);
+	}
+
+
+	this->_map_obj->mapMoveUpdate();
+
+	this->_map_obj_line_list = this->_map_obj->getMapObjectLineList();
+	for (auto map_obj_line : this->_map_obj_line_list) {
+		this->_order_object_list->addChild(map_obj_line.second, map_obj_line.second->getDrawY() *(-1));
+		//mapSetDrawInit
+		map_obj_line.second->mapSetDrawInit();
+	}
+
 }

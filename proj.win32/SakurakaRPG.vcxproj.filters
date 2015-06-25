@@ -130,6 +130,9 @@
     <Filter Include="src\GameMain\map\map_ground_object\map_bg_object">
       <UniqueIdentifier>{eb4b6f4e-708a-45f3-8961-a9742210ba8f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\map\map_ground_object\map_bg_object\map_move">
+      <UniqueIdentifier>{2f25d239-e43b-4d5f-a631-6e54d8e88944}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -366,11 +369,14 @@
     <ClCompile Include="..\Classes\GameMain\map\map_ground_object\MapGroundObjLoad.cpp">
       <Filter>src\GameMain\map\map_ground_object</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\MapMove.cpp">
-      <Filter>src\GameMain\map\map_ground_object\map_bg_object</Filter>
+    <ClCompile Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\map_move\MapMove.cpp">
+      <Filter>src\GameMain\map\map_ground_object\map_bg_object\map_move</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\MapMoveData.cpp">
-      <Filter>src\GameMain\map\map_ground_object\map_bg_object</Filter>
+    <ClCompile Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\map_move\MapMoveData.cpp">
+      <Filter>src\GameMain\map\map_ground_object\map_bg_object\map_move</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\map_move\MapMoveManager.cpp">
+      <Filter>src\GameMain\map\map_ground_object\map_bg_object\map_move</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -662,11 +668,14 @@
     <ClInclude Include="..\Classes\GameMain\map\map_ground_object\MapGroundObjLoad.h">
       <Filter>src\GameMain\map\map_ground_object</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\MapMove.h">
-      <Filter>src\GameMain\map\map_ground_object\map_bg_object</Filter>
+    <ClInclude Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\map_move\MapMove.h">
+      <Filter>src\GameMain\map\map_ground_object\map_bg_object\map_move</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\MapMoveData.h">
-      <Filter>src\GameMain\map\map_ground_object\map_bg_object</Filter>
+    <ClInclude Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\map_move\MapMoveData.h">
+      <Filter>src\GameMain\map\map_ground_object\map_bg_object\map_move</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\map_move\MapMoveManager.h">
+      <Filter>src\GameMain\map\map_ground_object\map_bg_object\map_move</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -57,4 +57,7 @@ public: CharaPlayer* getCharaPlayerObj();
 private: void playerSearchAction();
 
 public: void setItemUiObj(ItemUi* item_ui_obj);
+
+// マップ移動処理を行う
+public: void setMapMove();
 };

@@ -44,4 +44,7 @@ public: MapGroundObjectList* getMgObjectList();
 public: void createRandomMap();
 public: void createMiniMap();
 public: void setCharaPoint(CharaBase* set_chara_obj, int map_block_type);
+
+// マップ移動更新処理
+public: void mapMoveUpdate();
 };

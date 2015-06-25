@@ -14,6 +14,9 @@
 #include "mini_map/miniMapType.h"
 
 #include "map_ground_object/MapGroundObjectList.h"
+
+#include "map_ground_object/map_bg_obj/map_move/MapMoveManager.h"
+
 // テスト
 #include "mini_map\test_map\TestMap.h"
 
@@ -23,11 +26,12 @@ MapBase::MapBase(GameCamera* camera_obj, CharaPlayer* player_obj) {
 	this->_camera_obj = camera_obj;
 	
 
+	// DEBUG --------------------------
 	// ランダムマップ
-//	this->createRandomMap();
+	this->createRandomMap();
 
 	// 固定ミニマップ
-	this->createMiniMap();
+//	this->createMiniMap();
 
 	// ワールドマップ
 }
@@ -38,6 +42,8 @@ void MapBase::Init() {
 	}
 }
 void MapBase::Update() {
+	MapMoveManager::updateInit();
+
 	this->_map_ground_obj->Update();
 
 
@@ -73,7 +79,7 @@ void MapBase::initMapObject(std::unordered_map<int, std::unordered_map<int, int>
 	if (SET_MAP_MODE == 1) {
 		return;
 	}
-
+	
 //	int map_width = RandomDungeonSetting::getDungeonWidth();
 //	int map_height = RandomDungeonSetting::getDungeonHeight();
 	
@@ -86,7 +92,7 @@ void MapBase::initMapObject(std::unordered_map<int, std::unordered_map<int, int>
 				
 		for (int y = 0; y < map_height; y++) {
 			int set_y = y * (-1);
-			int hoge = map_data[set_x][y];
+
 			if (map_data[set_x][y] == 1 || map_data[set_x][y] == 5) {
 				
 				if (this->_map_obj_line_list[set_y] == nullptr) {
@@ -101,6 +107,7 @@ void MapBase::initMapObject(std::unordered_map<int, std::unordered_map<int, int>
 			}
 		}
 	}
+	int hoge = 1;
 	//*/
 }
 std::unordered_map<int, MapObjectList*> MapBase::getMapObjectLineList() {
@@ -113,7 +120,12 @@ MapGroundObjectList* MapBase::getMgObjectList() {
 //	ランダムマップを作成
 //-------------------------------------------------------------------
 void MapBase::createRandomMap() {
+	
+
+//	this->_map_base_data;
+
 	this->_map_type = 1;
+
 	RandomDungeon* get_dungeon_obj = new RandomDungeon();
 	this->_map_base_data = get_dungeon_obj->getMapData();
 	this->_map_ground_data = get_dungeon_obj->getMapGroundData();
@@ -121,6 +133,8 @@ void MapBase::createRandomMap() {
 
 
 	this->_map_ground_obj = new MapGroundList(this->_map_ground_data, 1, this->_player_obj);
+
+	this->_mg_object_list_obj = new MapGroundObjectList(this->_player_obj);
 	/*
 	std::unordered_map<int, std::unordered_map<int, int>> test_map;
 	this->_map_ground_obj = new MapGroundList(this->_camera_obj, test_map, 0, this->_player_obj);
@@ -131,17 +145,23 @@ void MapBase::createRandomMap() {
 	// map obj ----------------------------------------------
 	this->initMapObject(get_dungeon_obj->getMapData());
 
+	// DEBUG 
+	this->addChild(this->_mg_object_list_obj);
 }
 //-------------------------------------------------------------------
 //	固定ミニマップ作成
 //-------------------------------------------------------------------
 void MapBase::createMiniMap(){
 	this->_map_type = 2;
+	this->_map_ground_obj = nullptr;
+	this->_mg_object_list_obj = nullptr;
+
+
 	MiniMapManager::loadMiniMap(miniMapType::test_map);
 
 	this->_map_ground_data = MiniMapManager::getMapData();
 	this->_map_ground_obj = new MapGroundList(this->_map_ground_data, 2, this->_player_obj);
-	this->addChild(this->_map_ground_obj);
+	
 
 	this->_mg_object_list_obj = new MapGroundObjectList(this->_player_obj);
 	
@@ -151,11 +171,12 @@ void MapBase::createMiniMap(){
 	// 設置オブジェクト読み込み
 	this->_mg_object_list_obj->LoadData(MiniMapManager::getMapGroundObjData());
 
+	this->addChild(this->_map_ground_obj);
 	this->addChild(this->_mg_object_list_obj);
 
 	this->initMapObject(this->_map_ground_data);
 
-//
+	// 操作キャラ配置
 	int chara_room_x = 2;
 	int chara_room_y = 2;
 	double chara_x = MAP_BLOCK_WIDTH * chara_room_x + (MAP_BLOCK_WIDTH / 2);
@@ -219,8 +240,8 @@ void MapBase::setCharaPoint(CharaBase* set_chara_obj, int map_block_type) {
 					chara_room_y = y;
 
 
-					// test
-					//					chara_room_x = 10;
+					// DEBUG ------------------------------
+//					chara_room_x = 10;
 					//					chara_room_y = 5;
 					if (SET_MAP_MODE == 1) {
 						chara_room_x = 1;
@@ -230,6 +251,16 @@ void MapBase::setCharaPoint(CharaBase* set_chara_obj, int map_block_type) {
 					//Debug.WriteLine("set :"+ chara_room_x +":"+ chara_room_y);
 					double chara_x = MAP_BLOCK_WIDTH * chara_room_x + (MAP_BLOCK_WIDTH / 2);
 					double chara_y = (MAP_BLOCK_HEIGHT * chara_room_y - (MAP_BLOCK_HEIGHT / 2)) * (-1);
+
+					// DEBUG ------------------------------
+
+					// マップ移動用設置オブジェクト読み込み
+					list<MapMove*> map_move_obj_list;
+					MapMoveData* move_data_1 = new MapMoveData(3, 0, 0, 1, 0);
+					map_move_obj_list.push_back(new MapMove(chara_x, chara_y, move_data_1));
+
+					this->_mg_object_list_obj->LoadMapMoveData(map_move_obj_list);
+
 
 					set_chara_obj->setCharaMapPoint(chara_x, chara_y);
 					int chara_block_x = set_chara_obj->getMapBlockX();
@@ -246,4 +277,41 @@ void MapBase::setCharaPoint(CharaBase* set_chara_obj, int map_block_type) {
 
 	delete rand_obj;
 	// */
+}
+// マップ移動処理
+void MapBase::mapMoveUpdate() {
+	if (MapMoveManager::checkMapMove() != true) {
+		int hoge = 1;
+		return;
+	}
+	
+
+	MapMoveData* map_move_obj = MapMoveManager::getMapMoveData();
+	if (map_move_obj == nullptr) {
+		return;
+	}
+
+	// まずは初期化
+	this->_map_ground_obj->removeAllChildren();
+	this->_mg_object_list_obj->removeAllChildren();
+	this->_map_obj_line_list.clear();
+
+	this->_map_ground_obj = nullptr;
+	this->_mg_object_list_obj = nullptr;
+
+
+	switch (map_move_obj->getMoveType()) {
+	case 1:	// ワールドマップ移動
+		// @TODO そもそも未実装
+		break;
+	case 2:	// ミニマップ移動
+
+		break;
+	case 3:	// ランダムマップ移動
+		this->createRandomMap();
+		break;
+	}
+
+
+	return;
 }

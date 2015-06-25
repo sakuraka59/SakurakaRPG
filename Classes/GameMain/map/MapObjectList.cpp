@@ -331,3 +331,9 @@ void MapObjectList::resetObjectDrawX(int reset_x) {
 	this->_object_draw_list->addChild(check_map_obj, true);
 	this->_map_obj_draw_list[reset_x] = true;
 }
+
+void MapObjectList::resetMapMoveDrawObject() {
+	// キャラクターのマス座標から端までのマス数
+	int width_side = this->mapDrawWidth();
+	int height_side = this->mapDrawHeight();
+}

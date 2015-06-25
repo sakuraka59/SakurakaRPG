@@ -1,7 +1,7 @@
 #include "MapGroundObjectList.h"
 #include "MapGroundObjectBase.h"
 
-#include "map_bg_obj/MapMove.h"
+#include "map_bg_obj/map_move/MapMove.h"
 
 MapGroundObjectList::MapGroundObjectList(CharaPlayer* player_obj) {
 	this->_player_obj = player_obj;
@@ -65,6 +65,7 @@ void MapGroundObjectList::Init() {
 
 }
 void MapGroundObjectList::UpdateInit() {
+	
 	int map_width = this->_map_ground_obj_data.size();
 	int map_height = this->_map_ground_obj_data[0].size();
 

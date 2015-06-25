@@ -1,7 +1,7 @@
 #pragma once
 #include "../MiniMapBase.h"
-#include "../../map_ground_object/map_bg_obj/MapMove.h"
-#include "../../map_ground_object/map_bg_obj/MapMoveData.h"
+#include "../../map_ground_object/map_bg_obj/map_move/MapMove.h"
+#include "../../map_ground_object/map_bg_obj/map_move/MapMoveData.h"
 
 
 #include "cocos2d.h"

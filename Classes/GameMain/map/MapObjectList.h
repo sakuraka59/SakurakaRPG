@@ -41,4 +41,7 @@ private: void removeObjectDrawY(int height_side);
 private: void resetObjectDrawY(int width_side, int height_side);
 private: void removeObjectDrawX(int remove_x);
 private: void resetObjectDrawX(int reset_x);
+
+// マップ移動時によるオブジェクト再描画を行う
+public: void resetMapMoveDrawObject();
 };
