@@ -9,8 +9,9 @@ MapGroundObjectList::MapGroundObjectList(CharaPlayer* player_obj) {
 	this->_ground_sprite_list = new RenderObject();
 }
 void MapGroundObjectList::LoadMapMoveData(list<MapMove*> map_move_obj_list) {
+	this->_ground_obj_list.clear();
 
-
+	int yo = 1;
 	for (MapMove* map_move_obj : map_move_obj_list) {
 		int map_block_x = map_move_obj->getMapBlockX();
 		int map_block_y = map_move_obj->getMapBlockY();
@@ -28,11 +29,19 @@ void MapGroundObjectList::LoadMapMoveData(list<MapMove*> map_move_obj_list) {
 	// @TODO とりあえず全表示
 	this->_ground_sprite_list->addChild(this->_ground_obj_list[map_search_x][map_search_y * (-1)]);
 	*/
+
+	this->_ground_sprite_list->setPosition(0, 0);
+	if (this->_ground_sprite_list != nullptr) {
+//		this->addChild(this->_ground_sprite_list);
+	}	
+//	
+
 }
 void MapGroundObjectList::LoadData(unordered_map<int, unordered_map<int, int>> map_ground_data) {
 	this->_map_ground_obj_data = map_ground_data;
 
 //	this->_ground_sprite_list->removeAllChildrenWithCleanup();
+	
 
 	int map_width = this->_map_ground_obj_data.size();
 	int map_height = this->_map_ground_obj_data[0].size();
@@ -41,13 +50,15 @@ void MapGroundObjectList::LoadData(unordered_map<int, unordered_map<int, int>> m
 	for (int map_search_x = 0; map_search_x < map_width; map_search_x++) {
 		int map_search_y = 0;
 		for (int map_search_y = 0; map_search_y < map_height; map_search_y++) {
-			if (this->_map_ground_obj_data[map_search_x][map_search_y] < 1) {
-				continue;
-			}
 			if (this->_ground_obj_list[map_search_x][map_search_y * (-1)] != nullptr) {
+				this->_ground_obj_list[map_search_x][map_search_y * (-1)] = nullptr;
+			}
+
+			if (this->_map_ground_obj_data[map_search_x][map_search_y] < 1) {
+				
 				continue;
 			}
-			// @TODO 後で読み込み用マネージャを作成して、そちらから読み込むようにする
+					// @TODO 後で読み込み用マネージャを作成して、そちらから読み込むようにする
 			MapGroundObjectBase* ground_obj = new MapGroundObjectBase(
 				map_search_x, map_search_y * (-1)
 				);		
@@ -58,6 +69,9 @@ void MapGroundObjectList::LoadData(unordered_map<int, unordered_map<int, int>> m
 			this->_ground_sprite_list->addChild(this->_ground_obj_list[map_search_x][map_search_y * (-1)]);
 		}
 	}
+
+}
+void MapGroundObjectList::loadEnd() {
 	this->_ground_sprite_list->setPosition(0, 0);
 	this->addChild(this->_ground_sprite_list);
 }
@@ -73,7 +87,10 @@ void MapGroundObjectList::UpdateInit() {
 	for (int map_search_x = 0; map_search_x < map_width; map_search_x++) {
 		int map_search_y = 0;
 		for (int map_search_y = 0; map_search_y < map_height; map_search_y++) {
+			
+
 			if (this->_map_ground_obj_data[map_search_x][map_search_y] < 1) {
+				
 				continue;
 			}
 			this->_ground_obj_list[map_search_x][map_search_y * (-1)]->UpdateInit();
@@ -102,5 +119,7 @@ void MapGroundObjectList::reviewGroundBlockY(int add_block_draw_y, int remove_bl
 
 }
 unordered_map<int, unordered_map<int, MapGroundObjectBase*>> MapGroundObjectList::getGroundObjData() {
+	auto hoge = &this->_ground_obj_list;
+	int piyo = 1;
 	return this->_ground_obj_list;
 }

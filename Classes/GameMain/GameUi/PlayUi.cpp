@@ -243,7 +243,11 @@ void PlayUi::checkHitMapGroundObject(CharaBase* chara_obj) {
 	int chara_map_x = chara_obj->getMapBlockX();
 	int chara_map_y = chara_obj->getMapBlockY();
 
-	std::unordered_map<int, unordered_map<int, MapGroundObjectBase*>> mg_obj_data = this->_mg_object_list_obj->getGroundObjData();
+	/*
+	unordered_map<int, unordered_map<int, MapGroundObjectBase*>>* mg_obj_data_ptr = this->_mg_object_list_obj->getGroundObjData();
+	unordered_map<int, unordered_map<int, MapGroundObjectBase*>>mg_obj_data = *mg_obj_data_ptr;
+	*/
+	unordered_map<int, unordered_map<int, MapGroundObjectBase*>> mg_obj_data = this->_mg_object_list_obj->getGroundObjData();
 
 	for (int y = -1; y < 2; y++) {
 		int check_map_y = chara_map_y + y;
@@ -251,7 +255,7 @@ void PlayUi::checkHitMapGroundObject(CharaBase* chara_obj) {
 		for (int x = -1; x < 2; x++) {
 			int check_map_x = chara_map_x + x;
 
-
+			
 			MapGroundObjectBase* mb_obj = mg_obj_data[check_map_x][check_map_y];
 
 			if (mb_obj == nullptr) {
@@ -369,10 +373,15 @@ void PlayUi::playerSearchAction() {
 
 
 	// マップ上の地面オブジェクトを調べる -------------------------------------
+	/*
+	unordered_map<int, unordered_map<int, MapGroundObjectBase*>>* mg_obj_data_ptr = this->_mg_object_list_obj->getGroundObjData();
+	unordered_map<int, unordered_map<int, MapGroundObjectBase*>>mg_obj_data = *mg_obj_data_ptr;
+	*/
 	unordered_map<int, unordered_map<int, MapGroundObjectBase*>> mg_obj_data = this->_mg_object_list_obj->getGroundObjData();
 
-
 	MapGroundObjectBase* mb_obj = mg_obj_data[search_map_x][search_map_y];
+
+	auto point_hoge = &this->_mg_object_list_obj;
 	if (mb_obj == nullptr) {
 		return;
 	}
@@ -460,5 +469,7 @@ void PlayUi::setMapMove() {
 		//mapSetDrawInit
 		map_obj_line.second->mapSetDrawInit();
 	}
+
+	this->_mg_object_list_obj = this->_map_obj->getMgObjectList();
 
 }

@@ -16,3 +16,6 @@ void MapMove::actionObjBehavior(CharaBase* chara_obj) {
 
 	MapMoveManager::setMapMoveData(this->_map_move_data);
 }
+void MapMove::Update() {
+
+}

@@ -21,12 +21,12 @@ private: CharaPlayer* _player_obj;
 
 private: RenderObject* _ground_sprite_list;
 
-private: std::unordered_map<int, std::unordered_map<int, MapGroundObjectBase*>>_ground_obj_list;
+private: unordered_map<int, unordered_map<int, MapGroundObjectBase*>>_ground_obj_list;
 
 public: MapGroundObjectList(CharaPlayer* player_obj);
 public: void MapGroundObjectList::LoadMapMoveData(list<MapMove*> map_move_obj_list); //移動用の設置オブジェクトを読み込み
 public: void LoadData(unordered_map<int, unordered_map<int, int>> map_ground_data);
-
+public: void loadEnd();
 public: void Init();
 public: void UpdateInit();
 public: void Update();

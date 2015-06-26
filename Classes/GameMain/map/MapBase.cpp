@@ -120,7 +120,7 @@ MapGroundObjectList* MapBase::getMgObjectList() {
 //	ランダムマップを作成
 //-------------------------------------------------------------------
 void MapBase::createRandomMap() {
-	
+
 
 //	this->_map_base_data;
 
@@ -140,13 +140,22 @@ void MapBase::createRandomMap() {
 	this->_map_ground_obj = new MapGroundList(this->_camera_obj, test_map, 0, this->_player_obj);
 	// */
 
-	this->addChild(this->_map_ground_obj);
+	this->addChild(this->_map_ground_obj,1);
 	this->setCharaPoint(this->_player_obj, 2);
+
+	// マップ移動用設置オブジェクト読み込み
+	list<MapMove*> map_move_obj_list;
+	MapMoveData* move_data_1 = new MapMoveData(3, 0, 0, 1, 0);
+	map_move_obj_list.push_back(new MapMove(this->_player_obj->getMapBlockX(), (this->_player_obj->getMapBlockY()), move_data_1));
+
+	this->_mg_object_list_obj->LoadMapMoveData(map_move_obj_list);
+
+	this->_mg_object_list_obj->loadEnd();
 	// map obj ----------------------------------------------
 	this->initMapObject(get_dungeon_obj->getMapData());
 
 	// DEBUG 
-	this->addChild(this->_mg_object_list_obj);
+	this->addChild(this->_mg_object_list_obj,2);
 }
 //-------------------------------------------------------------------
 //	固定ミニマップ作成
@@ -154,6 +163,7 @@ void MapBase::createRandomMap() {
 void MapBase::createMiniMap(){
 	this->_map_type = 2;
 	this->_map_ground_obj = nullptr;
+	
 	this->_mg_object_list_obj = nullptr;
 
 
@@ -171,8 +181,10 @@ void MapBase::createMiniMap(){
 	// 設置オブジェクト読み込み
 	this->_mg_object_list_obj->LoadData(MiniMapManager::getMapGroundObjData());
 
-	this->addChild(this->_map_ground_obj);
-	this->addChild(this->_mg_object_list_obj);
+	this->_mg_object_list_obj->loadEnd();
+
+	this->addChild(this->_map_ground_obj,1);
+	this->addChild(this->_mg_object_list_obj,2);
 
 	this->initMapObject(this->_map_ground_data);
 
@@ -254,12 +266,7 @@ void MapBase::setCharaPoint(CharaBase* set_chara_obj, int map_block_type) {
 
 					// DEBUG ------------------------------
 
-					// マップ移動用設置オブジェクト読み込み
-					list<MapMove*> map_move_obj_list;
-					MapMoveData* move_data_1 = new MapMoveData(3, 0, 0, 1, 0);
-					map_move_obj_list.push_back(new MapMove(chara_x, chara_y, move_data_1));
 
-					this->_mg_object_list_obj->LoadMapMoveData(map_move_obj_list);
 
 
 					set_chara_obj->setCharaMapPoint(chara_x, chara_y);

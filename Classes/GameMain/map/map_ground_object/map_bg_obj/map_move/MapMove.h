@@ -18,4 +18,5 @@ public: MapMove(int map_block_x, int map_block_y, MapMoveData* map_move_data);
 //public: void UpdateInit() override;
 
 protected: void actionObjBehavior(CharaBase* chara_obj) override;
+protected: void Update() override;
 };
