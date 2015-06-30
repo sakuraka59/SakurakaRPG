@@ -677,6 +677,9 @@
     <ClInclude Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\map_move\MapMoveManager.h">
       <Filter>src\GameMain\map\map_ground_object\map_bg_object\map_move</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\charaActionType.h">
+      <Filter>src\GameMain\chara</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

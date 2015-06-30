@@ -28,7 +28,7 @@ CharaNpc::CharaNpc(int set_x, int set_y, GameCamera* camera_obj, std::list<Chara
 	this->_restart_y = set_y;
 
 //	this->_chara_seed = new SeedHuman();
-	this->_chara_seed = new SeedTestPuppet();
+	this->_chara_seed = new SeedTestPuppet(this);
 	//this->_chara_seed = new SeedTentacle();
 
 

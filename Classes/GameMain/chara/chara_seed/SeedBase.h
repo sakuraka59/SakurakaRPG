@@ -12,6 +12,9 @@ class CharaBase;
 class EquipItem;
 class ItemBase;
 
+enum class partsAngleType;
+enum class charaActionType;
+
 class SeedBase : public cocos2d::Node {
 	
 protected: std::string _file_name;
@@ -59,10 +62,20 @@ public: std::unordered_map<std::string, PartSetBase*> _parts_list;
 
 protected: StateList* _seed_state_list;
 
+protected: CharaBase* _chara_obj;
 
+// キャラクターの移動方向
+protected: partsAngleType _angle_direction;
 
-public: SeedBase();
-public: virtual void Update();
+// アニメーション用
+protected: charaActionType _action_type_before;	// 前フレームでの状態
+protected: int _anime_frame = 0;
+public: SeedBase(CharaBase* chara_obj);
+public: void Update();
+public: void updateAngle();
+public: virtual void updateAngleDetail();
+public: void updateAnimation();						// アニメーション基本関数
+protected: virtual void updateAnimationDetail();	// 各種族ごとのアニメーション
 
 // 画像
 protected: void setSpriteData(std::string file_name, int x, int y);
@@ -77,7 +90,7 @@ public: double getWalkSpeed();
 public: int getBaseHp();
 public: int getBaseSp();
 public: int getBaseCc();
-public: StateList*getStateList(CharaBase* chara_obj);
+public: StateList* getStateList(CharaBase* chara_obj);
 protected: virtual void setStateList(CharaBase* chara_obj);
 
 // vision data ----------------------------------------------

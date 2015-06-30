@@ -20,6 +20,8 @@
 
 #include "../GameCamera.h"
 
+#include "charaActionType.h"
+
 using namespace cocos2d;
 
 CharaBase::CharaBase()
@@ -66,6 +68,7 @@ CharaBase::CharaBase()
 	this->_label_obj->setPosition(-20, -10);
 	this->addChild(this->_label_obj);
 
+	this->_action_type = charaActionType::stand;
 }
 void CharaBase::SetCharaHitData() {
 	this->_hit_circle_obj = new HitCircle(this, this->_chara_seed->getWidthHalf());
@@ -79,6 +82,8 @@ void CharaBase::Update() {
 	this->commonUpdate();
 	this->mainUpdate();
 
+	// @TODO アニメーション更新はここらへんがよさそう
+	//this->_chara_seed->
 	// last update
 	this->updateBlockPoint();
 
@@ -105,6 +110,15 @@ void CharaBase::updateBlockPoint() {
 //-----------------------------------------------------------
 void CharaBase::commonUpdate() {
 
+	if (this->_draw_z > 0) {
+		// 空中にいる間は慣性が働くようにしたい
+		this->_draw_x += this->_move_x;
+		this->_draw_y += this->_move_y;
+	} else {
+//		this->_move_x = 0;
+//		this->_move_y = 0;
+	}
+
 	// 性的ステータスを自動回復させる
 	this->autoHealSexual();
 	//if 
@@ -114,6 +128,11 @@ void CharaBase::commonUpdate() {
 
 	if (this->_down_flag == true) {
 		this->charaDownUpdate();
+		this->_action_type = charaActionType::down;
+	}
+	else {
+		// 立ち状態に変更
+		this->_action_type = charaActionType::stand;
 	}
 	this->updateDamagePush();
 	this->updateJump();
@@ -128,6 +147,8 @@ void CharaBase::commonUpdate() {
 		if (this->_skill_chain_num > 0) {
 			this->_skill_chain_num = 0;
 		}
+
+		
 	}
 }
 //-----------------------------------------------------------
@@ -184,6 +205,9 @@ void CharaBase::updateMove(double move_speed) {
 		return;
 	}
 
+	if (this->_draw_z > 0) {
+		return;
+	}
 	/*
 	if (this->_attack_frame <= 0) {
 	this->resetTargetChara();
@@ -213,6 +237,10 @@ void CharaBase::updateMove(double move_speed) {
 	this->_draw_x += this->_move_x;
 	this->_draw_y += this->_move_y;
 
+	if (this->_action_type == charaActionType::stand) {
+		this->_action_type = charaActionType::dash;
+	}
+	this->_move_speed_per = move_speed;
 //	this->setPosition((float)this->_draw_x, (float)this->_draw_y);
 	//this->Position = new Vector2((int)this->_draw_x, (int)this->_draw_y);
 
@@ -259,11 +287,16 @@ void CharaBase::updateJump() {
 		this->_jump_speed -= this->_fall_speed;
 		this->_draw_z += this->_jump_speed;
 		update_draw_flag = true;
+
+		if (this->_action_type < charaActionType::_attack_line) {
+			this->_action_type = charaActionType::jump;
+		}
 	}
 
 	if (this->_draw_z < 0 && this->_jump_speed < 0) {
 		this->_jump_speed = 0;
 		this->_draw_z = 0;
+		this->_action_type = charaActionType::stand;
 		update_draw_flag = true;
 	}
 	else if (this->_draw_z > 0 && this->_no_control_frame > 0 && this->_no_control_frame <= 30) {
@@ -321,6 +354,9 @@ void CharaBase::updateDraw() {
 		"x :" + std::to_string(this->_draw_x) +
 		"\n y :" + std::to_string(this->_draw_y) +
 		"\n z :" + std::to_string(this->_draw_z) +
+		"\n move_x : " + to_string(this->_move_x) +
+		"\n move_y : " + to_string(this->_move_y) +
+		"\n action_type :" + to_string((int)this->_action_type) +
 		"\n move_angle :" + std::to_string(this->_move_angle) +
 		"\n move_angle_d :" + std::to_string(this->_move_angle_direction) +
 		"\n hp :" + std::to_string(this->_now_state[mainStateType::hp] / 100) +
@@ -427,7 +463,7 @@ void CharaBase::updateMoveAngleDirection() {
 	}
 }
 int CharaBase::getMoveAnagleDirection() {
-	this->updateMoveAngleDirection();
+//	this->updateMoveAngleDirection();
 	return this->_move_angle_direction;
 }
 //-----------------------------------------------------------
@@ -514,7 +550,9 @@ void CharaBase::resetSpellStatus() {
 	this->_spell_status = 0;
 	// スキル破棄
 }
-
+charaActionType CharaBase::getActionType() {
+	return this->_action_type;
+}
 void CharaBase::setSuperAromurFrame(int frame_num) {
 	this->_super_armour_frame = frame_num;
 }
@@ -531,7 +569,6 @@ int CharaBase::getSkillFrame() {
 int CharaBase::getSuperAromurFrame() {
 	return this->_super_armour_frame;
 }
-
 // state ----------------------------------------------------
 void CharaBase::setState() {
 

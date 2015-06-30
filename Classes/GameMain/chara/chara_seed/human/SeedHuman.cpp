@@ -3,7 +3,7 @@
 
 #include "human_part\HumanTest.h"
 
-SeedHuman::SeedHuman(){
+SeedHuman::SeedHuman(CharaBase* chara_obj) : SeedBase(chara_obj) {
 
 	// 種族設定 ----------------------------------------------
 	this->_run_speed = 3;
@@ -71,7 +71,7 @@ SeedHuman::SeedHuman(){
 	// 使うかどうか微妙 -----------------------------------
 	//*
 	//this->_parts_list.Add("test", new HumanTest());
-	this->_parts_list["test"] = new HumanTest();
+	this->_parts_list["test"] = new HumanTest(this->_chara_obj);
 	this->addChild(this->_parts_list["test"]);
 
 	// Plaeyr専用 画面右のキャラクター表示
@@ -101,6 +101,11 @@ SeedHuman::SeedHuman(){
 	*/
 
 }
+/*
 void SeedHuman::Update() {
-	//this->_parts_list["leg_front"].Update();	
+
+}
+*/
+void SeedHuman::updateAngleDetail() {
+	this->_parts_list["test"]->updateAngle(this->_angle_direction);
 }

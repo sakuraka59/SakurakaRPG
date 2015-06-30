@@ -36,6 +36,8 @@ class HitCircle;			// ok
 class SkillBase;			// ok			
 class SkillAttack;			//
 class MagicBase;			// 
+
+enum class charaActionType;
 // PSMからの移植先どうする？
 //	class Vector2; -> cocos2d::Vec2
 
@@ -86,8 +88,8 @@ protected: double _walk_speed = 0;			// 歩き速度（一定）
 protected: SeedBase* _chara_seed;
 
 // 移動に関する要素
-protected: double _move_angle = 0.0;			// 移動方向
-protected: int _move_angle_direction = 0;	// 移動方向ステータス（0, 45, 90, 135, 180, 225, 270, 315, 360）
+protected: double _move_angle = 270;		// 移動方向(初期化は正面を向く
+protected: int _move_angle_direction = 270;	// 移動方向ステータス（0, 45, 90, 135, 180, 225, 270, 315, 360）
 protected: double _move_speed_per = 100.0f;	// 走る速度
 protected: double _move_x = 0.0; 			// Xのみの移動距離
 protected: double _move_y = 0.0; 			// Yのみの移動距離
@@ -123,6 +125,9 @@ protected: double _push_angle = 0;		// 吹き飛ばし方向
 protected: double _push_speed = 0;		// 吹き飛ばし速度
 
 protected: int _weapon_state = 0;		// 武器の構え等の状態。主に片手直剣+鞘での抜刀剣で使用する
+
+
+protected: charaActionType _action_type;	// 行動状態
 
 // 状態異常ステータスリスト
 protected: StateList* _state_list;
@@ -244,10 +249,14 @@ public: void setSpellStatus(int spell_state);
 // 詠唱状態から復帰する
 public: void resetSpellStatus();
 
+// 現在の行動状態を返す
+public: charaActionType getActionType();
+
 public: void setSuperAromurFrame(int frame_num);
 
 public: int getNoControlFrame();
 public: int getAttackFrame();
+
 //------------------------------------------------------------------------------------------------
 public: int getSkillFrame();
 public: int getSuperAromurFrame();

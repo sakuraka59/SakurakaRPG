@@ -34,7 +34,7 @@ CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, st
 	// グループリストに操作キャラクターを追加する
 	this->_my_group_list.push_back(charaGroupList::player);
 
-	this->_chara_seed = new SeedHuman();
+	this->_chara_seed = new SeedHuman(this);
 	this->addChild(this->_chara_seed);
 
 	this->_comment_ui_obj = comment_ui_obj;

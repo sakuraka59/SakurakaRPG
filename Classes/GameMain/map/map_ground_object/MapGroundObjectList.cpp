@@ -11,7 +11,6 @@ MapGroundObjectList::MapGroundObjectList(CharaPlayer* player_obj) {
 void MapGroundObjectList::LoadMapMoveData(list<MapMove*> map_move_obj_list) {
 	this->_ground_obj_list.clear();
 
-	int yo = 1;
 	for (MapMove* map_move_obj : map_move_obj_list) {
 		int map_block_x = map_move_obj->getMapBlockX();
 		int map_block_y = map_move_obj->getMapBlockY();
@@ -120,6 +119,6 @@ void MapGroundObjectList::reviewGroundBlockY(int add_block_draw_y, int remove_bl
 }
 unordered_map<int, unordered_map<int, MapGroundObjectBase*>> MapGroundObjectList::getGroundObjData() {
 	auto hoge = &this->_ground_obj_list;
-	int piyo = 1;
+
 	return this->_ground_obj_list;
 }

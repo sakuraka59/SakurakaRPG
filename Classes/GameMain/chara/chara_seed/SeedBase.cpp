@@ -5,16 +5,18 @@
 #include "../CharaBase.h"
 
 #include "../abnormal_state/StateList.h"
-
-
+#include "PartBase.h"
+#include "../charaActionType.h"
 /*
 class PartSetBase;
 class EquipSprite;
 class StateList;
 class CharaBase;
 */
-SeedBase::SeedBase() {
+SeedBase::SeedBase(CharaBase* chara_obj) {
 
+	this->_chara_obj = chara_obj;
+	this->_angle_direction = partsAngleType::front;
 	/*
 	this._test_point = i;
 	this._draw_x = (int)(this._test_point /20) * 40;
@@ -46,8 +48,64 @@ SeedBase::SeedBase() {
 }
 
 void SeedBase::Update() {
-
+	this->updateAngle();
 }
+void SeedBase::updateAngle() {
+
+	int angle_direction_base = this->_chara_obj->getMoveAnagleDirection();
+	partsAngleType angle_direction = partsAngleType::no_type;
+	switch (angle_direction_base) {
+	case 0:
+		angle_direction = partsAngleType::right;
+		break;
+	case 45:
+		angle_direction = partsAngleType::back_right;
+		break;
+	case 90:
+		angle_direction = partsAngleType::back;
+		break;
+	case 135:
+		angle_direction = partsAngleType::back_left;
+		break;
+	case 180:
+		angle_direction = partsAngleType::left;
+		break;
+	case 225:
+		angle_direction = partsAngleType::front_left;
+		break;
+	case 270:
+		angle_direction = partsAngleType::front;
+		break;
+	case 315:
+		angle_direction = partsAngleType::front_right;
+		break;
+	}
+	if (this->_angle_direction == angle_direction) {
+		return;
+	}
+
+	// 向きを変更する
+	this->_angle_direction = angle_direction;
+	this->updateAngleDetail();
+}
+void SeedBase::updateAngleDetail() {}
+
+void SeedBase::updateAnimation() {
+	charaActionType action_type = this->_chara_obj->getActionType();
+
+	// 行動が変わった場合
+	if (this->_action_type_before != action_type) {
+		// アニメーション初期化
+		this->_anime_frame = 0;
+	} else {
+		this->_anime_frame++;
+	}
+	// 詳細処理へ
+	this->updateAnimationDetail();
+
+	this->_action_type_before = action_type;
+}
+void SeedBase::updateAnimationDetail() {}
 // 画像
 void SeedBase::setSpriteData(std::string file_name, int x, int y) {
 

@@ -3,8 +3,8 @@
 #include "../../abnormal_state/abnormalStateType.h"
 #include "../../abnormal_state/StateList.h"
 
-SeedTestPuppet::SeedTestPuppet()
-{
+SeedTestPuppet::SeedTestPuppet(CharaBase* chara_obj) : SeedBase(chara_obj) {
+
 	// state base -------------------------------------------
 	this->_run_speed = 0;//0.5;
 	this->_walk_speed = 0;//0.2;
@@ -33,7 +33,7 @@ SeedTestPuppet::SeedTestPuppet()
 	this->addChild(this->_parts_list["body"]);
 	*/
 
-	this->_parts_list["body"] = new HumanTest();
+	this->_parts_list["body"] = new HumanTest(this->_chara_obj);
 	this->addChild(this->_parts_list["body"]);
 	
 	this->_draw_correct_x = (int)((float)(340 / 2) *0.20f);
@@ -47,8 +47,7 @@ SeedTestPuppet::SeedTestPuppet()
 	this->addChild(this->_parts_list["body"].get());
 	*/
 }
-
-void SeedTestPuppet::setStateList(CharaBase* chara_obj){
+void SeedTestPuppet::setStateList(CharaBase* chara_obj) {
 	//this->_seed_state_list.setSeedStateResist(abnormalStateType.oestrus, 10000);
 	this->_seed_state_list->setStateGuard(abnormalStateType::oestrus);
 }
