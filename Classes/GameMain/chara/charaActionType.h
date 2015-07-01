@@ -9,6 +9,7 @@ enum class charaActionType
 	dash,		// 走り
 	jump,		// ジャンプ
 	down,		// キャラクターダウン
+	damage,		// ダメージ受け
 
 	// 以降、攻撃系
 	_attack_line,

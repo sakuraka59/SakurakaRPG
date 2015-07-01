@@ -28,10 +28,10 @@ MapBase::MapBase(GameCamera* camera_obj, CharaPlayer* player_obj) {
 
 	// DEBUG --------------------------
 	// ランダムマップ
-	this->createRandomMap();
+//	this->createRandomMap();
 
 	// 固定ミニマップ
-//	this->createMiniMap();
+	this->createMiniMap();
 
 	// ワールドマップ
 }

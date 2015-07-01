@@ -79,8 +79,24 @@ void CharaBase::Update() {
 	if (this->_set_now_skill != nullptr) {
 		this->_set_now_skill->Update();
 	}
+	// 移動初期化
+	if (this->_action_type == charaActionType::stand ||
+		this->_action_type == charaActionType::walk ||
+		this->_action_type == charaActionType::dash
+	) {
+
+		this->_move_x = 0;
+		this->_move_y = 0;
+	}
+
 	this->commonUpdate();
 	this->mainUpdate();
+
+	// キャラクター移動処理
+	this->_draw_x += this->_move_x;
+	this->_draw_y += this->_move_y;
+
+
 
 	// @TODO アニメーション更新はここらへんがよさそう
 	//this->_chara_seed->
@@ -110,15 +126,8 @@ void CharaBase::updateBlockPoint() {
 //-----------------------------------------------------------
 void CharaBase::commonUpdate() {
 
-	if (this->_draw_z > 0) {
-		// 空中にいる間は慣性が働くようにしたい
-		this->_draw_x += this->_move_x;
-		this->_draw_y += this->_move_y;
-	} else {
-//		this->_move_x = 0;
-//		this->_move_y = 0;
-	}
 
+	
 	// 性的ステータスを自動回復させる
 	this->autoHealSexual();
 	//if 
@@ -130,6 +139,9 @@ void CharaBase::commonUpdate() {
 		this->charaDownUpdate();
 		this->_action_type = charaActionType::down;
 	}
+	else if (this->_no_control_frame > 0) {
+		this->_action_type = charaActionType::damage;
+	}
 	else {
 		// 立ち状態に変更
 		this->_action_type = charaActionType::stand;
@@ -139,6 +151,8 @@ void CharaBase::commonUpdate() {
 	this->_state_list->Update();
 	this->countActionFrame();
 	this->_chara_seed->Update();
+
+
 
 	// 行動可能時、スキル情報やターゲット情報を破棄
 	if (this->_attack_frame <= 0) {
@@ -205,6 +219,8 @@ void CharaBase::updateMove(double move_speed) {
 		return;
 	}
 
+	
+	/*
 	if (this->_draw_z > 0) {
 		return;
 	}
@@ -217,8 +233,32 @@ void CharaBase::updateMove(double move_speed) {
 
 	//double move_speed = this->_chara_seed.getRunSpeed();
 
-	this->_move_x = (double)(cos(this->_move_angle * M_PI / 180) * move_speed);
-	this->_move_y = (double)(sin(this->_move_angle * M_PI / 180) * move_speed);
+	if (this->_action_type != charaActionType::stand &&
+		this->_action_type != charaActionType::walk &&
+		this->_action_type != charaActionType::dash) {
+		
+		double move_x = (double)(cos(this->_move_angle * M_PI / 180) * move_speed);
+		double move_y = (double)(sin(this->_move_angle * M_PI / 180) * move_speed);
+		this->_move_x += move_x / 40;
+		this->_move_y += move_y / 40;
+
+		if ((move_x > 0 && this->_move_x > move_x) ||
+			(move_x < 0 && this->_move_x < move_x)) {
+			this->_move_x = move_x;
+		}
+
+		if ((move_y > 0 && this->_move_y > move_y) ||
+			(move_y < 0 && this->_move_y < move_y)) {
+			this->_move_y = move_y;
+		}
+	}
+	else {
+
+		this->_move_x = (double)(cos(this->_move_angle * M_PI / 180) * move_speed);
+		this->_move_y = (double)(sin(this->_move_angle * M_PI / 180) * move_speed);
+
+	}
+
 	
 	if (this->_move_x > 0){
 		int piyo = 1;
@@ -234,8 +274,8 @@ void CharaBase::updateMove(double move_speed) {
 		this->_move_y = 0;
 	}
 	
-	this->_draw_x += this->_move_x;
-	this->_draw_y += this->_move_y;
+//	this->_draw_x += this->_move_x;
+//	this->_draw_y += this->_move_y;
 
 	if (this->_action_type == charaActionType::stand) {
 		this->_action_type = charaActionType::dash;
@@ -260,7 +300,7 @@ bool CharaBase::setJumpNormal(double jump_speed) {
 	if (this->_draw_z <= 0) {
 		this->_draw_z = jump_speed;
 		this->_jump_speed = jump_speed;
-
+		this->_action_type = charaActionType::jump;
 		return true;
 	}
 	return false;
@@ -331,8 +371,8 @@ void CharaBase::updateSkillMove(double add_angle, double move_speed_1frame, doub
 	if (this->_move_y < 0.00001f && this->_move_y > -0.00001f) {
 		this->_move_y = 0;
 	}
-	this->_draw_x += this->_move_x;
-	this->_draw_y += this->_move_y;
+//	this->_draw_x += this->_move_x;
+//	this->_draw_y += this->_move_y;
 
 	if (jump_power > 0) {
 		this->setJumpForcing(jump_power);
@@ -1214,6 +1254,9 @@ void CharaBase::setDamagePush(double push_speed, double push_angle, int push_fra
 
 }
 void CharaBase::updateDamagePush() {
+	if (this->_no_control_frame <= 0) {
+		return;
+	}
 	if (this->_push_frame <= 0 && this->_draw_z <= 0) {
 		this->_push_speed = 0;
 		this->_push_angle = 0;
@@ -1229,8 +1272,8 @@ void CharaBase::updateDamagePush() {
 	if (this->_move_y < 0.00001f && this->_move_y > -0.00001f) {
 		this->_move_y = 0;
 	}
-	this->_draw_x += this->_move_x;
-	this->_draw_y += this->_move_y;
+//	this->_draw_x += this->_move_x;
+//	this->_draw_y += this->_move_y;
 
 	this->_push_frame--;
 

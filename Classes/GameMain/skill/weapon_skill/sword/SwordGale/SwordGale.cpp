@@ -34,6 +34,8 @@ SwordGale::SwordGale(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list)
 		this->_skill_attack_list[this->_skill_attack_max - 1]->setSkillAttack(2, (-60 + attack_angle_sad), (-30 + attack_angle_sad), 0, attack_range, 10, 10);
 		this->setSkillMove(move_base);
 	}
+
+
 }
 void SwordGale::attackUpdateEffect(){
 
@@ -44,8 +46,12 @@ void SwordGale::attackUpdateEffect(){
 }
 void SwordGale::attackHitEffect(CharaBase* check_chara_obj) {
 
+	check_chara_obj->setDamagePush(10.0, this->_use_chara_obj->getMoveAngle(), 10);
+	check_chara_obj->setJumpForcing(2.0);
 	check_chara_obj->directDamageHp(100);
 
 
+//	this->_use_chara_obj->setDamagePush(1.0, this->_use_chara_obj->getMoveAngle(), 10);
+//	this->_use_chara_obj->setJumpForcing(6.0);
 
 }
