@@ -33,6 +33,11 @@ bool EquipItem::useItem(){
 	if (this->checkExtendEquipItem() != true) {
 		return false;
 	}
+
+	if (this->_chara_obj->checkActionFlag() != true) {
+		return false;
+	}
+
 	this->_chara_obj->setEquipItem(this->_item_equip_type, this, this->_state_default_list);
 
 
@@ -59,4 +64,14 @@ bool EquipItem::checkEquipRelease() {
 
 unordered_map<abnormalStateType, int> EquipItem::getStateDefaultList() {
 	return this->_state_default_list;
+}
+
+void EquipItem::setEquipFlag() {
+	this->_equip_flag = true;
+}
+void EquipItem::unsetEquipFlag() {
+	this->_equip_flag = false;
+}
+bool EquipItem::getEquipFlag() {
+	return this->_equip_flag;
 }

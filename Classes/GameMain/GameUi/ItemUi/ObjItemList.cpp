@@ -37,7 +37,7 @@ ObjItemList::ObjItemList(HaveUseItemList* use_item_list, HaveEquipItemList* equi
 	this->_detail_bg_render_obj = this->getBgRenderObj();
 
 	
-	this->_detail_label = "hoge";
+	this->_detail_label = "";
 
 	/*
 	LabelTTF* type_label_ttf = LabelTTF::create(this->_type_label, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
@@ -163,8 +163,8 @@ void ObjItemList::openItemListInit(){
 			this->_item_detail_list[item_type] += "\n\n";
 			*/
 
-
-			auto detail_label_ttf = LabelTTF::create(use_item_obj.second->getItemName(), "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
+			string name_string_data = use_item_obj.second->getItemName();
+			auto detail_label_ttf = LabelTTF::create(name_string_data, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
 			detail_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
 			auto anchor_point_type = new cocos2d::Vec2(0, 1);
 			detail_label_ttf->setAnchorPoint(*anchor_point_type);
@@ -177,6 +177,23 @@ void ObjItemList::openItemListInit(){
 
 			this->_item_detail_list[item_type]->addChild(detail_label_ttf);
 
+			// 装備中かどうかチェック表示
+
+			string equip_text = "☆";
+			auto equip_label_ttf = LabelTTF::create(equip_text, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE);
+			equip_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
+			auto anchor_point_equip = new cocos2d::Vec2(0, 1);
+			equip_label_ttf->setAnchorPoint(*anchor_point_equip);
+			equip_label_ttf->setPosition(-20, (this->_TEXT_LINE_HEIGHT * this->_item_detail_num_list[item_type] * (-1)));
+			
+			RenderObject* flag_render_obj = new RenderObject();
+			flag_render_obj->addChild(equip_label_ttf);
+			this->_equip_item_flag_list[item_type][use_item_obj.second] = flag_render_obj;
+
+			if (use_item_obj.second->getEquipFlag() == true) {
+//				this->_item_detail_list[item_type]->addChild(this->_equip_item_flag_list[item_type][use_item_obj.second]);
+			}
+			
 
 			// リストにアイテムオブジェクトを追加
 			this->_detail_item_list[item_type][this->_item_detail_num_list[item_type]] = use_item_obj.second;
@@ -237,12 +254,23 @@ void ObjItemList::openItemListInit(){
 //	this->_type_label_obj->setString(this->_type_label);
 }
 void ObjItemList::openItemDetailListInit(haveItemType item_type) {
+	int test_break_point = 0;
 	switch (item_type) {
+		/*
+		// 装備系
+	case haveItemType::weapon:
+		this->openEquipItemDetailListInit(item_type);
+		break;
+		*/
+		// アイテム系
 	case haveItemType::portion:
 	case haveItemType::etc:
 		this->openUseItemDetailListInit(item_type);
 		break;
 	}
+}
+void ObjItemList::openEquipItemDetailListInit(haveItemType item_type) {
+
 }
 void ObjItemList::openUseItemDetailListInit(haveItemType item_type) {
 	unordered_map<haveItemType, unordered_map<useItemId, UseItem*>>* use_item_type_list = this->_use_item_list->getItemTypeList();
@@ -257,7 +285,9 @@ void ObjItemList::openUseItemDetailListInit(haveItemType item_type) {
 		this->_item_detail_list[item_type] += use_item_obj.second->getItemName();
 		this->_item_detail_list[item_type] += "\n\n";
 		*/
-		auto detail_label_ttf = LabelTTF::create(use_item_obj.second->getItemName(), "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
+
+		string name_string_data = use_item_obj.second->getItemName();
+		auto detail_label_ttf = LabelTTF::create(name_string_data, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
 		detail_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
 		auto anchor_point_type = new cocos2d::Vec2(0, 1);
 		detail_label_ttf->setAnchorPoint(*anchor_point_type);
@@ -297,8 +327,7 @@ string ObjItemList::getItemTypeName(haveItemType item_type) {
 	return type_name;
 }
 void ObjItemList::openItemDetailInit(haveItemType item_type) {
-//	this->_detail_label = this->_item_detail_list[item_type];
-//	this->_detail_label_obj->setString(this->_detail_label);
+
 	this->_detail_label_obj->removeAllChildren();
 	this->_detail_label_obj->addChild(this->_item_detail_list[item_type]);
 	this->_open_detail_type = item_type;
@@ -389,7 +418,9 @@ void ObjItemList::UpdateItemDetail() {
 
 	if (Gamepad::Circle->isPush() == true) {
 		this->_detail_item_list[this->_open_detail_type][this->_item_detail_cursor]->useItem();
-		this->openItemDetailListInit(this->_open_detail_type);
+//		this->openItemDetailListInit(this->_open_detail_type);
+		this->useItemDrawUpdate(this->_open_detail_type, this->_detail_item_list[this->_open_detail_type][this->_item_detail_cursor]);
+
 
 	}
 	// 左、×ボタンで種類一覧へ戻る
@@ -401,7 +432,40 @@ void ObjItemList::UpdateItemDetail() {
 //		this->openItemDetailInit(this->_type_list[this->_item_type_cursor]);
 	}
 }
-
+//-------------------------------------------------------------------
+//	アイテム使用時の描画更新
+//-------------------------------------------------------------------
+void ObjItemList::useItemDrawUpdate(haveItemType item_type, ItemBase* item_obj){
+	switch (item_type) {
+		// 装備系
+		case haveItemType::weapon:
+			this->useItemDrawUpdateToEquip(item_type, (EquipItem*)item_obj);
+		break;
+		
+		// アイテム系
+		case haveItemType::portion:
+		case haveItemType::etc:
+			this->useItemDrawUpdateToUse(item_type, (UseItem*)item_obj);
+		break;
+	// */
+	}
+}
+void ObjItemList::useItemDrawUpdateToEquip(haveItemType item_type, EquipItem* item_obj) {
+	bool equip_flag = item_obj->getEquipFlag();
+	if (equip_flag == true) {
+		RenderObject* flag_render_obj = this->_equip_item_flag_list[item_type][item_obj];
+		this->_item_detail_list[item_type]->addChild(flag_render_obj);
+		int hoge = 1;
+	}
+	else {
+		this->_item_detail_list[item_type]->removeChild(this->_equip_item_flag_list[item_type][item_obj], true);
+	}
+}
+void ObjItemList::useItemDrawUpdateToUse(haveItemType item_type, UseItem* item_obj) {
+	if (item_obj->getNum() <= 0) {
+		this->openUseItemDetailListInit(item_type);
+	}
+}
 void ObjItemList::closeItemList() {
 	this->_controll_type = 0;
 	this->removeChild(this->_detail_bg_render_obj);

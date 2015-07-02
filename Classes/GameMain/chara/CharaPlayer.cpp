@@ -549,9 +549,14 @@ void CharaPlayer::testAction() {
 	}
 
 	if (this->_control_flag == true && Gamepad::L1->isPush() == true) {
-
+		
+		// 装備状態とアイテム所持UIで差分が発生している場合に
+		// 該当アイテムを使用すると落ちるので、キー操作による直接装備はいったん停止
+		/*
 		this->sendComment("剣装備なう");
 		this->_equip_item_list->itemUse(0);
+		*/
+
 	}
 	if (this->_control_flag == true && Gamepad::R1->isPush() == true) {
 	

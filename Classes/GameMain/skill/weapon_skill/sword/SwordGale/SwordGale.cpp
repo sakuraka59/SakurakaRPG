@@ -18,6 +18,7 @@ SwordGale::SwordGale(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list)
 
 	// ‘•”õŽí§ŒÀ
 	this->_main_weapon_list[weaponType::sword] = weaponType::sword;
+	
 
 	// ‹ó’†”­“®‰Â”\
 	//			this._in_air_flag = true;

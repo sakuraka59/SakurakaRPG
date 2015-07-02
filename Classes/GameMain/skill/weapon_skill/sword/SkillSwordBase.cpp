@@ -11,7 +11,7 @@ bool SkillSwordBase::checkExtendSkillUse() {
 
 		// バースト技は抜刀時にのみ使用可能
 		if (this->_use_chara_obj->getWeaponState() == 0) {
-
+			
 			// 帯刀時は抜刀を行う
 //			SkillBase set_skill_obj = new DrawnSword(this._use_chara_obj, this._use_chara_obj.getAllCharaList());
 //			this->_use_chara_obj->setSkill(set_skill_obj);

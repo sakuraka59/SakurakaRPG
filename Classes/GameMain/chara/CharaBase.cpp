@@ -741,6 +741,8 @@ void CharaBase::setEquipItem(equipType equip_type, EquipItem* item_obj, std::uno
 	}
 
 	this->_equip_list[equip_type] = item_obj;
+	item_obj->setEquipFlag();
+
 	//Dictionary<mainStateType, int> item_state = item_obj.getItemState();
 	std::unordered_map<mainStateType, int> item_state = item_obj->getItemState();
 
@@ -773,6 +775,7 @@ void CharaBase::setEquipItem(equipType equip_type, EquipItem* item_obj, std::uno
 }
 void CharaBase::removeEquipItem(equipType equip_type, EquipItem* item_obj, std::unordered_map<abnormalStateType, int> abnormal_state_list) {
 	this->_equip_list[equip_type] = nullptr;
+	item_obj->unsetEquipFlag();
 
 	std::unordered_map<mainStateType, int> item_state = item_obj->getItemState();
 

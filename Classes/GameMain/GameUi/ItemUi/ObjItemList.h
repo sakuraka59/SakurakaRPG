@@ -5,6 +5,8 @@
 class HaveUseItemList;
 class HaveEquipItemList;
 class ItemBase;
+class EquipItem;
+class UseItem;
 
 enum class haveItemType;
 
@@ -19,6 +21,7 @@ private: const int _CURSOR_DELAY_TIME = 10;
 protected: HaveUseItemList* _use_item_list;
 protected: HaveEquipItemList* _equip_item_list;
 
+private: unordered_map<haveItemType, unordered_map<EquipItem*, RenderObject*>> _equip_item_flag_list;
 
 private: int _controll_type = 0; // 0 : アイテム種類一覧		1 : アイテム詳細一覧
 private: int _cursor_delay = 0;
@@ -50,6 +53,7 @@ public: ObjItemList(HaveUseItemList* use_item_list, HaveEquipItemList* equip_ite
 private: RenderObject* getBgRenderObj();
 public: void openItemListInit();
 private: void openItemDetailListInit(haveItemType item_type);
+private: void openEquipItemDetailListInit(haveItemType item_type);
 private: void openUseItemDetailListInit(haveItemType item_type);
 private: string getItemTypeName(haveItemType item_type);
 private: void openItemDetailInit(haveItemType item_type);
@@ -57,6 +61,9 @@ public: void Update();
 private: void UpdateItemType();
 private: void UpdateItemDetail();
 
+private: void useItemDrawUpdate(haveItemType item_type, ItemBase* item_obj);
+private: void useItemDrawUpdateToEquip(haveItemType item_type, EquipItem* item_obj);
+private: void useItemDrawUpdateToUse(haveItemType item_type, UseItem* item_obj);
 public: void closeItemList();
 };
 
