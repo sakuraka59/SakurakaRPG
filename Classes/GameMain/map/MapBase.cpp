@@ -164,7 +164,7 @@ void MapBase::createMiniMap(){
 	this->_map_type = 2;
 	this->_map_ground_obj = nullptr;
 	
-	this->_mg_object_list_obj = nullptr;
+//	this->_mg_object_list_obj = nullptr;
 
 
 	MiniMapManager::loadMiniMap(miniMapType::test_map);

@@ -7,6 +7,6 @@ private: gamePadControllType _controll_type;
 
 public: GamepadControll();
 public: gamePadControllType getControllType();
-public: void setControllType(gamePadControllType controll_type);
+public: void setControllType(gamePadControllType controll_type, int controll_detail = -1);
 };
 

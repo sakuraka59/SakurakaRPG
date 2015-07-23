@@ -2,7 +2,20 @@
 #include "../GAME_SETTING.h"
 #include "../hit/HitSquare.h"
 #include "../../Random.h"
+#include "../chara/CharaBase.h"
 
+#include "../GameUi/ItemUi.h"
+#include "../GameMain.h"
+
+#include "../../Input/Gamepad.h"
+
+#include "../item/ItemMasterList.h"
+
+#include "../item/equip_item/HaveEquipItemList.h"
+#include "../item/use_item/HaveUseItemList.h"
+
+#include "../item/use_item/UseItem.h"
+#include "../item/use_item/hp_heal/TestHpHeal.h"
 MapObjectBase::MapObjectBase(int map_block_x, int map_block_y, GameCamera* camera_obj) {
 	this->_draw_x = (map_block_x * MAP_BLOCK_WIDTH);
 	this->_draw_y = (map_block_y * MAP_BLOCK_HEIGHT);
@@ -41,6 +54,12 @@ MapObjectBase::MapObjectBase(int map_block_x, int map_block_y, GameCamera* camer
 
 
 	// */
+
+
+	// test 
+	this->_equip_item_list = new HaveEquipItemList();
+	this->_use_item_list = new HaveUseItemList();
+	this->setItemList();
 }
 void MapObjectBase::Update() {
 	
@@ -98,4 +117,103 @@ void MapObjectBase::removeDrawObject() {
 		//	Debug.WriteLine("[MapObjectBase]remove child");
 		//				this.RemoveChild(this._object_sprite, true);
 	}
+}
+
+void MapObjectBase::actionActive(CharaBase* chara_obj) {
+	// TEST
+	//	this->actionPushActive(chara_obj);
+	this->actionCountActive(chara_obj);
+
+}
+void MapObjectBase::actionPushActive(CharaBase* chara_obj) {
+	if (chara_obj->checkGroundFlag() != true) {
+		return;
+	}
+	if (this->getActionFlag() == true) {
+		this->actionObjBehavior(chara_obj);
+	}
+}
+void MapObjectBase::actionCountActive(CharaBase* chara_obj) {
+	if (chara_obj->checkGroundFlag() != true) {
+		return;
+	}
+	if (this->_action_num == 0){
+		return;
+	}
+	if (this->getActionFlag() == true) {
+		this->_action_num--;
+		if (this->_action_num == 0){
+			this->_action_flag = false;
+		}
+		this->actionObjBehavior(chara_obj);
+	}
+}
+void MapObjectBase::actionObjBehavior(CharaBase* chara_obj) {
+//	chara_obj->sendComment("どーん！");
+	//chara_obj->healHp(1000);
+	this->openItemUi();
+}
+bool MapObjectBase::getActionFlag() {
+	return this->_action_flag;
+}
+
+// アイテムBOX系 ------------------------------------------
+// 初期化系
+void MapObjectBase::setRandItemList() {
+
+}
+void MapObjectBase::setItemList() {
+
+
+
+	// @TODO test
+	ItemBase* test_load_item = ItemMasterList::getItemObjToMaster("test_sword");
+	this->setItemObj(test_load_item);
+
+	ItemBase* test_load_item2 = ItemMasterList::getItemObjToMaster("test_sword");
+	this->setItemObj(test_load_item2);
+
+
+//	ItemBase* test_load_use_item = new TestHpHeal();
+//	this->setItemObj(test_load_use_item);
+}
+void MapObjectBase::setItemObj(ItemBase* item_obj) {
+	haveItemType item_type = item_obj->getHaveItemType();
+
+	if (this->_item_type_count[item_type] <= 0) {
+		this->_item_type_count[item_type] = 0;
+	}
+
+	switch (item_type) {
+	case haveItemType::weapon:
+	case haveItemType::armour:
+		//this->_equip_item_list[item_type][this->_item_type_count[item_type]] = (EquipItem*)item_obj;
+		this->_equip_item_list->setListToItem((EquipItem*)item_obj);
+		break;
+	case haveItemType::portion:
+	case haveItemType::etc:
+		UseItem* test_load_item_to_use = (UseItem*)item_obj;
+		test_load_item_to_use->addNum(1);
+		//this->_use_item_list[item_type][test_load_item_to_use->getUseItemId()] = test_load_item_to_use;
+		//this->_use_item_list
+		break;
+	}
+
+
+	this->_item_type_count[item_type]++;
+}
+// 調べてUI開く
+void MapObjectBase::openItemUi() {
+	GameMain::_item_ui_obj->setSearchObjItemList(this->_equip_item_list, this->_use_item_list);
+	Gamepad::GameControll->setControllType(gamePadControllType::item_ui, 1);
+}
+
+// アイテムを取得する
+ItemBase* MapObjectBase::getItemList(haveItemType have_item_type, int list_index) {
+
+	return nullptr;
+}
+// アイテムを入れる
+void MapObjectBase::pushItemList(ItemBase* item_obj) {
+
 }

@@ -133,6 +133,18 @@
     <Filter Include="src\GameMain\map\map_ground_object\map_bg_object\map_move">
       <UniqueIdentifier>{2f25d239-e43b-4d5f-a631-6e54d8e88944}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\map\map_object">
+      <UniqueIdentifier>{6087cd9d-8826-45f0-90c3-a513b7bbabc1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\map\map_object\tree">
+      <UniqueIdentifier>{c8d61944-5e75-4e77-addd-6a863ee8e3e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\item\equip_item\weapon\rapier">
+      <UniqueIdentifier>{c393e9a6-8b83-4c5e-8bbb-38c7be850559}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\map\map_object\item_box">
+      <UniqueIdentifier>{e1a933c9-5920-4525-928d-5b624e24b678}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -377,6 +389,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\map\map_ground_object\map_bg_obj\map_move\MapMoveManager.cpp">
       <Filter>src\GameMain\map\map_ground_object\map_bg_object\map_move</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\item\ItemMasterList.cpp">
+      <Filter>src\GameMain\item</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\rapier\WeaponRapierBase.cpp">
+      <Filter>src\GameMain\item\equip_item\weapon\rapier</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\ItemUi\SearchObjItemList.cpp">
+      <Filter>src\GameMain\GameUi\ItemUi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -679,6 +700,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\chara\charaActionType.h">
       <Filter>src\GameMain\chara</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\ItemMasterList.h">
+      <Filter>src\GameMain\item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\rapier\WeaponRapierBase.h">
+      <Filter>src\GameMain\item\equip_item\weapon\rapier</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\ItemUi\SearchObjItemList.h">
+      <Filter>src\GameMain\GameUi\ItemUi</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

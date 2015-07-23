@@ -1,6 +1,6 @@
 #include "TestSword.h"
 
-TestSword::TestSword(CharaBase* chara_obj) : WeaponSwordBase(chara_obj)
+TestSword::TestSword() : WeaponSwordBase()
 {
 	this->_item_name = "テスト用片手剣";
 	this->_default_state[mainStateType::atk] = 10;

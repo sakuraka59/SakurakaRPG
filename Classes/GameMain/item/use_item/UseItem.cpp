@@ -1,6 +1,6 @@
 #include "UseItem.h"
 #include "../../chara/CharaBase.h"
-UseItem::UseItem(CharaBase* chara_obj) : ItemBase(chara_obj) {
+UseItem::UseItem() : ItemBase() {
 
 }
 int UseItem::getNum() {
@@ -10,6 +10,9 @@ void UseItem::addNum(int add_num) {
 	this->_num += add_num;
 }
 bool UseItem::useItem() {
+	if (this->_chara_obj == nullptr) {
+		return false;
+	}
 	if (this->_chara_obj->checkActionFlag() != true) {
 		return false;
 	}
@@ -27,4 +30,11 @@ bool UseItem::useItem() {
 // use item to invocation skill
 bool UseItem::useSkill() {
 	return false;
+}
+
+string UseItem::getUseItemId() {
+	return this->_use_item_id;
+}
+void UseItem::setUseItemId(string use_item_id) {
+	this->_use_item_id = use_item_id;
 }

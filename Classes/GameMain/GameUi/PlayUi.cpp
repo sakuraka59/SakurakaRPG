@@ -5,10 +5,16 @@
 
 #include "../GAME_SETTING.h"
 #include "../GameCamera.h"
+
 #include "../chara/CharaPlayer.h"
 #include "../chara/CharaNpc.h"
+
+#include "../item/ItemMasterList.h"
+
 #include "../shadow/ShadowObjectList.h"
+
 #include "../skill/SkillList.h"
+
 #include "../map/MapBase.h"
 #include "../map/MapObjectList.h"
 #include "../map/MapObjectBase.h"
@@ -35,6 +41,8 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj) {
 
 //	SeedBase* hoge = new SeedBase();
 //	CharaBase* piyo = new CharaBase();
+
+	ItemMasterList::loadItemList();
 	// test end -----------------------------------------------------
 	this->_order_object_list = new RenderObject();
 
@@ -371,7 +379,24 @@ void PlayUi::playerSearchAction() {
 	int search_map_x = (int)floor(chara_search_x / MAP_BLOCK_WIDTH);
 	int search_map_y = (int)floor(chara_search_y / MAP_BLOCK_WIDTH);
 
+	// マップ上の通常オブジェクトを調べる
+	if (this->_map_obj_line_list[search_map_y] != nullptr) {
+		MapObjectBase* map_object_obj = this->_map_obj_line_list[search_map_y]->getMapObject(search_map_x);
+		if (map_object_obj != nullptr) {
+			if (map_object_obj->getActionFlag() == true) {
+				
+				HitSquare* obj_square_obj = map_object_obj->getHitSquare();
 
+				
+				double test_angle = 0;
+				HitSquare* search_square_obj = new HitSquare(chara_search_x, chara_search_y, 1, 1, test_angle);
+				if (HitCheck::checkRectAndRect(obj_square_obj, search_square_obj) == true) {
+					map_object_obj->actionActive(chara_obj);
+					return;
+				}
+			}
+		}
+	}
 	// マップ上の地面オブジェクトを調べる -------------------------------------
 	/*
 	unordered_map<int, unordered_map<int, MapGroundObjectBase*>>* mg_obj_data_ptr = this->_mg_object_list_obj->getGroundObjData();

@@ -19,8 +19,10 @@ protected: string _item_name = "no name";
 protected: string _icon_file_name = "";
 //*/
 // function
-public: ItemBase(CharaBase* chara_obj);
+public: ItemBase();
 public: virtual bool useItem();
+public: void setItemName(string item_name);
 public: string getItemName();
 public: haveItemType getHaveItemType();
+public: void setCharaObj(CharaBase* chara_obj);
 };

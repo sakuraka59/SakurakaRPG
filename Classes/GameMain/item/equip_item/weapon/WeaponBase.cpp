@@ -1,6 +1,6 @@
 #include "WeaponBase.h"
 
-WeaponBase::WeaponBase(CharaBase* chara_obj) : EquipItem(chara_obj)
+WeaponBase::WeaponBase() : EquipItem()
 {
 	this->_item_equip_type = equipType::weapon;
 	this->_have_item_type = haveItemType::weapon;

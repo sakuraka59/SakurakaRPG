@@ -11,12 +11,13 @@ class UseItem;
 
 class HaveUseItemList : public HaveItemListBase
 {
-protected: unordered_map<useItemId, UseItem*> _item_list;
-protected: unordered_map<haveItemType, unordered_map<useItemId, UseItem*>> _item_type_list;
+protected: unordered_map<string, UseItem*> _item_list;
+protected: unordered_map<haveItemType, unordered_map<string, UseItem*>> _item_type_list;
 
-public: HaveUseItemList(CharaBase* chara_obj);
-public: void setItem(useItemId item_id, int item_num);
+public: HaveUseItemList();
+public: void setItem(string item_id, int item_num);
+protected: void testItemList() override;
 
-public: bool itemUse(useItemId item_id);
-public: unordered_map<haveItemType, unordered_map<useItemId, UseItem*>>* getItemTypeList();
+public: bool itemUse(string item_id);
+public: unordered_map<haveItemType, unordered_map<string, UseItem*>>* getItemTypeList();
 };

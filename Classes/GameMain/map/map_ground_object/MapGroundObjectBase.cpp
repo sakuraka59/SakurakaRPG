@@ -43,7 +43,12 @@ bool MapGroundObjectBase::getHitFlag() {
 bool MapGroundObjectBase::getActionFlag() {
 	return this->_action_flag;
 }
-
+int MapGroundObjectBase::getMapBlockX() {
+	return this->_map_block_x;
+}
+int MapGroundObjectBase::getMapBlockY() {
+	return this->_map_block_y;
+}
 
 
 void MapGroundObjectBase::autoActive(CharaBase* chara_obj) {
@@ -101,8 +106,14 @@ void MapGroundObjectBase::actionCountActive(CharaBase* chara_obj) {
 	if (chara_obj->checkGroundFlag() != true) {
 		return;
 	}
+	if (this->_action_num <= 0){
+		return;
+	}
 	if (this->getActionFlag() == true) {
-		this->_action_flag = false;
+		this->_action_num--;
+		if (this->_action_num <= 0){
+			this->_action_flag = false;
+		}
 		this->actionObjBehavior(chara_obj);
 	}
 }
@@ -112,9 +123,3 @@ void MapGroundObjectBase::actionObjBehavior(CharaBase* chara_obj) {
 }
 
 
-int MapGroundObjectBase::getMapBlockX() {
-	return this->_map_block_x;
-}
-int MapGroundObjectBase::getMapBlockY() {
-	return this->_map_block_y;
-}

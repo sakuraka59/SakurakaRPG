@@ -30,6 +30,9 @@ protected: bool _action_flag = false;
 // オブジェクトの状態
 protected: int _object_state = 0;
 
+// オブジェクト残り動作回数
+protected: int _action_num = 1;
+
 protected: HitSquare* _hit_square_obj;
 
 protected: string _sprite_img_pass = "";
@@ -45,7 +48,9 @@ public: HitSquare* getHitSquare();
 
 public: bool getHitFlag();
 public: bool getActionFlag();
-
+//
+public: int getMapBlockX();
+public: int getMapBlockY();
 
 // 踏んだ時に自動発動
 public: virtual void autoActive(CharaBase* chara_obj);
@@ -60,7 +65,5 @@ protected: void actionPushActive(CharaBase* chara_obj);	// 調べた瞬間
 protected: void actionCountActive(CharaBase* chara_obj);	// 1回目のみ
 protected: virtual void actionObjBehavior(CharaBase* chara_obj);
 
-//
-public: int getMapBlockX();
-public: int getMapBlockY();
+
 };

@@ -26,9 +26,11 @@ using namespace cocos2d;
 
 CharaBase::CharaBase()
 {
-	this->_use_item_list = new HaveUseItemList(this);
+	this->_use_item_list = new HaveUseItemList();
+	this->_use_item_list->setCharaObj(this);
 //	this->_use_item_list->autorelease();
-	this->_equip_item_list = new HaveEquipItemList(this);
+	this->_equip_item_list = new HaveEquipItemList();
+	this->_equip_item_list->setCharaObj(this);
 	this->_state_list = new StateList(this);
 	this->_set_now_skill = nullptr;
 
@@ -239,6 +241,14 @@ void CharaBase::updateMove(double move_speed) {
 		
 		double move_x = (double)(cos(this->_move_angle * M_PI / 180) * move_speed);
 		double move_y = (double)(sin(this->_move_angle * M_PI / 180) * move_speed);
+		
+		if (move_x < 0.00001f && move_x > -0.00001f) {
+			move_x = 0;
+		}
+		if (move_y < 0.00001f && move_y > -0.00001f) {
+			move_y = 0;
+		}
+
 		this->_move_x += move_x / 40;
 		this->_move_y += move_y / 40;
 
@@ -251,6 +261,26 @@ void CharaBase::updateMove(double move_speed) {
 			(move_y < 0 && this->_move_y < move_y)) {
 			this->_move_y = move_y;
 		}
+		// */
+		
+		/*
+		if ((move_x > 0 && this->_move_x > move_x) ||
+			(move_x < 0 && this->_move_x < move_x)) {
+			this->_move_x -= move_x / 40;
+		}
+		else {
+			this->_move_x += move_x / 40;
+		}
+
+		if ((move_y > 0 && this->_move_y > move_y) ||
+			(move_y < 0 && this->_move_y < move_y)) {
+			this->_move_y = move_y;
+		}
+		else {
+			this->_move_y += move_y / 40;
+		}
+		// */
+		
 	}
 	else {
 
@@ -273,6 +303,21 @@ void CharaBase::updateMove(double move_speed) {
 	if (this->_move_y < 0.00001f && this->_move_y > -0.00001f) {
 		this->_move_y = 0;
 	}
+
+	/*
+	if (this->_move_x < move_speed *(-1)) {
+		this->_move_x = move_speed *(-1);
+	}
+	if (this->_move_x > move_speed) {
+		this->_move_x = move_speed;
+	}
+	if (this->_move_y < move_speed *(-1)) {
+		this->_move_y = move_speed *(-1);
+	}
+	if (this->_move_y > move_speed) {
+		this->_move_y = move_speed;
+	}
+	// */
 	
 //	this->_draw_x += this->_move_x;
 //	this->_draw_y += this->_move_y;
@@ -400,6 +445,7 @@ void CharaBase::updateDraw() {
 		"\n move_angle :" + std::to_string(this->_move_angle) +
 		"\n move_angle_d :" + std::to_string(this->_move_angle_direction) +
 		"\n hp :" + std::to_string(this->_now_state[mainStateType::hp] / 100) +
+		"\n atk :" + std::to_string(this->_now_state[mainStateType::atk]) +
 		"\n map x :" + std::to_string(this->_map_block_x) +
 		"\n map y :" + std::to_string(this->_map_block_y) +
 		"\n main weapon :" + std::to_string((int)this->getMainWeaponType()) +
@@ -615,7 +661,7 @@ void CharaBase::setState() {
 	this->_hit_height = this->_chara_seed->getHeight();
 	this->_hit_width_half = this->_chara_seed->getWidthHalf();
 
-	for (int state_type = static_cast<int>(mainStateType::no_type) + 1; state_type < static_cast<int>(mainStateType::enum_end); state_type++) {
+	for (int state_type = static_cast<int>(mainStateType::_no_type) + 1; state_type < static_cast<int>(mainStateType::_enum_end); state_type++) {
 		//this->_equip_list[static_cast<equipType>(equip_type)] = 0;
 		this->_now_state[static_cast<mainStateType>(state_type)] = 0;
 		this->_base_state[static_cast<mainStateType>(state_type)] = 0;
@@ -733,6 +779,10 @@ void CharaBase::setEquipItem(equipType equip_type, EquipItem* item_obj, std::uno
 		this->removeEquipItem(equip_type, this->_equip_list[equip_type], this->_equip_list[equip_type]->getStateDefaultList());
 
 	}
+
+	this->_equip_list[equip_type] = item_obj;
+	item_obj->setEquipFlag();
+
 	// check sub weapon
 	if (equip_type == equipType::weapon && this->_equip_list[equipType::sub_weapon] != nullptr) {
 		if (this->_equip_list[equipType::sub_weapon]->checkEquipRelease() == true) {
@@ -740,13 +790,10 @@ void CharaBase::setEquipItem(equipType equip_type, EquipItem* item_obj, std::uno
 		}
 	}
 
-	this->_equip_list[equip_type] = item_obj;
-	item_obj->setEquipFlag();
-
 	//Dictionary<mainStateType, int> item_state = item_obj.getItemState();
 	std::unordered_map<mainStateType, int> item_state = item_obj->getItemState();
 
-	for (int state_type = static_cast<int>(mainStateType::no_type) + 1; state_type < static_cast<int>(mainStateType::enum_end); state_type++) {
+	for (int state_type = static_cast<int>(mainStateType::_no_type) + 1; state_type < static_cast<int>(mainStateType::_enum_end); state_type++) {
 		this->_correction_state[static_cast<mainStateType>(state_type)] += item_state[static_cast<mainStateType>(state_type)];
 		this->reColStatus(static_cast<mainStateType>(state_type));
 	}
@@ -779,7 +826,7 @@ void CharaBase::removeEquipItem(equipType equip_type, EquipItem* item_obj, std::
 
 	std::unordered_map<mainStateType, int> item_state = item_obj->getItemState();
 
-	for (int state_type = static_cast<int>(mainStateType::no_type) + 1; state_type < static_cast<int>(mainStateType::enum_end); state_type++) {
+	for (int state_type = static_cast<int>(mainStateType::_no_type) + 1; state_type < static_cast<int>(mainStateType::_enum_end); state_type++) {
 		this->_correction_state[static_cast<mainStateType>(state_type)] -= item_state[static_cast<mainStateType>(state_type)];
 		this->reColStatus(static_cast<mainStateType>(state_type));
 	}

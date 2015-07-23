@@ -21,6 +21,9 @@
 #include "../skill/magic/normal/TestShot.h"
 #include "../skill/weapon_skill/sword/SwordGale/SwordGale.h"
 
+// アイテムテスト
+#include "../item/ItemMasterList.h"
+
 CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, std::list<CharaBase*>* all_chara_list, std::list<MagicBase*>* magic_list, ShadowObjectList* shadow_list)
 {
 	//this->_skill_list = skill_list;
@@ -57,8 +60,8 @@ CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, st
 	this->updateDraw();
 
 	// */
-
-
+	ItemBase* test_item_obj = ItemMasterList::getItemObjToMaster("test_rapier");
+	this->_equip_item_list->setListToItem((EquipItem*)test_item_obj);
 	// 初期表示
 	//this->Position = new Vector2((int)(this->_draw_x), (int)(this->_draw_y - this->_play_camera._y));
 	//	this->Position = new Vector2((int)(this->_draw_x - this->_play_camera.getCameraX()), (int)(this->_draw_y - this->_play_camera.getCameraY() + this->_draw_z));
@@ -315,8 +318,43 @@ void CharaPlayer::setGroupList() {
 }
 void CharaPlayer::setSearchFlag() {
 	this->_search_flag = true;
+
+	int search_move = 32;
 	this->_search_x = this->getDrawX();
 	this->_search_y = this->getDrawY();
+
+	// 向きに応じて補正かける
+	switch (this->_move_angle_direction) {
+	case 0:
+		this->_search_x += search_move;
+		break;
+	case 45:
+		this->_search_x += search_move;
+		this->_search_y += search_move;
+		break;
+	case 90:
+		this->_search_y += search_move;
+		break;
+	case 135:
+		this->_search_x -= search_move;
+		this->_search_y += search_move;
+		break;
+	case 180:
+		this->_search_x -= search_move;
+		break;
+	case 225:
+		this->_search_x -= search_move;
+		this->_search_y -= search_move;
+		break;
+	case 270:
+		this->_search_y -= search_move;
+		break;
+	case 315:
+		this->_search_x += search_move;
+		this->_search_y -= search_move;
+		break;
+	}
+
 }
 bool CharaPlayer::getSearchFlag() {
 	return this->_search_flag;
@@ -534,7 +572,8 @@ void CharaPlayer::testAction() {
 	}
 	// keybord to S
 	if (this->_control_flag == true && Gamepad::Square->isPush() == true) {
-		bool use_item_flag = this->_use_item_list->itemUse(useItemId::testHpHeal);
+		/**/
+		bool use_item_flag = this->_use_item_list->itemUse("test_hp_heal");
 		if (use_item_flag == true) {
 			this->sendComment("もぐもぐ…");
 		}

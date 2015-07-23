@@ -159,6 +159,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateUI.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\ItemUi.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\ItemUi\ObjItemList.cpp" />
+    <ClCompile Include="..\Classes\GameMain\GameUi\ItemUi\SearchObjItemList.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\PlayerComment.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\PlayerCommentUI.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\PlayUi.cpp" />
@@ -168,6 +169,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\hit\HitSquare.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\equip_item\EquipItem.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\equip_item\HaveEquipItemList.cpp" />
+    <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\rapier\WeaponRapierBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\sheath\TestSheath.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\sheath\WeaponSheathBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\sword\TestSword.cpp" />
@@ -175,6 +177,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\WeaponBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\HaveItemListBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\ItemBase.cpp" />
+    <ClCompile Include="..\Classes\GameMain\item\ItemMasterList.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\use_item\HaveUseItemList.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\use_item\hp_heal\TestHpHeal.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\use_item\UseItem.cpp" />
@@ -250,6 +253,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\GameUi\DefaultStateUI.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\ItemUi.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\ItemUi\ObjItemList.h" />
+    <ClInclude Include="..\Classes\GameMain\GameUi\ItemUi\SearchObjItemList.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\PlayerComment.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\PlayerCommentUI.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\PlayUi.h" />
@@ -260,6 +264,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\hit\HitSquare.h" />
     <ClInclude Include="..\Classes\GameMain\item\equip_item\EquipItem.h" />
     <ClInclude Include="..\Classes\GameMain\item\equip_item\HaveEquipItemList.h" />
+    <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\rapier\WeaponRapierBase.h" />
     <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\sheath\TestSheath.h" />
     <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\sheath\WeaponSheathBase.h" />
     <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\sword\TestSword.h" />
@@ -269,6 +274,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\item\HaveItemListBase.h" />
     <ClInclude Include="..\Classes\GameMain\item\haveItemType.h" />
     <ClInclude Include="..\Classes\GameMain\item\ItemBase.h" />
+    <ClInclude Include="..\Classes\GameMain\item\ItemMasterList.h" />
     <ClInclude Include="..\Classes\GameMain\item\use_item\HaveUseItemList.h" />
     <ClInclude Include="..\Classes\GameMain\item\use_item\hp_heal\TestHpHeal.h" />
     <ClInclude Include="..\Classes\GameMain\item\use_item\UseItem.h" />

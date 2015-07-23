@@ -3,13 +3,12 @@
 enum class haveItemType {
 	_no_type = 0,
 
-	weapon,
-	head,
-	body,
+	weapon,		// •Ší
+	armour,		// –h‹ï
+	
+	portion,	// –ò
 
-
-	portion,
-	etc,
+	etc,		// ‚»‚Ì‘¼
 
 	_enum_end,
 };

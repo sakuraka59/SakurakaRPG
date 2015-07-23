@@ -2,8 +2,8 @@
 #include "../../chara/CharaBase.h"
 
 using namespace std;
-EquipItem::EquipItem(CharaBase* chara_obj) : ItemBase (chara_obj) {
-	for (int state_type = static_cast<int>(mainStateType::no_type) + 1; state_type < static_cast<int>(mainStateType::enum_end); state_type++) {
+EquipItem::EquipItem() : ItemBase () {
+	for (int state_type = static_cast<int>(mainStateType::_no_type) + 1; state_type < static_cast<int>(mainStateType::_enum_end); state_type++) {
 		this->_default_state[static_cast<mainStateType>(state_type)] = 0;
 	}
 
@@ -24,6 +24,12 @@ EquipItem::EquipItem(CharaBase* chara_obj) : ItemBase (chara_obj) {
 }
 void EquipItem::setStateInit() {
 
+}
+void EquipItem::setListIndex(int index){
+	this->_list_index = index;
+}
+int EquipItem::getListIndex() {
+	return this->_list_index;
 }
 bool EquipItem::useItem(){
 
@@ -74,4 +80,11 @@ void EquipItem::unsetEquipFlag() {
 }
 bool EquipItem::getEquipFlag() {
 	return this->_equip_flag;
+}
+equipType EquipItem::getEquipType() {
+	return this->_item_equip_type;
+}
+
+void EquipItem::setStateData(unordered_map<mainStateType, int> default_state) {
+	this->_default_state = default_state;
 }

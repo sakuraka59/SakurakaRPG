@@ -4,6 +4,6 @@
 
 class TestHpHeal : public UseItem {
 
-public: TestHpHeal(CharaBase* chara_obj);
+public: TestHpHeal();
 public: bool useSkill() override;
 };

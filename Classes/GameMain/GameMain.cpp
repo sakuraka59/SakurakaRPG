@@ -83,8 +83,8 @@ bool GameMain::init()
 
 	this->addChild(this->_play_ui_obj);
 	this->addChild(this->_default_state_ui);
-	this->addChild(this->_play_comment_ui_obj);
 	this->addChild(GameMain::_item_ui_obj);
+	this->addChild(this->_play_comment_ui_obj);
 
 //	this->_test_ui_obj = new UiBase();
 //	this->addChild(this->_test_ui_obj);

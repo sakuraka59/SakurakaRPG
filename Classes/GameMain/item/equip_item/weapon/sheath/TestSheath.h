@@ -3,7 +3,7 @@
 
 class TestSheath : public WeaponSheathBase {
 
-public: TestSheath(CharaBase* chara_obj);
+public: TestSheath();
 protected: void setStateInit() override;
 
 };

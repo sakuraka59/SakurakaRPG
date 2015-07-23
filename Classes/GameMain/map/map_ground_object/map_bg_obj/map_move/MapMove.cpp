@@ -14,7 +14,7 @@ void MapMove::actionObjBehavior(CharaBase* chara_obj) {
 	chara_obj->sendComment("‚Ç[‚ñII");
 	chara_obj->healHp(1000);
 
-	MapMoveManager::setMapMoveData(this->_map_move_data);
+//	MapMoveManager::setMapMoveData(this->_map_move_data);
 }
 void MapMove::Update() {
 

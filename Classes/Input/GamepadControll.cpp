@@ -15,13 +15,21 @@ GamepadControll::GamepadControll() {
 gamePadControllType GamepadControll::getControllType() {
 	return this->_controll_type;
 }
-void GamepadControll::setControllType(gamePadControllType controll_type) {
+void GamepadControll::setControllType(gamePadControllType controll_type, int controll_detail) {
 	this->_controll_type = controll_type;
 
 	
 	switch (controll_type) {
 	case gamePadControllType::item_ui:
-		GameMain::_item_ui_obj->openItemUi();
+		switch (controll_detail){
+		case 1:
+			GameMain::_item_ui_obj->openItemUiToObj();
+			break;
+		default:
+			GameMain::_item_ui_obj->openItemUi();
+			break;
+		}
+		
 		break;
 	}
 	

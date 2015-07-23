@@ -49,15 +49,17 @@ void MapGroundObjectList::LoadData(unordered_map<int, unordered_map<int, int>> m
 	for (int map_search_x = 0; map_search_x < map_width; map_search_x++) {
 		int map_search_y = 0;
 		for (int map_search_y = 0; map_search_y < map_height; map_search_y++) {
-			if (this->_ground_obj_list[map_search_x][map_search_y * (-1)] != nullptr) {
-				this->_ground_obj_list[map_search_x][map_search_y * (-1)] = nullptr;
-			}
+			
 
 			if (this->_map_ground_obj_data[map_search_x][map_search_y] < 1) {
 				
 				continue;
 			}
-					// @TODO 後で読み込み用マネージャを作成して、そちらから読み込むようにする
+			if (this->_ground_obj_list[map_search_x][map_search_y * (-1)] != nullptr) {
+				this->_ground_obj_list[map_search_x][map_search_y * (-1)] = nullptr;
+			}
+			
+			// @TODO 後で読み込み用マネージャを作成して、そちらから読み込むようにする
 			MapGroundObjectBase* ground_obj = new MapGroundObjectBase(
 				map_search_x, map_search_y * (-1)
 				);		

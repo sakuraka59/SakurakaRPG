@@ -4,13 +4,16 @@
 
 #include "hp_heal/TestHpHeal.h"
 
-HaveUseItemList::HaveUseItemList(CharaBase* chara_obj) : HaveItemListBase(chara_obj) {
+HaveUseItemList::HaveUseItemList() : HaveItemListBase() {
 
 	//this->_item_list[useItemId::testHpHeal] = new TestHpHeal(chara_obj);
-	this->setItem(useItemId::testHpHeal, 5);
+//	this->setItem("test_hp_heal", 5);
 
 }
-bool HaveUseItemList::itemUse(useItemId item_id) {
+void HaveUseItemList::testItemList() {
+	this->setItem("test_hp_heal", 5);
+}
+bool HaveUseItemList::itemUse(string item_id) {
 	/*
 	if (this->_item_list.find(item_id) == this->_item_list.end()) {
 		return false;
@@ -26,18 +29,21 @@ bool HaveUseItemList::itemUse(useItemId item_id) {
 	
 	return this->_item_list[item_id]->useItem();
 }
-void HaveUseItemList::setItem(useItemId item_id, int item_num) {
+void HaveUseItemList::setItem(string item_id, int item_num) {
 	if (this->_item_list[item_id] == nullptr) {
-		UseItem* item_obj = new TestHpHeal(this->_chara_obj);
+		// @TODO
+		UseItem* item_obj = new TestHpHeal();
+		item_obj->setCharaObj(this->_chara_obj);
 		item_obj->addNum(item_num);
-		this->_item_list[useItemId::testHpHeal] = item_obj;
-		this->_item_type_list[item_obj->getHaveItemType()][useItemId::testHpHeal] = item_obj;
+
+		this->_item_list[item_id] = item_obj;
+		this->_item_type_list[item_obj->getHaveItemType()][item_obj->getUseItemId()] = item_obj;
 	}
 	else {
-		this->_item_list[useItemId::testHpHeal]->addNum(item_num);
+		this->_item_list[item_id]->addNum(item_num);
 	}
 
 }
-unordered_map<haveItemType, unordered_map<useItemId, UseItem*>>* HaveUseItemList::getItemTypeList() {
+unordered_map<haveItemType, unordered_map<string, UseItem*>>* HaveUseItemList::getItemTypeList() {
 	return &this->_item_type_list;
 }
