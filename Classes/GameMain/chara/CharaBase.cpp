@@ -36,7 +36,7 @@ CharaBase::CharaBase()
 
 	//this->CenterSprite();
 	
-	for (int equip_type = static_cast<int>(equipType::no_type) + 1; equip_type < static_cast<int>(equipType::enum_end); equip_type++) {
+	for (int equip_type = static_cast<int>(equipType::_no_type) + 1; equip_type < static_cast<int>(equipType::enum_end); equip_type++) {
 		this->_equip_list[static_cast<equipType>(equip_type)] = 0;
 	}
 	/*
@@ -164,6 +164,8 @@ void CharaBase::commonUpdate() {
 			this->_skill_chain_num = 0;
 		}
 
+		// 行動可能ならCCを自動回復する
+		this->autoHealCc();
 		
 	}
 }
@@ -444,13 +446,22 @@ void CharaBase::updateDraw() {
 		"\n action_type :" + to_string((int)this->_action_type) +
 		"\n move_angle :" + std::to_string(this->_move_angle) +
 		"\n move_angle_d :" + std::to_string(this->_move_angle_direction) +
-		"\n hp :" + std::to_string(this->_now_state[mainStateType::hp] / 100) +
-		"\n atk :" + std::to_string(this->_now_state[mainStateType::atk]) +
+		"\n hp :" + std::to_string(this->_now_state[mainStateType::hp]) +
+		"\n sp :" + std::to_string(this->_now_state[mainStateType::sp]) +
+		"\n cc :" + std::to_string(this->getNowState(mainStateType::cc)) + "/" + std::to_string(this->getMaxState(mainStateType::cc)) +
+		"\n honey :" + std::to_string(this->_now_state[mainStateType::honey]) +
+		"\n excitation :" + std::to_string(this->_now_state[mainStateType::excitation]) +
+		//"\n atk :" + std::to_string(this->_now_state[mainStateType::atk]) +
+		"\n atk :" + std::to_string(this->getNowState(mainStateType::atk)) +
+		"\n def :" + std::to_string(this->getNowState(mainStateType::def)) +
+		"\n mag :" + std::to_string(this->getNowState(mainStateType::magic)) +
+		"\n mdf :" + std::to_string(this->getNowState(mainStateType::mdef)) +
+
+		
 		"\n map x :" + std::to_string(this->_map_block_x) +
 		"\n map y :" + std::to_string(this->_map_block_y) +
 		"\n main weapon :" + std::to_string((int)this->getMainWeaponType()) +
-		"\n  sub weapon :" + std::to_string((int)this->getSubWeaponType()) +
-		"\n ほげぴよー huga";
+		"\n  sub weapon :" + std::to_string((int)this->getSubWeaponType());
 
 	this->_label_obj->setString(this->_test_label);
 
@@ -467,7 +478,7 @@ void CharaBase::updateDraw() {
 		"\n move speed per :" + this->_move_speed_per +
 		"\n hp :" + (this->_now_state[mainStateType.hp] / 100) + "." + (this->_now_state[mainStateType.hp] % 100).ToString("00") +
 		"/ " + (this->getMaxState(mainStateType.hp) / 100) + "." + (this->getMaxState(mainStateType.hp) % 100).ToString("00") +
-		"\n atk:" + this->_correction_state[mainStateType.atk] +
+		"\n atk:" + this->_equip_state[mainStateType.atk] +
 		"\n _spell_point_x:" + this->_spell_point_x +
 		"\n _spell_point_y:" + this->_spell_point_y +
 		"\n main weapon :" + this->getMainWeaponType() +
@@ -665,7 +676,7 @@ void CharaBase::setState() {
 		//this->_equip_list[static_cast<equipType>(equip_type)] = 0;
 		this->_now_state[static_cast<mainStateType>(state_type)] = 0;
 		this->_base_state[static_cast<mainStateType>(state_type)] = 0;
-		this->_correction_state[static_cast<mainStateType>(state_type)] = 0;
+		this->_equip_state[static_cast<mainStateType>(state_type)] = 0;
 		this->_max_state[static_cast<mainStateType>(state_type)] = 0;
 	}
 
@@ -681,12 +692,12 @@ void CharaBase::setState() {
 
 	this->_now_state[mainStateType::honey] = 0;
 	this->_base_state[mainStateType::honey] = 10000;
-	this->_correction_state[mainStateType::honey] = 0;
+	this->_equip_state[mainStateType::honey] = 0;
 	this->reColStatus(mainStateType::honey);
 
 	this->_now_state[mainStateType::excitation] = 0;
 	this->_base_state[mainStateType::excitation] = 10000;
-	this->_correction_state[mainStateType::excitation] = 0;
+	this->_equip_state[mainStateType::excitation] = 0;
 	this->reColStatus(mainStateType::excitation);
 
 	this->setGroupList();
@@ -697,7 +708,7 @@ void CharaBase::setState() {
 void CharaBase::setStateInit(mainStateType state_type, int num) {
 	this->_now_state[state_type] = num;
 	this->_base_state[state_type] = num;
-	this->_correction_state[state_type] = 0;
+	this->_equip_state[state_type] = 0;
 	this->_max_state[state_type] = num;
 }
 int CharaBase::getNowState(mainStateType state_type) {
@@ -707,19 +718,20 @@ int CharaBase::getBaseState(mainStateType state_type) {
 	return this->_base_state[state_type];
 }
 int CharaBase::getCorrectionState(mainStateType state_type) {
-	return this->_correction_state[state_type];
+	return this->_equip_state[state_type];
 }
 int CharaBase::getMaxState(mainStateType state_type) {
 	return this->_max_state[state_type];
 }
-
-void CharaBase::addCorrectionState(mainStateType state_type, int num) {
-	this->_correction_state[state_type] += num;
+/*
+void CharaBase::addEquipState(mainStateType state_type, int num) {
+	this->_equip_state[state_type] += num;
 	this->calNowState(state_type);
 
 }
+*/
 void CharaBase::calNowState(mainStateType state_type) {
-	this->_now_state[state_type] = this->_base_state[state_type] + this->_correction_state[state_type];
+	this->_now_state[state_type] = this->_base_state[state_type] + this->_equip_state[state_type];
 }
 double CharaBase::getHitHeight() {
 	return this->_hit_height;
@@ -794,18 +806,18 @@ void CharaBase::setEquipItem(equipType equip_type, EquipItem* item_obj, std::uno
 	std::unordered_map<mainStateType, int> item_state = item_obj->getItemState();
 
 	for (int state_type = static_cast<int>(mainStateType::_no_type) + 1; state_type < static_cast<int>(mainStateType::_enum_end); state_type++) {
-		this->_correction_state[static_cast<mainStateType>(state_type)] += item_state[static_cast<mainStateType>(state_type)];
+		this->_equip_state[static_cast<mainStateType>(state_type)] += item_state[static_cast<mainStateType>(state_type)];
 		this->reColStatus(static_cast<mainStateType>(state_type));
 	}
 	/*
 	foreach(mainStateType state_type in Enum.GetValues(typeof(mainStateType))) {
-		this->_correction_state[state_type] += item_state[state_type];
+		this->_equip_state[state_type] += item_state[state_type];
 		this->reColStatus(state_type);
 	}
 	// */
 	// abnormal default check
 
-	for (int state_type = static_cast<int>(abnormalStateType::no_type) + 1; state_type < static_cast<int>(abnormalStateType::enum_end); state_type++) {
+	for (int state_type = static_cast<int>(abnormalStateType::_no_type) + 1; state_type < static_cast<int>(abnormalStateType::_enum_end); state_type++) {
 		if (abnormal_state_list[static_cast<abnormalStateType>(state_type)] >= 1) {
 			this->setEquipToAbnormalState(static_cast<abnormalStateType>(state_type), item_obj);
 		}
@@ -827,17 +839,17 @@ void CharaBase::removeEquipItem(equipType equip_type, EquipItem* item_obj, std::
 	std::unordered_map<mainStateType, int> item_state = item_obj->getItemState();
 
 	for (int state_type = static_cast<int>(mainStateType::_no_type) + 1; state_type < static_cast<int>(mainStateType::_enum_end); state_type++) {
-		this->_correction_state[static_cast<mainStateType>(state_type)] -= item_state[static_cast<mainStateType>(state_type)];
+		this->_equip_state[static_cast<mainStateType>(state_type)] -= item_state[static_cast<mainStateType>(state_type)];
 		this->reColStatus(static_cast<mainStateType>(state_type));
 	}
 	/*
 	foreach(mainStateType state_type in Enum.GetValues(typeof(mainStateType))) {
-		this->_correction_state[state_type] -= item_state[state_type];
+		this->_equip_state[state_type] -= item_state[state_type];
 		this->reColStatus(state_type);
 	}
 	//*/
 	// abnormal default check
-	for (int state_type = static_cast<int>(abnormalStateType::no_type) + 1; state_type < static_cast<int>(abnormalStateType::enum_end); state_type++) {
+	for (int state_type = static_cast<int>(abnormalStateType::_no_type) + 1; state_type < static_cast<int>(abnormalStateType::_enum_end); state_type++) {
 		if (abnormal_state_list[static_cast<abnormalStateType>(state_type)] >= 1) {
 			this->removeEquipToAbnormalState(static_cast<abnormalStateType>(state_type), item_obj);
 		}
@@ -856,16 +868,17 @@ void CharaBase::reColStatus(mainStateType state_type) {
 	case mainStateType::sp:
 	case mainStateType::honey:
 	case mainStateType::excitation:
-		this->_max_state[state_type] = this->_base_state[state_type] + this->_correction_state[state_type];
+	case mainStateType::cc:
+		this->_max_state[state_type] = this->_base_state[state_type] + this->_equip_state[state_type] + this->_correction_state[state_type];
 		break;
 	default:
-		this->_now_state[state_type] = this->_base_state[state_type] + this->_correction_state[state_type];
+		this->_now_state[state_type] = this->_base_state[state_type] + this->_equip_state[state_type] + this->_correction_state[state_type];
 		break;
 	}
 	/*(state_type == mainStateType.hp) {
-	this->_max_state[state_type] = this->_base_state[state_type] + this->_correction_state[state_type];
+	this->_max_state[state_type] = this->_base_state[state_type] + this->_equip_state[state_type];
 	} else {
-	this->_now_state[state_type] = this->_base_state[state_type] + this->_correction_state[state_type];
+	this->_now_state[state_type] = this->_base_state[state_type] + this->_equip_state[state_type];
 	}
 	*/
 }
@@ -877,6 +890,17 @@ void CharaBase::setEquipToAbnormalState(abnormalStateType state_type, EquipItem*
 }
 void CharaBase::removeEquipToAbnormalState(abnormalStateType state_type, EquipItem* item_obj) {
 	this->_state_list->removeEquipItemToState(state_type, item_obj);
+}
+//-------------------------------------------------------------------
+// abnormal correction state
+//-------------------------------------------------------------------
+void CharaBase::addCorrectionStatus(mainStateType state_type, int add_num) {
+	this->_correction_state[state_type] += add_num;
+	this->reColStatus(state_type);
+}
+void CharaBase::sadCorrectionStatus(mainStateType state_type, int sad_num) {
+	this->_correction_state[state_type] -= sad_num;
+	this->reColStatus(state_type);
 }
 // get set data etc -----------------------------------------
 std::list<CharaBase*>* CharaBase::getAllCharaList() {
@@ -901,14 +925,30 @@ bool CharaBase::setSkill(SkillBase* skill_obj) {
 	if (skill_obj->checkExtendSkillUse() != true) {
 		return false;
 	}
-	int use_sp = skill_obj->getUseSp();
-	//	Debug.WriteLine("[charaBase]set skill 1");
+	
+	
 	//sp check
+	int use_sp = skill_obj->getUseSp();
 	if (use_sp > 0) {
 		if (this->checkSp(use_sp) != true) {
 			return false;
 		}
+	}
+
+	//cc check
+	int use_cc = skill_obj->getUseCc();
+	if (use_cc > 0) {
+		if (this->checkCc(use_cc) != true) {
+			return false;
+		}
+	}
+
+	// use state
+	if (use_sp > 0) {
 		this->useSp(use_sp);
+	}
+	if (use_cc > 0) {
+		this->useCc(use_cc);
 	}
 
 	if (skill_obj->getChainCountFlag() == true) {
@@ -926,6 +966,8 @@ bool CharaBase::setSkill(SkillBase* skill_obj) {
 	bool skill_set_flag = true;
 	// スキルが発動できる場合
 	if (skill_set_flag == true) {
+		// CC回復ディレイを初期化
+		this->_cc_delay_frame = 0;
 
 		// ターゲットの方向を向く
 		double get_move_angle = this->getTargetAngleSkill();
@@ -1036,6 +1078,40 @@ bool CharaBase::checkSp(int check_sp) {
 	}
 	return false;
 }
+// cc -------------------------------------------------------
+void CharaBase::useCc(int use_cc) {
+	this->_now_state[mainStateType::cc] -= use_cc;
+}
+bool CharaBase::checkCc(int check_cc) {
+	//	Debug.WriteLine("[charaBase]check sp:"+check_sp+"/"+this->_now_state[mainStateType.sp]);
+
+	if (this->_now_state[mainStateType::cc] >= check_cc) {
+		return true;
+	}
+	return false;
+}
+void CharaBase::autoHealCc() {
+	// max over check
+	if (this->_now_state[mainStateType::cc] > this->_max_state[mainStateType::cc]) {
+		this->_now_state[mainStateType::cc] = this->_max_state[mainStateType::cc];
+	}
+
+	if (this->_now_state[mainStateType::cc] >= this->_max_state[mainStateType::cc]) {
+		return;
+	}
+
+	if (this->_cc_delay_frame >= this->_CC_HEAL_DELAY) {
+		// heal
+		this->_now_state[mainStateType::cc]++;
+		this->_cc_delay_frame = 0;
+	} else {
+		this->_cc_delay_frame++;
+	}
+
+	if (this->_now_state[mainStateType::cc] > this->_max_state[mainStateType::cc]) {
+		this->_now_state[mainStateType::cc] = this->_max_state[mainStateType::cc];
+	}
+}
 // damage ---------------------------------------------------
 void CharaBase::slipDamageHp(int damage) {
 	this->_now_state[mainStateType::hp] -= damage;
@@ -1072,8 +1148,8 @@ void CharaBase::normalDamageHp(int attack_damage) {
 		this->_now_state[mainStateType::hp] = 0;
 	}
 }
-void CharaBase::checkToSetState(abnormalStateType state_type, int state_level, int state_rate) {
-	bool state_flag = this->_state_list->checkToSetState(abnormalStateType::poison, state_level, state_rate);
+void CharaBase::checkToSetState(abnormalStateType state_type, int state_level, int state_rate, int effect_num, int effect_frame) {
+	bool state_flag = this->_state_list->checkToSetState(state_type, state_level, state_rate, effect_num, effect_frame);
 
 	if (state_flag == true) {
 		//this->sendComment("毒なう");
@@ -1109,6 +1185,12 @@ void CharaBase::removeSkill(){
 	*/
 }
 // sexual damage ----------------------------------
+//	@param
+//		int damage						受けるダメージ
+//		double direct_rate				下方補正時の補正値
+//		bool action_flag				ダメージアクションを起こすかどうか
+//		charaCommentType comment_type	コメントの種類（未使用）
+//-------------------------------------------------
 void CharaBase::normalDamageSexual(int damage, double direct_rate, bool action_flag, charaCommentType comment_type) {
 
 	// 絶頂中はダメージ受けない
@@ -1151,11 +1233,14 @@ void CharaBase::honeyOnlyDamage(int damage, bool action_flag) {
 	if (this->_state_list->getStateEndFlag(abnormalStateType::extasy) == false) {
 		return;
 	}
-	this->sendTypeComment(charaCommentType::pleasure, charaSexualType::normal);
+
+
 	this->_now_state[mainStateType::honey] += damage;
 	this->resetRevivalFrame();
 	if (action_flag == true) {
 		this->damageAction();
+		// コメント投稿
+		this->sendTypeComment(charaCommentType::pleasure, charaSexualType::normal);
 	}
 
 	if (this->_now_state[mainStateType::honey] >= this->_max_state[mainStateType::honey]) {
@@ -1194,9 +1279,39 @@ void CharaBase::healHp(int heal_num) {
 	this->_now_state[mainStateType::hp] += heal_num;
 	if (this->_now_state[mainStateType::hp] >= this->_max_state[mainStateType::hp]) {
 		this->_now_state[mainStateType::hp] = this->_max_state[mainStateType::hp];
+	} else if (this->_now_state[mainStateType::hp] < 0) {
+		this->_now_state[mainStateType::hp] = 0;
 	}
 }
+void CharaBase::healSp(int heal_num) {
+	this->_now_state[mainStateType::sp] += heal_num;
+	if (this->_now_state[mainStateType::sp] >= this->_max_state[mainStateType::sp]) {
+		this->_now_state[mainStateType::sp] = this->_max_state[mainStateType::sp];
+	} else if (this->_now_state[mainStateType::sp] < 0) {
+		this->_now_state[mainStateType::sp] = 0;
+	}
+}
+void CharaBase::healHoney(int heal_num) {
 
+	if (heal_num < 0) {
+		this->honeyOnlyDamage(heal_num * (-1), false);
+		return;
+	}
+	this->_now_state[mainStateType::honey] -= heal_num;
+	if (this->_now_state[mainStateType::honey] >= this->_max_state[mainStateType::honey]) {
+		this->_now_state[mainStateType::honey] = this->_max_state[mainStateType::honey];
+	} else if (this->_now_state[mainStateType::honey] < 0) {
+		this->_now_state[mainStateType::honey] = 0;
+	}
+}
+void CharaBase::healExcitation(int heal_num) {
+	this->_now_state[mainStateType::excitation] += heal_num;
+	if (this->_now_state[mainStateType::excitation] >= this->_max_state[mainStateType::excitation]) {
+		this->_now_state[mainStateType::excitation] = this->_max_state[mainStateType::excitation];
+	} else if (this->_now_state[mainStateType::excitation] < 0) {
+		this->_now_state[mainStateType::excitation] = 0;
+	}
+}
 void CharaBase::autoHealSexual() {
 
 	if (this->_sexual_repair_frame > 0) {
@@ -1227,6 +1342,8 @@ void CharaBase::setWeaponTestIndex(int index) {
 
 // send comment (use to player only -------------------------
 void CharaBase::sendComment(std::string comment) {
+}
+void CharaBase::sendDirectComment(std::string comment) {
 }
 void CharaBase::sendTypeComment(charaCommentType comment_type, charaSexualType chara_type) {
 }

@@ -1,11 +1,13 @@
 #pragma once
 enum class charaCommentType {
-	no_type,		// 何もない場合これを返す
+	_no_type,		// 何もない場合これを返す
 	chara_attack,
 	normal_damage,
 
 	down,			//	HP0、ダウン状態へ
 	normal_revival,	//	通常復帰
+
+	search_box,		// 宝箱などのアイテムが入るものを調べる
 
 	// sexual ---------------------------------------------------
 	feel_hot_normal,//	火照り（通常）

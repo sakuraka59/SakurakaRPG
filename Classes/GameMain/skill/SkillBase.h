@@ -74,6 +74,7 @@ public: void setDeleteFlag();
 public: bool getDeleteFlag();
 public: bool getInAirFlag();
 public: int getUseSp();
+public: int getUseCc();
 public: bool checkWeaponType();
 public: virtual bool checkExtendSkillUse();
 public: bool getChainCountFlag();

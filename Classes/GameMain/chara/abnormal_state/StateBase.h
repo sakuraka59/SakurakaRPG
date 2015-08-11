@@ -45,6 +45,11 @@ protected: int _state_resist_correction = 0;		//
 // equip item address to set
 protected: std::list<EquipItem*> _equip_list;
 
+// 継続効果用
+protected: int _max_effect_num = 0;		// 効果最大値
+protected: int _total_effect_num = 0;	// かけた効果合計値
+protected: double _effect_num = 0;		// 1フレーム辺りの回復量
+protected: double _effect_fraction = 0;	// 回復時の端数
 //-------------------------------------------------------------------
 public: StateBase(CharaBase* chara_obj);
 public: virtual bool Update();
@@ -52,8 +57,9 @@ protected: virtual void stateUpdate();
 protected: void stateEffectCheck();
 protected: virtual void EveryFrameEffect();
 protected: virtual void stateEffect();
+protected: virtual void startStateEffect();
 protected: virtual void endStateEffect();
-public: void setState(int state_level);
+public: void setState(int state_level, int effect_num = 0, int effect_frame = -1);
 public: void endState();
 public: void setEquipItem(EquipItem* equip_item);
 public: void removeEquipItem(EquipItem* equip_item);

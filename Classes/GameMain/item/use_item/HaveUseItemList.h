@@ -15,7 +15,7 @@ protected: unordered_map<string, UseItem*> _item_list;
 protected: unordered_map<haveItemType, unordered_map<string, UseItem*>> _item_type_list;
 
 public: HaveUseItemList();
-public: void setItem(string item_id, int item_num);
+public: void setItem(UseItem* item_obj, int item_num);
 protected: void testItemList() override;
 
 public: bool itemUse(string item_id);

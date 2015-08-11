@@ -10,6 +10,12 @@ SwordGale::SwordGale(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list)
 	// NPC‚Å‚Ì”­“®Ë’ö‹——£
 	this->_npc_use_range = 30.0;
 
+	// Á”ïSP
+	this->_use_sp = 0;
+
+	// Á”ïCC
+	this->_use_cc = 2;
+
 	// Šî–{UŒ‚”ÍˆÍ
 	int attack_range = 50;
 

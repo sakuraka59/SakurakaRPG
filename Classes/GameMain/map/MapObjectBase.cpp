@@ -15,7 +15,7 @@
 #include "../item/use_item/HaveUseItemList.h"
 
 #include "../item/use_item/UseItem.h"
-#include "../item/use_item/hp_heal/TestHpHeal.h"
+
 MapObjectBase::MapObjectBase(int map_block_x, int map_block_y, GameCamera* camera_obj) {
 	this->_draw_x = (map_block_x * MAP_BLOCK_WIDTH);
 	this->_draw_y = (map_block_y * MAP_BLOCK_HEIGHT);
@@ -164,16 +164,24 @@ void MapObjectBase::setRandItemList() {
 }
 void MapObjectBase::setItemList() {
 
-
-
 	// @TODO test
 	ItemBase* test_load_item = ItemMasterList::getItemObjToMaster("test_sword");
 	this->setItemObj(test_load_item);
 
-	ItemBase* test_load_item2 = ItemMasterList::getItemObjToMaster("test_sword");
+	ItemBase* test_load_item2 = ItemMasterList::getItemObjToMaster("aphrodisiac_1");
 	this->setItemObj(test_load_item2);
 
+	//aphrodisiac_1
+	UseItem* test_load_item3 = (UseItem*)ItemMasterList::getItemObjToMaster("test_hp_heal");
+	this->setItemObj(test_load_item3);
 
+	//aphrodisiac_1
+	UseItem* test_load_item4 = (UseItem*)ItemMasterList::getItemObjToMaster("attack_potion_1");
+	this->setItemObj(test_load_item4);
+	
+	
+//	this->_use_item_list->setItem(test_load_item3, 1);
+//	this->_use_item_list->setItem("test_hp_heal", 3);
 //	ItemBase* test_load_use_item = new TestHpHeal();
 //	this->setItemObj(test_load_use_item);
 }
@@ -192,8 +200,10 @@ void MapObjectBase::setItemObj(ItemBase* item_obj) {
 		break;
 	case haveItemType::portion:
 	case haveItemType::etc:
-		UseItem* test_load_item_to_use = (UseItem*)item_obj;
-		test_load_item_to_use->addNum(1);
+		this->_use_item_list->setItem((UseItem*)item_obj, 1);
+//		UseItem* test_load_item_to_use = (UseItem*)item_obj;
+//		test_load_item_to_use->addNum(1);
+		
 		//this->_use_item_list[item_type][test_load_item_to_use->getUseItemId()] = test_load_item_to_use;
 		//this->_use_item_list
 		break;
@@ -208,12 +218,3 @@ void MapObjectBase::openItemUi() {
 	Gamepad::GameControll->setControllType(gamePadControllType::item_ui, 1);
 }
 
-// アイテムを取得する
-ItemBase* MapObjectBase::getItemList(haveItemType have_item_type, int list_index) {
-
-	return nullptr;
-}
-// アイテムを入れる
-void MapObjectBase::pushItemList(ItemBase* item_obj) {
-
-}

@@ -12,7 +12,7 @@ class SkillAttack : public SkillBase {
 protected: double _npc_use_range = 10.0;// attack start range
 
 // abnormal state data
-protected: abnormalStateType _abnormal_state_type = abnormalStateType::no_type;
+protected: abnormalStateType _abnormal_state_type = abnormalStateType::_no_type;
 protected: int _state_level = 0;
 protected: int _state_rate = 0; // max = 10000
 

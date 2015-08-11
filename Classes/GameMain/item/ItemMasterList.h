@@ -25,7 +25,7 @@ enum class itemCategoryType {
 	clothes,	// 服
 
 	// use -------------
-	heal,		// 回復薬
+	potion,		// 薬
 	food,		// 食べ物
 	_enum_end,
 };
@@ -63,8 +63,9 @@ enum class itemDetailType {
 	anklet,		// 足首飾り
 
 	// use -------------
-	heal,		// 回復薬
+	potion,		// 薬
 	food,		// 食べ物
+	etc,		// その他素材等のアイテム
 	_enum_end,
 };
 
@@ -72,16 +73,35 @@ enum class itemDetailType {
 class ItemLoadOnlyMaterial {
 
 public: string _item_name = "";
+public: string _item_id = "";
 public: itemDetailType _item_type = itemDetailType::_no_type;
-		// 装備アイテム用ステータス
-public: unordered_map<mainStateType, int> _default_state;			// 基本ステータス
+// 共通データ -------------------------------------------------------
+// 基本ステータス。装備アイテムなら装備補正、消費アイテムならステータス回復用。
+public: unordered_map<mainStateType, int> _default_state;			
 public: unordered_map<abnormalStateType, int> _state_default_list;	// 状態異常用ステータス
 
-		// 消費アイテム用ステータス
+// 装備アイテム用ステータス -----------------------------------------
+// 特にないよ
 
-		// データセット
-public: void setEquipStateData(mainStateType state_type, int state_num) {
+// 消費アイテム用ステータス -----------------------------------------
+public: int _effect_frame = -1;
+// アイテム使用による一定時間ステータス補正用
+public: unordered_map<mainStateType, int> _correct_state;
+
+// データセット
+public: void setStateData(mainStateType state_type, int state_num) {
 	this->_default_state[state_type] = state_num;
+}
+
+// 消費アイテム補正用データセット
+public: bool setCorrectStateData(mainStateType state_type, int state_num) {
+	if (this->_item_type < itemDetailType::potion ||
+		this->_item_type >= itemDetailType::_enum_end) {
+
+		return false;
+	}
+	this->_correct_state[state_type] = state_num;
+	return true;
 }
 };
 
@@ -107,7 +127,9 @@ private: static bool _load_flag;
 
 private: static itemDetailType _load_item_type;
 
-private: static unordered_map<int, mainStateType> _load_state_list;
+// ステータス読み込み順番
+private: static unordered_map<int, mainStateType> _load_equip_state_list;	// 装備
+private: static unordered_map<int, mainStateType> _load_use_state_list;		// 消耗品
 
 private: ItemMasterList();
 
@@ -117,9 +139,14 @@ public: static void loadItemList();
 private: static void loadBase();	
 // アイテムの種類ごとに動作振り分け
 private: static void loadTypeAndPath(itemDetailType item_type, string dir_path, string item_name);
+//-------------------------------------------------------------------
 // 以下ファイル読み込み詳細
-// 片手剣
+//-------------------------------------------------------------------
+// 片手剣、細剣
 private: static void loadTypeNormalEquip(itemDetailType item_type, string dir_path, string item_name);
+
+// 薬
+private: static void loadTypeUse(itemDetailType item_type, string dir_path, string item_name);
 
 // データ読み込み
 private: static ifstream loadItemData(string dir_path, string item_name);

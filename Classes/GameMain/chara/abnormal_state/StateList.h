@@ -15,9 +15,12 @@ private: std::unordered_map<abnormalStateType, abnormalStateType> _guard_state_l
 // ------------------------------------------------------------------
 public: StateList(CharaBase* chara_obj);
 public: void Update();
-public: void setState(abnormalStateType state_type, int state_level);
+
+// 効果を付与
+// effect_num、effect_frameは持続効果で専用に使用する
+public: void setState(abnormalStateType state_type, int state_level, int effect_num = 0, int effect_frame = 0);
 public: void endState(abnormalStateType state_type);
-public: bool checkToSetState(abnormalStateType state_type, int state_level, int state_rate);
+public: bool checkToSetState(abnormalStateType state_type, int state_level, int state_rate, int effect_num = 0, int effect_frame = 0);
 public: bool getStateEndFlag(abnormalStateType state_type);
 public: std::unordered_map<abnormalStateType, StateBase*> getStateList();
 public: void setEquipItemToState(abnormalStateType state_type, EquipItem* item_obj);

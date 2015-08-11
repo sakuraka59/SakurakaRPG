@@ -36,7 +36,7 @@ private: void moveCharaPlusKey();
 
 // ƒRƒƒ“ƒg“Še
 public: void sendComment(std::string comment) override;
-public: void sendDirectComment(std::string comment);
+public: void sendDirectComment(std::string comment) override;
 public: void sendTypeComment(charaCommentType comment_type, charaSexualType chara_type) override;
 public: void sendTypeCommentDirect(charaCommentType comment_type, charaSexualType chara_type) override;
 public: void sendSexualComment() override;

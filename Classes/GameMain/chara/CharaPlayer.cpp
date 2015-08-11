@@ -24,6 +24,9 @@
 // アイテムテスト
 #include "../item/ItemMasterList.h"
 
+// コメントリスト
+#include "chara_comment/CharaCommentList.h"
+
 CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, std::list<CharaBase*>* all_chara_list, std::list<MagicBase*>* magic_list, ShadowObjectList* shadow_list)
 {
 	//this->_skill_list = skill_list;
@@ -60,8 +63,9 @@ CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, st
 	this->updateDraw();
 
 	// */
-	ItemBase* test_item_obj = ItemMasterList::getItemObjToMaster("test_rapier");
-	this->_equip_item_list->setListToItem((EquipItem*)test_item_obj);
+	// テスト用所持アイテム
+//	ItemBase* test_item_obj = ItemMasterList::getItemObjToMaster("test_rapier");
+//	this->_equip_item_list->setListToItem((EquipItem*)test_item_obj);
 	// 初期表示
 	//this->Position = new Vector2((int)(this->_draw_x), (int)(this->_draw_y - this->_play_camera._y));
 	//	this->Position = new Vector2((int)(this->_draw_x - this->_play_camera.getCameraX()), (int)(this->_draw_y - this->_play_camera.getCameraY() + this->_draw_z));
@@ -147,7 +151,8 @@ void CharaPlayer::charaRevival() {
 }
 void CharaPlayer::damageAction() {
 	this->_play_camera->setCameraShake();
-	this->damageAction();
+	//
+	CharaBase::damageAction();
 
 	if (this->_down_flag == false) {
 
@@ -261,19 +266,21 @@ void CharaPlayer::moveCharaPlusKey() {
 void CharaPlayer::sendComment(std::string comment) {
 
 	if (this->_comment_delay_count <= 0) {
-		//@TODO
-		this->_comment_ui_obj->setComment(comment, 0);
-		this->_comment_delay_count = 0;
+		this->sendDirectComment(comment);
+//		this->_comment_delay_count = 0;
+		// 次コメントまでのディレイ
+		this->_comment_delay_count = 20;
 	}
 }
 void CharaPlayer::sendDirectComment(std::string comment) {
-	//@TODO
-	//this->_comment_ui_obj.setComment(comment, 0);
-	this->_comment_delay_count = 10;
+	
+	this->_comment_ui_obj->setComment(comment);
+	
 }
 void CharaPlayer::sendTypeComment(charaCommentType comment_type, charaSexualType chara_type) {
 	//@TODO
-	//this->sendComment(this->_comment_list.getComment(comment_type, chara_type));
+	this->sendComment(CharaCommentList::getComment(comment_type, chara_type));
+//	this->sendComment("てすとですー");
 
 }
 void CharaPlayer::sendTypeCommentDirect(charaCommentType comment_type, charaSexualType chara_type) {
@@ -288,7 +295,7 @@ void CharaPlayer::sendSexualComment() {
 
 	if (now_sexual_state != charaSexualState::normal) {
 		// コメント内容を決める
-		charaCommentType sexual_comment_type = charaCommentType::no_type;
+		charaCommentType sexual_comment_type = charaCommentType::_no_type;
 		switch (now_sexual_state) {
 		case charaSexualState::feel_hot:
 			sexual_comment_type = charaCommentType::feel_hot_normal;
@@ -587,7 +594,7 @@ void CharaPlayer::testAction() {
 		Gamepad::GameControll->setControllType(gamePadControllType::item_ui);
 	}
 
-	if (this->_control_flag == true && Gamepad::L1->isPush() == true) {
+	if (this->_control_flag == true  && Gamepad::L1->isPush() == true) {
 		
 		// 装備状態とアイテム所持UIで差分が発生している場合に
 		// 該当アイテムを使用すると落ちるので、キー操作による直接装備はいったん停止
@@ -597,6 +604,7 @@ void CharaPlayer::testAction() {
 		*/
 
 	}
+	//　keybord to E
 	if (this->_control_flag == true && Gamepad::R1->isPush() == true) {
 	
 		bool attack_flag = this->setSkill(new SwordGale(this, this->_all_chara_list));
@@ -610,6 +618,12 @@ void CharaPlayer::testAction() {
 	// keybord to F
 	if (this->_control_flag == true && Gamepad::L2->isPush() == true) {
 		bool attack_flag = this->setSkill(new TestShot(this, this->_all_chara_list));
+	}
+
+	// test abnormal state
+	// keybord to G
+	if (this->_control_flag == true && Gamepad::R2->isPush() == true) {
+		this->checkToSetState(abnormalStateType::feel_hot, 1, 10000);
 
 	}
 }

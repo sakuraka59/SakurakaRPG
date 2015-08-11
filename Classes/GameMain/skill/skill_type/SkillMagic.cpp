@@ -42,7 +42,7 @@ bool SkillMagic::updateSkillEffect() {
 			SkillMagicSpell* spell_obj = this->_spell_list.front();
 
 			if (this->_spell_frame_time >= spell_obj->getSendFrame()) {
-				this->_use_chara_obj->sendComment(spell_obj->getSpell());
+				this->_use_chara_obj->sendDirectComment(spell_obj->getSpell());
 				//	Debug.WriteLine("[SkillMagic]check spell frame:"+this->_spell_frame_time);
 				this->_spell_list.pop_front();
 			}

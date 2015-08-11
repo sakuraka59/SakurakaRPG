@@ -9,6 +9,8 @@ enum class mainStateType
 	// drow num to 1/100
 	_no_type = 0,
 
+	hp,		//	base and correction to max. now to now_state
+	sp,		//	base and correction to max. now to now_state
 
 	// 基本ステータス
 	atk,			// 攻撃力
@@ -24,8 +26,7 @@ enum class mainStateType
 	intelligence,	// 知力
 	luk,			// 運
 
-	hp,		//	base and correction to max. now to now_state
-	sp,		//	base and correction to max. now to now_state
+
 
 	// セクシャルに関するステータス
 	honey,		// 性的な興奮度 10000で最大。

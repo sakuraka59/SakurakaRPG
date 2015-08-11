@@ -24,5 +24,6 @@ public: virtual bool useItem();
 public: void setItemName(string item_name);
 public: string getItemName();
 public: haveItemType getHaveItemType();
+public: void setHaveItemType(haveItemType item_type);
 public: void setCharaObj(CharaBase* chara_obj);
 };

@@ -82,8 +82,5 @@ private: void setItemObj(ItemBase* item_obj);
 // 調べてUI開く
 protected: void openItemUi();
 
-// アイテムを取得する
-public: ItemBase* getItemList(haveItemType have_item_type, int list_index);
-// アイテムを入れる
-public: void pushItemList(ItemBase* item_obj);
+
 };

@@ -7,10 +7,10 @@
 
 class EquipItem : public ItemBase
 {
-public: std::unordered_map<mainStateType, int> _default_state;
-public: std::unordered_map<abnormalStateType, int> _state_default_list;
+protected: std::unordered_map<mainStateType, int> _default_state;
+protected: std::unordered_map<abnormalStateType, int> _state_default_list;
 
-protected: equipType _item_equip_type = equipType::no_type;
+protected: equipType _item_equip_type = equipType::_no_type;
 protected: bool _equip_flag = false; //‘•”õƒtƒ‰ƒO
 
 protected: int _list_index = -1;

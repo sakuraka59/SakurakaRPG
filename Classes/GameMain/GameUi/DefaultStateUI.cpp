@@ -1,5 +1,6 @@
 #include "DefaultStateUI.h"
-#include "DefaultStateGauge.h"
+#include "DefaultStateUI/DefaultStateGauge.h"
+#include "DefaultStateUI/CCGauge.h"
 #include "../chara/mainStateType.h"
 
 #include "../GAME_SETTING.h"
@@ -26,17 +27,33 @@ DefaultStateUI::DefaultStateUI(CharaPlayer* player_obj)
 	*/
 	// 各種ゲージ表示
 	//*
-	int gauge_position_correct = 10;
+	// HP
+	int gauge_position_correct = 0;
 	this->_state_hp_obj = new DefaultStateGauge(player_obj, mainStateType::hp, mainStateType::excitation, cocos2d::Color3B(0, 255, 0));
-	this->_state_hp_obj->setPosition(GAME_WIDTH - this->_state_hp_obj->getGaugeWidth() - gauge_position_correct, gauge_position_correct + this->_state_hp_obj->getGaugeHeight());
+	this->_state_hp_obj->setPosition(
+		GAME_WIDTH - this->_state_hp_obj->getGaugeWidth() - gauge_position_correct,
+		gauge_position_correct + this->_state_hp_obj->getGaugeHeight()
+	);
 	
 	this->addChild(this->_state_hp_obj);
 
 	//*
+	// SP
 	this->_state_sp_obj = new DefaultStateGauge(player_obj, mainStateType::sp, mainStateType::honey, cocos2d::Color3B(0, 128, 255));
-	this->_state_sp_obj->setPosition(GAME_WIDTH - this->_state_hp_obj->getGaugeWidth() - gauge_position_correct, gauge_position_correct - 2);
+	this->_state_sp_obj->setPosition(
+		GAME_WIDTH - this->_state_hp_obj->getGaugeWidth() - gauge_position_correct, 
+		gauge_position_correct - 2
+	);
 	this->addChild(this->_state_sp_obj);
 	//*/
+
+	// CC
+	this->_state_cc_obj = new CCGauge(player_obj);
+	this->_state_cc_obj->setPosition(
+		GAME_WIDTH - this->_state_cc_obj->getGaugeWidth() - gauge_position_correct,
+		this->_state_hp_obj->getGaugeHeight() - this->_state_cc_obj->getGaugeHeight()
+		);
+	this->addChild(this->_state_cc_obj);
 
 //	this._state_num_obj = new DefaultStateNum(player_obj);
 //	this.AddChild(this._state_num_obj);
@@ -46,5 +63,6 @@ DefaultStateUI::DefaultStateUI(CharaPlayer* player_obj)
 void DefaultStateUI::Update() {
 	this->_state_hp_obj->Update();
 	this->_state_sp_obj->Update();
+	this->_state_cc_obj->Update();
 //	this->_state_num_obj->Update();
 }

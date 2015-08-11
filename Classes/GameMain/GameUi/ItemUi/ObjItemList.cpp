@@ -195,7 +195,8 @@ void ObjItemList::openItemListDetail(
 
 		this->_type_list[this->_item_type_num] = item_type;
 
-
+		this->openUseItemDetailListInit(item_type);
+		/*
 		this->_item_detail_num_list[item_type] = 0;
 
 		if (this->_item_detail_list[item_type] != nullptr) {
@@ -226,6 +227,7 @@ void ObjItemList::openItemListDetail(
 			this->_item_detail_num_list[item_type]++;
 
 		}
+		*/
 
 		// 種類内にアイテムが1種類でも表示される場合
 		if (this->_item_detail_num_list[item_type] > 0) {
@@ -407,6 +409,66 @@ void ObjItemList::Update() {
 	}
 	
 }
+//-------------------------------------------------------------------
+// 所持しているアイテムの種類一覧を再描画
+//-------------------------------------------------------------------
+void ObjItemList::resetItemTypeList() {
+
+	this->_item_type_num = 0;
+	this->_type_label = "";
+	this->_type_label_obj->removeAllChildren();
+
+	// @TODO 所持アイテム種類簡易初期化。
+	this->openItemListDetail(this->_equip_item_list_detail, this->_use_item_list_detail);
+
+
+
+	/*
+	for (auto item_list_obj : *this->_equip_item_list_detail) {
+		haveItemType item_type = item_list_obj.first;
+		this->_type_list[this->_item_type_num] = item_type;
+		string type_name = this->getItemTypeName(item_type);
+		//		this->_type_label += type_name + "\n\n";
+
+
+//		this->openEquipItemDetailListInit(item_type);
+
+
+		if (this->_item_detail_num_list[item_type] > 0) {
+			auto type_label_ttf = LabelTTF::create(type_name, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
+			type_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
+			auto anchor_point_type = new cocos2d::Vec2(0, 1);
+			type_label_ttf->setAnchorPoint(*anchor_point_type);
+			type_label_ttf->setPosition(0, (this->_TEXT_LINE_HEIGHT * this->_item_type_num * (-1)));
+			this->_type_label_obj->addChild(type_label_ttf);
+
+			this->_item_type_num++;
+		}
+	}
+
+	for (auto item_list_obj : *this->_use_item_list_detail) {
+		haveItemType item_type = item_list_obj.first;
+		this->_type_list[this->_item_type_num] = item_type;
+
+		string type_name = this->getItemTypeName(item_type);
+
+		this->_type_list[this->_item_type_num] = item_type;
+
+		// 種類内にアイテムが1種類でも表示される場合
+		if (this->_item_detail_num_list[item_type] > 0) {
+			auto type_label_ttf = LabelTTF::create(type_name, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
+			type_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
+			auto anchor_point_type = new cocos2d::Vec2(0, 1);
+			type_label_ttf->setAnchorPoint(*anchor_point_type);
+			type_label_ttf->setPosition(0, (this->_TEXT_LINE_HEIGHT * this->_item_type_num * (-1)));
+			this->_type_label_obj->addChild(type_label_ttf);
+
+			this->_item_type_num++;
+
+		}
+	}
+	// */
+}
 void ObjItemList::UpdateItemType() {
 
 	if (this->_cursor_delay > 0) {
@@ -550,7 +612,14 @@ void ObjItemList::useItemDrawUpdateToEquip(haveItemType item_type, EquipItem* it
 }
 void ObjItemList::useItemDrawUpdateToUse(haveItemType item_type, UseItem* item_obj) {
 	if (item_obj->getNum() <= 0) {
+		this->_item_detail_num_list[item_type]++;		
 		this->openUseItemDetailListInit(item_type);
+
+		if (this->_item_detail_num_list[item_type] <= 1) {
+//			this->resetItemTypeList();
+//			this->openItemListInit();
+		}
+
 	}
 }
 void ObjItemList::closeItemList() {
@@ -604,21 +673,25 @@ void ObjItemList::transferItemObj() {
 		this->removeEquipItemList(equip_item_obj);
 
 		this->_other_item_list_obj->receiveEquipItemObj(equip_item_obj);
-
-		
-//		this->openItemListInit();
-		
-//		this->removeChild(this->_detail_bg_render_obj);
-//		this->_detail_label_obj->removeAllChildren();
-//		this->openItemListInit();
-//		this->_detail_item_list[this->_open_detail_type][this->_item_detail_cursor] = nullptr;
-		
+		this->_other_item_list_obj->resetItemTypeList();
 		break;
 
 		// アイテム系
 	case haveItemType::portion:
 	case haveItemType::etc:
-		this->useItemDrawUpdateToUse(item_type, (UseItem*)item_obj);
+		if (this->removeUseItemList(use_item_obj) != true) {
+			break;
+		}
+		this->_other_item_list_obj->receiveUseItemObj(use_item_obj);
+
+		this->useItemDrawUpdateToUse(item_type, use_item_obj);
+		this->_other_item_list_obj->resetItemTypeList();
+
+//		this->_other_item_list_obj->openUseItemDetailListInit(item_type);
+//		this->_other_item_list_objopenItemListInit();
+
+
+		
 		break;
 		// */
 	}
@@ -634,7 +707,9 @@ void ObjItemList::receiveEquipItemObj(EquipItem* item_obj) {
 }
 // アイテムを受け取る（消費アイテム
 void ObjItemList::receiveUseItemObj(UseItem* item_obj) {
-	this->_use_item_list->setItem(item_obj->getUseItemId(), 1);
+	this->_use_item_list->setItem(item_obj, 1);
+
+	
 
 //	this->openItemListInit();
 }
@@ -652,4 +727,8 @@ void ObjItemList::removeEquipItemList(EquipItem* item_obj) {
 	}
 
 	this->openEquipItemDetailListInit(item_obj->getHaveItemType());
+}
+
+bool ObjItemList::removeUseItemList(UseItem* item_obj) {
+	return item_obj->removeUseItem(1);
 }

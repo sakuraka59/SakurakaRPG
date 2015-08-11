@@ -8,6 +8,7 @@
 
 #include "../chara/CharaPlayer.h"
 #include "../chara/CharaNpc.h"
+#include "../chara/chara_comment/CharaCommentList.h"
 
 #include "../item/ItemMasterList.h"
 
@@ -42,8 +43,17 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj) {
 //	SeedBase* hoge = new SeedBase();
 //	CharaBase* piyo = new CharaBase();
 
-	ItemMasterList::loadItemList();
+
+
+
 	// test end -----------------------------------------------------
+
+	// シングルトン系の初期化
+	ItemMasterList::loadItemList();
+	CharaCommentList::loadCommentList();
+
+
+	// 描画順番差し替えが必要なオブジェクト
 	this->_order_object_list = new RenderObject();
 
 	// 表示場所のカメラ情報

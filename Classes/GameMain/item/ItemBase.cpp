@@ -20,6 +20,9 @@ std::string ItemBase::getItemName() {
 haveItemType ItemBase::getHaveItemType() {
 	return this->_have_item_type;
 }
+void ItemBase::setHaveItemType(haveItemType item_type) {
+	this->_have_item_type = item_type; 
+}
 // */
 void ItemBase::setCharaObj(CharaBase* chara_obj){
 	this->_chara_obj = chara_obj;

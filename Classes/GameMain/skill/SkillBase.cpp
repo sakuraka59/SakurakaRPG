@@ -143,7 +143,9 @@ bool SkillBase::getInAirFlag() {
 int SkillBase::getUseSp() {
 	return this->_use_sp;
 }
-
+int SkillBase::getUseCc() {
+	return this->_use_cc;
+}
 bool SkillBase::checkWeaponType() {
 	//			weaponType main_weapon_type = this->_use_chara_obj.getMainWeaponType();
 	//			Debug.WriteLine("[SkillBase] check weapon type:"+main_weapon_type);

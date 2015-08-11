@@ -145,6 +145,21 @@
     <Filter Include="src\GameMain\map\map_object\item_box">
       <UniqueIdentifier>{e1a933c9-5920-4525-928d-5b624e24b678}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\skill\use_item">
+      <UniqueIdentifier>{a7281d76-a5ac-4a19-a94f-bc381492be2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\chara\abnormal_state\status_effect">
+      <UniqueIdentifier>{5204f9c6-b20d-403f-ae35-e96ab2970833}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\chara\chara_comment">
+      <UniqueIdentifier>{b8a52367-1e60-4473-98b8-5fb305cc43e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\chara\abnormal_state\status_correction">
+      <UniqueIdentifier>{2bea76e8-0ce3-48c8-8741-de33ffeab9b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\GameUi\DefaultStateUI">
+      <UniqueIdentifier>{abb3a868-f4fb-45ef-b461-93e27d387c99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -297,12 +312,6 @@
     <ClCompile Include="..\Classes\GameMain\chara\CharaNpc.cpp">
       <Filter>src\GameMain\chara</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateUI.cpp">
-      <Filter>src\GameMain\GameUi</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateGauge.cpp">
-      <Filter>src\GameMain\GameUi</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GameMain\GameUi\PlayerComment.cpp">
       <Filter>src\GameMain\GameUi</Filter>
     </ClCompile>
@@ -399,6 +408,51 @@
     <ClCompile Include="..\Classes\GameMain\GameUi\ItemUi\SearchObjItemList.cpp">
       <Filter>src\GameMain\GameUi\ItemUi</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\use_item\ItemEffect.cpp">
+      <Filter>src\GameMain\skill\use_item</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\status_effect\HpEffect.cpp">
+      <Filter>src\GameMain\chara\abnormal_state\status_effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\status_effect\StatusEffectBase.cpp">
+      <Filter>src\GameMain\chara\abnormal_state\status_effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\status_effect\SpEffect.cpp">
+      <Filter>src\GameMain\chara\abnormal_state\status_effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\status_effect\HoneyEffect.cpp">
+      <Filter>src\GameMain\chara\abnormal_state\status_effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\status_effect\ExcitationEffect.cpp">
+      <Filter>src\GameMain\chara\abnormal_state\status_effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\sexual\AbsentMindedness.cpp">
+      <Filter>src\GameMain\chara\abnormal_state\sexual</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\sexual\Extasy.cpp">
+      <Filter>src\GameMain\chara\abnormal_state\sexual</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\sexual\FeelHot.cpp">
+      <Filter>src\GameMain\chara\abnormal_state\sexual</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\sexual\Oestrus.cpp">
+      <Filter>src\GameMain\chara\abnormal_state\sexual</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\chara_comment\CharaCommentList.cpp">
+      <Filter>src\GameMain\chara\chara_comment</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\status_correction\StatusCorrectionBase.cpp">
+      <Filter>src\GameMain\chara\abnormal_state\status_correction</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateUI\DefaultStateGauge.cpp">
+      <Filter>src\GameMain\GameUi\DefaultStateUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateUI.cpp">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateUI\CCGauge.cpp">
+      <Filter>src\GameMain\GameUi\DefaultStateUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -457,12 +511,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\StateAuto.h">
       <Filter>src\GameMain\chara\abnormal_state</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameMain\chara\charaCommentType.h">
-      <Filter>src\GameMain\chara</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GameMain\chara\charaSexualType.h">
-      <Filter>src\GameMain\chara</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\item\equip_item\weapon\weaponType.h">
       <Filter>src\GameMain\item\equip_item\weapon</Filter>
@@ -593,9 +641,6 @@
     <ClInclude Include="..\Classes\GameMain\GameUi\DefaultStateUI.h">
       <Filter>src\GameMain\GameUi</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GameMain\GameUi\DefaultStateGauge.h">
-      <Filter>src\GameMain\GameUi</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GameMain\GameUi\PlayerComment.h">
       <Filter>src\GameMain\GameUi</Filter>
     </ClInclude>
@@ -709,6 +754,54 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\GameUi\ItemUi\SearchObjItemList.h">
       <Filter>src\GameMain\GameUi\ItemUi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\use_item\ItemEffect.h">
+      <Filter>src\GameMain\skill\use_item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\status_effect\HpEffect.h">
+      <Filter>src\GameMain\chara\abnormal_state\status_effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\status_effect\StatusEffectBase.h">
+      <Filter>src\GameMain\chara\abnormal_state\status_effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\status_effect\SpEffect.h">
+      <Filter>src\GameMain\chara\abnormal_state\status_effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\status_effect\HoneyEffect.h">
+      <Filter>src\GameMain\chara\abnormal_state\status_effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\status_effect\ExcitationEffect.h">
+      <Filter>src\GameMain\chara\abnormal_state\status_effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\sexual\AbsentMindedness.h">
+      <Filter>src\GameMain\chara\abnormal_state\sexual</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\sexual\Extasy.h">
+      <Filter>src\GameMain\chara\abnormal_state\sexual</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\sexual\FeelHot.h">
+      <Filter>src\GameMain\chara\abnormal_state\sexual</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\sexual\Oestrus.h">
+      <Filter>src\GameMain\chara\abnormal_state\sexual</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\chara_comment\CharaCommentList.h">
+      <Filter>src\GameMain\chara\chara_comment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\chara_comment\charaCommentType.h">
+      <Filter>src\GameMain\chara\chara_comment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\chara_comment\charaSexualType.h">
+      <Filter>src\GameMain\chara\chara_comment</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\status_correction\StatusCorrectionBase.h">
+      <Filter>src\GameMain\chara\abnormal_state\status_correction</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\DefaultStateUI\DefaultStateGauge.h">
+      <Filter>src\GameMain\GameUi\DefaultStateUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\DefaultStateUI\CCGauge.h">
+      <Filter>src\GameMain\GameUi\DefaultStateUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

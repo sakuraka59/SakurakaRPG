@@ -1,7 +1,9 @@
 #pragma once
 enum class abnormalStateType {
-	no_type = 0,
+	_no_type = 0,
 	poison,
+
+
 
 	
 	//-------------------------------
@@ -15,5 +17,19 @@ enum class abnormalStateType {
 	absent_mindedness,	//	放心
 	//*/
 
-	enum_end,
+	// 持続回復系 ------------------
+	hp_effect,
+	sp_effect,
+	honey_effect,
+	excitation_effect,
+
+	// ステータス補正系 ------------------
+	hp_correct,
+	sp_correct,
+	atk_correct,
+	def_correct,
+	magic_correct,
+	mdef_correct,
+
+	_enum_end,
 };

@@ -54,7 +54,7 @@ void PlayerCommentUI::Update() {
 //-----------------------------------------------------------
 //	ƒRƒƒ“ƒg‚ðV‹K’Ç‰Á‚·‚é
 //-----------------------------------------------------------
-void PlayerCommentUI::setComment(std::string comment, int line) {
+void PlayerCommentUI::setComment(std::string comment) {
 
 
 	if (this->_comment_count < this->_COMMENT_MAX) {

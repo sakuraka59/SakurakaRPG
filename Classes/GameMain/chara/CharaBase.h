@@ -8,11 +8,11 @@
 #include "charaGroupList.h"
 #include "abnormal_state/abnormalStateType.h"
 
-#include "charaSexualType.h"
+#include "chara_comment/charaSexualType.h"
 //charaSexualState
 
-#include "charaCommentType.h"
-#include "charaSexualType.h"
+#include "chara_comment/charaCommentType.h"
+
 #include "charaSexualState.h"
 
 #include "../item/equip_item/weapon/weaponType.h"
@@ -59,9 +59,12 @@ class CharaBase : public RenderObject
 public: std::unordered_map<mainStateType, int> _base_state;
 //	protected Dictionary<mainStateType, int> _base_state = new Dictionary<mainStateType, int>();
 
-// •â³‚Ì‚İ‚ÌƒXƒe[ƒ^ƒX
-public: std::unordered_map<mainStateType, int> _correction_state;
+// ‘•”õ•â³‚ÌƒXƒe[ƒ^ƒX
+public: std::unordered_map<mainStateType, int> _equip_state;
 //	protected Dictionary<mainStateType, int> _correction_state = new Dictionary<mainStateType, int>();
+
+// ó‘ÔˆÙí‚Ì•â•Œø‰Ê‚ÌƒXƒe[ƒ^ƒX
+public: std::unordered_map<mainStateType, int> _correction_state;
 
 // Œ»İƒXƒe[ƒ^ƒX
 public: std::unordered_map<mainStateType, int> _now_state;
@@ -129,12 +132,17 @@ protected: int _weapon_state = 0;		// •Ší‚Ì\‚¦“™‚Ìó‘ÔBå‚É•Ğè’¼Œ•+â‚Å‚Ì”²“
 
 protected: charaActionType _action_type;	// s“®ó‘Ô
 
+
+// CC©“®‰ñ•œŠÖŒW
+private: const int _CC_HEAL_DELAY = 10;	// 1‰ñ•œ‚·‚é‚Ì‚É•K—v‚ÈƒtƒŒ[ƒ€”
+private: int _cc_delay_frame = 0;		// ƒtƒŒ[ƒ€ƒJƒEƒ“ƒg
+
 // ó‘ÔˆÙíƒXƒe[ƒ^ƒXƒŠƒXƒg
 protected: StateList* _state_list;
 
 // «“I‚ÉŠÖ‚·‚éó‘ÔBƒRƒƒ“ƒg‚Å‚Ì‚İg—p‚·‚é‚±‚Æ
 protected: charaSexualState _sexual_state = charaSexualState::normal;
-protected: charaSexualType _sexual_type = charaSexualType::no_type;
+protected: charaSexualType _sexual_type = charaSexualType::_no_type;
 
 // 1‰ñ–Ú‚Ì‰ÎÆ‚è¨”­î‚É‚Äg‚¤Ì×¸Ş
 protected: bool now_hot_to_oestrus_flag = false;
@@ -142,7 +150,7 @@ protected: bool now_hot_to_oestrus_flag = false;
 // «“I‚ÉŠÖ‚·‚é—v‘fB©“®‰ñ•œ—p
 protected: int _sexual_repair_frame = 0;
 protected: int _SEXUAL_SET_FRAME = 120;
-protected: int _AUTO_HEAL_HONEY = 2;
+protected: int _AUTO_HEAL_HONEY = 1;
 protected: int _AUTO_HEAL_EXCITATION = 1;
 
 // •`‰æ—p•â³
@@ -266,7 +274,7 @@ public: int getNowState(mainStateType state_type);
 public: int getBaseState(mainStateType state_type);
 public: int getCorrectionState(mainStateType state_type);
 public: int getMaxState(mainStateType state_type);
-public: void addCorrectionState(mainStateType state_type, int num);
+//public: void addEquipState(mainStateType state_type, int num);
 private: void calNowState(mainStateType state_type);
 public: double getHitHeight();
 public: int getNowHp();
@@ -295,6 +303,12 @@ public: void reColStatus(mainStateType state_type);
 public: void setEquipToAbnormalState(abnormalStateType state_type, EquipItem* item_obj);
 public: void removeEquipToAbnormalState(abnormalStateType state_type, EquipItem* item_obj);
 
+//-------------------------------------------------------------------
+// abnormal correction state
+//-------------------------------------------------------------------
+public: void addCorrectionStatus(mainStateType state_type, int add_num);
+public: void sadCorrectionStatus(mainStateType state_type, int sad_num);
+
 // get set data etc -----------------------------------------
 public: std::list<CharaBase*>* getAllCharaList();
 public: StateList* getStateList();
@@ -310,24 +324,31 @@ public: bool checkSpellFlag();
 // sp -------------------------------------------------------
 private: void useSp(int use_sp);
 public: bool checkSp(int check_sp);
-
+// cc -------------------------------------------------------
+private: void useCc(int use_cc);
+public: bool checkCc(int check_cc);
+private: void autoHealCc();
 // damage ---------------------------------------------------
 public: void slipDamageHp(int damage);
 public: void directDamageHp(int damage);
 public: void normalDamageHp(int attack_damage);
-public: void checkToSetState(abnormalStateType state_type, int state_level, int state_rate);
+public: void checkToSetState(abnormalStateType state_type, int state_level, int state_rate, int effect_num = 0, int effect_frame = 0);
+//public: void setEffectState(int effect_num, int frame_num);
 public: virtual void damageAction();
 public: void checkRemoveSkill();
 public: void removeSkill();
 // sexual damage ----------------------------------
-public: void normalDamageSexual(int damage, double direct_rate, bool action_flag = false, charaCommentType comment_type = charaCommentType::no_type);
+public: void normalDamageSexual(int damage, double direct_rate, bool action_flag = false, charaCommentType comment_type = charaCommentType::_no_type);
 public: void honeyOnlyDamage(int damage, bool action_flag = false);
 public: void setExtasy();
 public: void resetRevivalFrame();
 // sexual etc -----------------------------------------------
 public: charaSexualType getSexualType();
 // heal -----------------------------------------------------
-public: void healHp(int heal_num);
+public: void healHp(int heal_num);			// ‘Ì—Í‰ñ•œ
+public: void healSp(int heal_num);			// SP‰ñ•œ
+public: void healHoney(int heal_num);		// ‹»•±“x‰ñ•œ
+public: void healExcitation(int heal_num);	// ‰õŠy“x‰ñ•œ
 public: void autoHealSexual();
 // test only ------------------------------------------------
 protected: int _test_weapon_index = -1;
@@ -335,6 +356,7 @@ public: void setWeaponTestIndex(int index);
 
 // send comment (use to player only -------------------------
 public: virtual void sendComment(std::string comment);
+public: virtual void sendDirectComment(std::string comment);
 public: virtual void sendTypeComment(charaCommentType comment_type, charaSexualType chara_type);
 public: virtual void sendTypeCommentDirect(charaCommentType comment_type, charaSexualType chara_type);
 public: virtual void sendSexualComment();

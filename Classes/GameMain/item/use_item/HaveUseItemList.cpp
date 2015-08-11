@@ -11,7 +11,7 @@ HaveUseItemList::HaveUseItemList() : HaveItemListBase() {
 
 }
 void HaveUseItemList::testItemList() {
-	this->setItem("test_hp_heal", 5);
+//	this->setItem("test_hp_heal", 5);
 }
 bool HaveUseItemList::itemUse(string item_id) {
 	/*
@@ -29,15 +29,25 @@ bool HaveUseItemList::itemUse(string item_id) {
 	
 	return this->_item_list[item_id]->useItem();
 }
-void HaveUseItemList::setItem(string item_id, int item_num) {
+void HaveUseItemList::setItem(UseItem* item_obj, int item_num) {
+
+	string item_id = item_obj->getUseItemId();
+//	int item_num = 0;
 	if (this->_item_list[item_id] == nullptr) {
 		// @TODO
-		UseItem* item_obj = new TestHpHeal();
-		item_obj->setCharaObj(this->_chara_obj);
-		item_obj->addNum(item_num);
+		UseItem* set_item_obj = new UseItem();
+		set_item_obj->setUseItemId(item_id);
+		set_item_obj->setCharaObj(this->_chara_obj);
+		set_item_obj->setItemName(item_obj->getItemName());
+		set_item_obj->addNum(item_num);
+		set_item_obj->setHaveItemType(item_obj->getHaveItemType());
 
-		this->_item_list[item_id] = item_obj;
-		this->_item_type_list[item_obj->getHaveItemType()][item_obj->getUseItemId()] = item_obj;
+		set_item_obj->setStateData(item_obj->getStateData());
+		set_item_obj->setCorrectStateData(item_obj->getCorrectData());
+		set_item_obj->setEffectFrame(item_obj->getEffectFrame());
+
+		this->_item_list[item_id] = set_item_obj;
+		this->_item_type_list[set_item_obj->getHaveItemType()][set_item_obj->getUseItemId()] = set_item_obj;
 	}
 	else {
 		this->_item_list[item_id]->addNum(item_num);

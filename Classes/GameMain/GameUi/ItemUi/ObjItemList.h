@@ -111,7 +111,7 @@ protected: void openEquipItemDetailListInit(haveItemType item_type);
 protected: void openUseItemDetailListInit(haveItemType item_type);
 protected: string getItemTypeName(haveItemType item_type);
 protected: void openItemDetailInit(haveItemType item_type);
-
+protected: void resetItemTypeList();
 
 // XVˆ—Œn
 public: void Update();
@@ -135,6 +135,6 @@ public: void receiveEquipItemObj(EquipItem* item_obj);				// ƒAƒCƒeƒ€‚ğó‚¯æ‚é
 public: void receiveUseItemObj(UseItem* item_obj);					// ƒAƒCƒeƒ€‚ğó‚¯æ‚éiÁ”ïƒAƒCƒeƒ€
 
 private: void removeEquipItemList(EquipItem* item_obj);
+private: bool removeUseItemList(UseItem* item_obj);
+
 };
-
-

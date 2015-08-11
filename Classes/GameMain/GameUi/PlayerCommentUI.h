@@ -16,5 +16,5 @@ private: int _FONT_SIZE = 14;
 
 public: PlayerCommentUI();
 public: void Update();
-public: void setComment(std::string comment, int line);
+public: void setComment(std::string comment);
 };

@@ -10,6 +10,10 @@
 #include "../item/equip_item/HaveEquipItemList.h"
 #include "../item/use_item/HaveUseItemList.h"
 
+#include "../chara/chara_comment/CharaCommentList.h"
+#include "../chara/chara_comment/charaCommentType.h"
+#include "../chara/chara_comment/charaSexualType.h"
+
 #include <unordered_map>
 
 using namespace std;
@@ -67,7 +71,8 @@ void ItemUi::openItemUi() {
 }
 // オブジェクトからのアイテム取得時に使う
 void ItemUi::openItemUiToObj(){
-	this->_player_obj->sendComment("何があるかな・・・？");
+//	this->_player_obj->sendComment("何があるかな・・・？");
+	this->_player_obj->sendComment(CharaCommentList::getComment(charaCommentType::search_box, charaSexualType::_no_type));
 	this->openItemUi();
 	
 //	this->_player_item_list_obj->openItemListInit(this->_obj_item_list);

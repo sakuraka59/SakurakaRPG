@@ -1,7 +1,7 @@
 #pragma once
 
 enum class equipType{
-	no_type = -1,
+	_no_type = -1,
 	weapon,		// メイン武器
 	sub_weapon,	// サブ武器
 	head,		// 頭系 帽子

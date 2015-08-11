@@ -7,7 +7,7 @@ EquipItem::EquipItem() : ItemBase () {
 		this->_default_state[static_cast<mainStateType>(state_type)] = 0;
 	}
 
-	for (int state_type = static_cast<int>(abnormalStateType::no_type) + 1; state_type < static_cast<int>(abnormalStateType::enum_end); state_type++) {
+	for (int state_type = static_cast<int>(abnormalStateType::_no_type) + 1; state_type < static_cast<int>(abnormalStateType::_enum_end); state_type++) {
 		this->_state_default_list[static_cast<abnormalStateType>(state_type)] = 0;
 	}
 	this->setStateInit();
@@ -33,7 +33,7 @@ int EquipItem::getListIndex() {
 }
 bool EquipItem::useItem(){
 
-	if (this->_item_equip_type == equipType::no_type) {
+	if (this->_item_equip_type == equipType::_no_type) {
 		return false;
 	}
 	if (this->checkExtendEquipItem() != true) {

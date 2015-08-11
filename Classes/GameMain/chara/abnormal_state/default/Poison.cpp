@@ -12,6 +12,6 @@ Poison::Poison(CharaBase* chara_obj) : StateAuto(chara_obj)
 }
 void Poison::stateEffect() {
 	
-	//this->_chara_obj->slipDamageHp(10);
+	this->_chara_obj->slipDamageHp(10);
 //	this->_chara_obj->slipDamageHp(10);
 }

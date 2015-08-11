@@ -24,7 +24,7 @@ public: TestShot(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list) : M
 
 		// 詠唱中のコメント
 		this->_spell_list.push_back(new SkillMagicSpell("試作なる創造の力よ…", 0));
-		this->_spell_list.push_back(new SkillMagicSpell("我の力となりて、敵を撃ちぬけ！", 30));
+		this->_spell_list.push_back(new SkillMagicSpell("我の力となりて、敵を撃ちぬけ！", 10));
 
 		// 詠唱中のコメント（ショート版）
 		this->_short_spell = new SkillMagicSpell("試作なる創造の力よ、敵を撃て！", 0);

@@ -44,11 +44,28 @@ void StateBase::endStateEffect() {
 	// no heal to event only heal
 	return;
 }
-void StateBase::setState(int state_level) {
+void StateBase::setState(int state_level, int effect_num, int effect_frame) {
 	this->_now_frame = 0;
 	this->_manual_state = (int)manualState::releaseNg;
 	this->_end_flag = false;
 	this->_state_level = state_level;
+
+	// Œp‘±Œø‰Ê—p
+	if (effect_num != 0 && effect_frame > 0) {
+		this->_repair_frame = effect_frame;
+		this->_max_effect_num = effect_num;
+		if (this->_repair_frame == 0) {
+			this->_effect_num = 0;
+		} else {
+			this->_effect_num = (double)this->_max_effect_num / this->_repair_frame;
+		}
+
+	}
+	this->startStateEffect();
+
+}
+void StateBase::startStateEffect() {
+
 }
 void StateBase::endState() {
 	this->_now_frame = this->_repair_frame;
