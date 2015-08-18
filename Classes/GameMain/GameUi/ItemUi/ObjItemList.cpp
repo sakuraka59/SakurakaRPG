@@ -194,7 +194,6 @@ void ObjItemList::openItemListDetail(
 		//		this->_type_label += type_name + "\n\n";
 
 		this->_type_list[this->_item_type_num] = item_type;
-
 		this->openUseItemDetailListInit(item_type);
 		/*
 		this->_item_detail_num_list[item_type] = 0;
@@ -336,32 +335,43 @@ void ObjItemList::openUseItemDetailListInit(haveItemType item_type) {
 	if (this->_item_detail_list[item_type] != nullptr) {
 		this->_item_detail_list[item_type]->removeAllChildren();
 	}
-	for (auto use_item_obj : use_item_type_list->at(item_type)) {
+	for (auto use_item_obj_base : use_item_type_list->at(item_type)) {
 
-		if (use_item_obj.second->getNum() <= 0) {
+		UseItem* use_item_obj = use_item_obj_base.second;
+		int item_num = use_item_obj->getNum();
+		if (item_num <= 0) {
 			continue;
 		}
 		/*
-		this->_item_detail_list[item_type] += use_item_obj.second->getItemName();
+		this->_item_detail_list[item_type] += use_item_obj->getItemName();
 		this->_item_detail_list[item_type] += "\n\n";
 		*/
 
-		string name_string_data = use_item_obj.second->getItemName();
-		auto detail_label_ttf = LabelTTF::create(name_string_data, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
-		detail_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
+		string name_string_data = "";
+		
+		if (item_num >= 2) {
+			name_string_data = use_item_obj->getItemName() + "(" + to_string(item_num) + ")";
+		} else {
+			name_string_data = use_item_obj->getItemName();
+		}
+
+
+		this->_use_item_label_list[use_item_obj] = LabelTTF::create(name_string_data, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
+		this->_use_item_label_list[use_item_obj]->setColor(cocos2d::Color3B(255, 255, 255));
 		auto anchor_point_type = new cocos2d::Vec2(0, 1);
-		detail_label_ttf->setAnchorPoint(*anchor_point_type);
-		detail_label_ttf->setPosition(0, (this->_TEXT_LINE_HEIGHT * this->_item_detail_num_list[item_type] * (-1)));
+		this->_use_item_label_list[use_item_obj]->setAnchorPoint(*anchor_point_type);
+		this->_use_item_label_list[use_item_obj]->setPosition(0, (this->_TEXT_LINE_HEIGHT * this->_item_detail_num_list[item_type] * (-1)));
 		//this->_type_label_obj->addChild(detail_label_ttf);
+
 
 		if (this->_item_detail_list[item_type] == nullptr) {
 			this->_item_detail_list[item_type] = new RenderObject();
 		}
-		this->_item_detail_list[item_type]->addChild(detail_label_ttf);
+		this->_item_detail_list[item_type]->addChild(this->_use_item_label_list[use_item_obj]);
 		//*/
 
 		// リストにアイテムオブジェクトを追加
-		this->_detail_item_list[item_type][this->_item_detail_num_list[item_type]] = use_item_obj.second;
+		this->_detail_item_list[item_type][this->_item_detail_num_list[item_type]] = use_item_obj;
 		this->_item_detail_num_list[item_type]++;
 	}
 }
@@ -611,15 +621,29 @@ void ObjItemList::useItemDrawUpdateToEquip(haveItemType item_type, EquipItem* it
 	}
 }
 void ObjItemList::useItemDrawUpdateToUse(haveItemType item_type, UseItem* item_obj) {
+	
 	if (item_obj->getNum() <= 0) {
-		this->_item_detail_num_list[item_type]++;		
+		this->_item_detail_num_list[item_type]++;
+		
 		this->openUseItemDetailListInit(item_type);
 
+		/*
 		if (this->_item_detail_num_list[item_type] <= 1) {
 //			this->resetItemTypeList();
 //			this->openItemListInit();
 		}
+		*/
 
+	} else  {
+		int item_num = item_obj->getNum();
+		string name_string_data = "";
+
+		if (item_num >= 2) {
+			name_string_data = item_obj->getItemName() + "(" + to_string(item_num) + ")";
+		} else {
+			name_string_data = item_obj->getItemName();
+		}
+		this->_use_item_label_list[item_obj]->setString(name_string_data);
 	}
 }
 void ObjItemList::closeItemList() {
@@ -673,7 +697,9 @@ void ObjItemList::transferItemObj() {
 		this->removeEquipItemList(equip_item_obj);
 
 		this->_other_item_list_obj->receiveEquipItemObj(equip_item_obj);
+//		this->_other_item_list_obj->openUseItemDetailListInit(item_type);
 		this->_other_item_list_obj->resetItemTypeList();
+
 		break;
 
 		// アイテム系

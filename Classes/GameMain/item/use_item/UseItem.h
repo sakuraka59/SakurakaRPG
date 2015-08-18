@@ -16,10 +16,13 @@ protected: std::unordered_map<mainStateType, int> _correct_state;
 protected: std::unordered_map<abnormalStateType, int> _state_default_list;
 protected: int _effect_frame;
 
+// 所持数を返す
 public: int getNum();
 
+// アイテム数を追加する
 public: void addNum(int add_num);
 
+// アイテムを使用する
 public: bool useItem() override;
 
 

@@ -16,7 +16,7 @@
 
 #include "../item/use_item/UseItem.h"
 
-MapObjectBase::MapObjectBase(int map_block_x, int map_block_y, GameCamera* camera_obj) {
+MapObjectBase::MapObjectBase(int map_block_x, int map_block_y, GameCamera* camera_obj, bool item_box_flag) {
 	this->_draw_x = (map_block_x * MAP_BLOCK_WIDTH);
 	this->_draw_y = (map_block_y * MAP_BLOCK_HEIGHT);
 
@@ -25,41 +25,7 @@ MapObjectBase::MapObjectBase(int map_block_x, int map_block_y, GameCamera* camer
 	this->_hit_square_obj = new HitSquare(this->_draw_x, this->_draw_y, MAP_BLOCK_WIDTH, MAP_BLOCK_HEIGHT, test_angle);
 
 	this->setPosition((float)(this->_draw_x), 0);
-	// /*
-	int sprite_one_width = 102;
-	int sprite_one_height = 171;
-	int sprite_x = sprite_one_width * 5;
-	int sprite_y = sprite_one_height * 0;
 
-	cocos2d::Rect clip_rect = cocos2d::Rect(sprite_x, sprite_y, sprite_one_width, sprite_one_height);
-	cocos2d::Sprite* sprite_data = cocos2d::Sprite::create("img/map/test_objects.png", clip_rect);
-	
-	// /*
-	int particle_width = 64;
-	int particle_height = 64;
-	sprite_data->setPosition((particle_width / 2), 75);
-	sprite_data->setScaleY(1.1f);
-	this->addChild(sprite_data);
-	// */
-	/*
-	// test sprite object
-	this->test_particle = cocos2d::ParticleSystemQuad::create("particle/test_obj2.plist");
-	this->test_particle->setPositionType(cocos2d::ParticleSystem::PositionType::RELATIVE);//ParticleSystem::PositionType::RELATIVE
-//	cocos2d::Size imgSize = this->test_particle->getContentSize();
-	int particle_width = 64;
-	int particle_height = 64;
-	this->test_particle->setPosition((particle_width / 2), (particle_height / 2));
-
-	this->addChild(this->test_particle);
-
-
-	// */
-
-
-	// test 
-	this->_equip_item_list = new HaveEquipItemList();
-	this->_use_item_list = new HaveUseItemList();
-	this->setItemList();
 }
 void MapObjectBase::Update() {
 	
@@ -151,7 +117,7 @@ void MapObjectBase::actionCountActive(CharaBase* chara_obj) {
 void MapObjectBase::actionObjBehavior(CharaBase* chara_obj) {
 //	chara_obj->sendComment("どーん！");
 	//chara_obj->healHp(1000);
-	this->openItemUi();
+//	this->openItemUi();
 }
 bool MapObjectBase::getActionFlag() {
 	return this->_action_flag;
@@ -159,11 +125,10 @@ bool MapObjectBase::getActionFlag() {
 
 // アイテムBOX系 ------------------------------------------
 // 初期化系
-void MapObjectBase::setRandItemList() {
-
-}
 void MapObjectBase::setItemList() {
-
+	if (this->_item_box_flag != true) {
+		return;
+	}
 	// @TODO test
 	ItemBase* test_load_item = ItemMasterList::getItemObjToMaster("test_sword");
 	this->setItemObj(test_load_item);

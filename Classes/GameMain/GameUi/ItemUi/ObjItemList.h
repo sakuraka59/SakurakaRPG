@@ -18,7 +18,7 @@ using namespace std;
 class ObjItemList : public RenderObject {
 
 protected: const int _TEXT_LINE_HEIGHT = 30;
-protected: const int _FONT_SIZE = 20;
+protected: const int _FONT_SIZE = 18;
 protected: const int _CURSOR_DELAY_TIME = 10;
 protected: const int _BG_WIDTH = 200;
 protected: const int _LINE_WIDTH = 5;
@@ -34,10 +34,10 @@ protected: HaveUseItemList* _use_item_list;
 protected: unordered_map<haveItemType, unordered_map<int, EquipItem*>>* _equip_item_list_detail;
 protected: unordered_map<haveItemType, unordered_map<string, UseItem*>>* _use_item_list_detail;
 
-
 protected: unordered_map<haveItemType, unordered_map<EquipItem*, RenderObject*>> _equip_item_flag_list;
 protected: unordered_map<equipType, EquipItem*> _equip_item_obj_list;
 
+protected: unordered_map<UseItem*, cocos2d::LabelTTF*> _use_item_label_list;
 protected: int _controll_type = 0; // 0 : アイテム種類一覧		1 : アイテム詳細一覧
 protected: int _cursor_delay = 0;
 

@@ -7,6 +7,9 @@
 #include "../chara/CharaPlayer.h"
 #include "../../Random.h"
 
+#include "map_object/item_box/ItemBoxBase.h"
+#include "map_object/tree/TreeObjBase.h"
+
 
 MapObjectList::MapObjectList(int map_block_y, GameCamera* camera_obj, CharaPlayer* player_obj)
 {
@@ -57,7 +60,7 @@ void MapObjectList::setObject(int map_block_x){
 	//			map_obj.Update();
 	//			this._object_draw_list.AddChild(map_obj.getObjectSprite());
 
-	MapObjectBase* map_obj = new MapObjectBase(
+	MapObjectBase* map_obj = new TreeObjBase(
 		map_block_x, this->_map_block_y
 		, this->_camera_obj
 		);
@@ -68,6 +71,23 @@ void MapObjectList::setObject(int map_block_x){
 	// /*
 	if (this->_draw_flag == true) {
 		this->_object_draw_list->addChild(map_obj);
+		this->_map_obj_draw_list[map_block_x] = true;
+	}
+	// */
+}
+void MapObjectList::setRandItemBoxObject(int map_block_x, int item_rate){
+
+	MapObjectBase* item_box_obj = new ItemBoxBase(
+		map_block_x, this->_map_block_y
+		, this->_camera_obj
+		);
+	this->_map_obj_line_list[map_block_x] = item_box_obj;
+	this->_map_obj_draw_list[map_block_x] = false;
+
+	// @TODO とりあえず全オブジェクトを描画する
+	// /*
+	if (this->_draw_flag == true) {
+		this->_object_draw_list->addChild(item_box_obj);
 		this->_map_obj_draw_list[map_block_x] = true;
 	}
 	// */

@@ -140,7 +140,7 @@ private: static void loadBase();
 // アイテムの種類ごとに動作振り分け
 private: static void loadTypeAndPath(itemDetailType item_type, string dir_path, string item_name);
 //-------------------------------------------------------------------
-// 以下ファイル読み込み詳細
+// ファイル読み込み詳細
 //-------------------------------------------------------------------
 // 片手剣、細剣
 private: static void loadTypeNormalEquip(itemDetailType item_type, string dir_path, string item_name);
@@ -151,8 +151,14 @@ private: static void loadTypeUse(itemDetailType item_type, string dir_path, stri
 // データ読み込み
 private: static ifstream loadItemData(string dir_path, string item_name);
 
-// 各種オブジェクトを返す
+//-------------------------------------------------------------------
+// オブジェクト返す
+//-------------------------------------------------------------------
+// IDから指定オブジェクトを返す
 public: static ItemBase* getItemObjToMaster(string item_name);
+
+// レア度からランダムにオブジェクトを返す
+public: static ItemBase* getItemObjToRateRandom(int rate_num);
 
 private: static ItemBase* ItemMaterialToItemBase(ItemLoadOnlyMaterial* load_item);
 };

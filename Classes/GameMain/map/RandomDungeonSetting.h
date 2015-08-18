@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../../Random.h"
+
 class RandomDungeonSetting{
 // 共通設定 -----------------------------------------------------
 // road width
@@ -22,19 +24,24 @@ public: static const int _ROOM_FRAME_SIZE = 2;
 
 // 2：ランダム地点選択からの部屋展開による作成にて使用 ----------
 // map size
-public: static const int _MAP_WIDTH = 16 * 1;
-public: static const int _MAP_HEIGHT = 9 * 1;
+public: static const int _MAP_WIDTH = 16 * 3;
+public: static const int _MAP_HEIGHT = 9 * 3;
 public: static const int _MAP_FRAME_NUM = 1;
 
 // 部屋数
 public: static const int _ROOM_MIN = 5;
-public: static const int _ROOM_MAX = 7;
+public: static const int _ROOM_MAX = 8;
 
+// 1つあたりの部屋の大きさ
 public: static const int _ROOM_MIN_WIDTH = 12;
 public: static const int _ROOM_MIN_HEIGHT = 6;
 public: static const int _ROOM_MAX_WIDTH = 16;
 public: static const int _ROOM_MAX_HEIGHT = 9;
 
+// 宝箱設定
+public: static const int _ITEM_BOX_MIN = 0;	// 最低数
+public: static const int _ITEM_BOX_MAX = 4;	// 最大数
+//-------------------------------------------------------------------
 public: static int getDungeonWidth() {
 	int dungeon_width = 0;
 	switch (RandomDungeonSetting::_MAP_CREATE_TYPE) {
@@ -58,5 +65,20 @@ public: static int getDungeonHeight() {
 		break;
 	}
 	return dungeon_height;
+}
+public: static int getItemBoxNum() {
+	int item_box_num = 0;
+	int rand_num = RandomDungeonSetting::_ITEM_BOX_MAX + RandomDungeonSetting::_ITEM_BOX_MIN - 1;
+	Random* rand_obj = new Random();
+	switch (RandomDungeonSetting::_MAP_CREATE_TYPE) {
+	case 2:
+		if (rand_num > 0) {
+			item_box_num = RandomDungeonSetting::_ITEM_BOX_MIN + rand_obj->getRandNum(rand_num);
+		} else {
+			item_box_num = RandomDungeonSetting::_ITEM_BOX_MIN;
+		}
+		break;
+	}
+	return item_box_num;
 }
 };

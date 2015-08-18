@@ -10,6 +10,7 @@
 
 #include "../../Random.h"
 
+#include "mapSettingType.h"
 #include "mini_map/MiniMapManager.h"
 #include "mini_map/miniMapType.h"
 
@@ -76,6 +77,7 @@ std::unordered_map<int, std::unordered_map<int, MapObjectBase*>> MapBase::getMap
 */
 void MapBase::initMapObject(std::unordered_map<int, std::unordered_map<int, int>> map_data) {
 	
+	
 	if (SET_MAP_MODE == 1) {
 		return;
 	}
@@ -93,9 +95,10 @@ void MapBase::initMapObject(std::unordered_map<int, std::unordered_map<int, int>
 		for (int y = 0; y < map_height; y++) {
 			int set_y = y * (-1);
 
-			if (map_data[set_x][y] == 1 || map_data[set_x][y] == 5) {
-				
+			if (map_data[set_x][y] == (int)mapSettingType::normal || map_data[set_x][y] == (int)mapSettingType::frame_obj) {
+				// 壁オブジェクトの設置
 				if (this->_map_obj_line_list[set_y] == nullptr) {
+					
 					MapObjectList* map_obj_list = new MapObjectList(
 						set_y,
 						this->_camera_obj,
@@ -104,10 +107,14 @@ void MapBase::initMapObject(std::unordered_map<int, std::unordered_map<int, int>
 					this->_map_obj_line_list[set_y] = map_obj_list;
 				}
 				this->_map_obj_line_list[set_y]->setObject(set_x);
+			} else if (map_data[set_x][y] == (int)mapSettingType::randam_item_box) {
+				// ランダムアイテム箱の設置
+				int item_box_rate = 1;
+				this->_map_obj_line_list[set_y]->setRandItemBoxObject(set_x, item_box_rate);
 			}
 		}
 	}
-	int hoge = 1;
+	
 	//*/
 }
 std::unordered_map<int, MapObjectList*> MapBase::getMapObjectLineList() {
@@ -143,15 +150,21 @@ void MapBase::createRandomMap() {
 	this->addChild(this->_map_ground_obj,1);
 	this->setCharaPoint(this->_player_obj, 2);
 
-	// マップ移動用設置オブジェクト読み込み
+	// マップ移動用設置オブジェクト読み込み --------------------
 	list<MapMove*> map_move_obj_list;
-	MapMoveData* move_data_1 = new MapMoveData(3, 0, 0, 1, 0);
-	map_move_obj_list.push_back(new MapMove(this->_player_obj->getMapBlockX(), (this->_player_obj->getMapBlockY()), move_data_1));
 
+	// 次の階層へ
+	MapMove* map_move_obj = get_dungeon_obj->getNextMoveObj();
+	map_move_obj_list.push_back(map_move_obj);
+	/*
+	MapMoveData* move_data_1 = new MapMoveData(3, 0, 0, 1, 0);
+	// @TODO キャラクターと同じ位置に表示
+	map_move_obj_list.push_back(new MapMove(this->_player_obj->getMapBlockX(), (this->_player_obj->getMapBlockY()), move_data_1));
+	*/
 	this->_mg_object_list_obj->LoadMapMoveData(map_move_obj_list);
 
 	this->_mg_object_list_obj->loadEnd();
-	// map obj ----------------------------------------------
+	// map obj -------------------------------------------------
 	this->initMapObject(get_dungeon_obj->getMapData());
 
 	// DEBUG 

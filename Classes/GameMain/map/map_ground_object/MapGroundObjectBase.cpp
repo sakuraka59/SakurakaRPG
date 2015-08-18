@@ -28,6 +28,22 @@ MapGroundObjectBase::MapGroundObjectBase(int map_block_x, int map_block_y) {
 
 
 }
+void MapGroundObjectBase::setMapPosition(int map_block_x, int map_block_y) {
+	this->_map_block_x = map_block_x;
+	this->_map_block_y = map_block_y;
+	this->_draw_x = (this->_map_block_x * MAP_BLOCK_WIDTH);
+	this->_draw_y = (this->_map_block_y * MAP_BLOCK_HEIGHT);
+
+	if (this->_hit_square_obj != nullptr){
+		delete this->_hit_square_obj;
+	}
+	double test_angle = 0;
+	this->_hit_square_obj = new HitSquare(this->_draw_x, this->_draw_y, MAP_BLOCK_WIDTH, MAP_BLOCK_HEIGHT, test_angle);
+
+
+	this->setPosition((float)this->_draw_x, (float)this->_draw_y);
+
+}
 void MapGroundObjectBase::Update() {
 }
 void MapGroundObjectBase::UpdateInit() {

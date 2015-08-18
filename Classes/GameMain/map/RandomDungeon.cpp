@@ -6,12 +6,19 @@
 #include "randomRoadType.h"
 #include "RandomDungeonRoom.h"
 
+#include "mapSettingType.h"
+
+#include "map_ground_object/map_bg_obj/map_move/MapMoveData.h"
+
 RandomDungeon::RandomDungeon() {
 
 
 	int dungeon_width = RandomDungeonSetting::getDungeonWidth();
 	int dungeon_height = RandomDungeonSetting::getDungeonHeight();
 	this->_rand_obj = new Random();
+
+	MapMoveData* move_data = new MapMoveData(3, 0, 0, 1, 0);
+	this->_next_move_obj = new MapMove(-1, -1, move_data);
 
 	switch (RandomDungeonSetting::_MAP_CREATE_TYPE) {
 	case 1:
@@ -30,8 +37,8 @@ void RandomDungeon::DungeonCreateRogelike(int dungeon_width, int dungeon_height)
 	// まずは配列の初期化
 	for (int x = 0; x < dungeon_width; x++) {
 		for (int y = 0; y < dungeon_height; y++) {
-			this->_map_data[x][y] = 1;
-			this->_map_ground_data[x][y] = 1;
+			this->_map_data[x][y] = (int)mapSettingType::normal;
+			this->_map_ground_data[x][y] = (int)mapSettingType::normal;
 		}
 	}
 
@@ -117,21 +124,21 @@ void RandomDungeon::DungeonCreateRogelike(int dungeon_width, int dungeon_height)
 
 void RandomDungeon::DungeonCreateOriginal(int dungeon_width, int dungeon_height) {
 
-	// まずは配列の初期化
-
+	// まずは配列の初期化 -------------------------------------------
 	for (int x = 0; x < dungeon_width; x++) {
 		for (int y = 0; y < dungeon_height; y++) {
 			if (x <= 0 || x >= dungeon_width - 1 ||
 				y <= 0 || y >= dungeon_height - 1) {
-				this->_map_data[x][y] = 5;
+				this->_map_data[x][y] = (int)mapSettingType::frame_obj;
 			}
 			else {
-				this->_map_data[x][y] = 1;
+				this->_map_data[x][y] = (int)mapSettingType::normal;
 			}
-			this->_map_ground_data[x][y] = 1;
+			this->_map_ground_data[x][y] = (int)mapSettingType::normal;
 		}
 	}
-	// 道幅による補正
+
+	// 道幅による補正 -----------------------------------------------
 	int frame_num = RandomDungeonSetting::_MAP_FRAME_NUM;	//外枠の壁幅
 
 	int road_top_correct = (int)floor((double)(RandomDungeonSetting::_ROAD_WIDTH - 1) / 2) + frame_num;
@@ -150,6 +157,16 @@ void RandomDungeon::DungeonCreateOriginal(int dungeon_width, int dungeon_height)
 
 	int first_core_x = -1;
 	int first_core_y = -1;
+
+	// 部屋の最小数
+	int set_room_min = RandomDungeonSetting::_ROOM_MIN;
+
+	// どこに次の部屋への移動オブジェクトを設置するか
+	int set_map_move_room = 0;
+
+	this->_next_block_x = -1;
+	this->_next_block_y = -1;
+
 	// 最大部屋数分、部屋の準備を行う
 	for (int room_num = 0; room_num < room_max; room_num++) {
 
@@ -172,7 +189,7 @@ void RandomDungeon::DungeonCreateOriginal(int dungeon_width, int dungeon_height)
 			int check_room_core_y = (int)ceil((double)(block_base_count / block_core_width)) + RandomDungeonSetting::_MAP_FRAME_NUM;// + road_top_correct;						
 
 			// 検索場所が壁データである場合
-			if (this->_map_data[check_room_core_x][check_room_core_y] == 1) {
+			if (this->_map_data[check_room_core_x][check_room_core_y] == (int)mapSettingType::normal) {
 
 				// 配置場所についたら、検索処理終了
 				if (room_core <= 0) {
@@ -187,31 +204,39 @@ void RandomDungeon::DungeonCreateOriginal(int dungeon_width, int dungeon_height)
 				room_core--;
 			}
 		}
-		// 部屋を展開する
-		int set_room_min = RandomDungeonSetting::_ROOM_MIN;
+		// 部屋を展開する -------------------------------------------
+		
 		if (block_core_count <= set_room_min) {
 
+			// 移動オブジェクト設置場所の場合
+			if (room_num == set_map_move_room) {
+				this->_next_block_x = room_core_x;
+				this->_next_block_y = room_core_y;
+				this->_next_move_obj->setMapPosition(room_core_x, (room_core_y * (-1)));
+			}
 
 			if (block_core_count == 0) {
 				this->setRoomExpansion(room_core_x, room_core_y);
 				this->setRoadFirstRoom(room_core_x, room_core_y);
 				first_core_x = room_core_x;
 				first_core_y = room_core_y;
+				
+				this->setMapData(room_core_x, room_core_y, (int)mapSettingType::room_center);
 
-				this->setMapData(room_core_x, room_core_y, 2);
-
-
+				
 			}
 			else {
 				if (room_core_x >= 0 && room_core_y >= 0) {
 
 					if (this->setRoadSearchMin(room_core_x, room_core_y, first_core_x, first_core_y) == true) {
-						this->setMapData(room_core_x, room_core_y, 2);
+						this->setMapData(room_core_x, room_core_y, (int)mapSettingType::room_center);
 
 					}
 				}
 
 			}
+
+			
 		}
 		else {
 			if (room_core_x >= 0 && room_core_y >= 0) {
@@ -219,7 +244,7 @@ void RandomDungeon::DungeonCreateOriginal(int dungeon_width, int dungeon_height)
 				if (this->checkRoadCreateRandom(room_core_x, room_core_y) == true) {
 					this->setRoomExpansion(room_core_x, room_core_y);
 
-					this->setMapData(room_core_x, room_core_y, 5);
+					this->setMapData(room_core_x, room_core_y, (int)mapSettingType::frame_obj);
 				}
 			}
 		}
@@ -246,6 +271,13 @@ void RandomDungeon::setRoomExpansion(int room_core_x, int room_core_y) {
 	int room_start_x = (int)floor((double)(room_width / 2));
 	int room_start_y = (int)floor((double)(room_height / 2));
 
+	// アイテム箱をセットするかどうか確立で判定
+	int item_box_set_rand = this->_rand_obj->getRandNum(100 - 1);
+	bool item_box_set_flag = false;
+	int item_box_counter = (room_width * room_height) / 2;
+	if (item_box_set_rand < 50) {
+		item_box_set_flag = true;
+	}
 
 	// 部屋の横分
 	for (int x = 0; x < room_width; x++) {
@@ -266,10 +298,22 @@ void RandomDungeon::setRoomExpansion(int room_core_x, int room_core_y) {
 				continue;
 			}
 
-			// 壁の場合のみ書き換え
-			if (this->_map_data[expansion_x][expansion_y] == 1 || this->_map_data[expansion_x][expansion_y] == 4) {
-
-				this->setMapData(expansion_x, expansion_y, 3);
+			
+			item_box_counter--;
+			
+			
+			if (this->_map_data[expansion_x][expansion_y] == (int)mapSettingType::normal || this->_map_data[expansion_x][expansion_y] == (int)mapSettingType::road) {
+				// 壁、道の場合、書き換え
+				if (item_box_set_flag == true && item_box_counter <= 0) {
+					// アイテム箱を置く
+					// 階段設置場所にはアイテムボックス置かない
+					if (this->_next_block_x != expansion_x && this->_next_block_y != expansion_y) {
+						this->setMapData(expansion_x, expansion_y, (int)mapSettingType::randam_item_box);
+						item_box_set_flag = false;
+					}
+				} else {
+					this->setMapData(expansion_x, expansion_y, (int)mapSettingType::room_normal);
+				}
 			}
 		}
 	}
@@ -486,12 +530,12 @@ void RandomDungeon::checkRoadCreate(int room_core_x, int room_core_y, int first_
 				break;
 			}
 
-			if (map_search_data[expansion_x][expansion_y] == 5) {
+			if (map_search_data[expansion_x][expansion_y] == (int)mapSettingType::frame_obj) {
 				break;
 			}
 
 			if (map_search_data[expansion_x][expansion_y] == 1) {
-				map_search_data[expansion_x][expansion_y] = 4;
+				map_search_data[expansion_x][expansion_y] = (int)mapSettingType::road;
 			}
 			else {
 				sub_load_num = j;
@@ -635,11 +679,11 @@ bool RandomDungeon::checkRoadCreateMiniDetail(int room_core_x, int room_core_y, 
 			break;
 		}
 
-		if (map_search_data[expansion_x][expansion_y] == 5) {
+		if (map_search_data[expansion_x][expansion_y] == (int)mapSettingType::frame_obj) {
 			break;
 		}
-		else if (map_search_data[expansion_x][expansion_y] == 1) {
-			map_search_data[expansion_x][expansion_y] = 4;
+		else if (map_search_data[expansion_x][expansion_y] == (int)mapSettingType::normal) {
+			map_search_data[expansion_x][expansion_y] = (int)mapSettingType::road;
 			search_start = true;
 		}
 		else {
@@ -699,8 +743,8 @@ void RandomDungeon::setRoadExpansion(int room_core_x, int room_core_y, int road_
 			break;
 		}
 
-		if (this->_map_data[expansion_x][expansion_y] == 1) {
-			this->setMapData(expansion_x, expansion_y, 4);
+		if (this->_map_data[expansion_x][expansion_y] == (int)mapSettingType::normal) {
+			this->setMapData(expansion_x, expansion_y, (int)mapSettingType::road);
 
 			// マップ幅分広げる
 			switch (road_type) {
@@ -715,7 +759,7 @@ void RandomDungeon::setRoadExpansion(int room_core_x, int room_core_y, int road_
 						continue;
 					}
 					if (this->_map_data[load_expansion_x][expansion_y] == 1) {
-						this->setMapData(load_expansion_x, expansion_y, 4);
+						this->setMapData(load_expansion_x, expansion_y, (int)mapSettingType::road);
 					}
 				}
 				break;
@@ -728,8 +772,8 @@ void RandomDungeon::setRoadExpansion(int room_core_x, int room_core_y, int road_
 					if (load_expansion_y < 0 || load_expansion_y >= map_height) {
 						continue;
 					}
-					if (this->_map_data[expansion_x][load_expansion_y] == 1) {
-						this->setMapData(expansion_x, load_expansion_y, 4);
+					if (this->_map_data[expansion_x][load_expansion_y] == (int)mapSettingType::normal) {
+						this->setMapData(expansion_x, load_expansion_y, (int)mapSettingType::road);
 					}
 				}
 				break;
@@ -748,7 +792,7 @@ void RandomDungeon::setMapData(int expansion_x, int expansion_y, int map_type) {
 	}
 	this->_map_data[expansion_x][expansion_y] = map_type;
 
-	if (map_type == 4) {
+	if (map_type == (int)mapSettingType::road) {
 		this->_map_ground_data[expansion_x][expansion_y] = 100;
 
 	}
@@ -765,7 +809,7 @@ int RandomDungeon::getMapDataFreeNum() {
 
 	for (int x = 0; x < RandomDungeonSetting::getDungeonWidth(); x++) {
 		for (int y = 0; y < RandomDungeonSetting::getDungeonHeight(); y++) {
-			if (this->_map_data[x][y] == 1) {
+			if (this->_map_data[x][y] == (int)mapSettingType::normal) {
 
 				count++;
 			}
@@ -780,4 +824,7 @@ int RandomDungeon::getMapBlockNum() {
 	count = RandomDungeonSetting::getDungeonWidth() * RandomDungeonSetting::getDungeonHeight();
 
 	return count;
+}
+MapMove* RandomDungeon::getNextMoveObj(){
+	return this->_next_move_obj;
 }

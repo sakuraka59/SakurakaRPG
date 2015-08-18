@@ -48,10 +48,10 @@ private: int _sanime_statue = 0;
 // オブジェクト残り動作回数
 protected: int _action_num = -1;
 // アクション系の動作を行えるかどうか
-protected: bool _action_flag = true;
+protected: bool _action_flag = false;
 
-// アイテム収納機能があるかどうか _action_flag = true 限定
-protected: bool _item_box_flag;
+
+
 
 private: unordered_map<haveItemType, int> _item_type_count;
 
@@ -59,8 +59,9 @@ private: unordered_map<haveItemType, int> _item_type_count;
 //protected: unordered_map<haveItemType, unordered_map<string, UseItem*>> _use_item_list;
 protected: HaveEquipItemList* _equip_item_list;
 protected: HaveUseItemList* _use_item_list;
+protected: bool _item_box_flag = false;	// アイテム収納機能があるかどうか _action_flag = true 限定
 
-public: MapObjectBase(int map_block_x, int map_block_y, GameCamera* camera_obj);
+public: MapObjectBase(int map_block_x, int map_block_y, GameCamera* camera_obj, bool item_box_flag = false);
 public: void Update();
 public: int getHitCheckType();
 public: HitSquare* getHitSquare();
@@ -76,9 +77,8 @@ public: bool getActionFlag();
 
 // アイテムBOX系 ------------------------------------------
 // 初期化系
-protected: void setRandItemList();
-protected: void setItemList();
-private: void setItemObj(ItemBase* item_obj);
+protected: virtual void setItemList();
+protected: void setItemObj(ItemBase* item_obj);
 // 調べてUI開く
 protected: void openItemUi();
 

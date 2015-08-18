@@ -30,6 +30,7 @@ private: CharaPlayer* _player_obj;
 
 public: MapObjectList(int map_block_y, GameCamera* camera_obj, CharaPlayer* player_obj);
 public: void setObject(int map_block_x);
+public: void setRandItemBoxObject(int map_block_x, int item_rate);
 public: bool checkMapObject(int map_block_x);
 public: MapObjectBase* getMapObject(int map_block_x);
 public: void Update();

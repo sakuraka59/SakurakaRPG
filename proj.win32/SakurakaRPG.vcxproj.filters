@@ -453,6 +453,12 @@
     <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateUI\CCGauge.cpp">
       <Filter>src\GameMain\GameUi\DefaultStateUI</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\map\map_object\item_box\ItemBoxBase.cpp">
+      <Filter>src\GameMain\map\map_object\item_box</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\map\map_object\tree\TreeObjBase.cpp">
+      <Filter>src\GameMain\map\map_object\tree</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -802,6 +808,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\GameUi\DefaultStateUI\CCGauge.h">
       <Filter>src\GameMain\GameUi\DefaultStateUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\map_object\item_box\ItemBoxBase.h">
+      <Filter>src\GameMain\map\map_object\item_box</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\mapSettingType.h">
+      <Filter>src\GameMain\map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\map\map_object\tree\TreeObjBase.h">
+      <Filter>src\GameMain\map\map_object\tree</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

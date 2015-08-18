@@ -41,6 +41,7 @@ protected: Sprite* _sprite_data;
 
 
 public: MapGroundObjectBase(int map_block_x, int map_block_y);
+public: void setMapPosition(int map_block_x, int map_block_y);
 
 public: virtual void Update();
 public: virtual void UpdateInit();

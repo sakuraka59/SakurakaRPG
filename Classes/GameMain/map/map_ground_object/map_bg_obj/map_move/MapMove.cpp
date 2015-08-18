@@ -11,10 +11,10 @@ MapMove::MapMove(int map_block_x, int map_block_y, MapMoveData* map_move_data) :
 }
 
 void MapMove::actionObjBehavior(CharaBase* chara_obj) {
-	chara_obj->sendComment("どーん！！");
-	chara_obj->healHp(1000);
+//	chara_obj->sendComment("どーん！！");
+//	chara_obj->healHp(1000);
 
-//	MapMoveManager::setMapMoveData(this->_map_move_data);
+	MapMoveManager::setMapMoveData(this->_map_move_data);
 }
 void MapMove::Update() {
 

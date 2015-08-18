@@ -915,12 +915,6 @@ bool CharaBase::setSkill(SkillBase* skill_obj) {
 	if (this->checkSetSkill(skill_obj) != true) {
 		return false;
 	}
-	//	Debug.WriteLine("[charaBase]set skill 0");
-	/*
-	if (this->checkSpellFlag() == true) {
-	return false;
-	}
-	*/
 
 	if (skill_obj->checkExtendSkillUse() != true) {
 		return false;

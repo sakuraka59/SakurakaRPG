@@ -10,7 +10,10 @@
 #include "equip_item/weapon/rapier/WeaponRapierBase.h"
 
 // use
-#include "use_item/hp_heal/TestHpHeal.h"
+#include "use_item/UseItem.h"
+//#include "use_item/hp_heal/TestHpHeal.h"
+
+#include "../../Random.h"
 
 // 各アイテムのパスリスト
 unordered_map<itemDetailType, string> ItemMasterList::_path_list;
@@ -157,6 +160,7 @@ void ItemMasterList::loadTypeNormalEquip(itemDetailType item_type, string dir_pa
 			break;
 		case 1:
 			item_id = load_str;
+			equip_obj->_item_id = item_id;
 			break;
 		case 2:
 			item_rare = stoi(load_str);
@@ -254,6 +258,29 @@ ifstream ItemMasterList::loadItemData(string dir_path, string item_name) {
 ItemBase* ItemMasterList::getItemObjToMaster(string item_id) {
 	ItemLoadOnlyMaterial* load_item = ItemMasterList::_item_master_list[item_id];
 
+	return ItemMasterList::ItemMaterialToItemBase(load_item);
+}
+
+ItemBase* ItemMasterList::getItemObjToRateRandom(int rate_num) {
+	Random* rand_obj = new Random();
+	auto item_master_list = ItemMasterList::_item_master_rate_list[rate_num];
+	int item_num = item_master_list.size();
+	int item_rand_num = rand_obj->getRandNum(item_num - 1);
+	int item_count = 0;
+	
+
+	ItemLoadOnlyMaterial* load_item = nullptr;
+	for (auto item_material : item_master_list) {
+		if (item_count >= item_rand_num) {
+			load_item = ItemMasterList::_item_master_list[item_material.second->_item_id];
+			break;
+		}
+		item_count++;
+	}
+	if (load_item == nullptr) {
+		return nullptr;
+	}
+	
 	return ItemMasterList::ItemMaterialToItemBase(load_item);
 }
 ItemBase* ItemMasterList::ItemMaterialToItemBase(ItemLoadOnlyMaterial* load_item) {

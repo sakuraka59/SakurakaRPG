@@ -3,13 +3,17 @@
 #include <unordered_map>
 #include <random>
 #include "RandomDungeonSetting.h"
-
+#include "map_ground_object/map_bg_obj/map_move/MapMove.h"
 class Random;
 
 class RandomDungeon {
 private: std::unordered_map<int, std::unordered_map<int, int>> _map_data;
 private: std::unordered_map<int, std::unordered_map<int, int>> _map_ground_data;
 private: Random* _rand_obj;
+
+private: int _next_block_x = -1;
+private: int _next_block_y = -1;
+private: MapMove* _next_move_obj;
 public: RandomDungeon();
 
 // 部屋分割法でマップ作成
@@ -53,4 +57,7 @@ public: std::unordered_map<int, std::unordered_map<int, int>> getMapGroundData()
 private: int getMapDataFreeNum();
 
 private: int getMapBlockNum();
+
+// 次の階層への移動オブジェクトを取得する
+public: MapMove* getNextMoveObj();
 };
