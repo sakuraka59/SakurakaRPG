@@ -48,9 +48,13 @@ bool HitCheck::checkCircleAndCircle(HitCircle* circle_obj1, HitCircle* circle_ob
 	double c2y = circle_obj2->getCneterY();
 	double c2r = circle_obj2->getRadius();
 
-
+	double c1x_c2x_2 = (c1x - c2x) * (c1x - c2x);
+	double c1y_c2y_2 = (c1y - c2y) * (c1y - c2y);
+	double c1r_c2r_2 = (c1r + c2r) * (c1r + c2r);
+//	double c1x_c2x_2 = pow((c1x - c2x), 2) + pow((c1y - c2y), 2);
+//	auto hoge2 = pow((c1r - c2r), 2);
 	//(xc1-xc2)^2 + (yc1-yc2)^2 ÅÖ (r1+r2)^2
-	if (pow((c1x - c2x), 2) + pow((c1y - c2y), 2) <= pow((c1r - c2r), 2)) {
+	if (c1x_c2x_2 + c1y_c2y_2 <= c1r_c2r_2) {
 		return true;
 	}
 	return false;

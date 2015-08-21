@@ -15,7 +15,7 @@ SeedHuman::SeedHuman(CharaBase* chara_obj) : SeedBase(chara_obj) {
 	this->_vision_angle = 45;
 
 	this->_width = 15;
-	this->_height = 38;
+	this->_height = 48;
 
 	// set group --------------------------------------------
 	// my group

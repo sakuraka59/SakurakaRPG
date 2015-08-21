@@ -50,8 +50,9 @@ void SkillAttack::attackCheck() {
 		SkillAttackData* skill_attack_data = check_attack_group->getSkillAttack(i);
 		if (skill_attack_data->getSkillType() == 3) {
 
-			// @TODO 必要かどうか不明
+			// 当たったキャラクター初期化
 			//this->_hitcheck_chara_list = new std::list<CharaBase*>();// = new ArrayList<charaBase>();
+			this->_hitcheck_chara_list.clear();
 
 			if (this->_reset_count_flag == true) {
 				this->_attack_reset_count++;
@@ -144,6 +145,7 @@ void SkillAttack::attackCheck() {
 						angle_check_flag = true;
 					}
 				}
+
 				//angle_check_flag = true;
 				// angle check ok And range check
 				if (
@@ -301,4 +303,7 @@ bool SkillAttack::checkHeightHit(SkillAttackData* skill_attack_data, CharaBase* 
 }
 double SkillAttack::getNpcUseRange() {
 	return this->_npc_use_range;
+}
+bool SkillAttack::getResetCountFlag() {
+	return this->_reset_count_flag;
 }

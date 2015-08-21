@@ -969,6 +969,8 @@ bool CharaBase::setSkill(SkillBase* skill_obj) {
 		if (get_move_angle > -360 && get_move_angle < 720) {
 			this->_move_angle = get_move_angle;
 		}
+		// キャラクター表示をターゲットの向きに向ける
+		this->updateMoveAngleDirection();
 	}
 	return skill_set_flag;
 }
@@ -1347,11 +1349,19 @@ void CharaBase::sendSexualComment() {
 }
 
 // set magic list
-void CharaBase::setMagicList(MagicBase* magic_obj) {
+void CharaBase::setMagicList(MagicBase* magic_obj, bool shadow_flag, bool shot_flag) {
 	//this->_magic_list.Add(magic_obj);
 	this->_magic_list->push_back(magic_obj);
-	magic_obj->magicInit(this->getDrawX(), this->getDrawY(), this->getDrawZ(), this->getMoveAngle());
-	this->setShadowList(magic_obj);
+
+	double set_angle = (double)this->getMoveAnagleDirection();
+	if (shot_flag == true) {
+		set_angle = this->getMoveAngle();
+	}
+	magic_obj->magicInit(this->getDrawX(), this->getDrawY(), this->getDrawZ(), set_angle);
+
+	if (shadow_flag == true) {
+		this->setShadowList(magic_obj);
+	}
 }
 // set magic list
 void CharaBase::setShadowList(MagicBase* magic_obj) {

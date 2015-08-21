@@ -13,7 +13,7 @@ void MagicShot::skillActiveEffect(CharaBase* check_chara_obj) {
 	this->_use_chara_obj->setAttackFrame(this->_magic_attack_frame);	// Š®‘S‚És“®‚ª‰Â”\‚É‚È‚é‚Ü‚Å‚ÌŽžŠÔ
 	this->_use_chara_obj->sendComment(this->_magic_active_comment);
 	this->_use_chara_obj->resetSpellStatus();
-	this->_use_chara_obj->setMagicList(this->_magic_active_obj);
+	this->_use_chara_obj->setMagicList(this->_magic_active_obj, true, true);
 //	this->_use_chara_obj->setShadowList(this->_magic_active_obj);
 	//chara_obj->setShadowList(this);
 

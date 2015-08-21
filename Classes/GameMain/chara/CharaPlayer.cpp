@@ -20,6 +20,7 @@
 #include "../skill/weapon_skill/no_weapon/NoWeaponDefault.h"
 #include "../skill/magic/normal/TestShot.h"
 #include "../skill/weapon_skill/sword/SwordGale/SwordGale.h"
+#include "../skill/weapon_skill/sword/DoubleSlash/DoubleSlash.h"
 
 // アイテムテスト
 #include "../item/ItemMasterList.h"
@@ -64,8 +65,8 @@ CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, st
 
 	// */
 	// テスト用所持アイテム
-//	ItemBase* test_item_obj = ItemMasterList::getItemObjToMaster("test_rapier");
-//	this->_equip_item_list->setListToItem((EquipItem*)test_item_obj);
+	ItemBase* test_item_obj = ItemMasterList::getItemObjToMaster("test_sword");
+	this->_equip_item_list->setListToItem((EquipItem*)test_item_obj);
 	// 初期表示
 	//this->Position = new Vector2((int)(this->_draw_x), (int)(this->_draw_y - this->_play_camera._y));
 	//	this->Position = new Vector2((int)(this->_draw_x - this->_play_camera.getCameraX()), (int)(this->_draw_y - this->_play_camera.getCameraY() + this->_draw_z));
@@ -594,19 +595,20 @@ void CharaPlayer::testAction() {
 		Gamepad::GameControll->setControllType(gamePadControllType::item_ui);
 	}
 
-	if (this->_control_flag == true  && Gamepad::L1->isPush() == true) {
-		
-		// 装備状態とアイテム所持UIで差分が発生している場合に
-		// 該当アイテムを使用すると落ちるので、キー操作による直接装備はいったん停止
-		/*
-		this->sendComment("剣装備なう");
-		this->_equip_item_list->itemUse(0);
-		*/
+	// test skill
+	//　keybord to Q
+	if (this->_control_flag == true && Gamepad::L1->isPush() == true) {
 
+		bool attack_flag = this->setSkill(new DoubleSlash(this, this->_all_chara_list));
+		if (attack_flag == true) {
+//			this->sendComment(this->_comment_list.getComment(charaCommentType.chara_attack, charaSexualType.normal));
+		}
 	}
+
+
 	//　keybord to E
 	if (this->_control_flag == true && Gamepad::R1->isPush() == true) {
-	
+
 		bool attack_flag = this->setSkill(new SwordGale(this, this->_all_chara_list));
 		if (attack_flag == true) {
 //			this->sendComment(this->_comment_list.getComment(charaCommentType.chara_attack, charaSexualType.normal));
@@ -614,7 +616,6 @@ void CharaPlayer::testAction() {
 	}
 
 
-	// test skill
 	// keybord to F
 	if (this->_control_flag == true && Gamepad::L2->isPush() == true) {
 		bool attack_flag = this->setSkill(new TestShot(this, this->_all_chara_list));

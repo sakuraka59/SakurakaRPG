@@ -3,7 +3,7 @@
 #include "../../SkillMagicSpell.h"
 
 #include "../../../magic/normal/TestMagicShot.h"
-#include "../../../magic/effect/slash/SlashUp1.h"
+#include "../../../magic/effect/one_hand/slash/SlashUp1.h"
 
 using namespace std;
 

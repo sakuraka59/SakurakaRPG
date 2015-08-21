@@ -1,15 +1,17 @@
 #include "GameMain.h"
-#include "GameUi\PlayUi.h"
-#include "GameUi\PlayerCommentUI.h"
-#include "GameUi\DefaultStateUI.h"
-#include "GameUi\ItemUi.h"
+#include "GameUi/PlayUi.h"
+#include "GameUi/PlayerCommentUI.h"
+#include "GameUi/DefaultStateUI.h"
+#include "GameUi/ItemUi.h"
+#include "GameUi/AbnormalStateUI.h"
 
-#include "..\Input\Gamepad.h"
+#include "../Input/Gamepad.h"
 
 #define COCOS2D_DEBUG 1
 USING_NS_CC;
 
 ItemUi* GameMain::_item_ui_obj = new ItemUi();
+AbnormalStateUI* GameMain::_abnormal_state_ui_obj = new AbnormalStateUI();
 Scene* GameMain::createScene() {
 	// 'scene' is an autorelease object
 	auto scene = Scene::create();
@@ -77,12 +79,15 @@ bool GameMain::init()
 
 	this->_default_state_ui = new DefaultStateUI(player_obj);
 	GameMain::_item_ui_obj->Init(player_obj);
+	GameMain::_abnormal_state_ui_obj->setInit(player_obj);
 	
+
 	this->_play_ui_obj->setItemUiObj(GameMain::_item_ui_obj);
 //	this->_default_state_ui->setPosition(0, 0);
 
 	this->addChild(this->_play_ui_obj);
 	this->addChild(this->_default_state_ui);
+//	this->addChild(GameMain::_abnormal_state_ui_obj);
 	this->addChild(GameMain::_item_ui_obj);
 	this->addChild(this->_play_comment_ui_obj);
 
@@ -153,6 +158,8 @@ void GameMain::update(float delta) {
 
 	this->_play_ui_obj->Update();
 	GameMain::_item_ui_obj->Update();
+
+	GameMain::_abnormal_state_ui_obj->Update();
 	this->_default_state_ui->Update();
 
 	this->_play_comment_ui_obj->Update();

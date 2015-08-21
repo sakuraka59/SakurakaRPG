@@ -18,6 +18,13 @@ SeedTestPuppet::SeedTestPuppet(CharaBase* chara_obj) : SeedBase(chara_obj) {
 	this->_width = 8;
 	this->_height = 16;
 
+	// setting seed human 
+	this->_width = 10;
+	this->_height = 48;
+	/*
+	this->_width = 15;
+	this->_height = 48;
+	*/
 	// set group --------------------------------------------
 	// my group
 	this->_my_group_list.push_back(charaGroupList::thief);

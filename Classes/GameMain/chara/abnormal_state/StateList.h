@@ -1,5 +1,6 @@
 #pragma once
 #include <unordered_map>		// ハッシュテーブル
+#include <map>		// ハッシュテーブル
 #include "StateBase.h"
 #include "abnormalStateType.h"
 
@@ -10,7 +11,7 @@ class StateList {
 //	private Dictionary<abnormalStateType, StateBase> _state_list = new Dictionary<abnormalStateType, StateBase>();
 //	private List<abnormalStateType> _guard_state_list = new List<abnormalStateType>();
 
-private: std::unordered_map<abnormalStateType, StateBase*> _state_list;
+private: std::map<abnormalStateType, StateBase*> _state_list;	// UIに追加した順番どおりに表示したいのでunordered_mapは使わない
 private: std::unordered_map<abnormalStateType, abnormalStateType> _guard_state_list;
 // ------------------------------------------------------------------
 public: StateList(CharaBase* chara_obj);
@@ -22,7 +23,7 @@ public: void setState(abnormalStateType state_type, int state_level, int effect_
 public: void endState(abnormalStateType state_type);
 public: bool checkToSetState(abnormalStateType state_type, int state_level, int state_rate, int effect_num = 0, int effect_frame = 0);
 public: bool getStateEndFlag(abnormalStateType state_type);
-public: std::unordered_map<abnormalStateType, StateBase*> getStateList();
+public: std::map<abnormalStateType, StateBase*> getStateList();
 public: void setEquipItemToState(abnormalStateType state_type, EquipItem* item_obj);
 public: void removeEquipItemToState(abnormalStateType state_type, EquipItem* item_obj);
 // guard ----------------------------------------------------

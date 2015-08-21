@@ -124,9 +124,6 @@
     <Filter Include="src\GameMain\magic\effect">
       <UniqueIdentifier>{c8ef199c-4345-495e-8dac-0b45a7a93561}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\GameMain\magic\effect\slash">
-      <UniqueIdentifier>{5efe3f00-c2aa-4cd1-b792-a3a434da993e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\GameMain\map\map_ground_object\map_bg_object">
       <UniqueIdentifier>{eb4b6f4e-708a-45f3-8961-a9742210ba8f}</UniqueIdentifier>
     </Filter>
@@ -159,6 +156,27 @@
     </Filter>
     <Filter Include="src\GameMain\GameUi\DefaultStateUI">
       <UniqueIdentifier>{abb3a868-f4fb-45ef-b461-93e27d387c99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\GameUi\AbnormalStateUi">
+      <UniqueIdentifier>{a82bf943-c0b8-4fbf-a818-54fd4c711602}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\skill\weapon_skill\sword\DoubleSlash">
+      <UniqueIdentifier>{ed86bb11-fe41-478f-8bbb-ec8e8ad9482b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\magic\effect\one_hand">
+      <UniqueIdentifier>{2f112e2b-9095-4f6b-a737-81425ec6f9b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\magic\effect\one_hand\slash">
+      <UniqueIdentifier>{5efe3f00-c2aa-4cd1-b792-a3a434da993e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\magic\effect\one_hand\slash\slash_template3">
+      <UniqueIdentifier>{ce74e0c6-eca9-4186-a096-18d2154d8f0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\magic\effect\one_hand\slash\slash_template1">
+      <UniqueIdentifier>{82df84a3-77ee-4a55-9b90-c5142290234b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\magic\effect\one_hand\slash\slash_template2">
+      <UniqueIdentifier>{71e65976-39c1-47ca-a50e-e188cedb4833}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -381,9 +399,6 @@
     <ClCompile Include="..\Classes\Input\GamepadControll.cpp">
       <Filter>src\Input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameMain\magic\effect\slash\SlashUp1.cpp">
-      <Filter>src\GameMain\magic\effect\slash</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GameMain\magic\effect\EffectBase.cpp">
       <Filter>src\GameMain\magic\effect</Filter>
     </ClCompile>
@@ -458,6 +473,27 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\map\map_object\tree\TreeObjBase.cpp">
       <Filter>src\GameMain\map\map_object\tree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\AbnormalStateUI.cpp">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\AbnormalStateUi\AbnormalStateView.cpp">
+      <Filter>src\GameMain\GameUi\AbnormalStateUi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword\DoubleSlash\DoubleSlash.cpp">
+      <Filter>src\GameMain\skill\weapon_skill\sword\DoubleSlash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\magic\effect\one_hand\slash\slash_template1\SlashTemplate1.cpp">
+      <Filter>src\GameMain\magic\effect\one_hand\slash\slash_template1</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\magic\effect\one_hand\slash\slash_template3\SlashTemplate3.cpp">
+      <Filter>src\GameMain\magic\effect\one_hand\slash\slash_template3</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\magic\effect\one_hand\slash\slash_template2\SlashTemplate2.cpp">
+      <Filter>src\GameMain\magic\effect\one_hand\slash\slash_template2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\magic\effect\one_hand\slash\SlashUp1.cpp">
+      <Filter>src\GameMain\magic\effect\one_hand\slash</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -731,9 +767,6 @@
     <ClInclude Include="..\Classes\Input\GamepadControll.h">
       <Filter>src\Input</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GameMain\magic\effect\slash\SlashUp1.h">
-      <Filter>src\GameMain\magic\effect\slash</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GameMain\magic\effect\EffectBase.h">
       <Filter>src\GameMain\magic\effect</Filter>
     </ClInclude>
@@ -817,6 +850,27 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\map\map_object\tree\TreeObjBase.h">
       <Filter>src\GameMain\map\map_object\tree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\AbnormalStateUI.h">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\AbnormalStateUi\AbnormalStateView.h">
+      <Filter>src\GameMain\GameUi\AbnormalStateUi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword\DoubleSlash\DoubleSlash.h">
+      <Filter>src\GameMain\skill\weapon_skill\sword\DoubleSlash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\magic\effect\one_hand\slash\slash_template1\SlashTemplate1.h">
+      <Filter>src\GameMain\magic\effect\one_hand\slash\slash_template1</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\magic\effect\one_hand\slash\slash_template3\SlashTemplate3.h">
+      <Filter>src\GameMain\magic\effect\one_hand\slash\slash_template3</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\magic\effect\one_hand\slash\slash_template2\SlashTemplate2.h">
+      <Filter>src\GameMain\magic\effect\one_hand\slash\slash_template2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\magic\effect\one_hand\slash\SlashUp1.h">
+      <Filter>src\GameMain\magic\effect\one_hand\slash</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

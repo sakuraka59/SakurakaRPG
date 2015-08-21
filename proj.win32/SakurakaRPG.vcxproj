@@ -166,6 +166,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\chara\chara_seed\test_puppet\SeedTestPuppet.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameCamera.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameMain.cpp" />
+    <ClCompile Include="..\Classes\GameMain\GameUi\AbnormalStateUI.cpp" />
+    <ClCompile Include="..\Classes\GameMain\GameUi\AbnormalStateUi\AbnormalStateView.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateUI.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateUI\CCGauge.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateUI\DefaultStateGauge.cpp" />
@@ -194,7 +196,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\item\use_item\hp_heal\TestHpHeal.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\use_item\UseItem.cpp" />
     <ClCompile Include="..\Classes\GameMain\magic\effect\EffectBase.cpp" />
-    <ClCompile Include="..\Classes\GameMain\magic\effect\slash\SlashUp1.cpp" />
+    <ClCompile Include="..\Classes\GameMain\magic\effect\one_hand\slash\SlashUp1.cpp" />
+    <ClCompile Include="..\Classes\GameMain\magic\effect\one_hand\slash\slash_template1\SlashTemplate1.cpp" />
+    <ClCompile Include="..\Classes\GameMain\magic\effect\one_hand\slash\slash_template2\SlashTemplate2.cpp" />
+    <ClCompile Include="..\Classes\GameMain\magic\effect\one_hand\slash\slash_template3\SlashTemplate3.cpp" />
     <ClCompile Include="..\Classes\GameMain\magic\MagicBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\magic\normal\TestMagicShot.cpp" />
     <ClCompile Include="..\Classes\GameMain\map\MapBase.cpp" />
@@ -230,6 +235,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\skill\use_item\ItemEffect.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\no_weapon\NoWeaponDefault.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\OneHandBase.cpp" />
+    <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword\DoubleSlash\DoubleSlash.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword\SkillSwordBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword\SwordGale\SwordGale.cpp" />
     <ClCompile Include="..\Classes\Input\Gamepad.cpp" />
@@ -275,6 +281,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\chara\mainStateType.h" />
     <ClInclude Include="..\Classes\GameMain\GameCamera.h" />
     <ClInclude Include="..\Classes\GameMain\GameMain.h" />
+    <ClInclude Include="..\Classes\GameMain\GameUi\AbnormalStateUI.h" />
+    <ClInclude Include="..\Classes\GameMain\GameUi\AbnormalStateUi\AbnormalStateView.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\DefaultStateUI.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\DefaultStateUI\CCGauge.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\DefaultStateUI\DefaultStateGauge.h" />
@@ -307,7 +315,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\item\use_item\UseItem.h" />
     <ClInclude Include="..\Classes\GameMain\item\use_item\useItemId.h" />
     <ClInclude Include="..\Classes\GameMain\magic\effect\EffectBase.h" />
-    <ClInclude Include="..\Classes\GameMain\magic\effect\slash\SlashUp1.h" />
+    <ClInclude Include="..\Classes\GameMain\magic\effect\one_hand\slash\SlashUp1.h" />
+    <ClInclude Include="..\Classes\GameMain\magic\effect\one_hand\slash\slash_template1\SlashTemplate1.h" />
+    <ClInclude Include="..\Classes\GameMain\magic\effect\one_hand\slash\slash_template2\SlashTemplate2.h" />
+    <ClInclude Include="..\Classes\GameMain\magic\effect\one_hand\slash\slash_template3\SlashTemplate3.h" />
     <ClInclude Include="..\Classes\GameMain\magic\MagicBase.h" />
     <ClInclude Include="..\Classes\GameMain\magic\normal\TestMagicShot.h" />
     <ClInclude Include="..\Classes\GameMain\map\mapGroundType.h" />
@@ -350,6 +361,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\skill\use_item\ItemEffect.h" />
     <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\no_weapon\NoWeaponDefault.h" />
     <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\OneHandBase.h" />
+    <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword\DoubleSlash\DoubleSlash.h" />
     <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword\SkillSwordBase.h" />
     <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword\SwordGale\SwordGale.h" />
     <ClInclude Include="..\Classes\Input\Gamepad.h" />

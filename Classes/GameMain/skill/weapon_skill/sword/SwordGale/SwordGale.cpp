@@ -4,6 +4,7 @@
 #include "../../../../chara/CharaBase.h"
 
 #include "../../../../magic/normal/TestMagicShot.h"
+#include "../../../../magic/effect/one_hand/slash/SlashUp1.h"
 
 SwordGale::SwordGale(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list) : SkillSwordBase(use_chara_obj, all_chara_list) {
 
@@ -17,7 +18,7 @@ SwordGale::SwordGale(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list)
 	this->_use_cc = 2;
 
 	// Šî–{UŒ‚”ÍˆÍ
-	int attack_range = 50;
+	int attack_range = 70;
 
 	this->_set_attack_frame = 50;
 	this->_set_skill_frame = 20;
@@ -47,7 +48,7 @@ SwordGale::SwordGale(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list)
 void SwordGale::attackUpdateEffect(){
 
 	if (this->_skill_attack_count == 3 && this->_attack_frame == 0) {
-		this->_use_chara_obj->setMagicList(new TestMagicShot(this->_use_chara_obj));
+		this->_use_chara_obj->setMagicList(new TestMagicShot(this->_use_chara_obj), true, true);
 	}
 
 }

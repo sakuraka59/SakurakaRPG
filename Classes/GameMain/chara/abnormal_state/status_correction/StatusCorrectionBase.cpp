@@ -4,6 +4,27 @@
 #include <math.h>
 StatusCorrectionBase::StatusCorrectionBase(CharaBase* chara_obj, mainStateType correction_state) : StateAuto(chara_obj) {
 
+	
+	switch (correction_state) {
+		case mainStateType::hp:
+			this->_state_name = "•â•Œø‰Ê:HP";
+			break;
+		case mainStateType::sp:
+			this->_state_name = "•â•Œø‰Ê:SP";
+			break;
+		case mainStateType::atk:
+			this->_state_name = "•â•Œø‰Ê:UŒ‚—Í";
+			break;
+		case mainStateType::def:
+			this->_state_name = "•â•Œø‰Ê:–hŒä—Í";
+			break;
+		case mainStateType::magic:
+			this->_state_name = "•â•Œø‰Ê:–‚—Í";
+			break;
+		case mainStateType::mdef:
+			this->_state_name = "•â•Œø‰Ê:–‚–@–hŒä—Í";
+			break;
+	}
 	this->_repair_frame = 0;
 
 	// state effect interval

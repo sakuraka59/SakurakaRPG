@@ -88,7 +88,7 @@ bool StateList::checkToSetState(abnormalStateType state_type, int state_level, i
 bool StateList::getStateEndFlag(abnormalStateType state_type) {
 	return this->_state_list[state_type]->getEndFlag();
 }
-std::unordered_map<abnormalStateType, StateBase*> StateList::getStateList() {
+std::map<abnormalStateType, StateBase*> StateList::getStateList() {
 	return this->_state_list;
 }
 //-----------------------------------------------------------

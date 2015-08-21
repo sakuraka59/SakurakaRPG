@@ -10,7 +10,7 @@ TestMagicShot::TestMagicShot(CharaBase* chara_obj)
 void TestMagicShot::magicInitExtend() {
 	// •`‰æ‚Ì€”õ
 //	this->_texture_info = ResourceManage.getTextureInfo("/Application/res/magic/magictest.png", 2, 2);
-	this->_width = 32;
+	this->_width = 10;
 	this->_height = 32;
 	
 	// ‚¿‚å‚Á‚Æ•‚‚©‚¹‚é
@@ -26,6 +26,8 @@ void TestMagicShot::magicInitExtend() {
 	this->_hit_height = 16;
 
 	this->_test_particle = cocos2d::ParticleSystemQuad::create("particle/magic/normal/testShot4.plist");
+//	this->_test_particle = cocos2d::ParticleSystemQuad::create("particle/effect/slash/slash_test.plist");
+
 //	this->_test_particle = cocos2d::ParticleSystemQuad::create("particle/magic/normal/testShot_endress.plist");
 //	this->_test_particle = cocos2d::ParticleSystemQuad::create("particle/magic/fire/fire_ball.plist");
 //	this->_test_particle = cocos2d::ParticleSystemQuad::create("particle/magic/fire/fire_ball_endress.plist");

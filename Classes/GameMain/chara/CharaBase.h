@@ -362,7 +362,7 @@ public: virtual void sendTypeCommentDirect(charaCommentType comment_type, charaS
 public: virtual void sendSexualComment();
 
 // set magic list
-public: void setMagicList(MagicBase* magic_obj);
+public: void setMagicList(MagicBase* magic_obj, bool shadow_flag, bool shot_flag = false);
 
 public: void setShadowList(MagicBase* magic_obj);
 

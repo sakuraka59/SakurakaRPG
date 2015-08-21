@@ -7,6 +7,7 @@ class PlayUi;
 class PlayerCommentUI;
 class DefaultStateUI;
 class ItemUi;
+class AbnormalStateUI;
 
 class GameMain : public cocos2d::Layer
 {
@@ -45,4 +46,5 @@ private:
 	// single
 public: 
 	static ItemUi* _item_ui_obj;
+	static AbnormalStateUI* _abnormal_state_ui_obj;
 };

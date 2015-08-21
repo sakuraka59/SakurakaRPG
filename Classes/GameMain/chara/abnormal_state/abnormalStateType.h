@@ -1,19 +1,19 @@
 #pragma once
 enum class abnormalStateType {
 	_no_type = 0,
-	poison,
+	poison,				//	“Å
 
 
 
 	
 	//-------------------------------
-	sexual,
+//	sexual,
 
-	//	aphrodisiac,		//	›Z–ò
+	// aphrodisiac,		//	›Z–ò
 	feel_hot,			//	‰ÎÆ‚è
 	oestrus,			//	”­îinot”­îŠú
 	extasy,				//	â’¸
-	//	sensitive,			//	•qŠ´iâ’¸Œã‚È‚Ç
+	// sensitive,			//	•qŠ´iâ’¸Œã‚È‚Ç
 	absent_mindedness,	//	•úS
 	//*/
 

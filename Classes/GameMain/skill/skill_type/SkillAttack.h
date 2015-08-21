@@ -31,4 +31,6 @@ private: double getTargetRange(double x1, double y1, double x2, double y2);
 private: double getTargetAngle(double x1, double y1, double x2, double y2);
 private: bool checkHeightHit(SkillAttackData* skill_attack_data, CharaBase* check_chara_obj);
 public: double getNpcUseRange();
+
+public: bool getResetCountFlag();
 };
