@@ -178,6 +178,18 @@
     <Filter Include="src\GameMain\magic\effect\one_hand\slash\slash_template2">
       <UniqueIdentifier>{71e65976-39c1-47ca-a50e-e188cedb4833}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\chara\controll_setting">
+      <UniqueIdentifier>{dfb67e05-6349-4313-b953-04ddc27bd28d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\skill\weapon_skill\sword_sheath">
+      <UniqueIdentifier>{fd43cdc2-8a80-458e-806f-f4f7769e04c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\skill\weapon_skill\sword_sheath\sword_sheath_arts">
+      <UniqueIdentifier>{dd6795e2-ce65-4ba5-83c3-78c389af4c0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\skill\weapon_skill\sword_sheath\sword_sheath_arts\DrawnSword">
+      <UniqueIdentifier>{7c707edd-b95d-4bb0-9e03-30f9566cf7ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -494,6 +506,24 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\magic\effect\one_hand\slash\SlashUp1.cpp">
       <Filter>src\GameMain\magic\effect\one_hand\slash</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\controll_setting\ControllSettingDetail.cpp">
+      <Filter>src\GameMain\chara\controll_setting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\controll_setting\ControlSetting.cpp">
+      <Filter>src\GameMain\chara\controll_setting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\controll_setting\ControlSettingList.cpp">
+      <Filter>src\GameMain\chara\controll_setting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword_sheath\sword_sheath_arts\DrawnSword\DrawnSword.cpp">
+      <Filter>src\GameMain\skill\weapon_skill\sword_sheath\sword_sheath_arts\DrawnSword</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword_sheath\SkillSwordSheathArtsBase.cpp">
+      <Filter>src\GameMain\skill\weapon_skill\sword_sheath</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\skill\SkillMasterList.cpp">
+      <Filter>src\GameMain\skill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -871,6 +901,27 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\magic\effect\one_hand\slash\SlashUp1.h">
       <Filter>src\GameMain\magic\effect\one_hand\slash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\controll_setting\buttonSettingType.h">
+      <Filter>src\GameMain\chara\controll_setting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\controll_setting\ControllSettingDetail.h">
+      <Filter>src\GameMain\chara\controll_setting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\controll_setting\ControlSetting.h">
+      <Filter>src\GameMain\chara\controll_setting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\controll_setting\ControlSettingList.h">
+      <Filter>src\GameMain\chara\controll_setting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword_sheath\sword_sheath_arts\DrawnSword\DrawnSword.h">
+      <Filter>src\GameMain\skill\weapon_skill\sword_sheath\sword_sheath_arts\DrawnSword</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword_sheath\SkillSwordSheathArtsBase.h">
+      <Filter>src\GameMain\skill\weapon_skill\sword_sheath</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\skill\SkillMasterList.h">
+      <Filter>src\GameMain\skill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -164,6 +164,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\chara\chara_seed\PartSetBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\chara_seed\SeedBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\chara_seed\test_puppet\SeedTestPuppet.cpp" />
+    <ClCompile Include="..\Classes\GameMain\chara\controll_setting\ControllSettingDetail.cpp" />
+    <ClCompile Include="..\Classes\GameMain\chara\controll_setting\ControlSetting.cpp" />
+    <ClCompile Include="..\Classes\GameMain\chara\controll_setting\ControlSettingList.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameCamera.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameMain.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\AbnormalStateUI.cpp" />
@@ -228,6 +231,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\skill\SkillBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\SkillList.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\SkillMagicSpell.cpp" />
+    <ClCompile Include="..\Classes\GameMain\skill\SkillMasterList.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\SkillMove.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\skill_type\SkillAttack.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\skill_type\SkillMagic.cpp" />
@@ -238,6 +242,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword\DoubleSlash\DoubleSlash.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword\SkillSwordBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword\SwordGale\SwordGale.cpp" />
+    <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword_sheath\SkillSwordSheathArtsBase.cpp" />
+    <ClCompile Include="..\Classes\GameMain\skill\weapon_skill\sword_sheath\sword_sheath_arts\DrawnSword\DrawnSword.cpp" />
     <ClCompile Include="..\Classes\Input\Gamepad.cpp" />
     <ClCompile Include="..\Classes\Input\GamepadButton.cpp" />
     <ClCompile Include="..\Classes\Input\GamepadControll.cpp" />
@@ -277,6 +283,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\chara\chara_seed\PartSetBase.h" />
     <ClInclude Include="..\Classes\GameMain\chara\chara_seed\SeedBase.h" />
     <ClInclude Include="..\Classes\GameMain\chara\chara_seed\test_puppet\SeedTestPuppet.h" />
+    <ClInclude Include="..\Classes\GameMain\chara\controll_setting\buttonSettingType.h" />
+    <ClInclude Include="..\Classes\GameMain\chara\controll_setting\ControllSettingDetail.h" />
+    <ClInclude Include="..\Classes\GameMain\chara\controll_setting\ControlSetting.h" />
+    <ClInclude Include="..\Classes\GameMain\chara\controll_setting\ControlSettingList.h" />
     <ClInclude Include="..\Classes\GameMain\chara\equipType.h" />
     <ClInclude Include="..\Classes\GameMain\chara\mainStateType.h" />
     <ClInclude Include="..\Classes\GameMain\GameCamera.h" />
@@ -354,6 +364,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\skill\SkillBase.h" />
     <ClInclude Include="..\Classes\GameMain\skill\SkillList.h" />
     <ClInclude Include="..\Classes\GameMain\skill\SkillMagicSpell.h" />
+    <ClInclude Include="..\Classes\GameMain\skill\SkillMasterList.h" />
     <ClInclude Include="..\Classes\GameMain\skill\SkillMove.h" />
     <ClInclude Include="..\Classes\GameMain\skill\skill_type\SkillAttack.h" />
     <ClInclude Include="..\Classes\GameMain\skill\skill_type\SkillMagic.h" />
@@ -364,6 +375,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword\DoubleSlash\DoubleSlash.h" />
     <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword\SkillSwordBase.h" />
     <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword\SwordGale\SwordGale.h" />
+    <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword_sheath\SkillSwordSheathArtsBase.h" />
+    <ClInclude Include="..\Classes\GameMain\skill\weapon_skill\sword_sheath\sword_sheath_arts\DrawnSword\DrawnSword.h" />
     <ClInclude Include="..\Classes\Input\Gamepad.h" />
     <ClInclude Include="..\Classes\Input\GamepadButton.h" />
     <ClInclude Include="..\Classes\Input\GamepadControll.h" />

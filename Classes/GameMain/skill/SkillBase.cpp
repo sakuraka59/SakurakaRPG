@@ -27,6 +27,7 @@ SkillBase::~SkillBase() {
 	*/
 }
 void SkillBase::skillInit() {
+	this->_delete_flag = false;
 	this->_skill_attack_count = 0;
 	this->_skill_move_count = 0;
 	this->_move_frame = 0;

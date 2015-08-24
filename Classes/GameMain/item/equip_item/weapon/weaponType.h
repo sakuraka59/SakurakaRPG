@@ -1,6 +1,6 @@
 #pragma once
 enum class weaponType {
-	no_type = -1,
+	_no_type = -1,
 
 	// one hand
 	no_weapon,		// –¢‘•”õ
@@ -16,5 +16,5 @@ enum class weaponType {
 
 
 	all_weapon,	// •Šíí”»’è—p
-	enum_end,
+	_enum_end,
 };

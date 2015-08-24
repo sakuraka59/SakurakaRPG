@@ -42,6 +42,7 @@ void ItemMasterList::loadItemList() {
 	// 末尾に『/』つけると、直下ディレクトリのみになるので注意
 	ItemMasterList::_path_list[itemDetailType::sword] = "data/item/equip/weapon/sword";
 	ItemMasterList::_path_list[itemDetailType::rapier] = "data/item/equip/weapon/rapier";
+	ItemMasterList::_path_list[itemDetailType::sheath] = "data/item/equip/weapon/sheath";
 
 	ItemMasterList::_path_list[itemDetailType::potion] = "data/item/use/potion/";
 	// アイテムのステータス読み込み順番
@@ -128,6 +129,7 @@ void ItemMasterList::loadTypeAndPath(itemDetailType item_type, string dir_path, 
 	// item_typeによって微妙に処理が変わるので、個別に関数を作ってロードする
 	switch (item_type) {
 	case itemDetailType::sword :
+	case itemDetailType::sheath:
 	case itemDetailType::rapier :
 		ItemMasterList::loadTypeNormalEquip(item_type, dir_path, item_name);
 		break;
@@ -288,6 +290,7 @@ ItemBase* ItemMasterList::ItemMaterialToItemBase(ItemLoadOnlyMaterial* load_item
 		return nullptr;
 	}
 	WeaponSwordBase* sword_obj = new WeaponSwordBase();
+	WeaponSheathBase* sheath_obj = new WeaponSheathBase();
 	WeaponRapierBase* rapier_obj = new WeaponRapierBase();
 	UseItem* potion_obj = new UseItem();
 	
@@ -298,6 +301,12 @@ ItemBase* ItemMasterList::ItemMaterialToItemBase(ItemLoadOnlyMaterial* load_item
 		sword_obj->setItemName(load_item->_item_name);
 		sword_obj->setStateData(load_item->_default_state);
 		return sword_obj;
+		break;
+	case itemDetailType::sheath:
+
+		sheath_obj->setItemName(load_item->_item_name);
+		sheath_obj->setStateData(load_item->_default_state);
+		return sheath_obj;
 		break;
 	case itemDetailType::rapier:
 

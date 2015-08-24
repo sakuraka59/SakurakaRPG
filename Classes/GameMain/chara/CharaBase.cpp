@@ -830,6 +830,8 @@ void CharaBase::setEquipItem(equipType equip_type, EquipItem* item_obj, std::uno
 	}
 	// */
 
+	this->setControllSetting();
+
 	return;
 }
 void CharaBase::removeEquipItem(equipType equip_type, EquipItem* item_obj, std::unordered_map<abnormalStateType, int> abnormal_state_list) {
@@ -861,6 +863,10 @@ void CharaBase::removeEquipItem(equipType equip_type, EquipItem* item_obj, std::
 		}
 	}
 	// */
+	this->setControllSetting();
+}
+void CharaBase::setControllSetting() {
+
 }
 void CharaBase::reColStatus(mainStateType state_type) {
 	switch (state_type) {

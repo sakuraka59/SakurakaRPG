@@ -12,12 +12,14 @@ void SkillAttack::skillExtendInit() {
 	this->_use_chara_obj->setAttackFrame(this->_set_attack_frame);
 	this->_use_chara_obj->setSkillFrame(this->_set_skill_frame);
 
+	this->_hitcheck_chara_list.clear();
+	this->_attack_reset_count = 0;
+	this->_reset_count_flag = true;
+
 }
 bool SkillAttack::updateSkillEffect() {
 
-	//Debug.WriteLine("[SkillAttack]updateSkillEffect 0");
 	if (this->_skill_attack_count >= this->_skill_attack_max) {
-		//	Debug.WriteLine("[SkillAttack]end check:1");
 
 		return true;
 	}
@@ -27,7 +29,6 @@ bool SkillAttack::updateSkillEffect() {
 		this->_attack_frame = 0;
 	}
 	if (this->_skill_attack_count >= this->_skill_attack_max) {
-		//	Debug.WriteLine("[SkillAttack]end check:2");
 
 		return true;
 	}

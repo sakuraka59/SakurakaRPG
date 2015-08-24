@@ -30,10 +30,13 @@
 ・操作スロット設定
 	スキルとかアイテムを設定できるようにする
 	付随して設定UIが必要
-		その前にメニュー系UIが必要
+
 	武器装備タイプごとに設定オブジェクトを保持しておく
 		setting_obj_list[main_weapon_type][sub_weapon_type] = setting_obj
 
+	・ControlSlotUI
+	・ControlSettingList
+		・ControlSettingBase
 
 ・クラフティング系システム
 	・物を作る

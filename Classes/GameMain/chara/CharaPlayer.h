@@ -4,12 +4,18 @@
 class PlayerCommentUI;
 class CharaCommentList;
 class SkillList;
+class ControllSettingList;
+class ControllSetting;
 
 class CharaPlayer : public CharaBase {
 
 
 private: bool _control_flag = true;
 private: PlayerCommentUI* _comment_ui_obj;
+
+// ボタン設定リスト
+private: ControllSettingList* _controll_setting_list;
+private: ControllSetting* _controll_setting;
 
 // テスト用
 private: int _test_comment_num = 0;
@@ -44,6 +50,12 @@ protected: void setGroupList() override;
 
 public: void setCharaMapPoint(double point_x, double point_y) override;
 
+//-------------------------------------------------------------------
+// 装備変更時の操作設定取得
+//-------------------------------------------------------------------
+protected: void setControllSetting() override;
+
+
 // 調べる系の共通動作用
 private: void setSearchFlag();
 public: bool getSearchFlag();
@@ -53,4 +65,5 @@ public: double getSearchY();
 private: void testComment();
 private: void testState();
 private: void testAction();
+
 };

@@ -9,8 +9,7 @@ TestMagicShot::TestMagicShot(CharaBase* chara_obj)
 
 void TestMagicShot::magicInitExtend() {
 	// •`‰æ‚Ì€”õ
-//	this->_texture_info = ResourceManage.getTextureInfo("/Application/res/magic/magictest.png", 2, 2);
-	this->_width = 10;
+	this->_width = 32;
 	this->_height = 32;
 	
 	// ‚¿‚å‚Á‚Æ•‚‚©‚¹‚é
@@ -21,8 +20,9 @@ void TestMagicShot::magicInitExtend() {
 	this->_frame_end_time = 30;
 	this->_move_speed = 10.0;
 
-	//			this->_hit_square_obj = new HitSquare(ref this->_draw_x, ref this->_draw_y, this->_width, this->_height, ref this->_angle);
-	this->_hit_circle_obj = new HitCircle(this, this->_width / 2);
+	// “–‚½‚è”»’èÝ’è
+	int hit_radius = 10;
+	this->_hit_circle_obj = new HitCircle(this, hit_radius / 2);
 	this->_hit_height = 16;
 
 	this->_test_particle = cocos2d::ParticleSystemQuad::create("particle/magic/normal/testShot4.plist");

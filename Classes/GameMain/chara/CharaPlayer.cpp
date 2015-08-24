@@ -1,11 +1,11 @@
 #include "CharaPlayer.h"
-#include "..\..\RenderObject.h"
+#include "../../RenderObject.h"
 
-#include "..\GameCamera.h"
+#include "../GameCamera.h"
 
 #include "abnormal_state\StateList.h"
 #include "charaGroupList.h"
-#include "chara_seed\human\SeedHuman.h"
+#include "chara_seed/human/SeedHuman.h"
 
 #include "../../Input/Gamepad.h"
 
@@ -15,6 +15,10 @@
 #include "../item/use_item/HaveUseItemList.h"
 
 #include "../item/equip_item/HaveEquipItemList.h"
+
+// 操作設定
+#include "controll_setting/ControlSettingList.h"
+#include "controll_setting/ControlSetting.h"
 
 // スキルテスト
 #include "../skill/weapon_skill/no_weapon/NoWeaponDefault.h"
@@ -60,13 +64,27 @@ CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, st
 	this->updateBlockPoint();
 	this->SetCharaHitData();
 
-	// test 
+	// スキル、アイテム操作設定 -------------------------------------
+	this->_controll_setting_list = new ControllSettingList(this);
+
+	// テスト用設定
+	ControllSetting* sword_setting = this->_controll_setting_list->testControllSetting(weaponType::sword, this->getSubWeaponType());
+	ControllSetting* sheath_setting = this->_controll_setting_list->testControllSetting(weaponType::sword, weaponType::sheath);
+
+//	auto hoge = new DoubleSlash(this, this->_all_chara_list);
+	sword_setting->setControllSettingSkill(buttonSettingType::circle_l1, new DoubleSlash(this, this->_all_chara_list));
+	sheath_setting->setControllSettingSkill(buttonSettingType::circle_l1, new SwordGale(this, this->_all_chara_list));
+	// test ---------------------------------------------------------
 	this->updateDraw();
 
 	// */
 	// テスト用所持アイテム
 	ItemBase* test_item_obj = ItemMasterList::getItemObjToMaster("test_sword");
 	this->_equip_item_list->setListToItem((EquipItem*)test_item_obj);
+
+	test_item_obj = ItemMasterList::getItemObjToMaster("test_sheath");
+	this->_equip_item_list->setListToItem((EquipItem*)test_item_obj);
+
 	// 初期表示
 	//this->Position = new Vector2((int)(this->_draw_x), (int)(this->_draw_y - this->_play_camera._y));
 	//	this->Position = new Vector2((int)(this->_draw_x - this->_play_camera.getCameraX()), (int)(this->_draw_y - this->_play_camera.getCameraY() + this->_draw_z));
@@ -599,7 +617,9 @@ void CharaPlayer::testAction() {
 	//　keybord to Q
 	if (this->_control_flag == true && Gamepad::L1->isPush() == true) {
 
-		bool attack_flag = this->setSkill(new DoubleSlash(this, this->_all_chara_list));
+		//bool attack_flag = this->setSkill(new DoubleSlash(this, this->_all_chara_list));
+		this->_controll_setting->useControllButton(buttonSettingType::circle_l1);
+		bool attack_flag = false;
 		if (attack_flag == true) {
 //			this->sendComment(this->_comment_list.getComment(charaCommentType.chara_attack, charaSexualType.normal));
 		}
@@ -633,4 +653,7 @@ void CharaPlayer::setCharaMapPoint(double point_x, double point_y) {
 
 	CharaBase::setCharaMapPoint(point_x, point_y);
 	this->updateCamera();
+}
+void CharaPlayer::setControllSetting() {
+	this->_controll_setting = this->_controll_setting_list->getControllSetting();
 }

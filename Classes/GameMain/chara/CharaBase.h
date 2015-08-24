@@ -298,7 +298,7 @@ public: std::list<charaGroupList> getMyGroupList();
 public: void setEquipItem(equipType equip_type, EquipItem* item_obj, std::unordered_map<abnormalStateType, int> abnormal_state_list);
 
 public: void removeEquipItem(equipType equip_type, EquipItem* item_obj, std::unordered_map<abnormalStateType, int> abnormal_state_list);
-
+protected: void virtual setControllSetting();
 public: void reColStatus(mainStateType state_type);
 public: void setEquipToAbnormalState(abnormalStateType state_type, EquipItem* item_obj);
 public: void removeEquipToAbnormalState(abnormalStateType state_type, EquipItem* item_obj);
