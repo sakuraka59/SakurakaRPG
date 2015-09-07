@@ -560,8 +560,8 @@ bool CraftUiBase::checkItemRecipe() {
 
 	// TEST
 
-	testClass test_a();
-	testClass test_b();
+	testClass test_a(0);
+	testClass test_b(0);
 
 	bool test_c = false;
 	test_c = test_a < test_b;

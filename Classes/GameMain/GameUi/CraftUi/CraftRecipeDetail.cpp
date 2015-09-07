@@ -34,3 +34,12 @@ bool CraftRecipeDetail::operator<(const CraftRecipeDetail &rhs) const {
 	return true;
 }
 */
+
+
+testClass::testClass(int dummy) {
+
+}
+bool testClass::operator<(const testClass rhs) const{
+	
+	return false;
+}

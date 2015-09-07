@@ -75,8 +75,6 @@ public: string getItemId4();
 
 class testClass {
 public:
-testClass() {}
-bool operator<(const testClass rhs) const {
-	return false;
-}
+	testClass(int dummy);
+	bool operator<(const testClass rhs) const;
 };
