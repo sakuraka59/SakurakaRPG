@@ -20,4 +20,5 @@ protected: void testItemList() override;
 
 public: bool itemUse(string item_id);
 public: unordered_map<haveItemType, unordered_map<string, UseItem*>>* getItemTypeList();
+public: unordered_map<string, UseItem* > getItemTypeDetailList(haveItemType item_type);
 };

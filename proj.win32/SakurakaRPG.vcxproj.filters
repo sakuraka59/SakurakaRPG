@@ -190,6 +190,12 @@
     <Filter Include="src\GameMain\skill\weapon_skill\sword_sheath\sword_sheath_arts\DrawnSword">
       <UniqueIdentifier>{7c707edd-b95d-4bb0-9e03-30f9566cf7ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameMain\GameUi\SkillUi">
+      <UniqueIdentifier>{09c2a26e-f2bf-46e1-8da5-d2b1369c82a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMain\GameUi\CraftUi">
+      <UniqueIdentifier>{0aa43b83-52a9-4830-9618-28286d329795}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -524,6 +530,30 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GameMain\skill\SkillMasterList.cpp">
       <Filter>src\GameMain\skill</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\SkillUi.cpp">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\SkillUi\SkillListUi.cpp">
+      <Filter>src\GameMain\GameUi\SkillUi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\ControllSettingUi.cpp">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\CraftUi\CraftUiBase.cpp">
+      <Filter>src\GameMain\GameUi\CraftUi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\CraftUi.cpp">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\item\haveItemType.cpp">
+      <Filter>src\GameMain\item</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\status_effect\SatietyEffect.cpp">
+      <Filter>src\GameMain\chara\abnormal_state\status_effect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMain\GameUi\CraftUi\CraftRecipeDetail.cpp">
+      <Filter>src\GameMain\GameUi\CraftUi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -922,6 +952,27 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GameMain\skill\SkillMasterList.h">
       <Filter>src\GameMain\skill</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\SkillUi.h">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\SkillUi\SkillListUi.h">
+      <Filter>src\GameMain\GameUi\SkillUi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\ControllSettingUi.h">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\CraftUi\CraftUiBase.h">
+      <Filter>src\GameMain\GameUi\CraftUi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\CraftUi.h">
+      <Filter>src\GameMain\GameUi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\status_effect\SatietyEffect.h">
+      <Filter>src\GameMain\chara\abnormal_state\status_effect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMain\GameUi\CraftUi\CraftRecipeDetail.h">
+      <Filter>src\GameMain\GameUi\CraftUi</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

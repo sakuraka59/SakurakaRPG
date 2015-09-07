@@ -22,6 +22,7 @@ enum class abnormalStateType {
 	sp_effect,
 	honey_effect,
 	excitation_effect,
+	satiety_effect,
 
 	// ステータス補正系 ------------------
 	hp_correct,

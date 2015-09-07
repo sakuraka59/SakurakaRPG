@@ -12,6 +12,7 @@ protected: int _starting_magic_frame = 0;		// 発動までにかかるフレーム数
 private: int _spell_frame_time = 0;				// 詠唱中の経過フレーム数
 
 protected: list<SkillMagicSpell*> _spell_list;	// 詠唱コメントのオブジェクト一覧
+private: list<SkillMagicSpell*>::iterator _spell_list_itr;
 protected: SkillMagicSpell* _short_spell = nullptr;
 private: bool _short_spell_flag = false;
 

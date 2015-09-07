@@ -10,6 +10,9 @@
 
 DoubleSlash::DoubleSlash(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list) : SkillSwordBase(use_chara_obj, all_chara_list) {
 
+	this->_skill_id = "DoubleSlash";
+	this->_skill_name = "ダブルスラッシュ";
+
 	// NPCでの発動射程距離
 	this->_npc_use_range = 30.0;
 

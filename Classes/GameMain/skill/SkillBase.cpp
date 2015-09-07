@@ -184,3 +184,16 @@ bool SkillBase::checkExtendSkillUse() { //virtual
 bool SkillBase::getChainCountFlag(){
 	return this->_chain_count_flag;
 }
+// スキルIDを返す
+string SkillBase::getSkillId() {
+	return this->_skill_id;
+}
+// スキル名を返す
+string SkillBase::getSkillName() {
+	
+	return this->_skill_name;
+}
+// リスト表示ﾌﾗｸﾞを返す
+bool SkillBase::getUiDrawFlag() {
+	return this->_ui_draw_flag;
+}

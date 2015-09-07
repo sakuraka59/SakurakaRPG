@@ -44,6 +44,8 @@ enum class gamePadControllType {
 
 	chara,
 	item_ui,
+	skill_ui,
+	craft_ui,
 
 	enum_end,
 };

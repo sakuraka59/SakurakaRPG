@@ -50,7 +50,12 @@ void ItemBoxBase::setItemList() {
 			this->setItemObj(load_rand_item);
 		}
 	}
+
+	// @TODO test
 	for (int i = 0; i < 3; i++) {
+		UseItem* test_load_item1 = (UseItem*)ItemMasterList::getItemObjToMaster("hard_bread_block");
+		this->setItemObj(test_load_item1);
+
 		//aphrodisiac_1
 		UseItem* test_load_item3 = (UseItem*)ItemMasterList::getItemObjToMaster("test_hp_heal");
 		this->setItemObj(test_load_item3);

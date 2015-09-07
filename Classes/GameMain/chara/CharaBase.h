@@ -17,6 +17,8 @@
 
 #include "../item/equip_item/weapon/weaponType.h"
 
+
+
 ///#include "abnormal_state/StateBase.h"
 //#include "../item/equip_item/EquipItem.h"
 
@@ -36,6 +38,8 @@ class HitCircle;			// ok
 class SkillBase;			// ok			
 class SkillAttack;			//
 class MagicBase;			// 
+
+class SkillList;
 
 enum class charaActionType;
 // PSMからの移植先どうする？
@@ -127,8 +131,11 @@ protected: int _push_frame = 0;			// 吹き飛ばし時間
 protected: double _push_angle = 0;		// 吹き飛ばし方向
 protected: double _push_speed = 0;		// 吹き飛ばし速度
 
-protected: int _weapon_state = 0;		// 武器の構え等の状態。主に片手直剣+鞘での抜刀剣で使用する
+protected: int _weapon_state = 0;			// 武器の利用状態。主に片手直剣+鞘での抜刀剣で使用する
 
+// 武器の抜刀、納刀状態。納刀してないと調べる系出来なく、抜刀してないと攻撃出来ない。
+// 0：納刀状態　1：抜刀状態
+private: int _weapon_prepare_state = 0;
 
 protected: charaActionType _action_type;	// 行動状態
 
@@ -188,6 +195,8 @@ protected: HitCircle* _hit_circle_obj;
 protected: std::string _test_label;
 protected: cocos2d::LabelTTF* _label_obj;
 
+// スキル一覧
+protected: SkillList* _skill_list;
 
 //-------------------------------------------------------------------
 public: CharaBase();
@@ -316,6 +325,8 @@ public: StateList* getStateList();
 public: bool setSkill(SkillBase* skill_obj);
 private: bool checkSetSkill(SkillBase* skill_obj);
 
+public: SkillList* getSkillList();
+
 private: void countActionFrame();
 public: bool checkAttackFlag();
 public: bool checkActionFlag();
@@ -349,6 +360,7 @@ public: void healHp(int heal_num);			// 体力回復
 public: void healSp(int heal_num);			// SP回復
 public: void healHoney(int heal_num);		// 興奮度回復
 public: void healExcitation(int heal_num);	// 快楽度回復
+public: void healSatiety(int heal_num);	// 満腹度回復
 public: void autoHealSexual();
 // test only ------------------------------------------------
 protected: int _test_weapon_index = -1;
@@ -372,6 +384,16 @@ public: GameCamera* getGameCamera();
 public: weaponType getMainWeaponType();
 public: weaponType getSubWeaponType();
 
+
+//-----------------------------------------------------------
+// 武器の納刀、抜刀状態に関する関数
+//-----------------------------------------------------------
+// 納刀、抜刀の状態を取得
+public: int getWeaponPrepare();
+// 抜刀状態へ移行
+protected: void setWeaponPrepareToDrawn();
+// 納刀状態へ移行
+protected: void setWeaponPrepareToStow();
 //-----------------------------------------------------------
 // 剣+鞘などで使う武器状態を取得
 //-----------------------------------------------------------

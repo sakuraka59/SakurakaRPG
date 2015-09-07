@@ -1,9 +1,12 @@
 #pragma once
+#include <string>
 #include "buttonSettingType.h"
 
 class UseItem;
 class SkillBase;
 class CharaPlayer;
+
+using namespace std;
 
 enum class settingDetailType {
 	_no_type = 0,
@@ -38,7 +41,9 @@ public: void useSetObj();
 // セットしたスキルを使用する
 public: void useSkill();
 
+// セットしたオブジェクトの名前を返す
+public: string getObjName();
+
 // セットしたアイテムを使用する
 public: void useItem();
-
 };

@@ -40,9 +40,33 @@ void ControllSettingDetail::useSetObj() {
 }
 // セットしたスキルを使用する
 void ControllSettingDetail::useSkill() {
+	if (this->_skill_obj == nullptr){
+		return;
+	}
 	this->_chara_obj->setSkill(this->_skill_obj);
+}
+// セットしたオブジェクトの名前を返す
+string ControllSettingDetail::getObjName() {
+	string ret_name = "無しだよーん";
+	switch (this->_setting_type) {
+	case settingDetailType::skill:
+		if (this->_skill_obj != nullptr) {
+			ret_name = this->_skill_obj->getSkillName();
+		}
+		break;
+	case settingDetailType::item:
+		if (this->_item_obj != nullptr) {
+			ret_name = this->_item_obj->getItemName();
+		}
+		break;
+	}
+	
+	return ret_name;
 }
 // セットしたアイテムを使用する
 void ControllSettingDetail::useItem() {
+	if (this->_item_obj == nullptr){
+		return;
+	}
 	this->_item_obj->useItem();
 }

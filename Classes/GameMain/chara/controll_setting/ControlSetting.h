@@ -26,4 +26,7 @@ public: void useControllButton(buttonSettingType button_type);
 
 // セット内容を初期化（未実装）
 public: void resetControllButton(buttonSettingType button_type);
+
+// セットした内容の名称を取得
+public: string getControllObjName(buttonSettingType button_type);
 };

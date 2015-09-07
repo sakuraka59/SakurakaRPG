@@ -57,3 +57,7 @@ void HaveUseItemList::setItem(UseItem* item_obj, int item_num) {
 unordered_map<haveItemType, unordered_map<string, UseItem*>>* HaveUseItemList::getItemTypeList() {
 	return &this->_item_type_list;
 }
+
+unordered_map<string, UseItem*> HaveUseItemList::getItemTypeDetailList(haveItemType item_type) {
+	return this->_item_type_list[item_type];
+}

@@ -26,6 +26,7 @@ void ItemUi::Init(CharaPlayer* player_obj) {
 	
 	int draw_position_correct = 50;
 	this->_player_item_list_obj = new ObjItemList();
+	this->_player_item_list_obj->setCharaPlayer(this->_player_obj);
 	this->_player_item_list_obj->setBackGround();
 	this->_player_item_list_obj->setItemList(this->_player_obj->getHaveEquipItemList(), this->_player_obj->getHaveUseItemList());
 	this->_player_item_list_obj->setPosition(draw_position_correct, 0);

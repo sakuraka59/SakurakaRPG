@@ -45,6 +45,7 @@ void ItemMasterList::loadItemList() {
 	ItemMasterList::_path_list[itemDetailType::sheath] = "data/item/equip/weapon/sheath";
 
 	ItemMasterList::_path_list[itemDetailType::potion] = "data/item/use/potion/";
+	ItemMasterList::_path_list[itemDetailType::food] = "data/item/use/food/";
 	// アイテムのステータス読み込み順番
 
 	// 装備アイテム基本ステータス -----------------------------------
@@ -64,26 +65,28 @@ void ItemMasterList::loadItemList() {
 	ItemMasterList::_load_use_state_list[1] = mainStateType::_no_type; //アイテムIDなので何もしない
 	ItemMasterList::_load_use_state_list[2] = mainStateType::_no_type; //レア度なので何もしない
 	ItemMasterList::_load_use_state_list[3] = mainStateType::_no_type; //効果時間なので何もしない
+	ItemMasterList::_load_use_state_list[4] = mainStateType::_no_type; //食事時間なので何もしない
 
 	//回復効果
-	ItemMasterList::_load_use_state_list[4] = mainStateType::hp;
-	ItemMasterList::_load_use_state_list[5] = mainStateType::sp;
-	ItemMasterList::_load_use_state_list[6] = mainStateType::honey;
-	ItemMasterList::_load_use_state_list[7] = mainStateType::excitation;
+	ItemMasterList::_load_use_state_list[5] = mainStateType::hp;
+	ItemMasterList::_load_use_state_list[6] = mainStateType::sp;
+	ItemMasterList::_load_use_state_list[7] = mainStateType::honey;
+	ItemMasterList::_load_use_state_list[8] = mainStateType::excitation;
+	ItemMasterList::_load_use_state_list[9] = mainStateType::satiety;
 
 	// 補正効果
-	ItemMasterList::_load_use_state_list[8] = mainStateType::hp;
-	ItemMasterList::_load_use_state_list[9] = mainStateType::sp;
-	ItemMasterList::_load_use_state_list[10] = mainStateType::atk;
-	ItemMasterList::_load_use_state_list[11] = mainStateType::def;
-	ItemMasterList::_load_use_state_list[12] = mainStateType::magic;
-	ItemMasterList::_load_use_state_list[13] = mainStateType::mdef;
-	ItemMasterList::_load_use_state_list[14] = mainStateType::cc;
+	ItemMasterList::_load_use_state_list[10] = mainStateType::hp;
+	ItemMasterList::_load_use_state_list[11] = mainStateType::sp;
+	ItemMasterList::_load_use_state_list[12] = mainStateType::atk;
+	ItemMasterList::_load_use_state_list[13] = mainStateType::def;
+	ItemMasterList::_load_use_state_list[14] = mainStateType::magic;
+	ItemMasterList::_load_use_state_list[15] = mainStateType::mdef;
+	ItemMasterList::_load_use_state_list[16] = mainStateType::cc;
 
-	ItemMasterList::_load_use_state_list[15] = mainStateType::str;
-	ItemMasterList::_load_use_state_list[16] = mainStateType::dex;
-	ItemMasterList::_load_use_state_list[17] = mainStateType::intelligence;
-	ItemMasterList::_load_use_state_list[18] = mainStateType::luk;
+	ItemMasterList::_load_use_state_list[17] = mainStateType::str;
+	ItemMasterList::_load_use_state_list[18] = mainStateType::dex;
+	ItemMasterList::_load_use_state_list[19] = mainStateType::intelligence;
+	ItemMasterList::_load_use_state_list[20] = mainStateType::luk;
 
 	// キャラクター基礎ステータス
 //	ItemMasterList::_load_equip_state_list[1] = mainStateType::str;
@@ -134,6 +137,7 @@ void ItemMasterList::loadTypeAndPath(itemDetailType item_type, string dir_path, 
 		ItemMasterList::loadTypeNormalEquip(item_type, dir_path, item_name);
 		break;
 	case itemDetailType::potion:
+	case itemDetailType::food:
 		ItemMasterList::loadTypeUse(item_type, dir_path, item_name);
 		break;
 	}
@@ -224,12 +228,16 @@ void ItemMasterList::loadTypeUse(itemDetailType item_type, string dir_path, stri
 				item_material_obj->_effect_frame = 1;
 			}
 			break;
+		case 4:
+			// 食事時間 ＠TODO未実装
+			
+			break;
 		default:
 			if (ItemMasterList::_load_use_state_list[count] != mainStateType::_no_type &&
 				ItemMasterList::_load_use_state_list[count] != mainStateType::_enum_end) {
 
 				mainStateType state_type = ItemMasterList::_load_use_state_list[count];
-				if (count <= 7) {
+				if (count <= 9) {
 					// 回復用ステータス読み込み
 					item_material_obj->setStateData(state_type, stoi(load_str));
 				} else {
@@ -292,7 +300,7 @@ ItemBase* ItemMasterList::ItemMaterialToItemBase(ItemLoadOnlyMaterial* load_item
 	WeaponSwordBase* sword_obj = new WeaponSwordBase();
 	WeaponSheathBase* sheath_obj = new WeaponSheathBase();
 	WeaponRapierBase* rapier_obj = new WeaponRapierBase();
-	UseItem* potion_obj = new UseItem();
+	UseItem* use_item_obj = new UseItem();
 	
 
 	switch (load_item->_item_type) {
@@ -316,17 +324,25 @@ ItemBase* ItemMasterList::ItemMaterialToItemBase(ItemLoadOnlyMaterial* load_item
 		break;
 	case itemDetailType::potion:
 		// @TODO test
-		potion_obj->setItemName(load_item->_item_name);
-		potion_obj->setUseItemId(load_item->_item_id);
-		potion_obj->setStateData(load_item->_default_state);
-		potion_obj->setCorrectStateData(load_item->_correct_state);
-		potion_obj->setHaveItemType(haveItemType::portion);
-		potion_obj->setEffectFrame(load_item->_effect_frame);
+		use_item_obj->setItemName(load_item->_item_name);
+		use_item_obj->setUseItemId(load_item->_item_id);
+		use_item_obj->setStateData(load_item->_default_state);
+		use_item_obj->setCorrectStateData(load_item->_correct_state);
+		use_item_obj->setHaveItemType(haveItemType::portion);
+		use_item_obj->setEffectFrame(load_item->_effect_frame);
 		//this->_effect_frame
-		return potion_obj;
+		return use_item_obj;
 
 		break;
 	case itemDetailType::food:
+		use_item_obj->setItemName(load_item->_item_name);
+		use_item_obj->setUseItemId(load_item->_item_id);
+		use_item_obj->setStateData(load_item->_default_state);
+		use_item_obj->setCorrectStateData(load_item->_correct_state);
+		use_item_obj->setHaveItemType(haveItemType::food);
+		use_item_obj->setEffectFrame(load_item->_effect_frame);
+		//this->_effect_frame
+		return use_item_obj;
 		break;
 	}
 	return nullptr;

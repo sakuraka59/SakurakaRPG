@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include "../item/equip_item/weapon/weaponType.h"
 
+using namespace std;
 class SkillMove;
 class SkillAttackGroup;
 class CharaBase;
@@ -11,6 +12,11 @@ class SkillBase {
 // setting skill data ---------------------------------------
 protected: int _use_sp = 0;
 protected: int _use_cc = 0;
+protected: string _skill_id = "";
+protected: string _skill_name = "no name";
+
+// false = リストに表示されない = ショートカット設定不可能
+protected: bool _ui_draw_flag = true; 
 //-----------------------------------------------------------
 
 //-----------------------------------
@@ -78,4 +84,8 @@ public: int getUseCc();
 public: bool checkWeaponType();
 public: virtual bool checkExtendSkillUse();
 public: bool getChainCountFlag();
+public: string getSkillId();
+public: string getSkillName();
+
+public: bool getUiDrawFlag();
 };

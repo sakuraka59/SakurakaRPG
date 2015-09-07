@@ -10,6 +10,7 @@
 #include "status_effect/SpEffect.h"
 #include "status_effect/HoneyEffect.h"
 #include "status_effect/ExcitationEffect.h"
+#include "status_effect/SatietyEffect.h"
 
 #include "../mainStateType.h"
 #include "status_correction/StatusCorrectionBase.h"
@@ -27,6 +28,7 @@ StateList::StateList(CharaBase* chara_obj) {
 	this->_state_list[abnormalStateType::sp_effect] = new SpEffect(chara_obj);
 	this->_state_list[abnormalStateType::honey_effect] = new HoneyEffect(chara_obj);
 	this->_state_list[abnormalStateType::excitation_effect] = new ExcitationEffect(chara_obj);
+	this->_state_list[abnormalStateType::satiety_effect] = new SatietyEffect(chara_obj);
 
 	this->_state_list[abnormalStateType::hp_correct] = new StatusCorrectionBase(chara_obj, mainStateType::hp);
 	this->_state_list[abnormalStateType::sp_correct] = new StatusCorrectionBase(chara_obj, mainStateType::sp);

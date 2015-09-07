@@ -3,6 +3,8 @@
 #include "GameUi/PlayerCommentUI.h"
 #include "GameUi/DefaultStateUI.h"
 #include "GameUi/ItemUi.h"
+#include "GameUi/SkillUi.h"
+#include "GameUi/CraftUi.h"
 #include "GameUi/AbnormalStateUI.h"
 
 #include "../Input/Gamepad.h"
@@ -11,6 +13,9 @@
 USING_NS_CC;
 
 ItemUi* GameMain::_item_ui_obj = new ItemUi();
+SkillUi* GameMain::_skill_ui_obj = new SkillUi();
+CraftUi* GameMain::_craft_ui_obj = new CraftUi();
+
 AbnormalStateUI* GameMain::_abnormal_state_ui_obj = new AbnormalStateUI();
 Scene* GameMain::createScene() {
 	// 'scene' is an autorelease object
@@ -79,24 +84,19 @@ bool GameMain::init()
 
 	this->_default_state_ui = new DefaultStateUI(player_obj);
 	GameMain::_item_ui_obj->Init(player_obj);
+	GameMain::_skill_ui_obj->Init(player_obj);
+	GameMain::_craft_ui_obj->Init(player_obj);
 	GameMain::_abnormal_state_ui_obj->setInit(player_obj);
 	
-
-	this->_play_ui_obj->setItemUiObj(GameMain::_item_ui_obj);
-//	this->_default_state_ui->setPosition(0, 0);
 
 	this->addChild(this->_play_ui_obj);
 	this->addChild(this->_default_state_ui);
 //	this->addChild(GameMain::_abnormal_state_ui_obj);
 	this->addChild(GameMain::_item_ui_obj);
+	this->addChild(GameMain::_skill_ui_obj);
+	this->addChild(GameMain::_craft_ui_obj);
 	this->addChild(this->_play_comment_ui_obj);
-
-//	this->_test_ui_obj = new UiBase();
-//	this->addChild(this->_test_ui_obj);
 	
-//	UiBase * test_obj = new UiBase();
-//	this->addChild(test_obj);
-
 
 	this->scheduleUpdate();
 
@@ -158,6 +158,8 @@ void GameMain::update(float delta) {
 
 	this->_play_ui_obj->Update();
 	GameMain::_item_ui_obj->Update();
+	GameMain::_skill_ui_obj->Update();
+	GameMain::_craft_ui_obj->Update();
 
 	GameMain::_abnormal_state_ui_obj->Update();
 	this->_default_state_ui->Update();

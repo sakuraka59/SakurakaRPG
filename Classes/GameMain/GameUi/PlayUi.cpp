@@ -14,7 +14,6 @@
 
 #include "../shadow/ShadowObjectList.h"
 
-#include "../skill/SkillList.h"
 
 #include "../map/MapBase.h"
 #include "../map/MapObjectList.h"
@@ -62,8 +61,6 @@ PlayUi::PlayUi(PlayerCommentUI* comment_ui_obj) {
 	// オブジェクトの影情報
 	this->_shadow_list = new ShadowObjectList(this->_play_camera);
 
-	// スキルオブジェクトの宣言
-//	this->_skill_list = new SkillList();
 
 	// プレイヤーキャラクターの宣言
 	this->_player_obj = new CharaPlayer(this->_play_camera, comment_ui_obj, &this->_chara_list, &this->_magic_list, this->_shadow_list);
@@ -485,10 +482,11 @@ void PlayUi::playerSearchAction() {
 	*/
 
 }
-
+/*
 void PlayUi::setItemUiObj(ItemUi* item_ui_obj){
-	this->_item_ui_obj = item_ui_obj;
+//	this->_item_ui_obj = item_ui_obj;
 }
+//*/
 void PlayUi::setMapMove() {
 	// とりあえず現状のマップオブジェクトを初期化する必要あり
 	for (auto map_obj_line : this->_map_obj_line_list) {

@@ -22,6 +22,7 @@
 
 #include "charaActionType.h"
 
+
 using namespace cocos2d;
 
 CharaBase::CharaBase()
@@ -98,7 +99,10 @@ void CharaBase::Update() {
 	this->_draw_x += this->_move_x;
 	this->_draw_y += this->_move_y;
 
-
+	// 満腹度更新
+	if (this->_now_state[mainStateType::satiety] > 0) {
+		this->_now_state[mainStateType::satiety]--;
+	}
 
 	// @TODO アニメーション更新はここらへんがよさそう
 	//this->_chara_seed->
@@ -451,6 +455,7 @@ void CharaBase::updateDraw() {
 		"\n cc :" + std::to_string(this->getNowState(mainStateType::cc)) + "/" + std::to_string(this->getMaxState(mainStateType::cc)) +
 		"\n honey :" + std::to_string(this->_now_state[mainStateType::honey]) +
 		"\n excitation :" + std::to_string(this->_now_state[mainStateType::excitation]) +
+		"\n satiety :" + std::to_string(this->_now_state[mainStateType::satiety]) +
 		//"\n atk :" + std::to_string(this->_now_state[mainStateType::atk]) +
 		"\n atk :" + std::to_string(this->getNowState(mainStateType::atk)) +
 		"\n def :" + std::to_string(this->getNowState(mainStateType::def)) +
@@ -699,6 +704,14 @@ void CharaBase::setState() {
 	this->_base_state[mainStateType::excitation] = 10000;
 	this->_equip_state[mainStateType::excitation] = 0;
 	this->reColStatus(mainStateType::excitation);
+
+	// @TODO 満腹度の最大値は適当
+	int satiety_max = 10000;
+	this->_now_state[mainStateType::satiety] = satiety_max;
+	this->_base_state[mainStateType::satiety] = satiety_max;
+	this->_max_state[mainStateType::satiety] = satiety_max;
+	this->_equip_state[mainStateType::satiety] = 0;
+	this->reColStatus(mainStateType::satiety);
 
 	this->setGroupList();
 	this->setRunSpeedBase(this->_chara_seed->getRunSpeed());
@@ -1017,6 +1030,9 @@ bool CharaBase::checkSetSkill(SkillBase* skill_obj) {
 	//	Debug.WriteLine("[charaBase]check set skill 5");
 	return true;
 }
+SkillList* CharaBase::getSkillList() {
+	return this->_skill_list;
+}
 // action function ------------------------------------------
 void CharaBase::countActionFrame() {
 
@@ -1278,19 +1294,37 @@ charaSexualType CharaBase::getSexualType() {
 }
 // heal -----------------------------------------------------
 void CharaBase::healHp(int heal_num) {
+	/*
 	this->_now_state[mainStateType::hp] += heal_num;
 	if (this->_now_state[mainStateType::hp] >= this->_max_state[mainStateType::hp]) {
 		this->_now_state[mainStateType::hp] = this->_max_state[mainStateType::hp];
 	} else if (this->_now_state[mainStateType::hp] < 0) {
 		this->_now_state[mainStateType::hp] = 0;
 	}
+	//*/
+	mainStateType heal_type = mainStateType::hp;
+	this->_now_state[heal_type] += heal_num;
+	if (this->_now_state[heal_type] >= this->_max_state[heal_type]) {
+		this->_now_state[heal_type] = this->_max_state[heal_type];
+	} else if (this->_now_state[heal_type] < 0) {
+		this->_now_state[heal_type] = 0;
+	}
 }
 void CharaBase::healSp(int heal_num) {
+	/*
 	this->_now_state[mainStateType::sp] += heal_num;
 	if (this->_now_state[mainStateType::sp] >= this->_max_state[mainStateType::sp]) {
 		this->_now_state[mainStateType::sp] = this->_max_state[mainStateType::sp];
 	} else if (this->_now_state[mainStateType::sp] < 0) {
 		this->_now_state[mainStateType::sp] = 0;
+	}
+	//*/
+	mainStateType heal_type = mainStateType::sp;
+	this->_now_state[heal_type] += heal_num;
+	if (this->_now_state[heal_type] >= this->_max_state[heal_type]) {
+		this->_now_state[heal_type] = this->_max_state[heal_type];
+	} else if (this->_now_state[heal_type] < 0) {
+		this->_now_state[heal_type] = 0;
 	}
 }
 void CharaBase::healHoney(int heal_num) {
@@ -1299,19 +1333,30 @@ void CharaBase::healHoney(int heal_num) {
 		this->honeyOnlyDamage(heal_num * (-1), false);
 		return;
 	}
-	this->_now_state[mainStateType::honey] -= heal_num;
-	if (this->_now_state[mainStateType::honey] >= this->_max_state[mainStateType::honey]) {
-		this->_now_state[mainStateType::honey] = this->_max_state[mainStateType::honey];
-	} else if (this->_now_state[mainStateType::honey] < 0) {
-		this->_now_state[mainStateType::honey] = 0;
+	mainStateType heal_type = mainStateType::honey;
+	this->_now_state[heal_type] += heal_num;
+	if (this->_now_state[heal_type] >= this->_max_state[heal_type]) {
+		this->_now_state[heal_type] = this->_max_state[heal_type];
+	} else if (this->_now_state[heal_type] < 0) {
+		this->_now_state[heal_type] = 0;
 	}
 }
 void CharaBase::healExcitation(int heal_num) {
-	this->_now_state[mainStateType::excitation] += heal_num;
-	if (this->_now_state[mainStateType::excitation] >= this->_max_state[mainStateType::excitation]) {
-		this->_now_state[mainStateType::excitation] = this->_max_state[mainStateType::excitation];
-	} else if (this->_now_state[mainStateType::excitation] < 0) {
-		this->_now_state[mainStateType::excitation] = 0;
+	mainStateType heal_type = mainStateType::excitation;
+	this->_now_state[heal_type] += heal_num;
+	if (this->_now_state[heal_type] >= this->_max_state[heal_type]) {
+		this->_now_state[heal_type] = this->_max_state[heal_type];
+	} else if (this->_now_state[heal_type] < 0) {
+		this->_now_state[heal_type] = 0;
+	}
+}
+void CharaBase::healSatiety(int heal_num) {
+	mainStateType heal_type = mainStateType::satiety;
+	this->_now_state[heal_type] += heal_num;
+	if (this->_now_state[heal_type] >= this->_max_state[heal_type]) {
+		this->_now_state[heal_type] = this->_max_state[heal_type];
+	} else if (this->_now_state[heal_type] < 0) {
+		this->_now_state[heal_type] = 0;
 	}
 }
 void CharaBase::autoHealSexual() {
@@ -1396,6 +1441,21 @@ weaponType CharaBase::getSubWeaponType() {
 	WeaponBase* weapon_obj = (WeaponBase*)this->_equip_list[equipType::sub_weapon];
 
 	return weapon_obj->getWeaponType();
+}
+//-----------------------------------------------------------
+// 武器の納刀、抜刀状態に関する関数
+//-----------------------------------------------------------
+// 納刀、抜刀の状態を取得
+int CharaBase::getWeaponPrepare() {
+	return this->_weapon_prepare_state;
+}
+// 抜刀状態へ移行
+void CharaBase::setWeaponPrepareToDrawn() {
+	this->_weapon_prepare_state = 1;
+}
+// 納刀状態へ移行
+void CharaBase::setWeaponPrepareToStow() {
+	this->_weapon_prepare_state = 0;
 }
 //-----------------------------------------------------------
 // 剣+鞘などで使う武器状態を取得

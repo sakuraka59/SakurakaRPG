@@ -8,6 +8,9 @@
 
 SwordGale::SwordGale(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list) : SkillSwordBase(use_chara_obj, all_chara_list) {
 
+	this->_skill_id = "SwordGale";
+	this->_skill_name = "スラッシュスラスト";
+
 	// NPCでの発動射程距離
 	this->_npc_use_range = 30.0;
 

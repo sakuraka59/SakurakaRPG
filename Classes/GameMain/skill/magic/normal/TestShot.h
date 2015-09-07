@@ -10,6 +10,8 @@ using namespace std;
 class TestShot : public MagicShot {
 public: TestShot(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list) : MagicShot(use_chara_obj, all_chara_list)
 	{
+		this->_skill_id = "TestShot";
+
 		// –‚–@Œn‚Ì‹ó’†”­“®‚ÍNG
 		//	this._in_air_flag = true;
 
@@ -37,7 +39,13 @@ public: TestShot(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list) : M
 
 
 		//this->_magic_active_obj
-		this->_magic_active_obj = new TestMagicShot(this->_use_chara_obj);
+
+		
+//		this->_magic_active_obj = new TestMagicShot(this->_use_chara_obj);
 		
 	}
+protected: MagicBase* getMagicObj() override {
+	return new TestMagicShot(this->_use_chara_obj);
+}
+
 };

@@ -15,13 +15,12 @@ class PlayerCommentUI;
 class CharaNpc;
 class CharaBase;
 class MagicBase;
-class SkillList;
 class MapBase;
 
 class MapObjectList;
 class MapGroundObjectList;
 
-class ItemUi;
+//class ItemUi;
 
 class PlayUi : public UiBase
 {
@@ -38,13 +37,11 @@ private: list<CharaBase*> _chara_list;
 private: list<MagicBase*> _magic_list;
 public: ShadowObjectList* _shadow_list;
 
-public: SkillList* _skill_list;
-
 private: MapBase* _map_obj;
 private: std::unordered_map<int, MapObjectList*> _map_obj_line_list;
 private: MapGroundObjectList* _mg_object_list_obj;
 
-private: ItemUi* _item_ui_obj;
+//private: ItemUi* _item_ui_obj;
 
 public: PlayUi(PlayerCommentUI* comment_ui_obj);
 public: void Update();
@@ -56,7 +53,7 @@ private: bool checkHeightHit(MagicBase* magic_obj, CharaBase* check_chara_obj);
 public: CharaPlayer* getCharaPlayerObj();
 private: void playerSearchAction();
 
-public: void setItemUiObj(ItemUi* item_ui_obj);
+//public: void setItemUiObj(ItemUi* item_ui_obj);
 
 // マップ移動処理を行う
 public: void setMapMove();

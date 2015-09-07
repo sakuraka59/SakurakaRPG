@@ -8,6 +8,9 @@ SkillMagic::SkillMagic(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_lis
 }
 void SkillMagic::skillInit() {
 	this->_use_chara_obj->setAttackFrame(this->_starting_magic_frame + 1);
+	this->_spell_frame_time = 0;
+	this->_delete_flag = false;
+	this->_spell_list_itr = this->_spell_list.begin();
 }
 //-----------------------------------------------------------
 // 通常のUPDATE処理だと移動動作を行わない関係で、
@@ -37,17 +40,29 @@ bool SkillMagic::updateSkillEffect() {
 		//this->_starting_magic_frame -= 1;
 
 		// 詠唱状況進める
-		if (this->_spell_list.size() > 0) {
-			// 現状の一番最初のデータを取得ｓ
-			SkillMagicSpell* spell_obj = this->_spell_list.front();
 
+		if (this->_spell_list_itr != this->_spell_list.end()) {
+			// 現状の一番最初のデータを取得する
+			
+			SkillMagicSpell* spell_obj = *this->_spell_list_itr;
 			if (this->_spell_frame_time >= spell_obj->getSendFrame()) {
 				this->_use_chara_obj->sendDirectComment(spell_obj->getSpell());
-				//	Debug.WriteLine("[SkillMagic]check spell frame:"+this->_spell_frame_time);
+				
+				this->_spell_list_itr++;
+			}
+		}
+		/*
+		if (this->_spell_list.size() > 0 ) {
+			// 現状の一番最初のデータを取得する
+			SkillMagicSpell* spell_obj = this->_spell_list.front();
+			
+			if (this->_spell_frame_time >= spell_obj->getSendFrame()) {
+				this->_use_chara_obj->sendDirectComment(spell_obj->getSpell());
+				
 				this->_spell_list.pop_front();
 			}
-
 		}
+		// */
 		this->_spell_frame_time++;
 		// 詠唱進めても終わらない場合、処理終了
 		if (this->_spell_frame_time < this->_starting_magic_frame) {

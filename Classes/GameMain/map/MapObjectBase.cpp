@@ -126,31 +126,12 @@ bool MapObjectBase::getActionFlag() {
 // ƒAƒCƒeƒ€BOXŒn ------------------------------------------
 // ‰Šú‰»Œn
 void MapObjectBase::setItemList() {
-	if (this->_item_box_flag != true) {
-		return;
-	}
-	// @TODO test
-	ItemBase* test_load_item = ItemMasterList::getItemObjToMaster("test_sword");
-	this->setItemObj(test_load_item);
-
-	ItemBase* test_load_item2 = ItemMasterList::getItemObjToMaster("aphrodisiac_1");
-	this->setItemObj(test_load_item2);
-
-	//aphrodisiac_1
-	UseItem* test_load_item3 = (UseItem*)ItemMasterList::getItemObjToMaster("test_hp_heal");
-	this->setItemObj(test_load_item3);
-
-	//aphrodisiac_1
-	UseItem* test_load_item4 = (UseItem*)ItemMasterList::getItemObjToMaster("attack_potion_1");
-	this->setItemObj(test_load_item4);
-	
-	
-//	this->_use_item_list->setItem(test_load_item3, 1);
-//	this->_use_item_list->setItem("test_hp_heal", 3);
-//	ItemBase* test_load_use_item = new TestHpHeal();
-//	this->setItemObj(test_load_use_item);
 }
 void MapObjectBase::setItemObj(ItemBase* item_obj) {
+
+	if (item_obj == nullptr) {
+//		return;
+	}
 	haveItemType item_type = item_obj->getHaveItemType();
 
 	if (this->_item_type_count[item_type] <= 0) {
@@ -163,8 +144,7 @@ void MapObjectBase::setItemObj(ItemBase* item_obj) {
 		//this->_equip_item_list[item_type][this->_item_type_count[item_type]] = (EquipItem*)item_obj;
 		this->_equip_item_list->setListToItem((EquipItem*)item_obj);
 		break;
-	case haveItemType::portion:
-	case haveItemType::etc:
+	default:
 		this->_use_item_list->setItem((UseItem*)item_obj, 1);
 //		UseItem* test_load_item_to_use = (UseItem*)item_obj;
 //		test_load_item_to_use->addNum(1);

@@ -29,8 +29,18 @@ void ControllSetting::setControllSettingItem(buttonSettingType button_type, UseI
 	this->_setting_list[button_type]->setItem(item_obj);
 }
 void ControllSetting::useControllButton(buttonSettingType button_type) {
+	auto hoge = this->_setting_list.empty();
+	auto piyo = this->_setting_list.size();
+	if (this->_setting_list.empty() == true || this->_setting_list.size() <= 0 || this->_setting_list[button_type] == nullptr) {
+		return;
+	}
 	this->_setting_list[button_type]->useSetObj();
 }
 void ControllSetting::resetControllButton(buttonSettingType button_type) {
 //	this->_setting_list[button_type]->();
+}
+
+string ControllSetting::getControllObjName(buttonSettingType button_type) {
+	string obj_name = this->_setting_list[button_type]->getObjName();
+	return obj_name;
 }

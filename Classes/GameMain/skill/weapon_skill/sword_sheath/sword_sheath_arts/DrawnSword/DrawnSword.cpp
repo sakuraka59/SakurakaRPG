@@ -10,6 +10,11 @@
 
 DrawnSword::DrawnSword(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_list) : SkillSwordSheathArtsBase(use_chara_obj, all_chara_list) {
 
+	this->_skill_id = "DrawnSword";
+
+	// リストに表示しない
+	this->_ui_draw_flag = false;
+
 	// NPCでの発動射程距離
 	this->_npc_use_range = 30.0;
 
@@ -27,6 +32,7 @@ DrawnSword::DrawnSword(CharaBase* use_chara_obj, list<CharaBase*>* all_chara_lis
 
 	// 装備種制限
 	this->_main_weapon_list[weaponType::sword] = weaponType::sword;
+	this->_sub_weapon_list[weaponType::sheath] = weaponType::sheath;
 
 
 	// 空中発動可能

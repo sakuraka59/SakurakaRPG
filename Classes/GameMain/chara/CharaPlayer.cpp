@@ -20,6 +20,9 @@
 #include "controll_setting/ControlSettingList.h"
 #include "controll_setting/ControlSetting.h"
 
+// スキルリスト
+#include "../skill/SkillList.h"
+
 // スキルテスト
 #include "../skill/weapon_skill/no_weapon/NoWeaponDefault.h"
 #include "../skill/magic/normal/TestShot.h"
@@ -41,7 +44,9 @@ CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, st
 	this->_state_list = new StateList(this);
 	this->_play_camera = camera;
 
+	this->_skill_list = new SkillList(this, this->_all_chara_list);
 	
+
 	// グループリストに操作キャラクターを追加する
 	this->_my_group_list.push_back(charaGroupList::player);
 
@@ -66,14 +71,12 @@ CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, st
 
 	// スキル、アイテム操作設定 -------------------------------------
 	this->_controll_setting_list = new ControllSettingList(this);
+	this->setControllSetting();
 
 	// テスト用設定
 	ControllSetting* sword_setting = this->_controll_setting_list->testControllSetting(weaponType::sword, this->getSubWeaponType());
 	ControllSetting* sheath_setting = this->_controll_setting_list->testControllSetting(weaponType::sword, weaponType::sheath);
 
-//	auto hoge = new DoubleSlash(this, this->_all_chara_list);
-	sword_setting->setControllSettingSkill(buttonSettingType::circle_l1, new DoubleSlash(this, this->_all_chara_list));
-	sheath_setting->setControllSettingSkill(buttonSettingType::circle_l1, new SwordGale(this, this->_all_chara_list));
 	// test ---------------------------------------------------------
 	this->updateDraw();
 
@@ -85,6 +88,8 @@ CharaPlayer::CharaPlayer(GameCamera* camera, PlayerCommentUI* comment_ui_obj, st
 	test_item_obj = ItemMasterList::getItemObjToMaster("test_sheath");
 	this->_equip_item_list->setListToItem((EquipItem*)test_item_obj);
 
+	test_item_obj = ItemMasterList::getItemObjToMaster("hard_bread_block");
+	this->_use_item_list->setItem((UseItem*)test_item_obj, 3);
 	// 初期表示
 	//this->Position = new Vector2((int)(this->_draw_x), (int)(this->_draw_y - this->_play_camera._y));
 	//	this->Position = new Vector2((int)(this->_draw_x - this->_play_camera.getCameraX()), (int)(this->_draw_y - this->_play_camera.getCameraY() + this->_draw_z));
@@ -128,7 +133,6 @@ void CharaPlayer::mainUpdate() {
 	this->_search_flag = false;
 
 	//this->_game_pad_data = GamePad.GetData(0);
-	// 操作によるキャラクター移動
 	// 操作によるキャラクター移動
 	if (this->_down_flag == false) {
 		this->moveCharaPlusKey();
@@ -391,6 +395,11 @@ double CharaPlayer::getSearchX() {
 double CharaPlayer::getSearchY() {
 	return this->_search_y;
 }
+
+ControllSetting* CharaPlayer::getContorllSetting() {
+	return this->_controll_setting;
+}
+
 //test only -------------------------------------------------
 
 void CharaPlayer::testComment() {
@@ -591,62 +600,87 @@ void CharaPlayer::testAction() {
 		}
 		
 	}
-	// keybord to D
-	if (this->_control_flag == true && Gamepad::Circle->isPush() == true) {
-		this->setSearchFlag();
-		
-	}
-	// keybord to S
-	if (this->_control_flag == true && Gamepad::Square->isPush() == true) {
-		/**/
-		bool use_item_flag = this->_use_item_list->itemUse("test_hp_heal");
-		if (use_item_flag == true) {
-			this->sendComment("もぐもぐ…");
+
+	// 武器仕舞い時の動作
+	if (this->getWeaponPrepare() == 0) {
+		// keybord to D
+		if (this->_control_flag == true && Gamepad::Circle->isPush() == true) {
+			this->setSearchFlag();
 		}
-		else {
-			this->sendComment("アイテム切れだよ…");
+		//　keybord to A
+		else if (this->_control_flag == true && Gamepad::Square->isPush() == true) {
+			// 武器構える
+			this->setWeaponPrepareToDrawn();
+		}
+		// keybord to W
+		else if (this->_control_flag == true && Gamepad::Triangle->isPush() == true) {
+			Gamepad::GameControll->setControllType(gamePadControllType::item_ui);
+		}
+		// keybord to E
+		else if (this->_control_flag == true && Gamepad::R1->isPush() == true) {
+			Gamepad::GameControll->setControllType(gamePadControllType::skill_ui);
+		}
+		// keybord to Q
+		else if (this->_control_flag == true && Gamepad::L1->isPush() == true) {
+			Gamepad::GameControll->setControllType(gamePadControllType::craft_ui); // TEST
+		}
+
+		// test abnormal state
+		// keybord to F
+		else if (this->_control_flag == true && Gamepad::L2->isPush() == true) {
+			this->checkToSetState(abnormalStateType::feel_hot, 1, 10000);
+
+		}
+	} else if (this->getWeaponPrepare() == 1) {
+		// 抜刀時の動作
+
+		//　keybord to A
+		// 武器仕舞う
+		if (this->_control_flag == true && Gamepad::Square->isPush() == true) {
+			this->setWeaponPrepareToStow();
+		}
+
+		// test skill
+		//　keybord to D
+		if (this->_control_flag == true && Gamepad::Circle->isPush() == true) {
+
+			this->_controll_setting->useControllButton(buttonSettingType::circle);
+			bool attack_flag = false;
+			if (attack_flag == true) {
+				//			this->sendComment(this->_comment_list.getComment(charaCommentType.chara_attack, charaSexualType.normal));
+			}
+		}
+		//　keybord to W
+		if (this->_control_flag == true && Gamepad::Triangle->isPush() == true) {
+
+			this->_controll_setting->useControllButton(buttonSettingType::triangle);
+			bool attack_flag = false;
+			if (attack_flag == true) {
+				//			this->sendComment(this->_comment_list.getComment(charaCommentType.chara_attack, charaSexualType.normal));
+			}
+		}
+
+
+		//　keybord to E
+		if (this->_control_flag == true && Gamepad::R1->isPush() == true) {
+			this->_controll_setting->useControllButton(buttonSettingType::R1);
+		}
+
+
+		// keybord to G
+		if (this->_control_flag == true && Gamepad::R2->isPush() == true) {
+			this->_controll_setting->useControllButton(buttonSettingType::R2);
+			bool attack_flag = false;
+			if (attack_flag == true) {
+				//			this->sendComment(this->_comment_list.getComment(charaCommentType.chara_attack, charaSexualType.normal));
+			}
 		}
 	}
+	
 
-	// keybord to W
-	if (this->_control_flag == true && Gamepad::Triangle->isPush() == true) {
-		Gamepad::GameControll->setControllType(gamePadControllType::item_ui);
-	}
+	
 
-	// test skill
-	//　keybord to Q
-	if (this->_control_flag == true && Gamepad::L1->isPush() == true) {
-
-		//bool attack_flag = this->setSkill(new DoubleSlash(this, this->_all_chara_list));
-		this->_controll_setting->useControllButton(buttonSettingType::circle_l1);
-		bool attack_flag = false;
-		if (attack_flag == true) {
-//			this->sendComment(this->_comment_list.getComment(charaCommentType.chara_attack, charaSexualType.normal));
-		}
-	}
-
-
-	//　keybord to E
-	if (this->_control_flag == true && Gamepad::R1->isPush() == true) {
-
-		bool attack_flag = this->setSkill(new SwordGale(this, this->_all_chara_list));
-		if (attack_flag == true) {
-//			this->sendComment(this->_comment_list.getComment(charaCommentType.chara_attack, charaSexualType.normal));
-		}
-	}
-
-
-	// keybord to F
-	if (this->_control_flag == true && Gamepad::L2->isPush() == true) {
-		bool attack_flag = this->setSkill(new TestShot(this, this->_all_chara_list));
-	}
-
-	// test abnormal state
-	// keybord to G
-	if (this->_control_flag == true && Gamepad::R2->isPush() == true) {
-		this->checkToSetState(abnormalStateType::feel_hot, 1, 10000);
-
-	}
+	
 }
 
 void CharaPlayer::setCharaMapPoint(double point_x, double point_y) {

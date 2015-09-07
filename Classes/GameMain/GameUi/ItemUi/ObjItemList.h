@@ -8,9 +8,12 @@ class ItemBase;
 class EquipItem;
 class UseItem;
 
+class CharaPlayer;
+class ControllSettingUi;
+
 enum class haveItemType;
 enum class equipType;
-enum class useItemId;
+
 
 using namespace cocos2d;
 using namespace std;
@@ -22,11 +25,16 @@ protected: const int _FONT_SIZE = 18;
 protected: const int _CURSOR_DELAY_TIME = 10;
 protected: const int _BG_WIDTH = 200;
 protected: const int _LINE_WIDTH = 5;
+protected: const string _FONT_FILE = "fonts/APJapanesefontT.ttf";		// 使用フォントファイル（あんず文字等幅
 
 /*
 protected: HaveUseItemList* _use_item_list;
 protected: HaveEquipItemList* _equip_item_list;
 */
+
+// CharaPlayer情報
+private: CharaPlayer* _chara_obj;
+private: ControllSettingUi* _controll_setting_ui_obj = nullptr;
 
 protected: bool _open_only_flag = false;
 protected: HaveEquipItemList* _equip_item_list;
@@ -38,8 +46,8 @@ protected: unordered_map<haveItemType, unordered_map<EquipItem*, RenderObject*>>
 protected: unordered_map<equipType, EquipItem*> _equip_item_obj_list;
 
 protected: unordered_map<UseItem*, cocos2d::LabelTTF*> _use_item_label_list;
-protected: int _controll_type = 0; // 0 : アイテム種類一覧		1 : アイテム詳細一覧
-protected: int _cursor_delay = 0;
+protected: int _controll_type = 0;	// 0 : アイテム種類一覧		1 : アイテム詳細一覧
+protected: int _cursor_delay = 0;	// カーソル操作時におけるディレイ時間カウント
 
 
 
@@ -48,7 +56,6 @@ protected: RenderObject* _type_bg_render_obj;
 protected: int _item_type_num = 0;
 protected: int _item_type_cursor = 0;
 
-protected: string _type_label;
 protected: RenderObject* _type_label_obj;
 protected: unordered_map<int, haveItemType> _type_list;
 
@@ -85,6 +92,7 @@ private: RenderObject* _search_obj_detail_label_obj;
 
 public: ObjItemList();
 
+public: void setCharaPlayer(CharaPlayer* chara_obj);
 
 public: void setItemList(HaveEquipItemList* equip_item_list, HaveUseItemList* use_item_list);
 void ObjItemList::setItemListData(

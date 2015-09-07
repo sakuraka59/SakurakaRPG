@@ -3,15 +3,20 @@
 enum class buttonSettingType  {
 	_no_type = 0,
 
-	circle_l1,
-	cross_l1,
-	square_l1,
-	triangle_l1,
+	circle,
+	triangle,
+	R1,
+	R2,
 
-	circle_l2,
-	cross_l2,
-	square_l2,
-	triangle_l2,
+	circle_L1,
+	triangle_L1,
+	R1_L1,
+	R2_L1,
+
+	circle_L2,
+	triangle_L2,
+	R1_L2,
+	R2_L2,
 
 	_enum_end
 };

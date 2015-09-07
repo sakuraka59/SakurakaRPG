@@ -61,6 +61,10 @@ private: void setSearchFlag();
 public: bool getSearchFlag();
 public: double getSearchX();
 public: double getSearchY();
+
+// ----------------------------------------------------------
+// ショートカット設定用
+public: ControllSetting* getContorllSetting();
 //test only -------------------------------------------------
 private: void testComment();
 private: void testState();

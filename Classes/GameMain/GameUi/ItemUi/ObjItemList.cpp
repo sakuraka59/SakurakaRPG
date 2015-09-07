@@ -11,9 +11,19 @@
 #include "../../item/use_item/UseItem.h"
 #include "../../item/ItemBase.h"
 
+#include "../../chara/CharaPlayer.h"
+#include "../ControllSettingUi.h"
+
 ObjItemList::ObjItemList() {
 	this->_type_label_obj = new RenderObject();
 	this->_detail_label_obj = new RenderObject();
+}
+void ObjItemList::setCharaPlayer(CharaPlayer* chara_obj) {
+	this->_chara_obj = chara_obj;
+	// controll setting ui 
+	this->_controll_setting_ui_obj = new ControllSettingUi(chara_obj, controllSettingType::item);
+	this->_controll_setting_ui_obj->setPosition(220 * 2, 0);
+	
 }
 void ObjItemList::setItemList(HaveEquipItemList* equip_item_list, HaveUseItemList* use_item_list) {
 
@@ -148,7 +158,7 @@ void ObjItemList::openItemListInit(){
 //	this->_equip_item_list->getItemTypeList();
 
 	this->_item_type_num = 0;
-	this->_type_label = "";
+
 	this->_type_label_obj->removeAllChildren();
 
 
@@ -167,14 +177,14 @@ void ObjItemList::openItemListDetail(
 		haveItemType item_type = item_list_obj.first;
 		this->_type_list[this->_item_type_num] = item_type;
 		string type_name = this->getItemTypeName(item_type);
-		//		this->_type_label += type_name + "\n\n";
+
 
 
 		this->openEquipItemDetailListInit(item_type);
 
 
 		if (this->_item_detail_num_list[item_type] > 0) {
-			auto type_label_ttf = LabelTTF::create(type_name, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
+			auto type_label_ttf = LabelTTF::create(type_name, this->_FONT_FILE, this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
 			type_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
 			auto anchor_point_type = new cocos2d::Vec2(0, 1);
 			type_label_ttf->setAnchorPoint(*anchor_point_type);
@@ -191,46 +201,15 @@ void ObjItemList::openItemListDetail(
 		this->_type_list[this->_item_type_num] = item_type;
 
 		string type_name = this->getItemTypeName(item_type);
-		//		this->_type_label += type_name + "\n\n";
+
 
 		this->_type_list[this->_item_type_num] = item_type;
 		this->openUseItemDetailListInit(item_type);
-		/*
-		this->_item_detail_num_list[item_type] = 0;
-
-		if (this->_item_detail_list[item_type] != nullptr) {
-			this->_item_detail_list[item_type]->removeAllChildren();
-		}
-
-		for (auto use_item_obj : item_list_obj.second) {
-
-			if (use_item_obj.second->getNum() <= 0) {
-				continue;
-			}
-			
-			auto detail_label_ttf = LabelTTF::create(use_item_obj.second->getItemName(), "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
-			detail_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
-			auto anchor_point_type = new cocos2d::Vec2(0, 1);
-			detail_label_ttf->setAnchorPoint(*anchor_point_type);
-			detail_label_ttf->setPosition(0, (this->_TEXT_LINE_HEIGHT * this->_item_detail_num_list[item_type] * (-1)));
-			//this->_type_label_obj->addChild(detail_label_ttf);
-
-			if (this->_item_detail_list[item_type] == nullptr) {
-				this->_item_detail_list[item_type] = new RenderObject();
-			}
-			this->_item_detail_list[item_type]->addChild(detail_label_ttf);
-			
-
-			// リストにアイテムオブジェクトを追加
-			this->_detail_item_list[item_type][this->_item_detail_num_list[item_type]] = use_item_obj.second;
-			this->_item_detail_num_list[item_type]++;
-
-		}
-		*/
+		
 
 		// 種類内にアイテムが1種類でも表示される場合
 		if (this->_item_detail_num_list[item_type] > 0) {
-			auto type_label_ttf = LabelTTF::create(type_name, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
+			auto type_label_ttf = LabelTTF::create(type_name, this->_FONT_FILE, this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
 			type_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
 			auto anchor_point_type = new cocos2d::Vec2(0, 1);
 			type_label_ttf->setAnchorPoint(*anchor_point_type);
@@ -255,6 +234,7 @@ void ObjItemList::openItemDetailListInit(haveItemType item_type) {
 		*/
 		// アイテム系
 	case haveItemType::portion:
+	case haveItemType::food:
 	case haveItemType::etc:
 		this->openUseItemDetailListInit(item_type);
 		break;
@@ -290,7 +270,7 @@ void ObjItemList::openEquipItemDetailListInit(haveItemType item_type) {
 	for (auto use_item_obj : item_list_detail) {
 
 		string name_string_data = use_item_obj.second->getItemName();
-		auto detail_label_ttf = LabelTTF::create(name_string_data, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
+		auto detail_label_ttf = LabelTTF::create(name_string_data, this->_FONT_FILE, this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
 		detail_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
 		auto anchor_point_type = new cocos2d::Vec2(0, 1);
 		detail_label_ttf->setAnchorPoint(*anchor_point_type);
@@ -306,7 +286,7 @@ void ObjItemList::openEquipItemDetailListInit(haveItemType item_type) {
 		// 装備中かどうかチェック表示
 
 		string equip_text = "☆";
-		auto equip_label_ttf = LabelTTF::create(equip_text, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE);
+		auto equip_label_ttf = LabelTTF::create(equip_text, this->_FONT_FILE, this->_FONT_SIZE);
 		equip_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
 		auto anchor_point_equip = new cocos2d::Vec2(0, 1);
 		equip_label_ttf->setAnchorPoint(*anchor_point_equip);
@@ -356,7 +336,7 @@ void ObjItemList::openUseItemDetailListInit(haveItemType item_type) {
 		}
 
 
-		this->_use_item_label_list[use_item_obj] = LabelTTF::create(name_string_data, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
+		this->_use_item_label_list[use_item_obj] = LabelTTF::create(name_string_data, this->_FONT_FILE, this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
 		this->_use_item_label_list[use_item_obj]->setColor(cocos2d::Color3B(255, 255, 255));
 		auto anchor_point_type = new cocos2d::Vec2(0, 1);
 		this->_use_item_label_list[use_item_obj]->setAnchorPoint(*anchor_point_type);
@@ -376,7 +356,8 @@ void ObjItemList::openUseItemDetailListInit(haveItemType item_type) {
 	}
 }
 string ObjItemList::getItemTypeName(haveItemType item_type) {
-
+	return _getHaveItemTypeName(item_type);
+	/*
 	string type_name = "ななしのタイプ";
 	switch (item_type) {
 	case haveItemType::weapon:
@@ -388,6 +369,9 @@ string ObjItemList::getItemTypeName(haveItemType item_type) {
 	case haveItemType::portion:
 		type_name = "くすり";
 		break;
+	case haveItemType::food:
+		type_name = "たべもの";
+		break;
 	case haveItemType::etc:
 		type_name = "そのた";
 		break;
@@ -395,6 +379,7 @@ string ObjItemList::getItemTypeName(haveItemType item_type) {
 	}
 
 	return type_name;
+	*/
 }
 void ObjItemList::openItemDetailInit(haveItemType item_type) {
 
@@ -416,6 +401,15 @@ void ObjItemList::Update() {
 	case 1:
 		this->UpdateItemDetail();
 		break;
+	case 2:
+		this->_controll_setting_ui_obj->Update();
+
+		// セット閉じた場合、1つ前にもどす
+		if (this->_controll_setting_ui_obj->getDrawFlag() != true) {
+			this->_controll_type = 1;
+			this->removeChild(this->_controll_setting_ui_obj);
+		}
+		break;
 	}
 	
 }
@@ -425,7 +419,7 @@ void ObjItemList::Update() {
 void ObjItemList::resetItemTypeList() {
 
 	this->_item_type_num = 0;
-	this->_type_label = "";
+
 	this->_type_label_obj->removeAllChildren();
 
 	// @TODO 所持アイテム種類簡易初期化。
@@ -433,51 +427,7 @@ void ObjItemList::resetItemTypeList() {
 
 
 
-	/*
-	for (auto item_list_obj : *this->_equip_item_list_detail) {
-		haveItemType item_type = item_list_obj.first;
-		this->_type_list[this->_item_type_num] = item_type;
-		string type_name = this->getItemTypeName(item_type);
-		//		this->_type_label += type_name + "\n\n";
-
-
-//		this->openEquipItemDetailListInit(item_type);
-
-
-		if (this->_item_detail_num_list[item_type] > 0) {
-			auto type_label_ttf = LabelTTF::create(type_name, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
-			type_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
-			auto anchor_point_type = new cocos2d::Vec2(0, 1);
-			type_label_ttf->setAnchorPoint(*anchor_point_type);
-			type_label_ttf->setPosition(0, (this->_TEXT_LINE_HEIGHT * this->_item_type_num * (-1)));
-			this->_type_label_obj->addChild(type_label_ttf);
-
-			this->_item_type_num++;
-		}
-	}
-
-	for (auto item_list_obj : *this->_use_item_list_detail) {
-		haveItemType item_type = item_list_obj.first;
-		this->_type_list[this->_item_type_num] = item_type;
-
-		string type_name = this->getItemTypeName(item_type);
-
-		this->_type_list[this->_item_type_num] = item_type;
-
-		// 種類内にアイテムが1種類でも表示される場合
-		if (this->_item_detail_num_list[item_type] > 0) {
-			auto type_label_ttf = LabelTTF::create(type_name, "fonts/APJapanesefontT.ttf", this->_FONT_SIZE, cocos2d::Size(200, GAME_HEIGHT), cocos2d::TextHAlignment::LEFT);
-			type_label_ttf->setColor(cocos2d::Color3B(255, 255, 255));
-			auto anchor_point_type = new cocos2d::Vec2(0, 1);
-			type_label_ttf->setAnchorPoint(*anchor_point_type);
-			type_label_ttf->setPosition(0, (this->_TEXT_LINE_HEIGHT * this->_item_type_num * (-1)));
-			this->_type_label_obj->addChild(type_label_ttf);
-
-			this->_item_type_num++;
-
-		}
-	}
-	// */
+	
 }
 void ObjItemList::UpdateItemType() {
 
@@ -561,19 +511,32 @@ void ObjItemList::UpdateItemDetail() {
 		return;
 	}
 	// ○ボタンでアイテム使用
-	if (Gamepad::Circle->isPush() == true) {
+	else if (Gamepad::Circle->isPush() == true) {
 		this->_detail_item_list[this->_open_detail_type][this->_item_detail_cursor]->useItem();
 
 		this->useItemDrawUpdate(this->_open_detail_type, this->_detail_item_list[this->_open_detail_type][this->_item_detail_cursor]);
 
 	}
-	// □ボタンでアイテムを渡す
-	if (Gamepad::Square->isPush() == true) {
+	// □ボタンでショートカット設定を出す
+	else if (Gamepad::Square->isPush() == true || Gamepad::Right->isPush() == true) {
 
+		// 現状ではポーションのみ設定可能
+		if (this->_open_detail_type != haveItemType::portion ||
+			this->_open_detail_type != haveItemType::food) {
+			return;
+		}
+		this->_controll_type = 2;
+		this->_controll_setting_ui_obj->openUiToItem((UseItem*)this->_detail_item_list[this->_open_detail_type][this->_item_detail_cursor]);
+		this->addChild(this->_controll_setting_ui_obj);
+		int hoge = 1;
+//		this->_controll_setting_ui_obj->openUiToSkill(this->_detail_skill_list[this->_open_detail_type][this->_detail_cursor]);
+	}
+	// R2ボタンでアイテムを渡す
+	else if (Gamepad::R2->isPush() == true) {
 		this->transferItemObj();
 	}
 	// 左、×ボタンで種類一覧へ戻る
-	if (Gamepad::Left->isPush() == true || Gamepad::Cross->isPush() == true) {
+	else if (Gamepad::Left->isPush() == true || Gamepad::Cross->isPush() == true) {
 		this->_cursor_delay = this->_CURSOR_DELAY_TIME;
 		this->_controll_type = 0;
 		this->removeChild(this->_detail_bg_render_obj);
@@ -594,6 +557,7 @@ void ObjItemList::useItemDrawUpdate(haveItemType item_type, ItemBase* item_obj){
 		
 		// アイテム系
 		case haveItemType::portion:
+		case haveItemType::food:
 		case haveItemType::etc:
 			this->useItemDrawUpdateToUse(item_type, (UseItem*)item_obj);
 		break;
@@ -650,6 +614,11 @@ void ObjItemList::closeItemList() {
 	this->_controll_type = 0;
 	this->removeChild(this->_detail_bg_render_obj);
 	this->_detail_label_obj->removeAllChildren();
+
+	if (this->_controll_setting_ui_obj != nullptr) {
+		this->removeChild(this->_controll_setting_ui_obj);
+	}
+	
 }
 
 void ObjItemList::removeEquipItem(EquipItem* remove_item_obj) {
@@ -704,6 +673,7 @@ void ObjItemList::transferItemObj() {
 
 		// アイテム系
 	case haveItemType::portion:
+	case haveItemType::food:
 	case haveItemType::etc:
 		if (this->removeUseItemList(use_item_obj) != true) {
 			break;

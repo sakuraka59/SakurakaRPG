@@ -152,6 +152,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\status_effect\ExcitationEffect.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\status_effect\HoneyEffect.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\status_effect\HpEffect.cpp" />
+    <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\status_effect\SatietyEffect.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\status_effect\SpEffect.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\abnormal_state\status_effect\StatusEffectBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\chara\CharaBase.cpp" />
@@ -171,6 +172,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\GameMain.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\AbnormalStateUI.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\AbnormalStateUi\AbnormalStateView.cpp" />
+    <ClCompile Include="..\Classes\GameMain\GameUi\ControllSettingUi.cpp" />
+    <ClCompile Include="..\Classes\GameMain\GameUi\CraftUi.cpp" />
+    <ClCompile Include="..\Classes\GameMain\GameUi\CraftUi\CraftRecipeDetail.cpp" />
+    <ClCompile Include="..\Classes\GameMain\GameUi\CraftUi\CraftUiBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateUI.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateUI\CCGauge.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\DefaultStateUI\DefaultStateGauge.cpp" />
@@ -180,6 +185,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\GameUi\PlayerComment.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\PlayerCommentUI.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\PlayUi.cpp" />
+    <ClCompile Include="..\Classes\GameMain\GameUi\SkillUi.cpp" />
+    <ClCompile Include="..\Classes\GameMain\GameUi\SkillUi\SkillListUi.cpp" />
     <ClCompile Include="..\Classes\GameMain\GameUi\UiBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\hit\HitCheck.cpp" />
     <ClCompile Include="..\Classes\GameMain\hit\HitCircle.cpp" />
@@ -193,6 +200,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\sword\WeaponSwordBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\equip_item\weapon\WeaponBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\HaveItemListBase.cpp" />
+    <ClCompile Include="..\Classes\GameMain\item\haveItemType.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\ItemBase.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\ItemMasterList.cpp" />
     <ClCompile Include="..\Classes\GameMain\item\use_item\HaveUseItemList.cpp" />
@@ -266,6 +274,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\status_effect\ExcitationEffect.h" />
     <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\status_effect\HoneyEffect.h" />
     <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\status_effect\HpEffect.h" />
+    <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\status_effect\SatietyEffect.h" />
     <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\status_effect\SpEffect.h" />
     <ClInclude Include="..\Classes\GameMain\chara\abnormal_state\status_effect\StatusEffectBase.h" />
     <ClInclude Include="..\Classes\GameMain\chara\charaActionType.h" />
@@ -293,6 +302,10 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\GameMain.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\AbnormalStateUI.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\AbnormalStateUi\AbnormalStateView.h" />
+    <ClInclude Include="..\Classes\GameMain\GameUi\ControllSettingUi.h" />
+    <ClInclude Include="..\Classes\GameMain\GameUi\CraftUi.h" />
+    <ClInclude Include="..\Classes\GameMain\GameUi\CraftUi\CraftRecipeDetail.h" />
+    <ClInclude Include="..\Classes\GameMain\GameUi\CraftUi\CraftUiBase.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\DefaultStateUI.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\DefaultStateUI\CCGauge.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\DefaultStateUI\DefaultStateGauge.h" />
@@ -302,6 +315,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y</Command>
     <ClInclude Include="..\Classes\GameMain\GameUi\PlayerComment.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\PlayerCommentUI.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\PlayUi.h" />
+    <ClInclude Include="..\Classes\GameMain\GameUi\SkillUi.h" />
+    <ClInclude Include="..\Classes\GameMain\GameUi\SkillUi\SkillListUi.h" />
     <ClInclude Include="..\Classes\GameMain\GameUi\UiBase.h" />
     <ClInclude Include="..\Classes\GameMain\GAME_SETTING.h" />
     <ClInclude Include="..\Classes\GameMain\hit\HitCheck.h" />

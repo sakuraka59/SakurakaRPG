@@ -11,12 +11,18 @@
 #include "../magic/MagicBase.h"
 #include "../shadow/ShadowObjectList.h"
 
+// スキルリスト
+#include "../skill/SkillList.h"
+
 CharaNpc::CharaNpc(int set_x, int set_y, GameCamera* camera_obj, std::list<CharaBase*>* all_chara_list, std::list<MagicBase*>* magic_list, ShadowObjectList* shadow_list)
 {
 //	this->_skill_list = skill_list;
 	this->_all_chara_list = all_chara_list;
 	this->_magic_list = magic_list;
 	this->_shadow_list = shadow_list;
+
+	this->_skill_list = new SkillList(this, this->_all_chara_list);
+	
 
 	//this->_state_list = new StateList(this);
 	this->_play_camera = camera_obj;

@@ -26,7 +26,6 @@ void ItemEffect::attackHitEffect(CharaBase* check_chara_obj) {
 	
 	int state_frame = 0;
 	// ‰ñ•œŒn
-	// @TODO ƒXƒŠƒbƒvƒq[ƒ‹‚É‚µ‚½‚¢
 	for (auto state_data : this->_default_state) {
 		if (state_data.second == 0)  {
 			continue;
@@ -47,6 +46,9 @@ void ItemEffect::attackHitEffect(CharaBase* check_chara_obj) {
 			break;
 		case mainStateType::excitation:
 			check_chara_obj->healExcitation(100);
+			break;
+		case mainStateType::satiety:
+			check_chara_obj->checkToSetState(abnormalStateType::satiety_effect , 1, 10000, state_data.second, this->_effect_frame_num);
 			break;
 		}
 	}

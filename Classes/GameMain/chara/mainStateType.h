@@ -12,6 +12,8 @@ enum class mainStateType
 	hp,		//	base and correction to max. now to now_state
 	sp,		//	base and correction to max. now to now_state
 
+	satiety,	// Satiety 満腹度
+
 	// 基本ステータス
 	atk,			// 攻撃力
 	def,			// 防御力
